@@ -1,13 +1,7 @@
-type Query {
-  users: [User!]!
-  user(userId: ID!): User
-}
-
 type Mutation {
-  createUser(name: String!): User
+  hi: String
 }
 
-type User {
-  id: ID!
-  name: String!
+type Query {
+  hi: String
 }
