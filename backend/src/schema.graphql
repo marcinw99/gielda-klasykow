@@ -1,7 +1,9 @@
+# import * from './generated/prisma.graphql'
+
 type Mutation {
-  hi: String
+  createCat(name: String): Cat!
 }
 
 type Query {
-  hi: String
+  cats: [Cat!]
 }

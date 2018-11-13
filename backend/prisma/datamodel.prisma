@@ -1,4 +1,4 @@
-type User {
+type Cat {
   id: ID! @unique
   name: String!
 }

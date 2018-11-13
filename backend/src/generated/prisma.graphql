@@ -1,4 +1,4 @@
-type AggregateUser {
+type AggregateCat {
   count: Int!
 }
 
@@ -6,66 +6,27 @@ type BatchPayload {
   count: Long!
 }
 
-scalar Long
-
-type Mutation {
-  createUser(data: UserCreateInput!): User!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  deleteUser(where: UserWhereUniqueInput!): User
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
-}
-
-enum MutationType {
-  CREATED
-  UPDATED
-  DELETED
-}
-
-interface Node {
-  id: ID!
-}
-
-type PageInfo {
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-  endCursor: String
-}
-
-type Query {
-  user(where: UserWhereUniqueInput!): User
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  node(id: ID!): Node
-}
-
-type Subscription {
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-}
-
-type User {
+type Cat {
   id: ID!
   name: String!
 }
 
-type UserConnection {
+type CatConnection {
   pageInfo: PageInfo!
-  edges: [UserEdge]!
-  aggregate: AggregateUser!
+  edges: [CatEdge]!
+  aggregate: AggregateCat!
 }
 
-input UserCreateInput {
+input CatCreateInput {
   name: String!
 }
 
-type UserEdge {
-  node: User!
+type CatEdge {
+  node: Cat!
   cursor: String!
 }
 
-enum UserOrderByInput {
+enum CatOrderByInput {
   id_ASC
   id_DESC
   name_ASC
@@ -76,38 +37,38 @@ enum UserOrderByInput {
   updatedAt_DESC
 }
 
-type UserPreviousValues {
+type CatPreviousValues {
   id: ID!
   name: String!
 }
 
-type UserSubscriptionPayload {
+type CatSubscriptionPayload {
   mutation: MutationType!
-  node: User
+  node: Cat
   updatedFields: [String!]
-  previousValues: UserPreviousValues
+  previousValues: CatPreviousValues
 }
 
-input UserSubscriptionWhereInput {
+input CatSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: UserWhereInput
-  AND: [UserSubscriptionWhereInput!]
-  OR: [UserSubscriptionWhereInput!]
-  NOT: [UserSubscriptionWhereInput!]
+  node: CatWhereInput
+  AND: [CatSubscriptionWhereInput!]
+  OR: [CatSubscriptionWhereInput!]
+  NOT: [CatSubscriptionWhereInput!]
 }
 
-input UserUpdateInput {
+input CatUpdateInput {
   name: String
 }
 
-input UserUpdateManyMutationInput {
+input CatUpdateManyMutationInput {
   name: String
 }
 
-input UserWhereInput {
+input CatWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -136,11 +97,50 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  AND: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  NOT: [UserWhereInput!]
+  AND: [CatWhereInput!]
+  OR: [CatWhereInput!]
+  NOT: [CatWhereInput!]
 }
 
-input UserWhereUniqueInput {
+input CatWhereUniqueInput {
   id: ID
+}
+
+scalar Long
+
+type Mutation {
+  createCat(data: CatCreateInput!): Cat!
+  updateCat(data: CatUpdateInput!, where: CatWhereUniqueInput!): Cat
+  updateManyCats(data: CatUpdateManyMutationInput!, where: CatWhereInput): BatchPayload!
+  upsertCat(where: CatWhereUniqueInput!, create: CatCreateInput!, update: CatUpdateInput!): Cat!
+  deleteCat(where: CatWhereUniqueInput!): Cat
+  deleteManyCats(where: CatWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  cat(where: CatWhereUniqueInput!): Cat
+  cats(where: CatWhereInput, orderBy: CatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Cat]!
+  catsConnection(where: CatWhereInput, orderBy: CatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CatConnection!
+  node(id: ID!): Node
+}
+
+type Subscription {
+  cat(where: CatSubscriptionWhereInput): CatSubscriptionPayload
 }
