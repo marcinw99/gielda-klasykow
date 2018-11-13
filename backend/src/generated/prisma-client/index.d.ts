@@ -10,7 +10,7 @@ type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
-  user: (where?: UserWhereInput) => Promise<boolean>;
+  cat: (where?: CatWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -32,51 +32,51 @@ export interface Prisma {
    * Queries
    */
 
-  user: (where: UserWhereUniqueInput) => UserPromise;
-  users: (
+  cat: (where: CatWhereUniqueInput) => CatPromise;
+  cats: (
     args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
+      where?: CatWhereInput;
+      orderBy?: CatOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => FragmentableArray<User>;
-  usersConnection: (
+  ) => FragmentableArray<Cat>;
+  catsConnection: (
     args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
+      where?: CatWhereInput;
+      orderBy?: CatOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => UserConnectionPromise;
+  ) => CatConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
    * Mutations
    */
 
-  createUser: (data: UserCreateInput) => UserPromise;
-  updateUser: (
-    args: { data: UserUpdateInput; where: UserWhereUniqueInput }
-  ) => UserPromise;
-  updateManyUsers: (
-    args: { data: UserUpdateManyMutationInput; where?: UserWhereInput }
+  createCat: (data: CatCreateInput) => CatPromise;
+  updateCat: (
+    args: { data: CatUpdateInput; where: CatWhereUniqueInput }
+  ) => CatPromise;
+  updateManyCats: (
+    args: { data: CatUpdateManyMutationInput; where?: CatWhereInput }
   ) => BatchPayloadPromise;
-  upsertUser: (
+  upsertCat: (
     args: {
-      where: UserWhereUniqueInput;
-      create: UserCreateInput;
-      update: UserUpdateInput;
+      where: CatWhereUniqueInput;
+      create: CatCreateInput;
+      update: CatUpdateInput;
     }
-  ) => UserPromise;
-  deleteUser: (where: UserWhereUniqueInput) => UserPromise;
-  deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
+  ) => CatPromise;
+  deleteCat: (where: CatWhereUniqueInput) => CatPromise;
+  deleteManyCats: (where?: CatWhereInput) => BatchPayloadPromise;
 
   /**
    * Subscriptions
@@ -86,9 +86,9 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  user: (
-    where?: UserSubscriptionWhereInput
-  ) => UserSubscriptionPayloadSubscription;
+  cat: (
+    where?: CatSubscriptionWhereInput
+  ) => CatSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -99,7 +99,7 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type UserOrderByInput =
+export type CatOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "name_ASC"
@@ -111,19 +111,19 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface UserCreateInput {
+export interface CatCreateInput {
   name: String;
 }
 
-export interface UserUpdateInput {
+export interface CatUpdateInput {
   name?: String;
 }
 
-export interface UserUpdateManyMutationInput {
+export interface CatUpdateManyMutationInput {
   name?: String;
 }
 
-export interface UserWhereInput {
+export interface CatWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -152,23 +152,23 @@ export interface UserWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
-  AND?: UserWhereInput[] | UserWhereInput;
-  OR?: UserWhereInput[] | UserWhereInput;
-  NOT?: UserWhereInput[] | UserWhereInput;
+  AND?: CatWhereInput[] | CatWhereInput;
+  OR?: CatWhereInput[] | CatWhereInput;
+  NOT?: CatWhereInput[] | CatWhereInput;
 }
 
-export interface UserSubscriptionWhereInput {
+export interface CatSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  node?: CatWhereInput;
+  AND?: CatSubscriptionWhereInput[] | CatSubscriptionWhereInput;
+  OR?: CatSubscriptionWhereInput[] | CatSubscriptionWhereInput;
+  NOT?: CatSubscriptionWhereInput[] | CatSubscriptionWhereInput;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
+export type CatWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
@@ -176,18 +176,18 @@ export interface NodeNode {
   id: ID_Output;
 }
 
-export interface AggregateUser {
+export interface AggregateCat {
   count: Int;
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface AggregateCatPromise
+  extends Promise<AggregateCat>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface AggregateCatSubscription
+  extends Promise<AsyncIterator<AggregateCat>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -208,97 +208,97 @@ export interface BatchPayloadSubscription
   count: () => Promise<AsyncIterator<Long>>;
 }
 
-export interface UserPreviousValues {
+export interface CatPreviousValues {
   id: ID_Output;
   name: String;
 }
 
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
+export interface CatPreviousValuesPromise
+  extends Promise<CatPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
 }
 
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
+export interface CatPreviousValuesSubscription
+  extends Promise<AsyncIterator<CatPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserEdge {
+export interface CatEdge {
   cursor: String;
 }
 
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = User>() => T;
+export interface CatEdgePromise extends Promise<CatEdge>, Fragmentable {
+  node: <T = Cat>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
+export interface CatEdgeSubscription
+  extends Promise<AsyncIterator<CatEdge>>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
+  node: <T = CatSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserSubscriptionPayload {
+export interface CatSubscriptionPayload {
   mutation: MutationType;
   updatedFields?: String[];
 }
 
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
+export interface CatSubscriptionPayloadPromise
+  extends Promise<CatSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = User>() => T;
+  node: <T = Cat>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValues>() => T;
+  previousValues: <T = CatPreviousValues>() => T;
 }
 
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+export interface CatSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CatSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
+  node: <T = CatSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
+  previousValues: <T = CatPreviousValuesSubscription>() => T;
 }
 
-export interface User {
+export interface Cat {
   id: ID_Output;
   name: String;
 }
 
-export interface UserPromise extends Promise<User>, Fragmentable {
+export interface CatPromise extends Promise<Cat>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
 }
 
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
+export interface CatSubscription
+  extends Promise<AsyncIterator<Cat>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserConnection {}
+export interface CatConnection {}
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface CatConnectionPromise
+  extends Promise<CatConnection>,
     Fragmentable {
   pageInfo: <T = PageInfo>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUser>() => T;
+  edges: <T = FragmentableArray<CatEdge>>() => T;
+  aggregate: <T = AggregateCat>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface CatConnectionSubscription
+  extends Promise<AsyncIterator<CatConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CatEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCatSubscription>() => T;
 }
 
 export interface PageInfo {
