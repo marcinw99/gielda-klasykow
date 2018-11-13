@@ -1,6 +1,6 @@
 const Mutations = {
-  createCat(parent, args, ctx, info) {
-    return ctx.db.createCat(args);
+  createCar(parent, args, ctx, info) {
+    return ctx.db.createCar(args);
   }
 };
 

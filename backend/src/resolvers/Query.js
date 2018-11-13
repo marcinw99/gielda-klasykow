@@ -1,6 +1,6 @@
 const Query = {
-  cats(parent, args, ctx, info) {
-    return ctx.db.cats();
+  cars(parent, args, ctx, info) {
+    return ctx.db.cars();
   }
 };
 

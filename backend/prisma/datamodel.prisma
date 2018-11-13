@@ -1,4 +1,13 @@
-type Cat {
+type Car {
   id: ID! @unique
-  name: String!
+  manufacturer: String!
+  model: String!
+  type: String!
+  generation: [String!]
+  producedFrom: Int
+  producedTo: Int
+  fuelType: [String!]
+  engineDisplacement: [Int!]
+  horsePower: [Int!]
+  transmission: [String!]
 }
