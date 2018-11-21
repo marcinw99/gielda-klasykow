@@ -10,7 +10,7 @@ type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
-  cat: (where?: CatWhereInput) => Promise<boolean>;
+  car: (where?: CarWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -32,51 +32,51 @@ export interface Prisma {
    * Queries
    */
 
-  cat: (where: CatWhereUniqueInput) => CatPromise;
-  cats: (
+  car: (where: CarWhereUniqueInput) => CarPromise;
+  cars: (
     args?: {
-      where?: CatWhereInput;
-      orderBy?: CatOrderByInput;
+      where?: CarWhereInput;
+      orderBy?: CarOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => FragmentableArray<Cat>;
-  catsConnection: (
+  ) => FragmentableArray<Car>;
+  carsConnection: (
     args?: {
-      where?: CatWhereInput;
-      orderBy?: CatOrderByInput;
+      where?: CarWhereInput;
+      orderBy?: CarOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => CatConnectionPromise;
+  ) => CarConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
    * Mutations
    */
 
-  createCat: (data: CatCreateInput) => CatPromise;
-  updateCat: (
-    args: { data: CatUpdateInput; where: CatWhereUniqueInput }
-  ) => CatPromise;
-  updateManyCats: (
-    args: { data: CatUpdateManyMutationInput; where?: CatWhereInput }
+  createCar: (data: CarCreateInput) => CarPromise;
+  updateCar: (
+    args: { data: CarUpdateInput; where: CarWhereUniqueInput }
+  ) => CarPromise;
+  updateManyCars: (
+    args: { data: CarUpdateManyMutationInput; where?: CarWhereInput }
   ) => BatchPayloadPromise;
-  upsertCat: (
+  upsertCar: (
     args: {
-      where: CatWhereUniqueInput;
-      create: CatCreateInput;
-      update: CatUpdateInput;
+      where: CarWhereUniqueInput;
+      create: CarCreateInput;
+      update: CarUpdateInput;
     }
-  ) => CatPromise;
-  deleteCat: (where: CatWhereUniqueInput) => CatPromise;
-  deleteManyCats: (where?: CatWhereInput) => BatchPayloadPromise;
+  ) => CarPromise;
+  deleteCar: (where: CarWhereUniqueInput) => CarPromise;
+  deleteManyCars: (where?: CarWhereInput) => BatchPayloadPromise;
 
   /**
    * Subscriptions
@@ -86,9 +86,9 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  cat: (
-    where?: CatSubscriptionWhereInput
-  ) => CatSubscriptionPayloadSubscription;
+  car: (
+    where?: CarSubscriptionWhereInput
+  ) => CarSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -99,11 +99,19 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type CatOrderByInput =
+export type CarOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
+  | "manufacturer_ASC"
+  | "manufacturer_DESC"
+  | "model_ASC"
+  | "model_DESC"
+  | "type_ASC"
+  | "type_DESC"
+  | "producedFrom_ASC"
+  | "producedFrom_DESC"
+  | "producedTo_ASC"
+  | "producedTo_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -111,19 +119,66 @@ export type CatOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface CatCreateInput {
-  name: String;
+export interface CarCreateengineDisplacementInput {
+  set?: Int[] | Int;
 }
 
-export interface CatUpdateInput {
-  name?: String;
+export type CarWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface CarUpdateInput {
+  manufacturer?: String;
+  model?: String;
+  type?: String;
+  generation?: CarUpdategenerationInput;
+  producedFrom?: Int;
+  producedTo?: Int;
+  fuelType?: CarUpdatefuelTypeInput;
+  engineDisplacement?: CarUpdateengineDisplacementInput;
+  horsePower?: CarUpdatehorsePowerInput;
+  transmission?: CarUpdatetransmissionInput;
 }
 
-export interface CatUpdateManyMutationInput {
-  name?: String;
+export interface CarCreatetransmissionInput {
+  set?: String[] | String;
 }
 
-export interface CatWhereInput {
+export interface CarCreateInput {
+  manufacturer: String;
+  model: String;
+  type: String;
+  generation?: CarCreategenerationInput;
+  producedFrom?: Int;
+  producedTo?: Int;
+  fuelType?: CarCreatefuelTypeInput;
+  engineDisplacement?: CarCreateengineDisplacementInput;
+  horsePower?: CarCreatehorsePowerInput;
+  transmission?: CarCreatetransmissionInput;
+}
+
+export interface CarUpdateManyMutationInput {
+  manufacturer?: String;
+  model?: String;
+  type?: String;
+  generation?: CarUpdategenerationInput;
+  producedFrom?: Int;
+  producedTo?: Int;
+  fuelType?: CarUpdatefuelTypeInput;
+  engineDisplacement?: CarUpdateengineDisplacementInput;
+  horsePower?: CarUpdatehorsePowerInput;
+  transmission?: CarUpdatetransmissionInput;
+}
+
+export interface CarCreategenerationInput {
+  set?: String[] | String;
+}
+
+export interface CarUpdatehorsePowerInput {
+  set?: Int[] | Int;
+}
+
+export interface CarWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -138,167 +193,230 @@ export interface CatWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
-  AND?: CatWhereInput[] | CatWhereInput;
-  OR?: CatWhereInput[] | CatWhereInput;
-  NOT?: CatWhereInput[] | CatWhereInput;
+  manufacturer?: String;
+  manufacturer_not?: String;
+  manufacturer_in?: String[] | String;
+  manufacturer_not_in?: String[] | String;
+  manufacturer_lt?: String;
+  manufacturer_lte?: String;
+  manufacturer_gt?: String;
+  manufacturer_gte?: String;
+  manufacturer_contains?: String;
+  manufacturer_not_contains?: String;
+  manufacturer_starts_with?: String;
+  manufacturer_not_starts_with?: String;
+  manufacturer_ends_with?: String;
+  manufacturer_not_ends_with?: String;
+  model?: String;
+  model_not?: String;
+  model_in?: String[] | String;
+  model_not_in?: String[] | String;
+  model_lt?: String;
+  model_lte?: String;
+  model_gt?: String;
+  model_gte?: String;
+  model_contains?: String;
+  model_not_contains?: String;
+  model_starts_with?: String;
+  model_not_starts_with?: String;
+  model_ends_with?: String;
+  model_not_ends_with?: String;
+  type?: String;
+  type_not?: String;
+  type_in?: String[] | String;
+  type_not_in?: String[] | String;
+  type_lt?: String;
+  type_lte?: String;
+  type_gt?: String;
+  type_gte?: String;
+  type_contains?: String;
+  type_not_contains?: String;
+  type_starts_with?: String;
+  type_not_starts_with?: String;
+  type_ends_with?: String;
+  type_not_ends_with?: String;
+  producedFrom?: Int;
+  producedFrom_not?: Int;
+  producedFrom_in?: Int[] | Int;
+  producedFrom_not_in?: Int[] | Int;
+  producedFrom_lt?: Int;
+  producedFrom_lte?: Int;
+  producedFrom_gt?: Int;
+  producedFrom_gte?: Int;
+  producedTo?: Int;
+  producedTo_not?: Int;
+  producedTo_in?: Int[] | Int;
+  producedTo_not_in?: Int[] | Int;
+  producedTo_lt?: Int;
+  producedTo_lte?: Int;
+  producedTo_gt?: Int;
+  producedTo_gte?: Int;
+  AND?: CarWhereInput[] | CarWhereInput;
+  OR?: CarWhereInput[] | CarWhereInput;
+  NOT?: CarWhereInput[] | CarWhereInput;
 }
 
-export interface CatSubscriptionWhereInput {
+export interface CarCreatehorsePowerInput {
+  set?: Int[] | Int;
+}
+
+export interface CarUpdategenerationInput {
+  set?: String[] | String;
+}
+
+export interface CarCreatefuelTypeInput {
+  set?: String[] | String;
+}
+
+export interface CarUpdateengineDisplacementInput {
+  set?: Int[] | Int;
+}
+
+export interface CarUpdatetransmissionInput {
+  set?: String[] | String;
+}
+
+export interface CarSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: CatWhereInput;
-  AND?: CatSubscriptionWhereInput[] | CatSubscriptionWhereInput;
-  OR?: CatSubscriptionWhereInput[] | CatSubscriptionWhereInput;
-  NOT?: CatSubscriptionWhereInput[] | CatSubscriptionWhereInput;
+  node?: CarWhereInput;
+  AND?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
+  OR?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
+  NOT?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
 }
 
-export type CatWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface CarUpdatefuelTypeInput {
+  set?: String[] | String;
+}
 
 export interface NodeNode {
   id: ID_Output;
 }
 
-export interface AggregateCat {
+export interface CarPreviousValues {
+  id: ID_Output;
+  manufacturer: String;
+  model: String;
+  type: String;
+  generation: String[];
+  producedFrom?: Int;
+  producedTo?: Int;
+  fuelType: String[];
+  engineDisplacement: Int[];
+  horsePower: Int[];
+  transmission: String[];
+}
+
+export interface CarPreviousValuesPromise
+  extends Promise<CarPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  manufacturer: () => Promise<String>;
+  model: () => Promise<String>;
+  type: () => Promise<String>;
+  generation: () => Promise<String[]>;
+  producedFrom: () => Promise<Int>;
+  producedTo: () => Promise<Int>;
+  fuelType: () => Promise<String[]>;
+  engineDisplacement: () => Promise<Int[]>;
+  horsePower: () => Promise<Int[]>;
+  transmission: () => Promise<String[]>;
+}
+
+export interface CarPreviousValuesSubscription
+  extends Promise<AsyncIterator<CarPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  manufacturer: () => Promise<AsyncIterator<String>>;
+  model: () => Promise<AsyncIterator<String>>;
+  type: () => Promise<AsyncIterator<String>>;
+  generation: () => Promise<AsyncIterator<String[]>>;
+  producedFrom: () => Promise<AsyncIterator<Int>>;
+  producedTo: () => Promise<AsyncIterator<Int>>;
+  fuelType: () => Promise<AsyncIterator<String[]>>;
+  engineDisplacement: () => Promise<AsyncIterator<Int[]>>;
+  horsePower: () => Promise<AsyncIterator<Int[]>>;
+  transmission: () => Promise<AsyncIterator<String[]>>;
+}
+
+export interface Car {
+  id: ID_Output;
+  manufacturer: String;
+  model: String;
+  type: String;
+  generation: String[];
+  producedFrom?: Int;
+  producedTo?: Int;
+  fuelType: String[];
+  engineDisplacement: Int[];
+  horsePower: Int[];
+  transmission: String[];
+}
+
+export interface CarPromise extends Promise<Car>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  manufacturer: () => Promise<String>;
+  model: () => Promise<String>;
+  type: () => Promise<String>;
+  generation: () => Promise<String[]>;
+  producedFrom: () => Promise<Int>;
+  producedTo: () => Promise<Int>;
+  fuelType: () => Promise<String[]>;
+  engineDisplacement: () => Promise<Int[]>;
+  horsePower: () => Promise<Int[]>;
+  transmission: () => Promise<String[]>;
+}
+
+export interface CarSubscription
+  extends Promise<AsyncIterator<Car>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  manufacturer: () => Promise<AsyncIterator<String>>;
+  model: () => Promise<AsyncIterator<String>>;
+  type: () => Promise<AsyncIterator<String>>;
+  generation: () => Promise<AsyncIterator<String[]>>;
+  producedFrom: () => Promise<AsyncIterator<Int>>;
+  producedTo: () => Promise<AsyncIterator<Int>>;
+  fuelType: () => Promise<AsyncIterator<String[]>>;
+  engineDisplacement: () => Promise<AsyncIterator<Int[]>>;
+  horsePower: () => Promise<AsyncIterator<Int[]>>;
+  transmission: () => Promise<AsyncIterator<String[]>>;
+}
+
+export interface AggregateCar {
   count: Int;
 }
 
-export interface AggregateCatPromise
-  extends Promise<AggregateCat>,
+export interface AggregateCarPromise
+  extends Promise<AggregateCar>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateCatSubscription
-  extends Promise<AsyncIterator<AggregateCat>>,
+export interface AggregateCarSubscription
+  extends Promise<AsyncIterator<AggregateCar>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface BatchPayload {
-  count: Long;
-}
+export interface CarConnection {}
 
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface CatPreviousValues {
-  id: ID_Output;
-  name: String;
-}
-
-export interface CatPreviousValuesPromise
-  extends Promise<CatPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface CatPreviousValuesSubscription
-  extends Promise<AsyncIterator<CatPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface CatEdge {
-  cursor: String;
-}
-
-export interface CatEdgePromise extends Promise<CatEdge>, Fragmentable {
-  node: <T = Cat>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface CatEdgeSubscription
-  extends Promise<AsyncIterator<CatEdge>>,
-    Fragmentable {
-  node: <T = CatSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface CatSubscriptionPayload {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface CatSubscriptionPayloadPromise
-  extends Promise<CatSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = Cat>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = CatPreviousValues>() => T;
-}
-
-export interface CatSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CatSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CatSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CatPreviousValuesSubscription>() => T;
-}
-
-export interface Cat {
-  id: ID_Output;
-  name: String;
-}
-
-export interface CatPromise extends Promise<Cat>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface CatSubscription
-  extends Promise<AsyncIterator<Cat>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface CatConnection {}
-
-export interface CatConnectionPromise
-  extends Promise<CatConnection>,
+export interface CarConnectionPromise
+  extends Promise<CarConnection>,
     Fragmentable {
   pageInfo: <T = PageInfo>() => T;
-  edges: <T = FragmentableArray<CatEdge>>() => T;
-  aggregate: <T = AggregateCat>() => T;
+  edges: <T = FragmentableArray<CarEdge>>() => T;
+  aggregate: <T = AggregateCar>() => T;
 }
 
-export interface CatConnectionSubscription
-  extends Promise<AsyncIterator<CatConnection>>,
+export interface CarConnectionSubscription
+  extends Promise<AsyncIterator<CarConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CatEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCatSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CarEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCarSubscription>() => T;
 }
 
 export interface PageInfo {
@@ -324,12 +442,65 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
+export interface CarSubscriptionPayload {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
 
-export type Long = string;
+export interface CarSubscriptionPayloadPromise
+  extends Promise<CarSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = Car>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CarPreviousValues>() => T;
+}
+
+export interface CarSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CarSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CarSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CarPreviousValuesSubscription>() => T;
+}
+
+export interface CarEdge {
+  cursor: String;
+}
+
+export interface CarEdgePromise extends Promise<CarEdge>, Fragmentable {
+  node: <T = Car>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CarEdgeSubscription
+  extends Promise<AsyncIterator<CarEdge>>,
+    Fragmentable {
+  node: <T = CarSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+*/
+export type Int = number;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -338,14 +509,16 @@ export type ID_Input = string | number;
 export type ID_Output = string;
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
-*/
-export type Int = number;
-
-/*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
+
+export type Long = string;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
 
 /**
  * Type Defs
