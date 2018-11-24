@@ -1,10 +1,10 @@
 {
-  "name": "motopolek-frontend",
+  "name": "gieldaklasykow-frontend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 7777",
     "build": "next build",
     "start": "next start"
   },
@@ -12,8 +12,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^3.5.1",
     "next": "^7.0.2",
+    "nprogress": "^0.2.0",
     "react": "^16.6.1",
     "react-dom": "^16.6.1"
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ]
   }
 }
