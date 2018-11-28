@@ -15,9 +15,16 @@ class Header extends Component {
     const { classes } = this.props;
     return (
       <AppBar position="static" color="default">
-        <Typography variant="h1">Giełda klasyków</Typography>
+        <Typography>
+          <img
+            src="/static/Baner.png"
+            alt="Giełda klasyków"
+            className={classes.logo}
+          />
+        </Typography>
       </AppBar>
     );
   }
 }
+
 export default withStyles(styles)(Header);
