@@ -38,7 +38,6 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
-          <title>Przyszłe youngtimery, klasyczne samochody na sprzedaż</title>
         </Head>
         <body>
           <Main />
