@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "./Header";
+import Footer from "./Footer";
 
 class Page extends Component {
   render() {
@@ -7,6 +8,7 @@ class Page extends Component {
       <div>
         <Header />
         {this.props.children}
+        <Footer />
       </div>
     );
   }
