@@ -7,6 +7,10 @@ import { Typography, Button, Grid, SvgIcon } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
+  root: {
+    maxWidth: "1000px",
+    margin: "0 auto"
+  },
   socialMediaGrid: {
     marginTop: "8px"
   },
@@ -17,7 +21,7 @@ const styles = theme => ({
     paddingLeft: "2px"
   },
   simpleLinkTypography: {
-    color: theme.palette.primary.light,
+    color: theme.palette.primary.main,
     width: "100%"
   }
 });
@@ -48,14 +52,18 @@ class Footer extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid justify="center" component="footer" container spacing={32}>
+      <Grid
+        className={classes.root}
+        justify="space-around"
+        component="footer"
+        container
+      >
         <Grid item>
           <Typography variant="h6">ZNAJDŹ NAS NA:</Typography>
           <Grid
             className={classes.socialMediaGrid}
             container
             direction="column"
-            spacing={40}
           >
             <SocialMediaLink
               rootCss={classes.socialMediaButton}
