@@ -3,15 +3,16 @@ import {
   createMuiTheme,
   createGenerateClassName
 } from "@material-ui/core/styles";
-import { red, purple } from "@material-ui/core/colors";
+import { red, blue } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   palette: {
-    primary: red,
-    secondary: purple
+    primary: blue,
+    secondary: red
   },
   typography: {
-    useNextVariants: true
+    useNextVariants: true,
+    fontFamily: "Roboto"
   }
 });
 

@@ -1,10 +1,14 @@
 import React from "react";
 import Document, { Head, Main, NextScript } from "next/document";
-import flush from "styled-jsx/server";
+import postcss from "postcss";
+import autoprefixer from "autoprefixer";
+import cssnano from "cssnano";
+
+const prefixer = postcss([autoprefixer]);
+const minifier = postcss([cssnano]);
 
 class MyDocument extends Document {
   render() {
-    const { pageContext } = this.props;
     return (
       <html lang="pl" dir="ltr">
         <Head>
@@ -32,11 +36,7 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta
             name="theme-color"
-            content={pageContext.theme.palette.primary.main}
-          />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+            content={this.props.pageContext.theme.palette.primary.main}
           />
         </Head>
         <body>
@@ -48,7 +48,7 @@ class MyDocument extends Document {
   }
 }
 
-MyDocument.getInitialProps = ctx => {
+MyDocument.getInitialProps = async ctx => {
   let pageContext;
   const page = ctx.renderPage(Component => {
     const WrappedComponent = props => {
@@ -59,21 +59,15 @@ MyDocument.getInitialProps = ctx => {
     // prop types
     return WrappedComponent;
   });
-
+  let css = pageContext.sheetsRegistry.toString();
+  const result1 = await prefixer.process(css);
+  css = result1.css;
+  const result2 = await minifier.process(css);
+  css = result2.css;
   return {
     ...page,
     pageContext,
-    styles: (
-      <React.Fragment>
-        <style
-          id="jss-server-side"
-          dangerouslySetInnerHTML={{
-            __html: pageContext.sheetsRegistry.toString()
-          }}
-        />
-        {flush() || null}
-      </React.Fragment>
-    )
+    styles: <style id="jss-server-side">{css}</style>
   };
 };
 

@@ -7,6 +7,10 @@ import { Typography, Button, Grid, SvgIcon } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
+  root: {
+    maxWidth: "1000px",
+    margin: "0 auto"
+  },
   socialMediaGrid: {
     marginTop: "8px"
   },
@@ -17,7 +21,7 @@ const styles = theme => ({
     paddingLeft: "2px"
   },
   simpleLinkTypography: {
-    color: theme.palette.primary.light,
+    color: theme.palette.primary.main,
     width: "100%"
   }
 });
@@ -37,7 +41,7 @@ const SocialMediaLink = props => (
 );
 
 const SimpleLink = props => (
-  <Button className={props.rootCss} variant="flat" href={props.href}>
+  <Button className={props.rootCss} variant="text" href={props.href}>
     <Typography align="left" className={props.typographyCss}>
       {props.label}
     </Typography>
@@ -48,14 +52,18 @@ class Footer extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid justify="center" component="footer" container spacing={32}>
+      <Grid
+        className={classes.root}
+        justify="space-around"
+        component="footer"
+        container
+      >
         <Grid item>
-          <Typography variant="title">ZNAJDŹ NAS NA:</Typography>
+          <Typography variant="h6">ZNAJDŹ NAS NA:</Typography>
           <Grid
             className={classes.socialMediaGrid}
             container
             direction="column"
-            spacing={48}
           >
             <SocialMediaLink
               rootCss={classes.socialMediaButton}
@@ -78,7 +86,7 @@ class Footer extends Component {
           </Grid>
         </Grid>
         <Grid item>
-          <Typography variant="title">GIEŁDA ZABYTKÓW</Typography>
+          <Typography variant="h6">GIEŁDA ZABYTKÓW</Typography>
           <Grid container direction="column">
             {[
               { href: "#", label: "Pomoc" },
@@ -89,6 +97,7 @@ class Footer extends Component {
               { href: "#", label: "Regulamin Giełda Zabytków" }
             ].map(item => (
               <SimpleLink
+                key={item.label}
                 {...item}
                 rootCss={classes.simpleLink}
                 typographyCss={classes.simpleLinkTypography}
@@ -97,10 +106,11 @@ class Footer extends Component {
           </Grid>
         </Grid>
         <Grid item>
-          <Typography variant="title">USŁUGI I NARZĘDZIA</Typography>
+          <Typography variant="h6">USŁUGI I NARZĘDZIA</Typography>
           <Grid container direction="column">
             {[{ href: "#", label: "Umowa kupna sprzedaży" }].map(item => (
               <SimpleLink
+                key={item.label}
                 {...item}
                 rootCss={classes.simpleLink}
                 typographyCss={classes.simpleLinkTypography}
@@ -109,7 +119,7 @@ class Footer extends Component {
           </Grid>
         </Grid>
         <Grid item>
-          <Typography variant="title">PRZYDATNE INFORMACJE</Typography>
+          <Typography variant="h6">PRZYDATNE INFORMACJE</Typography>
           <Grid container direction="column">
             {[
               { href: "#", label: "Magazyn Giełda Zabytków" },
@@ -117,6 +127,7 @@ class Footer extends Component {
               { href: "#", label: "Kariera" }
             ].map(item => (
               <SimpleLink
+                key={item.label}
                 {...item}
                 rootCss={classes.simpleLink}
                 typographyCss={classes.simpleLinkTypography}
