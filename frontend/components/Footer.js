@@ -50,7 +50,7 @@ class Footer extends Component {
     return (
       <Grid justify="center" component="footer" container spacing={32}>
         <Grid item>
-          <Typography variant="title">ZNAJDŹ NAS NA:</Typography>
+          <Typography variant="h6">ZNAJDŹ NAS NA:</Typography>
           <Grid
             className={classes.socialMediaGrid}
             container
@@ -78,7 +78,7 @@ class Footer extends Component {
           </Grid>
         </Grid>
         <Grid item>
-          <Typography variant="title">GIEŁDA ZABYTKÓW</Typography>
+          <Typography variant="h6">GIEŁDA ZABYTKÓW</Typography>
           <Grid container direction="column">
             {[
               { href: "#", label: "Pomoc" },
@@ -98,7 +98,7 @@ class Footer extends Component {
           </Grid>
         </Grid>
         <Grid item>
-          <Typography variant="title">USŁUGI I NARZĘDZIA</Typography>
+          <Typography variant="h6">USŁUGI I NARZĘDZIA</Typography>
           <Grid container direction="column">
             {[{ href: "#", label: "Umowa kupna sprzedaży" }].map(item => (
               <SimpleLink
@@ -111,7 +111,7 @@ class Footer extends Component {
           </Grid>
         </Grid>
         <Grid item>
-          <Typography variant="title">PRZYDATNE INFORMACJE</Typography>
+          <Typography variant="h6">PRZYDATNE INFORMACJE</Typography>
           <Grid container direction="column">
             {[
               { href: "#", label: "Magazyn Giełda Zabytków" },
