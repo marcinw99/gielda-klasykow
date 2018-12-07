@@ -37,7 +37,7 @@ const SocialMediaLink = props => (
 );
 
 const SimpleLink = props => (
-  <Button className={props.rootCss} variant="flat" href={props.href}>
+  <Button className={props.rootCss} variant="text" href={props.href}>
     <Typography align="left" className={props.typographyCss}>
       {props.label}
     </Typography>
@@ -55,7 +55,7 @@ class Footer extends Component {
             className={classes.socialMediaGrid}
             container
             direction="column"
-            spacing={48}
+            spacing={40}
           >
             <SocialMediaLink
               rootCss={classes.socialMediaButton}
