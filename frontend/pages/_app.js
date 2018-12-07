@@ -1,9 +1,10 @@
 import React from "react";
 import App, { Container } from "next/app";
-import Page from "../components/Page";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import JssProvider from "react-jss/lib/JssProvider";
+
+import Page from "../components/Page";
 import getPageContext from "../src/getPageContext";
 
 class MyApp extends App {
@@ -32,11 +33,11 @@ class MyApp extends App {
             sheetsManager={this.pageContext.sheetsManager}
           >
             <CssBaseline />
+            <Page>
+              <Component pageContext={this.pageContext} {...pageProps} />
+            </Page>
           </MuiThemeProvider>
         </JssProvider>
-        <Page>
-          <Component pageContext={this.pageContext} {...pageProps} />
-        </Page>
       </Container>
     );
   }
