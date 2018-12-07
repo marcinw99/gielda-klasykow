@@ -89,6 +89,7 @@ class Footer extends Component {
               { href: "#", label: "Regulamin Giełda Zabytków" }
             ].map(item => (
               <SimpleLink
+                key={item.label}
                 {...item}
                 rootCss={classes.simpleLink}
                 typographyCss={classes.simpleLinkTypography}
@@ -101,6 +102,7 @@ class Footer extends Component {
           <Grid container direction="column">
             {[{ href: "#", label: "Umowa kupna sprzedaży" }].map(item => (
               <SimpleLink
+                key={item.label}
                 {...item}
                 rootCss={classes.simpleLink}
                 typographyCss={classes.simpleLinkTypography}
@@ -117,6 +119,7 @@ class Footer extends Component {
               { href: "#", label: "Kariera" }
             ].map(item => (
               <SimpleLink
+                key={item.label}
                 {...item}
                 rootCss={classes.simpleLink}
                 typographyCss={classes.simpleLinkTypography}
