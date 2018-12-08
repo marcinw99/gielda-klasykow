@@ -1,5 +1,27 @@
-import { Typography } from "@material-ui/core";
+import React, { Component } from "react";
+import { Grid, Typography } from "@material-ui/core";
 
-const index = () => <Typography variant="h1">GIEŁDA KLASYKÓW</Typography>;
+import Searcharea from "../components/IndexComponents/Searcharea";
+import { withStyles } from "@material-ui/core/styles";
 
-export default index;
+const styles = theme => ({
+  root: {
+    maxWidth: "1000px",
+    margin: "0 auto"
+  }
+});
+
+class Index extends Component {
+  render() {
+    const { classes } = this.props;
+    return (
+      <Grid className={classes.root} container>
+        <Grid item xs={12}>
+          <Searcharea />
+        </Grid>
+      </Grid>
+    );
+  }
+}
+
+export default withStyles(styles)(Index);
