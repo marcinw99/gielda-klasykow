@@ -9,7 +9,8 @@ const styles = theme => ({
   },
   logo: {
     height: "60px",
-    width: "auto"
+    width: "auto",
+    marginTop: theme.spacing.unit
   }
 });
 
@@ -17,7 +18,7 @@ class Header extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="primary">
         <Toolbar>
           <Typography className={classes.grow}>
             <img
@@ -26,8 +27,8 @@ class Header extends Component {
               className={classes.logo}
             />
           </Typography>
-          <Button>Rejestracja</Button>
-          <Button>Zaloguj się</Button>
+          <Button color="inherit">Rejestracja</Button>
+          <Button color="inherit">Zaloguj się</Button>
         </Toolbar>
       </AppBar>
     );
