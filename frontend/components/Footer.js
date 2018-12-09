@@ -9,7 +9,7 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = theme => ({
   root: {
     maxWidth: "1000px",
-    margin: "0 auto"
+    margin: "600px auto 0 auto"
   },
   socialMediaGrid: {
     marginTop: "8px"
