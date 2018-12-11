@@ -36,25 +36,25 @@ class ResultCard extends Component {
           <CardMedia className={classes.media} image={this.props.avatar} />
           <CardContent>
             <Typography variant="h6">
-              {this.props.brand} {this.props.model} {this.props.version}
+              {this.props.car.brand} {this.props.car.model}{" "}
+              {this.props.car.version}
             </Typography>
             <ul className={classes.listContainer}>
               <li>
                 <Typography>
-                  {this.props.fuelType},{" "}
-                  {this.props.engineAndTransmission.engineSize} cm<sup>3</sup>,{" "}
-                  {this.props.engineAndTransmission.power} km,{" "}
-                  {this.props.engineAndTransmission.torque} nm
+                  {this.props.car.fuelType}, {this.props.car.engineSize} cm
+                  <sup>3</sup>, {this.props.car.power} km,{" "}
+                  {this.props.car.torque} nm
                 </Typography>
               </li>
               <li>
                 <Typography>
-                  {this.props.productionYear} rok produkcji
+                  {this.props.car.productionYear} rok produkcji
                 </Typography>
               </li>
               <li>
                 <Typography>
-                  {spacesInNumbers(this.props.mileage)} kilometrów przebiegu
+                  {spacesInNumbers(this.props.car.mileage)} kilometrów przebiegu
                 </Typography>
               </li>
             </ul>

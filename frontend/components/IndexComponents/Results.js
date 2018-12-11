@@ -13,7 +13,7 @@ class Results extends Component {
       <Grid justify="center" container>
         {this.props.results &&
           this.props.results.map((item, key) => (
-            <Grid item key={`${item.label}${key}`}>
+            <Grid item key={`${item.car.brand}${key}`}>
               <ResultCard {...item} />
             </Grid>
           ))}
