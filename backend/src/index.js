@@ -1,5 +1,5 @@
-require("dotenv").config({ path: "variables.env" });
 import server from "./createServer";
+require("dotenv").config({ path: "variables.env" });
 
 server.start(
   {

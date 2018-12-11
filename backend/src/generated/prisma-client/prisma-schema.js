@@ -3,22 +3,34 @@ module.exports = {
   count: Int!
 }
 
+type AggregatePost {
+  count: Int!
+}
+
 type BatchPayload {
   count: Long!
 }
 
+enum Brand {
+  AUDI
+  BMW
+  MERCEDES_BENZ
+  SAAB
+}
+
 type Car {
   id: ID!
-  manufacturer: String!
+  segment: Segment
+  brand: Brand!
   model: String!
-  type: String!
-  generation: [String!]!
-  producedFrom: Int
-  producedTo: Int
-  fuelType: [String!]!
-  engineDisplacement: [Int!]!
-  horsePower: [Int!]!
-  transmission: [String!]!
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType!
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: String
 }
 
 type CarConnection {
@@ -27,37 +39,23 @@ type CarConnection {
   aggregate: AggregateCar!
 }
 
-input CarCreateengineDisplacementInput {
-  set: [Int!]
-}
-
-input CarCreatefuelTypeInput {
-  set: [String!]
-}
-
-input CarCreategenerationInput {
-  set: [String!]
-}
-
-input CarCreatehorsePowerInput {
-  set: [Int!]
-}
-
 input CarCreateInput {
-  manufacturer: String!
+  segment: Segment
+  brand: Brand!
   model: String!
-  type: String!
-  generation: CarCreategenerationInput
-  producedFrom: Int
-  producedTo: Int
-  fuelType: CarCreatefuelTypeInput
-  engineDisplacement: CarCreateengineDisplacementInput
-  horsePower: CarCreatehorsePowerInput
-  transmission: CarCreatetransmissionInput
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType!
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: String
 }
 
-input CarCreatetransmissionInput {
-  set: [String!]
+input CarCreateOneInput {
+  create: CarCreateInput
+  connect: CarWhereUniqueInput
 }
 
 type CarEdge {
@@ -68,16 +66,28 @@ type CarEdge {
 enum CarOrderByInput {
   id_ASC
   id_DESC
-  manufacturer_ASC
-  manufacturer_DESC
+  segment_ASC
+  segment_DESC
+  brand_ASC
+  brand_DESC
   model_ASC
   model_DESC
-  type_ASC
-  type_DESC
-  producedFrom_ASC
-  producedFrom_DESC
-  producedTo_ASC
-  producedTo_DESC
+  version_ASC
+  version_DESC
+  mileage_ASC
+  mileage_DESC
+  productionYear_ASC
+  productionYear_DESC
+  fuelType_ASC
+  fuelType_DESC
+  engineSize_ASC
+  engineSize_DESC
+  power_ASC
+  power_DESC
+  torque_ASC
+  torque_DESC
+  transmission_ASC
+  transmission_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -86,16 +96,17 @@ enum CarOrderByInput {
 
 type CarPreviousValues {
   id: ID!
-  manufacturer: String!
+  segment: Segment
+  brand: Brand!
   model: String!
-  type: String!
-  generation: [String!]!
-  producedFrom: Int
-  producedTo: Int
-  fuelType: [String!]!
-  engineDisplacement: [Int!]!
-  horsePower: [Int!]!
-  transmission: [String!]!
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType!
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: String
 }
 
 type CarSubscriptionPayload {
@@ -116,50 +127,60 @@ input CarSubscriptionWhereInput {
   NOT: [CarSubscriptionWhereInput!]
 }
 
-input CarUpdateengineDisplacementInput {
-  set: [Int!]
-}
-
-input CarUpdatefuelTypeInput {
-  set: [String!]
-}
-
-input CarUpdategenerationInput {
-  set: [String!]
-}
-
-input CarUpdatehorsePowerInput {
-  set: [Int!]
+input CarUpdateDataInput {
+  segment: Segment
+  brand: Brand
+  model: String
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: String
 }
 
 input CarUpdateInput {
-  manufacturer: String
+  segment: Segment
+  brand: Brand
   model: String
-  type: String
-  generation: CarUpdategenerationInput
-  producedFrom: Int
-  producedTo: Int
-  fuelType: CarUpdatefuelTypeInput
-  engineDisplacement: CarUpdateengineDisplacementInput
-  horsePower: CarUpdatehorsePowerInput
-  transmission: CarUpdatetransmissionInput
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: String
 }
 
 input CarUpdateManyMutationInput {
-  manufacturer: String
+  segment: Segment
+  brand: Brand
   model: String
-  type: String
-  generation: CarUpdategenerationInput
-  producedFrom: Int
-  producedTo: Int
-  fuelType: CarUpdatefuelTypeInput
-  engineDisplacement: CarUpdateengineDisplacementInput
-  horsePower: CarUpdatehorsePowerInput
-  transmission: CarUpdatetransmissionInput
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: String
 }
 
-input CarUpdatetransmissionInput {
-  set: [String!]
+input CarUpdateOneInput {
+  create: CarCreateInput
+  update: CarUpdateDataInput
+  upsert: CarUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: CarWhereUniqueInput
+}
+
+input CarUpsertNestedInput {
+  update: CarUpdateDataInput!
+  create: CarCreateInput!
 }
 
 input CarWhereInput {
@@ -177,20 +198,14 @@ input CarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  manufacturer: String
-  manufacturer_not: String
-  manufacturer_in: [String!]
-  manufacturer_not_in: [String!]
-  manufacturer_lt: String
-  manufacturer_lte: String
-  manufacturer_gt: String
-  manufacturer_gte: String
-  manufacturer_contains: String
-  manufacturer_not_contains: String
-  manufacturer_starts_with: String
-  manufacturer_not_starts_with: String
-  manufacturer_ends_with: String
-  manufacturer_not_ends_with: String
+  segment: Segment
+  segment_not: Segment
+  segment_in: [Segment!]
+  segment_not_in: [Segment!]
+  brand: Brand
+  brand_not: Brand
+  brand_in: [Brand!]
+  brand_not_in: [Brand!]
   model: String
   model_not: String
   model_in: [String!]
@@ -205,36 +220,78 @@ input CarWhereInput {
   model_not_starts_with: String
   model_ends_with: String
   model_not_ends_with: String
-  type: String
-  type_not: String
-  type_in: [String!]
-  type_not_in: [String!]
-  type_lt: String
-  type_lte: String
-  type_gt: String
-  type_gte: String
-  type_contains: String
-  type_not_contains: String
-  type_starts_with: String
-  type_not_starts_with: String
-  type_ends_with: String
-  type_not_ends_with: String
-  producedFrom: Int
-  producedFrom_not: Int
-  producedFrom_in: [Int!]
-  producedFrom_not_in: [Int!]
-  producedFrom_lt: Int
-  producedFrom_lte: Int
-  producedFrom_gt: Int
-  producedFrom_gte: Int
-  producedTo: Int
-  producedTo_not: Int
-  producedTo_in: [Int!]
-  producedTo_not_in: [Int!]
-  producedTo_lt: Int
-  producedTo_lte: Int
-  producedTo_gt: Int
-  producedTo_gte: Int
+  version: String
+  version_not: String
+  version_in: [String!]
+  version_not_in: [String!]
+  version_lt: String
+  version_lte: String
+  version_gt: String
+  version_gte: String
+  version_contains: String
+  version_not_contains: String
+  version_starts_with: String
+  version_not_starts_with: String
+  version_ends_with: String
+  version_not_ends_with: String
+  mileage: Int
+  mileage_not: Int
+  mileage_in: [Int!]
+  mileage_not_in: [Int!]
+  mileage_lt: Int
+  mileage_lte: Int
+  mileage_gt: Int
+  mileage_gte: Int
+  productionYear: Int
+  productionYear_not: Int
+  productionYear_in: [Int!]
+  productionYear_not_in: [Int!]
+  productionYear_lt: Int
+  productionYear_lte: Int
+  productionYear_gt: Int
+  productionYear_gte: Int
+  fuelType: FuelType
+  fuelType_not: FuelType
+  fuelType_in: [FuelType!]
+  fuelType_not_in: [FuelType!]
+  engineSize: Int
+  engineSize_not: Int
+  engineSize_in: [Int!]
+  engineSize_not_in: [Int!]
+  engineSize_lt: Int
+  engineSize_lte: Int
+  engineSize_gt: Int
+  engineSize_gte: Int
+  power: Int
+  power_not: Int
+  power_in: [Int!]
+  power_not_in: [Int!]
+  power_lt: Int
+  power_lte: Int
+  power_gt: Int
+  power_gte: Int
+  torque: Int
+  torque_not: Int
+  torque_in: [Int!]
+  torque_not_in: [Int!]
+  torque_lt: Int
+  torque_lte: Int
+  torque_gt: Int
+  torque_gte: Int
+  transmission: String
+  transmission_not: String
+  transmission_in: [String!]
+  transmission_not_in: [String!]
+  transmission_lt: String
+  transmission_lte: String
+  transmission_gt: String
+  transmission_gte: String
+  transmission_contains: String
+  transmission_not_contains: String
+  transmission_starts_with: String
+  transmission_not_starts_with: String
+  transmission_ends_with: String
+  transmission_not_ends_with: String
   AND: [CarWhereInput!]
   OR: [CarWhereInput!]
   NOT: [CarWhereInput!]
@@ -242,6 +299,16 @@ input CarWhereInput {
 
 input CarWhereUniqueInput {
   id: ID
+}
+
+enum FuelType {
+  BENZYNA
+  BENZYNA_LPG
+  BENZYNA_CNG
+  DIESEL
+  HYBRYDA
+  ELEKTRYCZNY
+  INNY
 }
 
 scalar Long
@@ -253,6 +320,12 @@ type Mutation {
   upsertCar(where: CarWhereUniqueInput!, create: CarCreateInput!, update: CarUpdateInput!): Car!
   deleteCar(where: CarWhereUniqueInput!): Car
   deleteManyCars(where: CarWhereInput): BatchPayload!
+  createPost(data: PostCreateInput!): Post!
+  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
+  updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
+  upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
+  deletePost(where: PostWhereUniqueInput!): Post
+  deleteManyPosts(where: PostWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -272,15 +345,168 @@ type PageInfo {
   endCursor: String
 }
 
+type Post {
+  id: ID!
+  car: Car
+  price: Int!
+  localization: String
+  avatar: String
+}
+
+type PostConnection {
+  pageInfo: PageInfo!
+  edges: [PostEdge]!
+  aggregate: AggregatePost!
+}
+
+input PostCreateInput {
+  car: CarCreateOneInput
+  price: Int!
+  localization: String
+  avatar: String
+}
+
+type PostEdge {
+  node: Post!
+  cursor: String!
+}
+
+enum PostOrderByInput {
+  id_ASC
+  id_DESC
+  price_ASC
+  price_DESC
+  localization_ASC
+  localization_DESC
+  avatar_ASC
+  avatar_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type PostPreviousValues {
+  id: ID!
+  price: Int!
+  localization: String
+  avatar: String
+}
+
+type PostSubscriptionPayload {
+  mutation: MutationType!
+  node: Post
+  updatedFields: [String!]
+  previousValues: PostPreviousValues
+}
+
+input PostSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PostWhereInput
+  AND: [PostSubscriptionWhereInput!]
+  OR: [PostSubscriptionWhereInput!]
+  NOT: [PostSubscriptionWhereInput!]
+}
+
+input PostUpdateInput {
+  car: CarUpdateOneInput
+  price: Int
+  localization: String
+  avatar: String
+}
+
+input PostUpdateManyMutationInput {
+  price: Int
+  localization: String
+  avatar: String
+}
+
+input PostWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  car: CarWhereInput
+  price: Int
+  price_not: Int
+  price_in: [Int!]
+  price_not_in: [Int!]
+  price_lt: Int
+  price_lte: Int
+  price_gt: Int
+  price_gte: Int
+  localization: String
+  localization_not: String
+  localization_in: [String!]
+  localization_not_in: [String!]
+  localization_lt: String
+  localization_lte: String
+  localization_gt: String
+  localization_gte: String
+  localization_contains: String
+  localization_not_contains: String
+  localization_starts_with: String
+  localization_not_starts_with: String
+  localization_ends_with: String
+  localization_not_ends_with: String
+  avatar: String
+  avatar_not: String
+  avatar_in: [String!]
+  avatar_not_in: [String!]
+  avatar_lt: String
+  avatar_lte: String
+  avatar_gt: String
+  avatar_gte: String
+  avatar_contains: String
+  avatar_not_contains: String
+  avatar_starts_with: String
+  avatar_not_starts_with: String
+  avatar_ends_with: String
+  avatar_not_ends_with: String
+  AND: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  NOT: [PostWhereInput!]
+}
+
+input PostWhereUniqueInput {
+  id: ID
+}
+
 type Query {
   car(where: CarWhereUniqueInput!): Car
   cars(where: CarWhereInput, orderBy: CarOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Car]!
   carsConnection(where: CarWhereInput, orderBy: CarOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CarConnection!
+  post(where: PostWhereUniqueInput!): Post
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
+  postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   node(id: ID!): Node
+}
+
+enum Segment {
+  A
+  B
+  C
+  D
+  E
+  F
 }
 
 type Subscription {
   car(where: CarSubscriptionWhereInput): CarSubscriptionPayload
+  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
 }
 `
       }

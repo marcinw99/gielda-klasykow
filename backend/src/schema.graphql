@@ -1,20 +1,53 @@
 # import * from './generated/prisma.graphql'
 
-type Mutation {
-  createCar(
-    manufacturer: String
-    model: String
-    type: String
-    generation: [String!]
-    producedFrom: Int
-    producedTo: Int
-    fuelType: [String!]
-    engineDisplacement: [Int!]
-    horsePower: [Int!]
-    transmission: [String!]
-  ): Car!
+type Car {
+  id: ID!
+  segment: Segment
+  brand: Brand!
+  model: String!
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType!
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: String
+}
+
+type Post {
+  id: ID!
+  car: Car
+  price: Int!
+  localization: String
+  avatar: String
 }
 
 type Query {
-  cars: [Car!]
+  car: Car
+  post: Post
+  cars: [Car!]!
+  posts: [Post!]!
+}
+
+type Mutation {
+  createCar(
+    segment: Segment
+    brand: Brand!
+    model: String!
+    version: String
+    mileage: Int
+    productionYear: Int
+    fuelType: FuelType!
+    engineSize: Int
+    power: Int
+    torque: Int
+    transmission: String
+  ): Car
+  createPost(
+    price: Int!
+    localization: String
+    avatar: String
+    car: CarCreateOneInput
+  ): Post
 }

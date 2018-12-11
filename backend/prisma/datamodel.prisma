@@ -1,13 +1,48 @@
+enum Segment {
+  A
+  B
+  C
+  D
+  E
+  F
+}
+
+enum Brand {
+  AUDI
+  BMW
+  MERCEDES_BENZ
+  SAAB
+}
+
+enum FuelType {
+  BENZYNA
+  BENZYNA_LPG
+  BENZYNA_CNG
+  DIESEL
+  HYBRYDA
+  ELEKTRYCZNY
+  INNY
+}
+
 type Car {
   id: ID! @unique
-  manufacturer: String!
+  segment: Segment
+  brand: Brand!
   model: String!
-  type: String!
-  generation: [String!]
-  producedFrom: Int
-  producedTo: Int
-  fuelType: [String!]
-  engineDisplacement: [Int!]
-  horsePower: [Int!]
-  transmission: [String!]
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType!
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: String
+}
+
+type Post {
+  id: ID! @unique
+  car: Car
+  price: Int!
+  localization: String
+  avatar: String
 }

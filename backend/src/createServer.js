@@ -1,21 +1,20 @@
-import { prisma } from "./generated/prisma-client";
 import { GraphQLServer } from "graphql-yoga";
+import { Prisma } from "prisma-binding";
 
-import Query from "./resolvers/Query";
-import Mutation from "./resolvers/Mutation";
+import resolvers from "./resolvers";
+require("dotenv").config({ path: "variables.env" });
 
 const server = new GraphQLServer({
   typeDefs: "src/schema.graphql",
-  resolvers: {
-    Mutation,
-    Query
-  },
-  resolverValidationOptions: {
-    requireResolversForResolveType: false
-  },
-  context: {
-    db: prisma
-  }
+  resolvers,
+  context: req => ({
+    ...req,
+    db: new Prisma({
+      typeDefs: "src/generated/prisma.graphql",
+      endpoint: process.env.PRISMA_ENDPOINT,
+      secret: process.env.PRISMA_SECRET
+    })
+  })
 });
 
 export default server;

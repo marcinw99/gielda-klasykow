@@ -1,7 +1,10 @@
+const { forwardTo } = require("prisma-binding");
+
 const Query = {
-  cars(parent, args, ctx, info) {
-    return ctx.db.cars();
-  }
+  car: forwardTo("db"),
+  post: forwardTo("db"),
+  cars: forwardTo("db"),
+  posts: forwardTo("db")
 };
 
 export default Query;
