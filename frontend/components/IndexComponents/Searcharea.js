@@ -7,7 +7,6 @@ import {
   MenuItem,
   TextField,
   InputAdornment,
-  Paper,
   Button
 } from "@material-ui/core";
 import { Search, Clear } from "@material-ui/icons";
