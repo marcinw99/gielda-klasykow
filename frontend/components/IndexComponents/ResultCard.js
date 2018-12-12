@@ -1,7 +1,4 @@
-import React, { Component } from "react";
-
-import { spacesInNumbers } from "../../src/helpers";
-
+import React, { Fragment } from "react";
 import {
   Card,
   CardActionArea,
@@ -10,6 +7,8 @@ import {
   Typography
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+
+import { spacesInNumbers } from "../../src/helpers";
 
 const styles = theme => ({
   root: {
@@ -27,49 +26,83 @@ const styles = theme => ({
   }
 });
 
-class ResultCard extends Component {
-  render() {
-    const { classes } = this.props;
-    return (
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia className={classes.media} image={this.props.avatar} />
-          <CardContent>
-            <Typography variant="h6">
-              {this.props.car.brand} {this.props.car.model}{" "}
-              {this.props.car.version}
-            </Typography>
-            <ul className={classes.listContainer}>
-              <li>
-                <Typography>
-                  {this.props.car.fuelType}, {this.props.car.engineSize} cm
-                  <sup>3</sup>, {this.props.car.power} km,{" "}
-                  {this.props.car.torque} nm
-                </Typography>
-              </li>
-              <li>
-                <Typography>
-                  {this.props.car.productionYear} rok produkcji
-                </Typography>
-              </li>
-              <li>
-                <Typography>
-                  {spacesInNumbers(this.props.car.mileage)} kilometrów przebiegu
-                </Typography>
-              </li>
-            </ul>
-            <Typography
-              className={classes.price}
-              variant="h6"
-              color="secondary"
-            >
-              {spacesInNumbers(this.props.price)} PLN
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    );
-  }
-}
+const CardTitle = props => (
+  <Typography variant="h6">
+    {props.brand} {props.model} {props.version || ""}
+  </Typography>
+);
+
+const Price = props => (
+  <Typography className={props.class} variant="h6" color="secondary">
+    {spacesInNumbers(props.price)} PLN
+  </Typography>
+);
+
+const ListItem = props =>
+  props.value ? (
+    <li>
+      <Typography>
+        {props.text ? props.text : props.value}
+        {props.afterText}
+      </Typography>
+    </li>
+  ) : null;
+
+const ListItemMultiValues = props => (
+  <li>
+    <Typography>
+      {props.items.map((item, key) => {
+        return item.value ? (
+          <Fragment key={`${item.value}${key}`}>
+            {item.text ? item.text : item.value}
+            {item.afterText}
+          </Fragment>
+        ) : null;
+      })}
+    </Typography>
+  </li>
+);
+
+const ResultCard = props => (
+  <Card className={props.classes.root}>
+    <CardActionArea>
+      <CardMedia
+        className={props.classes.media}
+        image={props.avatar || "/static/noImageAvailable.jpg"}
+      />
+      <CardContent>
+        <CardTitle props={props.car} />
+        <ul className={props.classes.listContainer}>
+          <ListItemMultiValues
+            items={[
+              { value: `${props.car.fuelType}`, afterText: ", " },
+              {
+                value: `${props.car.engineSize}`,
+                afterText: (
+                  <Fragment>
+                    cm<sup>3</sup>,{" "}
+                  </Fragment>
+                )
+              },
+              { value: `${props.car.power}`, afterText: "km, " },
+              { value: `${props.car.torque}`, afterText: "nm, " }
+            ]}
+          />
+          <ListItem
+            value={props.car.productionYear}
+            afterText=" rok produkcji"
+          />
+          <ListItem
+            value={props.car.mileage}
+            text={spacesInNumbers(props.car.mileage)}
+            afterText=" kilometrów
+                    przebiegu"
+          />
+        </ul>
+        <Price class={props.classes.price} price={props.price} />
+      </CardContent>
+    </CardActionArea>
+  </Card>
+);
 
 export default withStyles(styles)(ResultCard);
