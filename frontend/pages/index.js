@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { Grid, Paper } from "@material-ui/core";
+import { Grid, Typography, CircularProgress } from "@material-ui/core";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 import Searcharea from "../components/IndexComponents/Searcharea";
 import Results from "../components/IndexComponents/Results";
-import sampleResults from "../resources/sampleResults";
 
 import { withStyles } from "@material-ui/core/styles";
 
@@ -38,6 +37,9 @@ const styles = theme => ({
   },
   resultsGridItem: {
     marginTop: theme.spacing.unit * 4
+  },
+  loadingScreen: {
+    textAlign: "center"
   }
 });
 
@@ -52,8 +54,13 @@ class Index extends Component {
         <Grid className={classes.resultsGridItem} item xs={12}>
           <Query query={ALL_POSTS_QUERY}>
             {({ data, error, loading }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error: {error.message}</p>;
+              if (loading)
+                return (
+                  <div className={classes.loadingScreen}>
+                    <CircularProgress size={100} />
+                  </div>
+                );
+              if (error) return <Typography>Error: {error.message}</Typography>;
               return <Results results={data.posts} />;
             }}
           </Query>
