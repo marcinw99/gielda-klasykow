@@ -31,6 +31,19 @@ const styles = theme => ({
 });
 
 class Index extends Component {
+  state = {
+    filters: {}
+  };
+
+  handleFiltersChange = event => {
+    this.setState(prevState => ({
+      filters: {
+        ...prevState.filters,
+        [event.target.name]: event.target.value
+      }
+    }));
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -51,7 +64,13 @@ class Index extends Component {
                     Błąd przy pobieraniu opcji filtrowania
                   </Typography>
                 );
-              return <Searcharea enums={data} />;
+              return (
+                <Searcharea
+                  filters={this.state.filters}
+                  handleChange={this.handleFiltersChange}
+                  enums={data}
+                />
+              );
             }}
           </Query>
         </Grid>

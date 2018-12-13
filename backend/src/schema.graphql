@@ -24,10 +24,26 @@ type Post {
 }
 
 type Query {
-  car: Car
-  post: Post
-  cars: [Car!]!
-  posts: [Post!]!
+  car(where: CarWhereUniqueInput!): Car
+  cars(
+    where: CarWhereInput
+    orderBy: CarOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Car]!
+  post(where: PostWhereUniqueInput!): Post
+  posts(
+    where: PostWhereInput
+    orderBy: PostOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Post]!
 }
 
 type Mutation {

@@ -11,7 +11,7 @@ import {
 import { Search, Clear } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
 
-import { prepareSelectsOptions } from "../../src/helpers";
+import { prepareSelectsOptions } from "../../../src/helpers";
 
 const styles = theme => ({
   form: {
@@ -44,27 +44,8 @@ const styles = theme => ({
 class Searcharea extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      segment: "",
-      brand: "",
-      model: "",
-      priceFrom: "",
-      priceTo: "",
-      mileageFrom: "",
-      mileageTo: "",
-      productionYearFrom: "",
-      productionYearTo: "",
-      fuelType: "",
-      localization: ""
-    };
-
     this.selectsOptions = prepareSelectsOptions(this.props.enums.__type.fields);
   }
-
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
 
   render() {
     const { classes } = this.props;
@@ -75,8 +56,8 @@ class Searcharea extends Component {
             Segment
           </InputLabel>
           <Select
-            value={this.state.segment}
-            onChange={this.handleChange}
+            value={this.props.filters.segment}
+            onChange={this.props.handleChange}
             inputProps={{
               name: "segment",
               id: "segment"
@@ -97,8 +78,8 @@ class Searcharea extends Component {
             Marka pojazdu
           </InputLabel>
           <Select
-            value={this.state.brand}
-            onChange={this.handleChange}
+            value={this.props.filters.brand}
+            onChange={this.props.handleChange}
             inputProps={{
               name: "brand",
               id: "brand"
@@ -119,8 +100,8 @@ class Searcharea extends Component {
             Model pojazdu
           </InputLabel>
           <Select
-            value={this.state.model}
-            onChange={this.handleChange}
+            value={this.props.filters.model}
+            onChange={this.props.handleChange}
             inputProps={{
               name: "model",
               id: "model"
@@ -138,8 +119,8 @@ class Searcharea extends Component {
             <TextField
               name="productionYearFrom"
               label="Rok produkcji od"
-              value={this.state.productionYearFrom}
-              onChange={this.handleChange}
+              value={this.props.filters.productionYearFrom}
+              onChange={this.props.handleChange}
               type="number"
               inputProps={{
                 min: 0,
@@ -155,8 +136,8 @@ class Searcharea extends Component {
             <TextField
               name="productionYearTo"
               label="Rok produkcji do"
-              value={this.state.productionYearTo}
-              onChange={this.handleChange}
+              value={this.props.filters.productionYearTo}
+              onChange={this.props.handleChange}
               type="number"
               inputProps={{
                 min: 0,
@@ -170,8 +151,8 @@ class Searcharea extends Component {
             Rodzaj paliwa
           </InputLabel>
           <Select
-            value={this.state.fuelType}
-            onChange={this.handleChange}
+            value={this.props.filters.fuelType}
+            onChange={this.props.handleChange}
             inputProps={{
               name: "fuelType",
               id: "fuelType"
@@ -194,8 +175,8 @@ class Searcharea extends Component {
             <TextField
               name="priceFrom"
               label="Cena od"
-              value={this.state.priceFrom}
-              onChange={this.handleChange}
+              value={this.props.filters.priceFrom}
+              onChange={this.props.handleChange}
               type="number"
               inputProps={{
                 min: 0,
@@ -214,8 +195,8 @@ class Searcharea extends Component {
             <TextField
               name="priceTo"
               label="Cena do"
-              value={this.state.priceTo}
-              onChange={this.handleChange}
+              value={this.props.filters.priceTo}
+              onChange={this.props.handleChange}
               type="number"
               inputProps={{
                 min: 0,
@@ -234,8 +215,8 @@ class Searcharea extends Component {
             <TextField
               name="mileageFrom"
               label="Przebieg od"
-              value={this.state.mileageFrom}
-              onChange={this.handleChange}
+              value={this.props.filters.mileageFrom}
+              onChange={this.props.handleChange}
               type="number"
               inputProps={{
                 min: 0,
@@ -254,8 +235,8 @@ class Searcharea extends Component {
             <TextField
               name="mileageTo"
               label="Przebieg do"
-              value={this.state.mileageTo}
-              onChange={this.handleChange}
+              value={this.props.filters.mileageTo}
+              onChange={this.props.handleChange}
               type="number"
               inputProps={{
                 min: 0,
@@ -288,8 +269,8 @@ class Searcharea extends Component {
               Miejscowość
             </InputLabel>
             <Select
-              value={this.state.localization}
-              onChange={this.handleChange}
+              value={this.props.filters.localization}
+              onChange={this.props.handleChange}
               inputProps={{
                 name: "localization",
                 id: "localization"
@@ -305,8 +286,8 @@ class Searcharea extends Component {
             <TextField
               name="keywords"
               label="Słowa kluczowe"
-              value={this.state.keywords}
-              onChange={this.handleChange}
+              value={this.props.filters.keywords}
+              onChange={this.props.handleChange}
             />
           </FormControl>
         </div>
