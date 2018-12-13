@@ -3,11 +3,11 @@ import {
   createMuiTheme,
   createGenerateClassName
 } from "@material-ui/core/styles";
-import { red, blue } from "@material-ui/core/colors";
+import { red, brown } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   palette: {
-    primary: blue,
+    primary: brown,
     secondary: red
   },
   typography: {
