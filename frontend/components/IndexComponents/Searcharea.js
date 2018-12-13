@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import {
   InputLabel,
   FormControl,
@@ -11,6 +10,8 @@ import {
 } from "@material-ui/core";
 import { Search, Clear } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
+
+import { prepareSelectsOptions } from "../../src/helpers";
 
 const styles = theme => ({
   form: {
@@ -60,6 +61,10 @@ class Searcharea extends Component {
   };
 
   render() {
+    const selectsOptions = prepareSelectsOptions(
+      this.props.enums.__type.fields
+    );
+    console.log(selectsOptions);
     const { classes } = this.props;
     return (
       <form className={classes.form}>

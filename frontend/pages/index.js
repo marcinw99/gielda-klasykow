@@ -1,33 +1,20 @@
 import React, { Component } from "react";
-import { Grid, Typography, CircularProgress } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  CircularProgress,
+  LinearProgress
+} from "@material-ui/core";
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
 
 import Searcharea from "../components/IndexComponents/Searcharea";
 import Results from "../components/IndexComponents/Results";
+import {
+  ALL_POSTS_QUERY,
+  POSSIBLE_ENUMS_VALUES
+} from "../components/IndexComponents/indexQueries";
 
 import { withStyles } from "@material-ui/core/styles";
-
-const ALL_POSTS_QUERY = gql`
-  query ALL_POSTS_QUERY {
-    posts {
-      price
-      avatar
-      car {
-        segment
-        brand
-        model
-        version
-        fuelType
-        productionYear
-        mileage
-        engineSize
-        power
-        torque
-      }
-    }
-  }
-`;
 
 const styles = theme => ({
   root: {
@@ -49,7 +36,24 @@ class Index extends Component {
     return (
       <Grid className={classes.root} container>
         <Grid item xs={12}>
-          <Searcharea />
+          <Query query={POSSIBLE_ENUMS_VALUES}>
+            {({ data, error, loading }) => {
+              if (loading) {
+                return (
+                  <div className={classes.loadingScreen}>
+                    <LinearProgress size={100} />
+                  </div>
+                );
+              }
+              if (error)
+                return (
+                  <Typography variant="h6" color="secondary">
+                    Błąd przy pobieraniu opcji filtrowania
+                  </Typography>
+                );
+              return <Searcharea enums={data} />;
+            }}
+          </Query>
         </Grid>
         <Grid className={classes.resultsGridItem} item xs={12}>
           <Query query={ALL_POSTS_QUERY}>
@@ -60,7 +64,12 @@ class Index extends Component {
                     <CircularProgress size={100} />
                   </div>
                 );
-              if (error) return <Typography>Error: {error.message}</Typography>;
+              if (error)
+                return (
+                  <Typography variant="h6" color="secondary">
+                    Błąd przy pobieraniu wyników
+                  </Typography>
+                );
               return <Results results={data.posts} />;
             }}
           </Query>
