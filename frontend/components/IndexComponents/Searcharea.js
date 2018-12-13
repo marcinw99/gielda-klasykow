@@ -23,13 +23,9 @@ const styles = theme => ({
     margin: theme.spacing.unit
   },
   formControlSmallLeft: {
-    minWidth: 160,
-    margin: theme.spacing.unit,
     marginRight: theme.spacing.unit * 0.5
   },
   formControlSmallRight: {
-    minWidth: 160,
-    margin: theme.spacing.unit,
     marginLeft: theme.spacing.unit * 0.5
   },
   InputLabel: {
@@ -129,7 +125,9 @@ class Searcharea extends Component {
           </Select>
         </FormControl>
         <div>
-          <FormControl className={classes.formControlSmallLeft}>
+          <FormControl
+            className={`${classes.formControlSmallLeft} ${classes.formControl}`}
+          >
             <TextField
               name="productionYearFrom"
               label="Rok produkcji od"
@@ -142,7 +140,11 @@ class Searcharea extends Component {
               }}
             />
           </FormControl>
-          <FormControl className={classes.formControlSmallRight}>
+          <FormControl
+            className={`${classes.formControlSmallRight} ${
+              classes.formControl
+            }`}
+          >
             <TextField
               name="productionYearTo"
               label="Rok produkcji do"
@@ -180,7 +182,9 @@ class Searcharea extends Component {
           </Select>
         </FormControl>
         <div>
-          <FormControl className={classes.formControlSmallLeft}>
+          <FormControl
+            className={`${classes.formControlSmallLeft} ${classes.formControl}`}
+          >
             <TextField
               name="priceFrom"
               label="Cena od"
@@ -196,7 +200,11 @@ class Searcharea extends Component {
               }}
             />
           </FormControl>
-          <FormControl className={classes.formControlSmallRight}>
+          <FormControl
+            className={`${classes.formControlSmallRight} ${
+              classes.formControl
+            }`}
+          >
             <TextField
               name="priceTo"
               label="Cena do"
@@ -214,7 +222,9 @@ class Searcharea extends Component {
           </FormControl>
         </div>
         <div>
-          <FormControl className={classes.formControlSmallLeft}>
+          <FormControl
+            className={`${classes.formControlSmallLeft} ${classes.formControl}`}
+          >
             <TextField
               name="mileageFrom"
               label="Przebieg od"
@@ -230,7 +240,11 @@ class Searcharea extends Component {
               }}
             />
           </FormControl>
-          <FormControl className={classes.formControlSmallRight}>
+          <FormControl
+            className={`${classes.formControlSmallRight} ${
+              classes.formControl
+            }`}
+          >
             <TextField
               name="mileageTo"
               label="Przebieg do"
