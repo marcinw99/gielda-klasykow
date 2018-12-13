@@ -42,28 +42,31 @@ const styles = theme => ({
 });
 
 class Searcharea extends Component {
-  state = {
-    segment: "",
-    brand: "",
-    model: "",
-    priceFrom: "",
-    priceTo: "",
-    mileageFrom: "",
-    mileageTo: "",
-    productionYearFrom: "",
-    productionYearTo: "",
-    fuelType: "",
-    localization: ""
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      segment: "",
+      brand: "",
+      model: "",
+      priceFrom: "",
+      priceTo: "",
+      mileageFrom: "",
+      mileageTo: "",
+      productionYearFrom: "",
+      productionYearTo: "",
+      fuelType: "",
+      localization: ""
+    };
+
+    this.selectsOptions = prepareSelectsOptions(this.props.enums.__type.fields);
+  }
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
-    const selectsOptions = prepareSelectsOptions(
-      this.props.enums.__type.fields
-    );
     const { classes } = this.props;
     return (
       <form className={classes.form}>
@@ -82,7 +85,7 @@ class Searcharea extends Component {
             <MenuItem value="">
               <em>Wszystkie</em>
             </MenuItem>
-            {selectsOptions.segment.map((item, key) => (
+            {this.selectsOptions.segment.map((item, key) => (
               <MenuItem key={`${item}${key}`} value={item}>
                 {item}
               </MenuItem>
@@ -104,7 +107,7 @@ class Searcharea extends Component {
             <MenuItem value="">
               <em>Wszystkie</em>
             </MenuItem>
-            {selectsOptions.brand.map((item, key) => (
+            {this.selectsOptions.brand.map((item, key) => (
               <MenuItem key={`${item}${key}`} value={item}>
                 {item}
               </MenuItem>
@@ -177,7 +180,7 @@ class Searcharea extends Component {
             <MenuItem value="">
               <em>Wszystkie</em>
             </MenuItem>
-            {selectsOptions.fuelType.map((item, key) => (
+            {this.selectsOptions.fuelType.map((item, key) => (
               <MenuItem key={`${item}${key}`} value={item}>
                 {item}
               </MenuItem>
