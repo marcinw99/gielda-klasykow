@@ -64,7 +64,6 @@ class Searcharea extends Component {
     const selectsOptions = prepareSelectsOptions(
       this.props.enums.__type.fields
     );
-    console.log(selectsOptions);
     const { classes } = this.props;
     return (
       <form className={classes.form}>
@@ -83,12 +82,11 @@ class Searcharea extends Component {
             <MenuItem value="">
               <em>Wszystkie</em>
             </MenuItem>
-            <MenuItem value="A">A</MenuItem>
-            <MenuItem value="B">B</MenuItem>
-            <MenuItem value="C">C</MenuItem>
-            <MenuItem value="D">D</MenuItem>
-            <MenuItem value="E">E</MenuItem>
-            <MenuItem value="F">F</MenuItem>
+            {selectsOptions.segment.map((item, key) => (
+              <MenuItem key={`${item}${key}`} value={item}>
+                {item}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <FormControl className={classes.formControl}>
@@ -106,10 +104,11 @@ class Searcharea extends Component {
             <MenuItem value="">
               <em>Wszystkie</em>
             </MenuItem>
-            <MenuItem value="Audi">Audi</MenuItem>
-            <MenuItem value="BMW">BMW</MenuItem>
-            <MenuItem value="Mercedes-benz">Mercedes-benz</MenuItem>
-            <MenuItem value="Saab">Saab</MenuItem>
+            {selectsOptions.brand.map((item, key) => (
+              <MenuItem key={`${item}${key}`} value={item}>
+                {item}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <FormControl className={classes.formControl}>
@@ -178,12 +177,11 @@ class Searcharea extends Component {
             <MenuItem value="">
               <em>Wszystkie</em>
             </MenuItem>
-            <MenuItem value="Benzyna">Benzyna</MenuItem>
-            <MenuItem value="Benzyna + LPG">Benzyna + LPG</MenuItem>
-            <MenuItem value="Benzyna + CNG">Benzyna + CNG</MenuItem>
-            <MenuItem value="Diesel">Diesel</MenuItem>
-            <MenuItem value="Hybryda">Hybryda</MenuItem>
-            <MenuItem value="Elektryczny">Elektryczny</MenuItem>
+            {selectsOptions.fuelType.map((item, key) => (
+              <MenuItem key={`${item}${key}`} value={item}>
+                {item}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <div>
