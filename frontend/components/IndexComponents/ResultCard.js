@@ -32,32 +32,33 @@ const CardTitle = props => (
   </Typography>
 );
 
-const Price = props => (
-  <Typography className={props.class} variant="h6" color="secondary">
-    {spacesInNumbers(props.price)} PLN
-  </Typography>
-);
+const Price = props =>
+  props.price == null ? null : (
+    <Typography className={props.class} variant="h6" color="secondary">
+      {spacesInNumbers(props.price)} PLN
+    </Typography>
+  );
 
 const ListItem = props =>
-  props.value ? (
+  props.value == null ? null : (
     <li>
       <Typography>
-        {props.text ? props.text : props.value}
+        {props.text ? props.text(props.value) : props.value}
         {props.afterText}
       </Typography>
     </li>
-  ) : null;
+  );
 
 const ListItemMultiValues = props => (
   <li>
     <Typography>
       {props.items.map((item, key) => {
-        return item.value ? (
+        return item.value == null ? null : (
           <Fragment key={`${item.value}${key}`}>
             {item.text ? item.text : item.value}
             {item.afterText}
           </Fragment>
-        ) : null;
+        );
       })}
     </Typography>
   </li>
@@ -71,21 +72,25 @@ const ResultCard = props => (
         image={props.avatar || "/static/noImageAvailable.jpg"}
       />
       <CardContent>
-        <CardTitle props={props.car} />
+        <CardTitle
+          brand={props.car.brand}
+          model={props.car.model}
+          version={props.car.version}
+        />
         <ul className={props.classes.listContainer}>
           <ListItemMultiValues
             items={[
-              { value: `${props.car.fuelType}`, afterText: ", " },
+              { value: props.car.fuelType, afterText: ", " },
               {
-                value: `${props.car.engineSize}`,
+                value: props.car.engineSize,
                 afterText: (
                   <Fragment>
                     cm<sup>3</sup>,{" "}
                   </Fragment>
                 )
               },
-              { value: `${props.car.power}`, afterText: "km, " },
-              { value: `${props.car.torque}`, afterText: "nm, " }
+              { value: props.car.power, afterText: "km, " },
+              { value: props.car.torque, afterText: "nm, " }
             ]}
           />
           <ListItem
@@ -94,7 +99,7 @@ const ResultCard = props => (
           />
           <ListItem
             value={props.car.mileage}
-            text={spacesInNumbers(props.car.mileage)}
+            text={value => spacesInNumbers(value)}
             afterText=" kilometrów
                     przebiegu"
           />
