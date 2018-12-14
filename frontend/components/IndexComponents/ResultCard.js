@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
+import enumsDisplayedText from "../../resources/enumsDisplayedText";
 import { spacesInNumbers } from "../../src/helpers";
 
 const styles = theme => ({
@@ -28,7 +29,8 @@ const styles = theme => ({
 
 const CardTitle = props => (
   <Typography variant="h6">
-    {props.brand} {props.model} {props.version || ""}
+    {enumsDisplayedText("Car", "brand", props.brand)} {props.model}{" "}
+    {props.version || ""}
   </Typography>
 );
 
@@ -80,7 +82,11 @@ const ResultCard = props => (
         <ul className={props.classes.listContainer}>
           <ListItemMultiValues
             items={[
-              { value: props.car.fuelType, afterText: ", " },
+              {
+                value: props.car.fuelType,
+                text: enumsDisplayedText("Car", "fuelType", props.car.fuelType),
+                afterText: ", "
+              },
               {
                 value: props.car.engineSize,
                 afterText: (

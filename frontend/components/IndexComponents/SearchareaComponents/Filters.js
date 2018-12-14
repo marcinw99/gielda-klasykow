@@ -11,6 +11,8 @@ import {
 import { Search, Clear } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
 
+import enumDisplayedText from "../../../resources/enumsDisplayedText";
+
 const styles = theme => ({
   form: {
     display: "flex",
@@ -80,7 +82,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         </MenuItem>
         {selectsOptions.brand.map((item, key) => (
           <MenuItem key={`${item}${key}`} value={item}>
-            {item}
+            {enumDisplayedText("Car", "brand", item)}
           </MenuItem>
         ))}
       </Select>
@@ -151,7 +153,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         </MenuItem>
         {selectsOptions.fuelType.map((item, key) => (
           <MenuItem key={`${item}${key}`} value={item}>
-            {item}
+            {enumDisplayedText("Car", "fuelType", item)}
           </MenuItem>
         ))}
       </Select>
