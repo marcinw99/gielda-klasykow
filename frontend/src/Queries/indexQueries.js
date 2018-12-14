@@ -21,9 +21,9 @@ export const ALL_POSTS_QUERY = gql`
   }
 `;
 
-export const POSSIBLE_ENUMS_VALUES = gql`
-  query POSSIBLE_ENUMS_VALUES {
-    __type(name: "Car") {
+export const SEARCHAREA_QUERIES = gql`
+  query SEARCHAREA_QUERIES {
+    Enums: __type(name: "Car") {
       fields {
         name
         type {
@@ -39,6 +39,16 @@ export const POSSIBLE_ENUMS_VALUES = gql`
             kind
           }
         }
+      }
+    }
+    Post: __type(name: "Post") {
+      fields {
+        name
+      }
+    }
+    Car: __type(name: "Car") {
+      fields {
+        name
       }
     }
   }

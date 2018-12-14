@@ -109,7 +109,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         className={`${classes.formControlSmallLeft} ${classes.formControl}`}
       >
         <TextField
-          name="productionYearFrom"
+          name="productionYear_gt"
           label="Rok produkcji od"
           value={filters.productionYearFrom}
           onChange={handleChange}
@@ -124,7 +124,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         className={`${classes.formControlSmallRight} ${classes.formControl}`}
       >
         <TextField
-          name="productionYearTo"
+          name="productionYear_lt"
           label="Rok produkcji do"
           value={filters.productionYearTo}
           onChange={handleChange}
@@ -163,7 +163,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         className={`${classes.formControlSmallLeft} ${classes.formControl}`}
       >
         <TextField
-          name="priceFrom"
+          name="price_gt"
           label="Cena od"
           value={filters.priceFrom}
           onChange={handleChange}
@@ -181,7 +181,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         className={`${classes.formControlSmallRight} ${classes.formControl}`}
       >
         <TextField
-          name="priceTo"
+          name="price_lt"
           label="Cena do"
           value={filters.priceTo}
           onChange={handleChange}
@@ -201,7 +201,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         className={`${classes.formControlSmallLeft} ${classes.formControl}`}
       >
         <TextField
-          name="mileageFrom"
+          name="mileage_gt"
           label="Przebieg od"
           value={filters.mileageFrom}
           onChange={handleChange}
@@ -219,7 +219,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         className={`${classes.formControlSmallRight} ${classes.formControl}`}
       >
         <TextField
-          name="mileageTo"
+          name="mileage_lt"
           label="Przebieg do"
           value={filters.mileageTo}
           onChange={handleChange}
