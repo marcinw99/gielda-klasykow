@@ -32,16 +32,39 @@ const styles = theme => ({
 
 class Index extends Component {
   state = {
-    filters: {}
+    filters: {
+      segment: "",
+      brand: "",
+      model: "",
+      fuelType: "",
+      localization: ""
+    },
+    queryFilters: {}
   };
 
   handleFiltersChange = event => {
-    this.setState(prevState => ({
-      filters: {
-        ...prevState.filters,
-        [event.target.name]: event.target.value
+    this.setState(
+      prevState => ({
+        filters: {
+          ...prevState.filters,
+          [event.target.name]: event.target.value
+        }
+      }),
+      () => {
+        this.refreshFiltersQuery();
       }
-    }));
+    );
+  };
+
+  refreshFiltersQuery = () => {
+    const { filters } = this.state;
+    var queryFilters = { car: {} };
+    Object.keys(filters).map(name => {
+      if (filters[name] != null && filters[name].length !== 0) {
+        queryFilters.car[name] = filters[name];
+      }
+    });
+    this.setState({ queryFilters });
   };
 
   render() {
@@ -67,7 +90,7 @@ class Index extends Component {
               return (
                 <Searcharea
                   filters={this.state.filters}
-                  handleChange={this.handleFiltersChange}
+                  handleFiltersChange={this.handleFiltersChange}
                   enums={data}
                 />
               );
@@ -75,7 +98,10 @@ class Index extends Component {
           </Query>
         </Grid>
         <Grid className={classes.resultsGridItem} item xs={12}>
-          <Query query={ALL_POSTS_QUERY}>
+          <Query
+            query={ALL_POSTS_QUERY}
+            variables={{ filters: this.state.queryFilters }}
+          >
             {({ data, error, loading }) => {
               if (loading)
                 return (

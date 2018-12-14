@@ -14,7 +14,7 @@ class Searcharea extends Component {
       <Grid container direction="column">
         <Grid item>
           <Filters
-            handleChange={this.props.handleChange}
+            handleChange={this.props.handleFiltersChange}
             selectsOptions={selectsOptions}
             filters={this.props.filters}
           />
