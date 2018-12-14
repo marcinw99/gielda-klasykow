@@ -18,11 +18,15 @@ import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   root: {
-    maxWidth: "1000px",
-    margin: "0 auto",
     padding: theme.spacing.unit * 2
   },
+  SearchareaGridItem: {
+    margin: "0 auto",
+    maxWidth: 1000
+  },
   resultsGridItem: {
+    margin: "0 auto",
+    maxWidth: 1200,
     marginTop: theme.spacing.unit * 4
   },
   loadingScreen: {
@@ -71,7 +75,7 @@ class Index extends Component {
     const { classes } = this.props;
     return (
       <Grid className={classes.root} container>
-        <Grid item xs={12}>
+        <Grid className={classes.SearchareaGridItem} item xs={12}>
           <Query query={POSSIBLE_ENUMS_VALUES}>
             {({ data, error, loading }) => {
               if (loading) {

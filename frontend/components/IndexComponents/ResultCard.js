@@ -12,7 +12,7 @@ import { spacesInNumbers } from "../../src/helpers";
 
 const styles = theme => ({
   root: {
-    minWidth: 300,
+    width: 300,
     margin: theme.spacing.unit * 1
   },
   media: {
