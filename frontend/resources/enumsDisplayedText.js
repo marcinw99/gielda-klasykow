@@ -14,7 +14,8 @@ const variants = {
       BENZYNA_CNG: "Benzyna + CNG",
       DIESEL: "Diesel",
       HYBRYDA: "Hybryda",
-      ELEKTRYCZNY: "Elektryczny"
+      ELEKTRYCZNY: "Elektryczny",
+      INNY: "Inny"
     }
   },
   Post: {}
