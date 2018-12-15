@@ -9,15 +9,24 @@ import {
   typeAcceptsValue
 } from "../../../src/helpers";
 
+const blankFiltersState = {
+  segment: "",
+  brand: "",
+  model: "",
+  fuelType: "",
+  localization: "",
+  productionYear_gt: "",
+  productionYear_lt: "",
+  mileage_gt: "",
+  mileage_lt: "",
+  price_lt: "",
+  price_gt: "",
+  keywords: ""
+};
+
 class Searcharea extends Component {
   state = {
-    filters: {
-      segment: "",
-      brand: "",
-      model: "",
-      fuelType: "",
-      localization: ""
-    },
+    filters: blankFiltersState,
     readyToFilter: false
   };
 
@@ -63,6 +72,12 @@ class Searcharea extends Component {
     );
   };
 
+  resetFilters = () => {
+    this.setState({ filters: blankFiltersState }, () => {
+      this.sendFiltersQueryObject();
+    });
+  };
+
   render() {
     const selectsOptions = prepareSelectsOptions(this.props.data.Enums.fields);
     return (
@@ -72,6 +87,7 @@ class Searcharea extends Component {
             handleChange={this.handleFiltersChange}
             selectsOptions={selectsOptions}
             filters={this.state.filters}
+            resetFilters={this.resetFilters}
           />
         </Grid>
         <Grid item>

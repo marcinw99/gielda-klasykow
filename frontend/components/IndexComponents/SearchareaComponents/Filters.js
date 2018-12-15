@@ -41,7 +41,13 @@ const styles = theme => ({
   }
 });
 
-const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
+const Filters = ({
+  classes,
+  selectsOptions,
+  filters,
+  handleChange,
+  resetFilters
+}) => (
   <form className={classes.form}>
     <FormControl className={classes.formControl}>
       <InputLabel className={classes.InputLabel} htmlFor="segment">
@@ -111,7 +117,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         <TextField
           name="productionYear_gt"
           label="Rok produkcji od"
-          value={filters.productionYearFrom}
+          value={filters.productionYear_gt}
           onChange={handleChange}
           type="number"
           inputProps={{
@@ -126,7 +132,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         <TextField
           name="productionYear_lt"
           label="Rok produkcji do"
-          value={filters.productionYearTo}
+          value={filters.productionYear_lt}
           onChange={handleChange}
           type="number"
           inputProps={{
@@ -165,7 +171,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         <TextField
           name="price_gt"
           label="Cena od"
-          value={filters.priceFrom}
+          value={filters.price_gt}
           onChange={handleChange}
           type="number"
           inputProps={{
@@ -183,7 +189,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         <TextField
           name="price_lt"
           label="Cena do"
-          value={filters.priceTo}
+          value={filters.price_lt}
           onChange={handleChange}
           type="number"
           inputProps={{
@@ -203,7 +209,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         <TextField
           name="mileage_gt"
           label="Przebieg od"
-          value={filters.mileageFrom}
+          value={filters.mileage_gt}
           onChange={handleChange}
           type="number"
           inputProps={{
@@ -221,7 +227,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
         <TextField
           name="mileage_lt"
           label="Przebieg do"
-          value={filters.mileageTo}
+          value={filters.mileage_lt}
           onChange={handleChange}
           type="number"
           inputProps={{
@@ -278,7 +284,12 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
       </FormControl>
     </div>
     <div>
-      <Button color="secondary" variant="fab" className={classes.fabButton}>
+      <Button
+        onClick={resetFilters}
+        color="secondary"
+        variant="fab"
+        className={classes.fabButton}
+      >
         <Clear />
       </Button>
       <Button color="primary" variant="fab" className={classes.fabButton}>
