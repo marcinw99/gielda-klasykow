@@ -25,3 +25,13 @@ export function prepareSelectsOptions(input) {
   }
   return results;
 }
+
+export const shouldBeInQueryObject = value =>
+  value.length === 0 || value == null || value === "deleteFromFilters"
+    ? false
+    : true;
+
+export const typeAcceptsValue = (type, value) =>
+  type.indexOf(value) !== -1 || type.indexOf(value.slice(0, -3)) !== -1
+    ? true
+    : false;

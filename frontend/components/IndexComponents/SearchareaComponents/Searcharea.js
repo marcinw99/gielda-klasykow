@@ -3,7 +3,11 @@ import { Grid } from "@material-ui/core";
 
 import Filters from "./Filters";
 import Sorters from "./Sorters";
-import { prepareSelectsOptions } from "../../../src/helpers";
+import {
+  prepareSelectsOptions,
+  shouldBeInQueryObject,
+  typeAcceptsValue
+} from "../../../src/helpers";
 
 class Searcharea extends Component {
   state = {
@@ -13,22 +17,48 @@ class Searcharea extends Component {
       model: "",
       fuelType: "",
       localization: ""
-    }
+    },
+    readyToFilter: false
+  };
+
+  componentDidMount() {
+    const Post = this.props.data.Post.fields.map(item => item.name);
+    const Car = this.props.data.Car.fields.map(item => item.name);
+    this.setState({
+      queryAttributes: { Post, Car },
+      readyToFilter: true
+    });
+  }
+
+  sendFiltersQueryObject = () => {
+    var queryObject = { car: {} };
+    Object.keys(this.state.filters).map(name => {
+      if (!shouldBeInQueryObject(this.state.filters[name])) {
+        return false;
+      }
+      if (typeAcceptsValue(this.state.queryAttributes.Post, name)) {
+        queryObject[name] = this.state.filters[name];
+      }
+      if (typeAcceptsValue(this.state.queryAttributes.Car, name)) {
+        queryObject.car[name] = this.state.filters[name];
+      }
+    });
+    this.props.refreshFiltersQuery(queryObject);
   };
 
   handleFiltersChange = event => {
+    if (this.state.readyToFilter === false) return null;
     const { name, value } = event.target;
-    if (value == null || value.length === 0) return null;
     this.setState(
       prevState => ({
         filters: {
           ...prevState.filters,
-          // Material UI input type number returns a string, this parses to number
+          // Material UI <input type="number" /> returns a string, this parses to number
           [name]: isNaN(Number(value)) ? value : Number(value)
         }
       }),
       () => {
-        this.props.refreshFiltersQuery(this.state.filters);
+        this.sendFiltersQueryObject();
       }
     );
   };

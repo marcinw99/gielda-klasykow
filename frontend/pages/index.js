@@ -39,13 +39,7 @@ class Index extends Component {
     queryFilters: {}
   };
 
-  refreshFiltersQuery = filters => {
-    var queryFilters = { car: {} };
-    Object.keys(filters).map(name => {
-      if (filters[name] != null && filters[name].length !== 0) {
-        queryFilters.car[name] = filters[name];
-      }
-    });
+  refreshFiltersQuery = queryFilters => {
     this.setState({ queryFilters });
   };
 

@@ -55,7 +55,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
           id: "segment"
         }}
       >
-        <MenuItem value="">
+        <MenuItem value="deleteFromFilters">
           <em>Wszystkie</em>
         </MenuItem>
         {selectsOptions.segment.map((item, key) => (
@@ -77,7 +77,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
           id: "brand"
         }}
       >
-        <MenuItem value="">
+        <MenuItem value="deleteFromFilters">
           <em>Wszystkie</em>
         </MenuItem>
         {selectsOptions.brand.map((item, key) => (
@@ -99,7 +99,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
           id: "model"
         }}
       >
-        <MenuItem value="">
+        <MenuItem value="deleteFromFilters">
           <em>Wszystkie</em>
         </MenuItem>
       </Select>
@@ -148,7 +148,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
           id: "fuelType"
         }}
       >
-        <MenuItem value="">
+        <MenuItem value="deleteFromFilters">
           <em>Wszystkie</em>
         </MenuItem>
         {selectsOptions.fuelType.map((item, key) => (
@@ -262,7 +262,7 @@ const Filters = ({ classes, selectsOptions, filters, handleChange }) => (
             id: "localization"
           }}
         >
-          <MenuItem value="">
+          <MenuItem value="deleteFromFilters">
             <em>Wszystkie</em>
           </MenuItem>
           <MenuItem value="Dębica">Dębica</MenuItem>
