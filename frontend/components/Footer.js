@@ -27,6 +27,7 @@ const styles = theme => ({
 
 const SocialMediaLink = props => (
   <Button
+    target="_blank"
     className={props.rootCss}
     variant="outlined"
     color="primary"
