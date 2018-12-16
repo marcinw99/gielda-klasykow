@@ -1,25 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
+import { Grid } from "@material-ui/core";
 
 import ResultCard from "./ResultCard";
 
-import { Grid } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
+const Results = props => (
+  <Grid justify="center" container>
+    {props.results &&
+      props.results.map((item, key) => (
+        <Grid item key={`${item.car.brand}${key}`}>
+          <ResultCard {...item} />
+        </Grid>
+      ))}
+  </Grid>
+);
 
-const styles = theme => ({});
-
-class Results extends Component {
-  render() {
-    return (
-      <Grid justify="center" container>
-        {this.props.results &&
-          this.props.results.map((item, key) => (
-            <Grid item key={`${item.label}${key}`}>
-              <ResultCard {...item} />
-            </Grid>
-          ))}
-      </Grid>
-    );
-  }
-}
-
-export default withStyles(styles)(Results);
+export default Results;

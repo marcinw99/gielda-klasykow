@@ -14,13 +14,18 @@
   "dependencies": {
     "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "^3.0.1",
+    "apollo-boost": "^0.1.22",
     "autoprefixer": "^9.4.2",
     "cssnano": "^4.1.7",
+    "graphql": "^14.0.2",
+    "graphql-tag": "^2.10.0",
     "jss": "^9.8.7",
     "next": "^7.0.2",
+    "next-with-apollo": "^3.3.0",
     "nprogress": "^0.2.0",
     "postcss": "^7.0.6",
     "react": "^16.6.1",
+    "react-apollo": "^2.3.2",
     "react-dom": "^16.6.1",
     "react-jss": "^8.6.1"
   }
