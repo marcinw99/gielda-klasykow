@@ -34,13 +34,20 @@ const styles = theme => ({
   }
 });
 
+const initialSortBy = "createdAt_DESC";
+
 class Index extends Component {
   state = {
-    queryFilters: {}
+    queryFilters: {},
+    querySorters: initialSortBy
   };
 
   refreshFiltersQuery = queryFilters => {
     this.setState({ queryFilters });
+  };
+
+  refreshSortersQuery = querySorters => {
+    this.setState({ querySorters });
   };
 
   render() {
@@ -67,6 +74,8 @@ class Index extends Component {
                 <Searcharea
                   data={data}
                   refreshFiltersQuery={this.refreshFiltersQuery}
+                  refreshSortersQuery={this.refreshSortersQuery}
+                  initialSortBy={initialSortBy}
                 />
               );
             }}
@@ -75,7 +84,10 @@ class Index extends Component {
         <Grid className={classes.resultsGridItem} item xs={12}>
           <Query
             query={ALL_POSTS_QUERY}
-            variables={{ filters: this.state.queryFilters }}
+            variables={{
+              filters: this.state.queryFilters,
+              sorters: this.state.querySorters
+            }}
           >
             {({ data, error, loading }) => {
               if (loading)

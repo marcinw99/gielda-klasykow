@@ -27,7 +27,8 @@ const blankFiltersState = {
 class Searcharea extends Component {
   state = {
     filters: blankFiltersState,
-    readyToFilter: false
+    readyToSearch: false,
+    sortBy: this.props.initialSortBy
   };
 
   componentDidMount() {
@@ -35,7 +36,7 @@ class Searcharea extends Component {
     const Car = this.props.data.Car.fields.map(item => item.name);
     this.setState({
       queryAttributes: { Post, Car },
-      readyToFilter: true
+      readyToSearch: true
     });
   }
 
@@ -56,7 +57,7 @@ class Searcharea extends Component {
   };
 
   handleFiltersChange = event => {
-    if (this.state.readyToFilter === false) return null;
+    if (this.state.readyToSearch === false) return null;
     const { name, value } = event.target;
     this.setState(
       prevState => ({
@@ -68,6 +69,19 @@ class Searcharea extends Component {
       }),
       () => {
         this.sendFiltersQueryObject();
+      }
+    );
+  };
+
+  handleSortersChange = event => {
+    if (this.state.readyToSearch === false) return null;
+    const { name, value } = event.target;
+    this.setState(
+      {
+        [name]: value
+      },
+      () => {
+        this.props.refreshSortersQuery(this.state.sortBy);
       }
     );
   };
@@ -91,7 +105,10 @@ class Searcharea extends Component {
           />
         </Grid>
         <Grid item>
-          <Sorters />
+          <Sorters
+            value={this.state.sortBy}
+            handleChange={this.handleSortersChange}
+          />
         </Grid>
       </Grid>
     );

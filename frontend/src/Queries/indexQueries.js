@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const ALL_POSTS_QUERY = gql`
-  query ALL_POSTS_QUERY($filters: PostWhereInput) {
-    posts(where: $filters) {
+  query ALL_POSTS_QUERY($filters: PostWhereInput, $sorters: PostOrderByInput) {
+    posts(where: $filters, orderBy: $sorters) {
       price
       avatar
       car {
