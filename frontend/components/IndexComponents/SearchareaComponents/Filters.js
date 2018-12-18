@@ -5,12 +5,12 @@ import {
   Select,
   MenuItem,
   TextField,
-  InputAdornment,
   Button
 } from "@material-ui/core";
 import { Search, Clear } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
 
+import NumberInputs from "./NumberInputs";
 import enumDisplayedText from "../../../resources/enumsDisplayedText";
 
 const styles = theme => ({
@@ -110,38 +110,17 @@ const Filters = ({
         </MenuItem>
       </Select>
     </FormControl>
-    <div>
-      <FormControl
-        className={`${classes.formControlSmallLeft} ${classes.formControl}`}
-      >
-        <TextField
-          name="productionYear_gt"
-          label="Rok produkcji od"
-          value={filters.productionYear_gt}
-          onChange={handleChange}
-          type="number"
-          inputProps={{
-            min: 0,
-            max: 10000000
-          }}
-        />
-      </FormControl>
-      <FormControl
-        className={`${classes.formControlSmallRight} ${classes.formControl}`}
-      >
-        <TextField
-          name="productionYear_lt"
-          label="Rok produkcji do"
-          value={filters.productionYear_lt}
-          onChange={handleChange}
-          type="number"
-          inputProps={{
-            min: 0,
-            max: 10000000
-          }}
-        />
-      </FormControl>
-    </div>
+
+    <NumberInputs
+      classes={classes}
+      nameLeft="productionYear_gt"
+      nameRight="productionYear_lt"
+      labelLeft="Rok produkcji od"
+      labelRight="Rok produkcji do"
+      valueLeft={filters.productionYear_gt}
+      valueRight={filters.productionYear_lt}
+      handleChange={handleChange}
+    />
     <FormControl className={classes.formControl}>
       <InputLabel className={classes.InputLabel} htmlFor="fuelType">
         Rodzaj paliwa
@@ -164,97 +143,44 @@ const Filters = ({
         ))}
       </Select>
     </FormControl>
-    <div>
-      <FormControl
-        className={`${classes.formControlSmallLeft} ${classes.formControl}`}
+    <NumberInputs
+      classes={classes}
+      nameLeft="price_gt"
+      nameRight="price_lt"
+      labelLeft="Cena od"
+      labelRight="Cena do"
+      valueLeft={filters.price_gt}
+      valueRight={filters.price_lt}
+      handleChange={handleChange}
+      endAdornment="zł"
+    />
+    <NumberInputs
+      classes={classes}
+      nameLeft="mileage_gt"
+      nameRight="mileage_lt"
+      labelLeft="Przebieg od"
+      labelRight="Przebieg do"
+      valueLeft={filters.mileage_gt}
+      valueRight={filters.mileage_lt}
+      handleChange={handleChange}
+      endAdornment="km"
+    />
+    {[
+      "Silnik i napęd",
+      "Nadwozie",
+      "Dodatkowe wyposażenie",
+      "Status pojazdu",
+      "Informacje finansowe"
+    ].map(item => (
+      <Button
+        key={item}
+        className={classes.button}
+        variant="outlined"
+        color="primary"
       >
-        <TextField
-          name="price_gt"
-          label="Cena od"
-          value={filters.price_gt}
-          onChange={handleChange}
-          type="number"
-          inputProps={{
-            min: 0,
-            max: 10000000
-          }}
-          InputProps={{
-            endAdornment: <InputAdornment position="end">zł</InputAdornment>
-          }}
-        />
-      </FormControl>
-      <FormControl
-        className={`${classes.formControlSmallRight} ${classes.formControl}`}
-      >
-        <TextField
-          name="price_lt"
-          label="Cena do"
-          value={filters.price_lt}
-          onChange={handleChange}
-          type="number"
-          inputProps={{
-            min: 0,
-            max: 10000000
-          }}
-          InputProps={{
-            endAdornment: <InputAdornment position="end">zł</InputAdornment>
-          }}
-        />
-      </FormControl>
-    </div>
-    <div>
-      <FormControl
-        className={`${classes.formControlSmallLeft} ${classes.formControl}`}
-      >
-        <TextField
-          name="mileage_gt"
-          label="Przebieg od"
-          value={filters.mileage_gt}
-          onChange={handleChange}
-          type="number"
-          inputProps={{
-            min: 0,
-            max: 10000000
-          }}
-          InputProps={{
-            endAdornment: <InputAdornment position="end">km</InputAdornment>
-          }}
-        />
-      </FormControl>
-      <FormControl
-        className={`${classes.formControlSmallRight} ${classes.formControl}`}
-      >
-        <TextField
-          name="mileage_lt"
-          label="Przebieg do"
-          value={filters.mileage_lt}
-          onChange={handleChange}
-          type="number"
-          inputProps={{
-            min: 0,
-            max: 10000000
-          }}
-          InputProps={{
-            endAdornment: <InputAdornment position="end">km</InputAdornment>
-          }}
-        />
-      </FormControl>
-    </div>
-    <Button className={classes.button} variant="outlined" color="primary">
-      Silnik i napęd
-    </Button>
-    <Button className={classes.button} variant="outlined" color="primary">
-      Nadwozie
-    </Button>
-    <Button className={classes.button} variant="outlined" color="primary">
-      Dodatkowe wyposażenie
-    </Button>
-    <Button className={classes.button} variant="outlined" color="primary">
-      Status pojazdu
-    </Button>
-    <Button className={classes.button} variant="outlined" color="primary">
-      Informacje finansowe
-    </Button>
+        {item}
+      </Button>
+    ))}
     <div>
       <FormControl className={classes.formControl}>
         <InputLabel className={classes.InputLabel} htmlFor="localization">
