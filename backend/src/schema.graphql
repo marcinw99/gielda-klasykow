@@ -1,28 +1,5 @@
 # import * from './generated/prisma.graphql'
 
-type Car {
-  id: ID!
-  segment: Segment
-  brand: Brand!
-  model: String!
-  version: String
-  mileage: Int
-  productionYear: Int
-  fuelType: FuelType!
-  engineSize: Int
-  power: Int
-  torque: Int
-  transmission: String
-}
-
-type Post {
-  id: ID!
-  car: Car
-  price: Int!
-  localization: String
-  avatar: String
-}
-
 type Query {
   car(where: CarWhereUniqueInput!): Car
   cars(
@@ -66,4 +43,5 @@ type Mutation {
     avatar: String
     car: CarCreateOneInput
   ): Post
+  signUp(email: String!, password: String!, name: String!): User!
 }
