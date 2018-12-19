@@ -364,7 +364,7 @@ export interface UserUpdateManyMutationInput {
   password?: String;
   resetToken?: String;
   resetTokenExpiry?: String;
-  permission?: UserUpdatepermissionInput;
+  permissions?: UserUpdatepermissionsInput;
 }
 
 export interface CarWhereInput {
@@ -487,7 +487,7 @@ export interface UserUpdateInput {
   password?: String;
   resetToken?: String;
   resetTokenExpiry?: String;
-  permission?: UserUpdatepermissionInput;
+  permissions?: UserUpdatepermissionsInput;
 }
 
 export interface UserWhereInput {
@@ -638,7 +638,7 @@ export interface CarUpdateDataInput {
   transmission?: String;
 }
 
-export interface UserCreatepermissionInput {
+export interface UserCreatepermissionsInput {
   set?: Permission[] | Permission;
 }
 
@@ -683,10 +683,10 @@ export interface UserCreateInput {
   password: String;
   resetToken?: String;
   resetTokenExpiry?: String;
-  permission?: UserCreatepermissionInput;
+  permissions?: UserCreatepermissionsInput;
 }
 
-export interface UserUpdatepermissionInput {
+export interface UserUpdatepermissionsInput {
   set?: Permission[] | Permission;
 }
 
@@ -733,7 +733,7 @@ export interface UserPreviousValues {
   password: String;
   resetToken?: String;
   resetTokenExpiry?: String;
-  permission: Permission[];
+  permissions: Permission[];
 }
 
 export interface UserPreviousValuesPromise
@@ -745,7 +745,7 @@ export interface UserPreviousValuesPromise
   password: () => Promise<String>;
   resetToken: () => Promise<String>;
   resetTokenExpiry: () => Promise<String>;
-  permission: () => Promise<Permission[]>;
+  permissions: () => Promise<Permission[]>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -757,7 +757,7 @@ export interface UserPreviousValuesSubscription
   password: () => Promise<AsyncIterator<String>>;
   resetToken: () => Promise<AsyncIterator<String>>;
   resetTokenExpiry: () => Promise<AsyncIterator<String>>;
-  permission: () => Promise<AsyncIterator<Permission[]>>;
+  permissions: () => Promise<AsyncIterator<Permission[]>>;
 }
 
 export interface BatchPayload {
@@ -884,7 +884,7 @@ export interface User {
   password: String;
   resetToken?: String;
   resetTokenExpiry?: String;
-  permission: Permission[];
+  permissions: Permission[];
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -894,7 +894,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   password: () => Promise<String>;
   resetToken: () => Promise<String>;
   resetTokenExpiry: () => Promise<String>;
-  permission: () => Promise<Permission[]>;
+  permissions: () => Promise<Permission[]>;
 }
 
 export interface UserSubscription
@@ -906,7 +906,7 @@ export interface UserSubscription
   password: () => Promise<AsyncIterator<String>>;
   resetToken: () => Promise<AsyncIterator<String>>;
   resetTokenExpiry: () => Promise<AsyncIterator<String>>;
-  permission: () => Promise<AsyncIterator<Permission[]>>;
+  permissions: () => Promise<AsyncIterator<Permission[]>>;
 }
 
 export interface CarConnection {}

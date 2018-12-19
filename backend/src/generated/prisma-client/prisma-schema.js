@@ -538,7 +538,7 @@ type User {
   password: String!
   resetToken: String
   resetTokenExpiry: String
-  permission: [Permission!]!
+  permissions: [Permission!]!
 }
 
 type UserConnection {
@@ -553,10 +553,10 @@ input UserCreateInput {
   password: String!
   resetToken: String
   resetTokenExpiry: String
-  permission: UserCreatepermissionInput
+  permissions: UserCreatepermissionsInput
 }
 
-input UserCreatepermissionInput {
+input UserCreatepermissionsInput {
   set: [Permission!]
 }
 
@@ -591,7 +591,7 @@ type UserPreviousValues {
   password: String!
   resetToken: String
   resetTokenExpiry: String
-  permission: [Permission!]!
+  permissions: [Permission!]!
 }
 
 type UserSubscriptionPayload {
@@ -618,7 +618,7 @@ input UserUpdateInput {
   password: String
   resetToken: String
   resetTokenExpiry: String
-  permission: UserUpdatepermissionInput
+  permissions: UserUpdatepermissionsInput
 }
 
 input UserUpdateManyMutationInput {
@@ -627,10 +627,10 @@ input UserUpdateManyMutationInput {
   password: String
   resetToken: String
   resetTokenExpiry: String
-  permission: UserUpdatepermissionInput
+  permissions: UserUpdatepermissionsInput
 }
 
-input UserUpdatepermissionInput {
+input UserUpdatepermissionsInput {
   set: [Permission!]
 }
 

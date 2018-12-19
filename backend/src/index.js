@@ -1,5 +1,9 @@
+import cookieParser from "cookie-parser";
+
 import server from "./createServer";
 require("dotenv").config({ path: "variables.env" });
+
+server.express.use(cookieParser());
 
 server.start(
   {
