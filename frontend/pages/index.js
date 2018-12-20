@@ -14,7 +14,7 @@ class Index extends Component {
     const { classes } = this.props;
     return (
       <Link href="/search">
-        <Button variant="raised" className={classes.linkBtn}>
+        <Button variant="contained" className={classes.linkBtn}>
           Wyszukiwarka
         </Button>
       </Link>
