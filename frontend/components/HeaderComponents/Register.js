@@ -61,6 +61,7 @@ class Register extends Component {
                 e.preventDefault();
                 await send();
                 this.setState(initialState);
+                this.props.handleClose();
               }}
             >
               <FormControl margin="normal" required fullWidth>
