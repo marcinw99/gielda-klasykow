@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { AppBar, Typography, Button, Toolbar } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -51,50 +51,58 @@ class Header extends Component {
   render() {
     const props = this.props;
     return (
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <Typography className={props.classes.grow}>
-            <img
-              src="/static/Baner.png"
-              alt="Giełda klasyków"
-              className={props.classes.logo}
-            />
-          </Typography>
-          <User>
-            {({ data: { thisUser } }) => {
-              console.log(thisUser);
-              if (thisUser) return <p>{thisUser.name}</p>;
-              return null;
-            }}
-          </User>
-          <Button
-            variant="outlined"
-            className={props.classes.buttons}
-            aria-haspopup="true"
-            onClick={this.openRegister}
-          >
-            Rejestracja
-          </Button>
-          <Register
-            open={Boolean(this.state.registerAnchorEl)}
-            anchorEl={this.state.registerAnchorEl}
-            handleClose={this.handleClose}
-          />
-          <Button
-            variant="outlined"
-            className={props.classes.buttons}
-            aria-haspopup="true"
-            onClick={this.openLogin}
-          >
-            Zaloguj się
-          </Button>
-          <Login
-            open={Boolean(this.state.loginAnchorEl)}
-            anchorEl={this.state.loginAnchorEl}
-            handleClose={this.handleClose}
-          />
-        </Toolbar>
-      </AppBar>
+      <User>
+        {({ data: { thisUser } }) => (
+          <Fragment>
+            <AppBar position="static" color="primary">
+              <Toolbar>
+                <Typography className={props.classes.grow}>
+                  <img
+                    src="/static/Baner.png"
+                    alt="Giełda klasyków"
+                    className={props.classes.logo}
+                  />
+                </Typography>
+                {thisUser && (
+                  <Typography color="secondary" variant="h3">
+                    {thisUser.name}
+                  </Typography>
+                )}
+                {!thisUser && (
+                  <Fragment>
+                    <Button
+                      variant="outlined"
+                      className={props.classes.buttons}
+                      aria-haspopup="true"
+                      onClick={this.openRegister}
+                    >
+                      Rejestracja
+                    </Button>
+                    <Register
+                      open={Boolean(this.state.registerAnchorEl)}
+                      anchorEl={this.state.registerAnchorEl}
+                      handleClose={this.handleClose}
+                    />
+                    <Button
+                      variant="outlined"
+                      className={props.classes.buttons}
+                      aria-haspopup="true"
+                      onClick={this.openLogin}
+                    >
+                      Zaloguj się
+                    </Button>
+                    <Login
+                      open={Boolean(this.state.loginAnchorEl)}
+                      anchorEl={this.state.loginAnchorEl}
+                      handleClose={this.handleClose}
+                    />
+                  </Fragment>
+                )}
+              </Toolbar>
+            </AppBar>
+          </Fragment>
+        )}
+      </User>
     );
   }
 }
