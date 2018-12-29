@@ -40,7 +40,7 @@ const Mutation = {
     return user;
   },
   signIn: async function(parent, { email, password }, ctx, info) {
-    const user = ctx.db.query.user({ where: { email } });
+    const user = await ctx.db.query.user({ where: { email } });
     if (!user) {
       throw new Error(`Nie znaleziono użytkownika z emailem ${email}`);
     }
@@ -49,7 +49,7 @@ const Mutation = {
       throw new Error(`Podane hasło jest nieprawidłowe`);
     }
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
-    context.response.cookie("token", token, {
+    ctx.response.cookie("token", token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365
     });
