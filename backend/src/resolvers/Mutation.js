@@ -38,6 +38,22 @@ const Mutation = {
       maxAge: 1000 * 60 * 60 * 24 * 365
     });
     return user;
+  },
+  signIn: async function(parent, { email, password }, ctx, info) {
+    const user = ctx.db.query.user({ where: { email } });
+    if (!user) {
+      throw new Error(`Nie znaleziono użytkownika z emailem ${email}`);
+    }
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
+      throw new Error(`Podane hasło jest nieprawidłowe`);
+    }
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    context.response.cookie("token", token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365
+    });
+    return user;
   }
 };
 
