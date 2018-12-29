@@ -21,6 +21,7 @@ type Query {
     first: Int
     last: Int
   ): [Post]!
+  thisUser: User
 }
 
 type Mutation {
