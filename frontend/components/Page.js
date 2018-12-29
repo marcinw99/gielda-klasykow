@@ -1,6 +1,6 @@
 import React from "react";
 
-import Header from "./Header";
+import Header from "./HeaderComponents/Header";
 import Footer from "./Footer";
 
 const Page = props => (

@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { AppBar, Typography, Button, Toolbar } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
-import Register from "./HeaderComponents/Register";
-import Login from "./HeaderComponents/Login";
+import Register from "./Register";
+import Login from "./Login";
+import User from "./User";
 
 const styles = theme => ({
   grow: {
@@ -59,6 +60,13 @@ class Header extends Component {
               className={props.classes.logo}
             />
           </Typography>
+          <User>
+            {({ data: { thisUser } }) => {
+              console.log(thisUser);
+              if (thisUser) return <p>{thisUser.name}</p>;
+              return null;
+            }}
+          </User>
           <Button
             variant="outlined"
             className={props.classes.buttons}
