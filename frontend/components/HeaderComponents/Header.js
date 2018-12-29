@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 import Register from "./Register";
 import Login from "./Login";
+import SignOut from "./SignOut";
 import User from "./User";
 
 const styles = theme => ({
@@ -64,9 +65,12 @@ class Header extends Component {
                   />
                 </Typography>
                 {thisUser && (
-                  <Typography color="secondary" variant="h3">
-                    {thisUser.name}
-                  </Typography>
+                  <Fragment>
+                    <Typography color="secondary" variant="h3">
+                      {thisUser.name}
+                    </Typography>
+                    <SignOut />
+                  </Fragment>
                 )}
                 {!thisUser && (
                   <Fragment>
