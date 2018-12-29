@@ -13,6 +13,7 @@ import { Mutation } from "react-apollo";
 
 import StyledPopover from "./StyledPopover";
 import { SIGNIN_MUTATION } from "../../src/Mutations/HeaderMutations";
+import { CURRENT_USER_QUERY } from "./User";
 
 const styles = theme => ({
   submit: {
@@ -52,6 +53,11 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
           }}
+          refetchQueries={[
+            {
+              query: CURRENT_USER_QUERY
+            }
+          ]}
         >
           {(send, { error, loading }) => (
             <form
