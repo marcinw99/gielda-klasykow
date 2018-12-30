@@ -1,5 +1,13 @@
 import React, { Component, Fragment } from "react";
-import { AppBar, Typography, Button, Toolbar } from "@material-ui/core";
+import {
+  AppBar,
+  Typography,
+  Button,
+  Toolbar,
+  Grid,
+  Fade,
+  Slide
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import Register from "./Register";
@@ -64,16 +72,27 @@ class Header extends Component {
                     className={props.classes.logo}
                   />
                 </Typography>
-                {thisUser && (
-                  <Fragment>
-                    <Typography color="secondary" variant="h3">
-                      {thisUser.name}
+                <Slide
+                  in={Boolean(thisUser)}
+                  direction="left"
+                  mountOnEnter
+                  unmountOnExit
+                  timeout={{ enter: 1200, exit: 0 }}
+                >
+                  <Grid justify="flex-end" container direction="row">
+                    <Typography variant="h4">
+                      {thisUser && thisUser.name}
                     </Typography>
                     <SignOut />
-                  </Fragment>
-                )}
-                {!thisUser && (
-                  <Fragment>
+                  </Grid>
+                </Slide>
+                <Fade
+                  in={Boolean(!thisUser)}
+                  mountOnEnter
+                  unmountOnExit
+                  timeout={{ enter: 1000, exit: 0 }}
+                >
+                  <Grid justify="flex-end" container direction="row">
                     <Button
                       variant="outlined"
                       className={props.classes.buttons}
@@ -82,11 +101,6 @@ class Header extends Component {
                     >
                       Rejestracja
                     </Button>
-                    <Register
-                      open={Boolean(this.state.registerAnchorEl)}
-                      anchorEl={this.state.registerAnchorEl}
-                      handleClose={this.handleClose}
-                    />
                     <Button
                       variant="outlined"
                       className={props.classes.buttons}
@@ -95,13 +109,18 @@ class Header extends Component {
                     >
                       Zaloguj się
                     </Button>
-                    <Login
-                      open={Boolean(this.state.loginAnchorEl)}
-                      anchorEl={this.state.loginAnchorEl}
-                      handleClose={this.handleClose}
-                    />
-                  </Fragment>
-                )}
+                  </Grid>
+                </Fade>
+                <Register
+                  open={Boolean(this.state.registerAnchorEl)}
+                  anchorEl={this.state.registerAnchorEl}
+                  handleClose={this.handleClose}
+                />
+                <Login
+                  open={Boolean(this.state.loginAnchorEl)}
+                  anchorEl={this.state.loginAnchorEl}
+                  handleClose={this.handleClose}
+                />
               </Toolbar>
             </AppBar>
           </Fragment>
