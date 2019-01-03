@@ -1,5 +1,13 @@
 # import * from './generated/prisma.graphql'
 
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  permissions: [Permission]
+}
+
 type SuccessMessage {
   message: String
 }
