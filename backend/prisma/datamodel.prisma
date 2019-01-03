@@ -61,6 +61,6 @@ type User {
   email: String! @unique
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   permissions: [Permission]
 }

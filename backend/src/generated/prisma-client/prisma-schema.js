@@ -537,7 +537,7 @@ type User {
   email: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   permissions: [Permission!]!
 }
 
@@ -552,7 +552,7 @@ input UserCreateInput {
   email: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   permissions: UserCreatepermissionsInput
 }
 
@@ -590,7 +590,7 @@ type UserPreviousValues {
   email: String!
   password: String!
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   permissions: [Permission!]!
 }
 
@@ -617,7 +617,7 @@ input UserUpdateInput {
   email: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   permissions: UserUpdatepermissionsInput
 }
 
@@ -626,7 +626,7 @@ input UserUpdateManyMutationInput {
   email: String
   password: String
   resetToken: String
-  resetTokenExpiry: String
+  resetTokenExpiry: Float
   permissions: UserUpdatepermissionsInput
 }
 
@@ -705,20 +705,14 @@ input UserWhereInput {
   resetToken_not_starts_with: String
   resetToken_ends_with: String
   resetToken_not_ends_with: String
-  resetTokenExpiry: String
-  resetTokenExpiry_not: String
-  resetTokenExpiry_in: [String!]
-  resetTokenExpiry_not_in: [String!]
-  resetTokenExpiry_lt: String
-  resetTokenExpiry_lte: String
-  resetTokenExpiry_gt: String
-  resetTokenExpiry_gte: String
-  resetTokenExpiry_contains: String
-  resetTokenExpiry_not_contains: String
-  resetTokenExpiry_starts_with: String
-  resetTokenExpiry_not_starts_with: String
-  resetTokenExpiry_ends_with: String
-  resetTokenExpiry_not_ends_with: String
+  resetTokenExpiry: Float
+  resetTokenExpiry_not: Float
+  resetTokenExpiry_in: [Float!]
+  resetTokenExpiry_not_in: [Float!]
+  resetTokenExpiry_lt: Float
+  resetTokenExpiry_lte: Float
+  resetTokenExpiry_gt: Float
+  resetTokenExpiry_gte: Float
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

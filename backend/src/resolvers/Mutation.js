@@ -1,5 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { randomBytes } from "crypto";
+import { promisify } from "util";
 
 const Mutation = {
   createCar: async function(parent, args, context, info) {
@@ -20,7 +22,7 @@ const Mutation = {
     );
     return item;
   },
-  signUp: async function(parent, args, context, info) {
+  async signUp(parent, args, context, info) {
     const password = await bcrypt.hash(args.password, 10);
     const user = await context.db.mutation.createUser(
       {
@@ -39,7 +41,7 @@ const Mutation = {
     });
     return user;
   },
-  signIn: async function(parent, { email, password }, ctx, info) {
+  async signIn(parent, { email, password }, ctx, info) {
     const user = await ctx.db.query.user({ where: { email } });
     if (!user) {
       throw new Error(`Nie znaleziono użytkownika z emailem ${email}`);
@@ -58,6 +60,22 @@ const Mutation = {
   signOut(parent, args, ctx, info) {
     ctx.response.clearCookie("token");
     return { message: "Goodbye" };
+  },
+  async requestPasswordReset(parent, { email }, ctx, info) {
+    const user = await ctx.db.query.user({ where: { email } });
+    if (!user) {
+      throw new Error(`Nie znaleziono użytkownika z adresem email '${email}'.`);
+    }
+    const randomBytesPromiseified = promisify(randomBytes);
+    const resetToken = (await randomBytesPromiseified(20)).toString("hex");
+    const resetTokenExpiry = Date.now() + 3600000;
+    await ctx.db.mutation.updateUser({
+      where: { email },
+      data: { resetToken, resetTokenExpiry }
+    });
+    return {
+      message: "Link do resetowania hasła został wysłany na podany adres email."
+    };
   }
 };
 
