@@ -34,6 +34,7 @@ type Query {
     last: Int
   ): [Post]!
   thisUser: User
+  resetTokenValid(resetToken: String!): SuccessMessage
 }
 
 type Mutation {

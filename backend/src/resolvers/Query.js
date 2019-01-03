@@ -15,6 +15,13 @@ const Query = {
       },
       info
     );
+  },
+  async resetTokenValid(parent, { resetToken }, ctx, info) {
+    const [user] = await ctx.db.query.users({ where: { resetToken } });
+    if (!user) {
+      return { message: "Token wygasł lub jest nieprawidłowy." };
+    }
+    return { message: "git token" };
   }
 };
 
