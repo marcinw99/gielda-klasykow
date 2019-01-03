@@ -76,6 +76,39 @@ const Mutation = {
     return {
       message: "Link do resetowania hasła został wysłany na podany adres email."
     };
+  },
+  async resetPassword(
+    parent,
+    { password, repeatedPassword, resetToken },
+    ctx,
+    info
+  ) {
+    if (password !== repeatedPassword) {
+      throw new Error("Podane hasła nie są identyczne.");
+    }
+    const [user] = await ctx.db.query.users({
+      where: { resetToken, resetTokenExpiry_gte: Date.now() - 3600000 }
+    });
+    if (!user) {
+      throw new Error(
+        "Ten link do resetowania hasła wygasł lub jest nieprawidłowy."
+      );
+    }
+    const encryptedPassword = await bcrypt.hash(password, 10);
+    const updatedUser = await ctx.db.mutation.updateUser({
+      where: { id: user.id },
+      data: {
+        password: encryptedPassword,
+        resetToken: null,
+        resetTokenExpiry: null
+      }
+    });
+    const token = jwt.sign({ userId: updatedUser.id }, process.env.APP_SECRET);
+    ctx.response.cookie("token", token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365
+    });
+    return updatedUser;
   }
 };
 
