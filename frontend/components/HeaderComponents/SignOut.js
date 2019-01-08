@@ -2,7 +2,7 @@ import React from "react";
 import { Mutation } from "react-apollo";
 
 import { SIGNOUT_MUTATION } from "../../src/Mutations/HeaderMutations";
-import { CURRENT_USER_QUERY } from "./User";
+import { CURRENT_USER_QUERY } from "../../src/Queries/User";
 import { Button } from "@material-ui/core";
 
 const SignOut = () => {

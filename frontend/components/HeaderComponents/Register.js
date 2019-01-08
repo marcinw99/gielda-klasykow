@@ -11,7 +11,7 @@ import { Mutation } from "react-apollo";
 
 import StyledPopover from "./StyledPopover";
 import { SIGNUP_MUTATION } from "../../src/Mutations/HeaderMutations";
-import { CURRENT_USER_QUERY } from "./User";
+import { CURRENT_USER_QUERY } from "../../src/Queries/User";
 
 const styles = theme => ({
   submit: {

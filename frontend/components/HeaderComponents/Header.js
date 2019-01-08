@@ -13,7 +13,6 @@ import { withStyles } from "@material-ui/core/styles";
 import Register from "./Register";
 import Login from "./Login";
 import SignOut from "./SignOut";
-import User from "./User";
 
 const styles = theme => ({
   grow: {
@@ -58,74 +57,69 @@ class Header extends Component {
   };
 
   render() {
-    const props = this.props;
+    const {
+      classes,
+      data: { thisUser }
+    } = this.props;
     return (
-      <User>
-        {({ data: { thisUser } }) => (
-          <Fragment>
-            <AppBar position="static" color="primary">
-              <Toolbar>
-                <Typography className={props.classes.grow}>
-                  <img
-                    src="/static/Baner.png"
-                    alt="Giełda klasyków"
-                    className={props.classes.logo}
-                  />
-                </Typography>
-                <Slide
-                  in={Boolean(thisUser)}
-                  direction="left"
-                  mountOnEnter
-                  unmountOnExit
-                  timeout={{ enter: 1200, exit: 0 }}
-                >
-                  <Grid justify="flex-end" container direction="row">
-                    <Typography variant="h4">
-                      {thisUser && thisUser.name}
-                    </Typography>
-                    <SignOut />
-                  </Grid>
-                </Slide>
-                <Fade
-                  in={Boolean(!thisUser)}
-                  mountOnEnter
-                  unmountOnExit
-                  timeout={{ enter: 1000, exit: 0 }}
-                >
-                  <Grid justify="flex-end" container direction="row">
-                    <Button
-                      variant="outlined"
-                      className={props.classes.buttons}
-                      aria-haspopup="true"
-                      onClick={this.openRegister}
-                    >
-                      Rejestracja
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      className={props.classes.buttons}
-                      aria-haspopup="true"
-                      onClick={this.openLogin}
-                    >
-                      Zaloguj się
-                    </Button>
-                  </Grid>
-                </Fade>
-                <Register
-                  open={Boolean(this.state.registerAnchorEl)}
-                  anchorEl={this.state.registerAnchorEl}
-                  handleClose={this.handleClose}
-                />
-                <Login
-                  open={Boolean(this.state.loginAnchorEl)}
-                  anchorEl={this.state.loginAnchorEl}
-                  handleClose={this.handleClose}
-                />
-              </Toolbar>
-            </AppBar>
-          </Fragment>
-        )}
-      </User>
+      <AppBar position="static" color="primary">
+        <Toolbar>
+          <Typography className={classes.grow}>
+            <img
+              src="/static/Baner.png"
+              alt="Giełda klasyków"
+              className={classes.logo}
+            />
+          </Typography>
+          <Slide
+            in={Boolean(thisUser)}
+            direction="left"
+            mountOnEnter
+            unmountOnExit
+            timeout={{ enter: 1200, exit: 0 }}
+          >
+            <Grid justify="flex-end" container direction="row">
+              <Typography variant="h4">{thisUser && thisUser.name}</Typography>
+              <SignOut />
+            </Grid>
+          </Slide>
+          <Fade
+            in={Boolean(!thisUser)}
+            mountOnEnter
+            unmountOnExit
+            timeout={{ enter: 1000, exit: 0 }}
+          >
+            <Grid justify="flex-end" container direction="row">
+              <Button
+                variant="outlined"
+                className={classes.buttons}
+                aria-haspopup="true"
+                onClick={this.openRegister}
+              >
+                Rejestracja
+              </Button>
+              <Button
+                variant="outlined"
+                className={classes.buttons}
+                aria-haspopup="true"
+                onClick={this.openLogin}
+              >
+                Zaloguj się
+              </Button>
+            </Grid>
+          </Fade>
+          <Register
+            open={Boolean(this.state.registerAnchorEl)}
+            anchorEl={this.state.registerAnchorEl}
+            handleClose={this.handleClose}
+          />
+          <Login
+            open={Boolean(this.state.loginAnchorEl)}
+            anchorEl={this.state.loginAnchorEl}
+            handleClose={this.handleClose}
+          />
+        </Toolbar>
+      </AppBar>
     );
   }
 }
