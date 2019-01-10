@@ -57,10 +57,7 @@ class Header extends Component {
   };
 
   render() {
-    const {
-      classes,
-      data: { thisUser }
-    } = this.props;
+    const { classes, thisUser } = this.props;
     return (
       <AppBar position="static" color="primary">
         <Toolbar>
@@ -71,43 +68,13 @@ class Header extends Component {
               className={classes.logo}
             />
           </Typography>
-          <Slide
-            in={Boolean(thisUser)}
-            direction="left"
-            mountOnEnter
-            unmountOnExit
-            timeout={{ enter: 1200, exit: 0 }}
-          >
-            <Grid justify="flex-end" container direction="row">
-              <Typography variant="h4">{thisUser && thisUser.name}</Typography>
-              <SignOut />
-            </Grid>
-          </Slide>
-          <Fade
-            in={Boolean(!thisUser)}
-            mountOnEnter
-            unmountOnExit
-            timeout={{ enter: 1000, exit: 0 }}
-          >
-            <Grid justify="flex-end" container direction="row">
-              <Button
-                variant="outlined"
-                className={classes.buttons}
-                aria-haspopup="true"
-                onClick={this.openRegister}
-              >
-                Rejestracja
-              </Button>
-              <Button
-                variant="outlined"
-                className={classes.buttons}
-                aria-haspopup="true"
-                onClick={this.openLogin}
-              >
-                Zaloguj się
-              </Button>
-            </Grid>
-          </Fade>
+          <HeaderWithUser thisUser={thisUser} />
+          <HeaderWithoutUser
+            thisUser={thisUser}
+            classes={classes}
+            openRegister={this.openRegister}
+            openLogin={this.openLogin}
+          />
           <Register
             open={Boolean(this.state.registerAnchorEl)}
             anchorEl={this.state.registerAnchorEl}
@@ -123,5 +90,50 @@ class Header extends Component {
     );
   }
 }
+
+const HeaderWithUser = props => (
+  <Slide
+    in={Boolean(props.thisUser)}
+    direction="left"
+    mountOnEnter
+    unmountOnExit
+    timeout={{ enter: 1200, exit: 0 }}
+  >
+    <Grid justify="flex-end" container direction="row">
+      <Typography variant="h4">
+        {props.thisUser && props.thisUser.name}
+      </Typography>
+      <SignOut />
+    </Grid>
+  </Slide>
+);
+
+const HeaderWithoutUser = props => (
+  <Fade
+    in={Boolean(!props.thisUser)}
+    mountOnEnter
+    unmountOnExit
+    timeout={{ enter: 1000, exit: 0 }}
+  >
+    <Grid justify="flex-end" container direction="row">
+      <Button
+        variant="outlined"
+        className={props.classes.buttons}
+        aria-haspopup="true"
+        onClick={props.openRegister}
+      >
+        Rejestracja
+      </Button>
+      <Button
+        variant="outlined"
+        className={props.classes.buttons}
+        aria-haspopup="true"
+        onClick={props.openLogin}
+      >
+        Zaloguj się
+      </Button>
+    </Grid>
+  </Fade>
+);
 
 export default withStyles(styles)(Header);

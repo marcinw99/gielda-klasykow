@@ -8,8 +8,8 @@ const Page = props => (
   <User>
     {({ data }) => (
       <Fragment>
-        <Header data={data} />
-        {React.cloneElement(props.children, { data })}
+        <Header {...data} />
+        {React.cloneElement(props.children, data)}
         <Footer />
       </Fragment>
     )}
