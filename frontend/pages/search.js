@@ -7,12 +7,12 @@ import {
 } from "@material-ui/core";
 import { Query } from "react-apollo";
 
-import Searcharea from "../components/IndexComponents/SearchareaComponents/Searcharea";
-import Results from "../components/IndexComponents/Results";
+import Searcharea from "../components/SearchComponents/SearchareaComponents/Searcharea";
+import Results from "../components/SearchComponents/Results";
 import {
   ALL_POSTS_QUERY,
   SEARCHAREA_QUERIES
-} from "../src/Queries/indexQueries";
+} from "../src/Queries/searchQueries";
 
 import { withStyles } from "@material-ui/core/styles";
 

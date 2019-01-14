@@ -17,11 +17,19 @@ var models = [
     embedded: false
   },
   {
+    name: "Permission",
+    embedded: false
+  },
+  {
     name: "Post",
     embedded: false
   },
   {
     name: "Segment",
+    embedded: false
+  },
+  {
+    name: "User",
     embedded: false
   }
 ];
@@ -45,11 +53,19 @@ var models = [
     embedded: false
   },
   {
+    name: "Permission",
+    embedded: false
+  },
+  {
     name: "Post",
     embedded: false
   },
   {
     name: "Segment",
+    embedded: false
+  },
+  {
+    name: "User",
     embedded: false
   }
 ];

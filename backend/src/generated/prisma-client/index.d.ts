@@ -12,6 +12,7 @@ type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export interface Exists {
   car: (where?: CarWhereInput) => Promise<boolean>;
   post: (where?: PostWhereInput) => Promise<boolean>;
+  user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -79,6 +80,29 @@ export interface Prisma {
       last?: Int;
     }
   ) => PostConnectionPromise;
+  user: (where: UserWhereUniqueInput) => UserPromise;
+  users: (
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<User>;
+  usersConnection: (
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => UserConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
@@ -117,6 +141,22 @@ export interface Prisma {
   ) => PostPromise;
   deletePost: (where: PostWhereUniqueInput) => PostPromise;
   deleteManyPosts: (where?: PostWhereInput) => BatchPayloadPromise;
+  createUser: (data: UserCreateInput) => UserPromise;
+  updateUser: (
+    args: { data: UserUpdateInput; where: UserWhereUniqueInput }
+  ) => UserPromise;
+  updateManyUsers: (
+    args: { data: UserUpdateManyMutationInput; where?: UserWhereInput }
+  ) => BatchPayloadPromise;
+  upsertUser: (
+    args: {
+      where: UserWhereUniqueInput;
+      create: UserCreateInput;
+      update: UserUpdateInput;
+    }
+  ) => UserPromise;
+  deleteUser: (where: UserWhereUniqueInput) => UserPromise;
+  deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
 
   /**
    * Subscriptions
@@ -132,6 +172,9 @@ export interface Subscription {
   post: (
     where?: PostSubscriptionWhereInput
   ) => PostSubscriptionPayloadSubscription;
+  user: (
+    where?: UserSubscriptionWhereInput
+  ) => UserSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -141,6 +184,20 @@ export interface ClientConstructor<T> {
 /**
  * Types
  */
+
+export type PostOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "price_ASC"
+  | "price_DESC"
+  | "localization_ASC"
+  | "localization_DESC"
+  | "avatar_ASC"
+  | "avatar_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
 
 export type CarOrderByInput =
   | "id_ASC"
@@ -172,6 +229,13 @@ export type CarOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
+export type Permission =
+  | "ADMIN"
+  | "USER"
+  | "ITEMCREATE"
+  | "ITEMUPDATE"
+  | "ITEMDELETE";
+
 export type FuelType =
   | "BENZYNA"
   | "BENZYNA_LPG"
@@ -181,62 +245,29 @@ export type FuelType =
   | "ELEKTRYCZNY"
   | "INNY";
 
-export type PostOrderByInput =
+export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+
+export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "price_ASC"
-  | "price_DESC"
-  | "localization_ASC"
-  | "localization_DESC"
-  | "avatar_ASC"
-  | "avatar_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "resetToken_ASC"
+  | "resetToken_DESC"
+  | "resetTokenExpiry_ASC"
+  | "resetTokenExpiry_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type MutationType = "CREATED" | "UPDATED" | "DELETED";
-
 export type Brand = "AUDI" | "BMW" | "MERCEDES_BENZ" | "SAAB";
 
 export type Segment = "A" | "B" | "C" | "D" | "E" | "F";
-
-export interface CarUpdateDataInput {
-  segment?: Segment;
-  brand?: Brand;
-  model?: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType?: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: String;
-}
-
-export interface CarCreateInput {
-  segment?: Segment;
-  brand: Brand;
-  model: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: String;
-}
-
-export interface CarCreateOneInput {
-  create?: CarCreateInput;
-  connect?: CarWhereUniqueInput;
-}
-
-export type CarWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
 
 export interface PostWhereInput {
   id?: ID_Input;
@@ -293,6 +324,63 @@ export interface PostWhereInput {
   AND?: PostWhereInput[] | PostWhereInput;
   OR?: PostWhereInput[] | PostWhereInput;
   NOT?: PostWhereInput[] | PostWhereInput;
+}
+
+export interface CarUpdateInput {
+  segment?: Segment;
+  brand?: Brand;
+  model?: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType?: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: String;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  email?: String;
+}>;
+
+export type CarWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface CarUpdateOneInput {
+  create?: CarCreateInput;
+  update?: CarUpdateDataInput;
+  upsert?: CarUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: CarWhereUniqueInput;
+}
+
+export interface UserUpdateManyMutationInput {
+  name?: String;
+  email?: String;
+  password?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions?: UserUpdatepermissionsInput;
+}
+
+export interface PostUpdateInput {
+  car?: CarUpdateOneInput;
+  price?: Int;
+  localization?: String;
+  avatar?: String;
+}
+
+export interface UserUpdateInput {
+  name?: String;
+  email?: String;
+  password?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions?: UserUpdatepermissionsInput;
 }
 
 export interface CarWhereInput {
@@ -409,32 +497,128 @@ export interface CarWhereInput {
   NOT?: CarWhereInput[] | CarWhereInput;
 }
 
-export interface CarSubscriptionWhereInput {
+export type PostWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  email?: String;
+  email_not?: String;
+  email_in?: String[] | String;
+  email_not_in?: String[] | String;
+  email_lt?: String;
+  email_lte?: String;
+  email_gt?: String;
+  email_gte?: String;
+  email_contains?: String;
+  email_not_contains?: String;
+  email_starts_with?: String;
+  email_not_starts_with?: String;
+  email_ends_with?: String;
+  email_not_ends_with?: String;
+  password?: String;
+  password_not?: String;
+  password_in?: String[] | String;
+  password_not_in?: String[] | String;
+  password_lt?: String;
+  password_lte?: String;
+  password_gt?: String;
+  password_gte?: String;
+  password_contains?: String;
+  password_not_contains?: String;
+  password_starts_with?: String;
+  password_not_starts_with?: String;
+  password_ends_with?: String;
+  password_not_ends_with?: String;
+  resetToken?: String;
+  resetToken_not?: String;
+  resetToken_in?: String[] | String;
+  resetToken_not_in?: String[] | String;
+  resetToken_lt?: String;
+  resetToken_lte?: String;
+  resetToken_gt?: String;
+  resetToken_gte?: String;
+  resetToken_contains?: String;
+  resetToken_not_contains?: String;
+  resetToken_starts_with?: String;
+  resetToken_not_starts_with?: String;
+  resetToken_ends_with?: String;
+  resetToken_not_ends_with?: String;
+  resetTokenExpiry?: Float;
+  resetTokenExpiry_not?: Float;
+  resetTokenExpiry_in?: Float[] | Float;
+  resetTokenExpiry_not_in?: Float[] | Float;
+  resetTokenExpiry_lt?: Float;
+  resetTokenExpiry_lte?: Float;
+  resetTokenExpiry_gt?: Float;
+  resetTokenExpiry_gte?: Float;
+  AND?: UserWhereInput[] | UserWhereInput;
+  OR?: UserWhereInput[] | UserWhereInput;
+  NOT?: UserWhereInput[] | UserWhereInput;
+}
+
+export interface UserSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: CarWhereInput;
-  AND?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
-  OR?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
-  NOT?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
 }
 
-export interface CarUpsertNestedInput {
-  update: CarUpdateDataInput;
-  create: CarCreateInput;
+export interface PostSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: PostWhereInput;
+  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
 }
 
-export interface CarUpdateOneInput {
+export interface PostUpdateManyMutationInput {
+  price?: Int;
+  localization?: String;
+  avatar?: String;
+}
+
+export interface CarCreateOneInput {
   create?: CarCreateInput;
-  update?: CarUpdateDataInput;
-  upsert?: CarUpsertNestedInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
   connect?: CarWhereUniqueInput;
 }
 
-export interface CarUpdateInput {
+export interface CarUpdateDataInput {
   segment?: Segment;
   brand?: Brand;
   model?: String;
@@ -442,6 +626,24 @@ export interface CarUpdateInput {
   mileage?: Int;
   productionYear?: Int;
   fuelType?: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: String;
+}
+
+export interface UserCreatepermissionsInput {
+  set?: Permission[] | Permission;
+}
+
+export interface CarCreateInput {
+  segment?: Segment;
+  brand: Brand;
+  model: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType: FuelType;
   engineSize?: Int;
   power?: Int;
   torque?: Int;
@@ -469,52 +671,244 @@ export interface PostCreateInput {
   avatar?: String;
 }
 
-export interface PostUpdateInput {
-  car?: CarUpdateOneInput;
-  price?: Int;
-  localization?: String;
-  avatar?: String;
+export interface UserCreateInput {
+  name: String;
+  email: String;
+  password: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions?: UserCreatepermissionsInput;
 }
 
-export interface PostSubscriptionWhereInput {
+export interface UserUpdatepermissionsInput {
+  set?: Permission[] | Permission;
+}
+
+export interface CarUpsertNestedInput {
+  update: CarUpdateDataInput;
+  create: CarCreateInput;
+}
+
+export interface CarSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: PostWhereInput;
-  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+  node?: CarWhereInput;
+  AND?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
+  OR?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
+  NOT?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
 }
-
-export interface PostUpdateManyMutationInput {
-  price?: Int;
-  localization?: String;
-  avatar?: String;
-}
-
-export type PostWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
 
 export interface NodeNode {
   id: ID_Output;
 }
 
-export interface AggregatePost {
+export interface UserEdge {
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CarEdge {
+  cursor: String;
+}
+
+export interface CarEdgePromise extends Promise<CarEdge>, Fragmentable {
+  node: <T = CarPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CarEdgeSubscription
+  extends Promise<AsyncIterator<CarEdge>>,
+    Fragmentable {
+  node: <T = CarSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserPreviousValues {
+  id: ID_Output;
+  name: String;
+  email: String;
+  password: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions: Permission[];
+}
+
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  resetToken: () => Promise<String>;
+  resetTokenExpiry: () => Promise<Float>;
+  permissions: () => Promise<Permission[]>;
+}
+
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  resetToken: () => Promise<AsyncIterator<String>>;
+  resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
+  permissions: () => Promise<AsyncIterator<Permission[]>>;
+}
+
+export interface AggregateCar {
   count: Int;
 }
 
-export interface AggregatePostPromise
-  extends Promise<AggregatePost>,
+export interface AggregateCarPromise
+  extends Promise<AggregateCar>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregatePostSubscription
-  extends Promise<AsyncIterator<AggregatePost>>,
+export interface AggregateCarSubscription
+  extends Promise<AsyncIterator<AggregateCar>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface PostSubscriptionPayload {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface PostSubscriptionPayloadPromise
+  extends Promise<PostSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = PostPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = PostPreviousValuesPromise>() => T;
+}
+
+export interface PostSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = PostSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = PostPreviousValuesSubscription>() => T;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Car {
+  id: ID_Output;
+  segment?: Segment;
+  brand: Brand;
+  model: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: String;
+}
+
+export interface CarPromise extends Promise<Car>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  segment: () => Promise<Segment>;
+  brand: () => Promise<Brand>;
+  model: () => Promise<String>;
+  version: () => Promise<String>;
+  mileage: () => Promise<Int>;
+  productionYear: () => Promise<Int>;
+  fuelType: () => Promise<FuelType>;
+  engineSize: () => Promise<Int>;
+  power: () => Promise<Int>;
+  torque: () => Promise<Int>;
+  transmission: () => Promise<String>;
+}
+
+export interface CarSubscription
+  extends Promise<AsyncIterator<Car>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  segment: () => Promise<AsyncIterator<Segment>>;
+  brand: () => Promise<AsyncIterator<Brand>>;
+  model: () => Promise<AsyncIterator<String>>;
+  version: () => Promise<AsyncIterator<String>>;
+  mileage: () => Promise<AsyncIterator<Int>>;
+  productionYear: () => Promise<AsyncIterator<Int>>;
+  fuelType: () => Promise<AsyncIterator<FuelType>>;
+  engineSize: () => Promise<AsyncIterator<Int>>;
+  power: () => Promise<AsyncIterator<Int>>;
+  torque: () => Promise<AsyncIterator<Int>>;
+  transmission: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
+}
+
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
 export interface PageInfo {
@@ -540,86 +934,38 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PostPreviousValues {
-  id: ID_Output;
-  price: Int;
-  localization?: String;
-  avatar?: String;
+export interface AggregatePost {
+  count: Int;
 }
 
-export interface PostPreviousValuesPromise
-  extends Promise<PostPreviousValues>,
+export interface AggregatePostPromise
+  extends Promise<AggregatePost>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  price: () => Promise<Int>;
-  localization: () => Promise<String>;
-  avatar: () => Promise<String>;
+  count: () => Promise<Int>;
 }
 
-export interface PostPreviousValuesSubscription
-  extends Promise<AsyncIterator<PostPreviousValues>>,
+export interface AggregatePostSubscription
+  extends Promise<AsyncIterator<AggregatePost>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  price: () => Promise<AsyncIterator<Int>>;
-  localization: () => Promise<AsyncIterator<String>>;
-  avatar: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface CarConnection {}
+export interface PostConnection {}
 
-export interface CarConnectionPromise
-  extends Promise<CarConnection>,
+export interface PostConnectionPromise
+  extends Promise<PostConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CarEdge>>() => T;
-  aggregate: <T = AggregateCarPromise>() => T;
+  edges: <T = FragmentableArray<PostEdge>>() => T;
+  aggregate: <T = AggregatePostPromise>() => T;
 }
 
-export interface CarConnectionSubscription
-  extends Promise<AsyncIterator<CarConnection>>,
+export interface PostConnectionSubscription
+  extends Promise<AsyncIterator<PostConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CarEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCarSubscription>() => T;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface CarSubscriptionPayload {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface CarSubscriptionPayloadPromise
-  extends Promise<CarSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = CarPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = CarPreviousValuesPromise>() => T;
-}
-
-export interface CarSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CarSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CarSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CarPreviousValuesSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePostSubscription>() => T;
 }
 
 export interface CarPreviousValues {
@@ -671,6 +1017,72 @@ export interface CarPreviousValuesSubscription
   transmission: () => Promise<AsyncIterator<String>>;
 }
 
+export interface CarSubscriptionPayload {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface CarSubscriptionPayloadPromise
+  extends Promise<CarSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CarPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CarPreviousValuesPromise>() => T;
+}
+
+export interface CarSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CarSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CarSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CarPreviousValuesSubscription>() => T;
+}
+
+export interface PostPreviousValues {
+  id: ID_Output;
+  price: Int;
+  localization?: String;
+  avatar?: String;
+}
+
+export interface PostPreviousValuesPromise
+  extends Promise<PostPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Int>;
+  localization: () => Promise<String>;
+  avatar: () => Promise<String>;
+}
+
+export interface PostPreviousValuesSubscription
+  extends Promise<AsyncIterator<PostPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  price: () => Promise<AsyncIterator<Int>>;
+  localization: () => Promise<AsyncIterator<String>>;
+  avatar: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CarConnection {}
+
+export interface CarConnectionPromise
+  extends Promise<CarConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CarEdge>>() => T;
+  aggregate: <T = AggregateCarPromise>() => T;
+}
+
+export interface CarConnectionSubscription
+  extends Promise<AsyncIterator<CarConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CarEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCarSubscription>() => T;
+}
+
 export interface Post {
   id: ID_Output;
   price: Int;
@@ -696,53 +1108,6 @@ export interface PostSubscription
   avatar: () => Promise<AsyncIterator<String>>;
 }
 
-export interface Car {
-  id: ID_Output;
-  segment?: Segment;
-  brand: Brand;
-  model: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: String;
-}
-
-export interface CarPromise extends Promise<Car>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  segment: () => Promise<Segment>;
-  brand: () => Promise<Brand>;
-  model: () => Promise<String>;
-  version: () => Promise<String>;
-  mileage: () => Promise<Int>;
-  productionYear: () => Promise<Int>;
-  fuelType: () => Promise<FuelType>;
-  engineSize: () => Promise<Int>;
-  power: () => Promise<Int>;
-  torque: () => Promise<Int>;
-  transmission: () => Promise<String>;
-}
-
-export interface CarSubscription
-  extends Promise<AsyncIterator<Car>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  segment: () => Promise<AsyncIterator<Segment>>;
-  brand: () => Promise<AsyncIterator<Brand>>;
-  model: () => Promise<AsyncIterator<String>>;
-  version: () => Promise<AsyncIterator<String>>;
-  mileage: () => Promise<AsyncIterator<Int>>;
-  productionYear: () => Promise<AsyncIterator<Int>>;
-  fuelType: () => Promise<AsyncIterator<FuelType>>;
-  engineSize: () => Promise<AsyncIterator<Int>>;
-  power: () => Promise<AsyncIterator<Int>>;
-  torque: () => Promise<AsyncIterator<Int>>;
-  transmission: () => Promise<AsyncIterator<String>>;
-}
-
 export interface PostEdge {
   cursor: String;
 }
@@ -759,83 +1124,67 @@ export interface PostEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PostSubscriptionPayload {
-  mutation: MutationType;
-  updatedFields?: String[];
+export interface User {
+  id: ID_Output;
+  name: String;
+  email: String;
+  password: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions: Permission[];
 }
 
-export interface PostSubscriptionPayloadPromise
-  extends Promise<PostSubscriptionPayload>,
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  resetToken: () => Promise<String>;
+  resetTokenExpiry: () => Promise<Float>;
+  permissions: () => Promise<Permission[]>;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = PostPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PostPreviousValuesPromise>() => T;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  resetToken: () => Promise<AsyncIterator<String>>;
+  resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
+  permissions: () => Promise<AsyncIterator<Permission[]>>;
 }
 
-export interface PostSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PostSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PostPreviousValuesSubscription>() => T;
-}
+export interface UserConnection {}
 
-export interface CarEdge {
-  cursor: String;
-}
-
-export interface CarEdgePromise extends Promise<CarEdge>, Fragmentable {
-  node: <T = CarPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface CarEdgeSubscription
-  extends Promise<AsyncIterator<CarEdge>>,
-    Fragmentable {
-  node: <T = CarSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateCar {
-  count: Int;
-}
-
-export interface AggregateCarPromise
-  extends Promise<AggregateCar>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateCarSubscription
-  extends Promise<AsyncIterator<AggregateCar>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PostConnection {}
-
-export interface PostConnectionPromise
-  extends Promise<PostConnection>,
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PostEdge>>() => T;
-  aggregate: <T = AggregatePostPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
 }
 
-export interface PostConnectionSubscription
-  extends Promise<AsyncIterator<PostConnection>>,
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePostSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
 }
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+The `Boolean` scalar type represents `true` or `false`.
 */
-export type Int = number;
+export type Boolean = boolean;
+
+export type Long = string;
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). 
+*/
+export type Float = number;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -844,11 +1193,9 @@ export type ID_Input = string | number;
 export type ID_Output = string;
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
-export type Boolean = boolean;
-
-export type Long = string;
+export type Int = number;
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
@@ -873,11 +1220,19 @@ export const models = [
     embedded: false
   },
   {
+    name: "Permission",
+    embedded: false
+  },
+  {
     name: "Post",
     embedded: false
   },
   {
     name: "Segment",
+    embedded: false
+  },
+  {
+    name: "User",
     embedded: false
   }
 ];
