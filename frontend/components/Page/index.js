@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import Header from "./HeaderComponents/Header";
+import Header from "./Header";
 import Footer from "./Footer";
 import User from "../src/QueryComponents/User";
 
