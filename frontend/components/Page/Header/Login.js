@@ -13,9 +13,9 @@ import { withStyles } from "@material-ui/core/styles";
 import { Mutation } from "react-apollo";
 
 import StyledPopover from "./StyledPopover";
-import { SIGNIN_MUTATION } from "../../src/Mutations/Login";
-import { REQUESTPASSWORDRESET_MUTATION } from "../../src/Mutations/PasswordReset";
-import { CURRENT_USER_QUERY } from "../../src/QueryComponents/User";
+import { SIGNIN_MUTATION } from "../../../src/Mutations/Login";
+import { REQUESTPASSWORDRESET_MUTATION } from "../../../src/Mutations/PasswordReset";
+import { CURRENT_USER_QUERY } from "../../../src/QueryComponents/User";
 
 const styles = theme => ({
   submit: {

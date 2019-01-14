@@ -14,8 +14,8 @@ import { withStyles } from "@material-ui/core/styles";
 
 import Register from "./Register";
 import Login from "./Login";
-import { SIGNOUT_MUTATION } from "../../src/Mutations/Login";
-import { CURRENT_USER_QUERY } from "../../src/QueryComponents/User";
+import { SIGNOUT_MUTATION } from "../../../src/Mutations/Login";
+import { CURRENT_USER_QUERY } from "../../../src/QueryComponents/User";
 
 const styles = theme => ({
   grow: {

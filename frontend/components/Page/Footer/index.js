@@ -2,8 +2,8 @@ import React from "react";
 import { Typography, Button, Grid, SvgIcon } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
-import SvgIcons from "../../resources/SvgIcons";
-import linkHrefs from "../../resources/linkHrefs";
+import SvgIcons from "../../../resources/SvgIcons";
+import linkHrefs from "../../../resources/linkHrefs";
 
 const styles = theme => ({
   root: {

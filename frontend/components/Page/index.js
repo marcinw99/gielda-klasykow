@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 
 import Header from "./Header";
 import Footer from "./Footer";
-import User from "../src/QueryComponents/User";
+import User from "../../src/QueryComponents/User";
 
 const Page = props => (
   <User>
