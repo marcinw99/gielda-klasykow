@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 
 import { SIGNOUT_MUTATION } from "../src/Mutations/HeaderMutations";
+import { RESETPASSWORD_MUTATION } from "../src/Mutations/UserMutations";
 import { CURRENT_USER_QUERY } from "../src/Queries/User";
 
 const RootComponent = props => {
@@ -32,7 +33,7 @@ const RootComponent = props => {
       </Mutation>
     );
   }
-  return <SetNewPassword />;
+  return <SetNewPassword token={props.token} />;
 };
 
 RootComponent.getInitialProps = async function(ctx) {
@@ -46,16 +47,16 @@ RootComponent.getInitialProps = async function(ctx) {
       Router.push("/");
     }
   }
-  return {};
+  return { token: ctx.query.token };
 };
 
 function shouldRedirect(query) {
-  if (!query.token || query.token.length !== 10) {
+  if (!query.token || query.token.length !== 40) {
     return true;
   } else return false;
 }
 
-// Code above performs data validation and logs out when is user is logged in
+// Code above performs token validation and logs out when is user is logged in
 
 // Code below handles password setting
 
@@ -107,40 +108,58 @@ const SetNewPassword = withStyles(styles)(
             <Typography variant="h4" color="primary">
               Resetowanie hasła
             </Typography>
-            <form className={classes.form}>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Wpisz nowe hasło</InputLabel>
-                <Input
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                  autoFocus
-                />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="passwordRepeat">
-                  Potwierdź hasło
-                </InputLabel>
-                <Input
-                  type="password"
-                  id="passwordRepeat"
-                  name="passwordRepeat"
-                  value={this.state.passwordRepeat}
-                  onChange={this.handleChange}
-                />
-              </FormControl>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Zmień hasło
-              </Button>
-            </form>
+            <Mutation
+              mutation={RESETPASSWORD_MUTATION}
+              variables={{
+                resetToken: this.props.token,
+                password: this.state.password,
+                passwordRepeat: this.state.passwordRepeat
+              }}
+            >
+              {send => (
+                <form
+                  method="post"
+                  className={classes.form}
+                  onSubmit={async event => {
+                    event.preventDefault();
+                    await send();
+                  }}
+                >
+                  <FormControl margin="normal" required fullWidth>
+                    <InputLabel htmlFor="password">Wpisz nowe hasło</InputLabel>
+                    <Input
+                      type="password"
+                      id="password"
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                      autoFocus
+                    />
+                  </FormControl>
+                  <FormControl margin="normal" required fullWidth>
+                    <InputLabel htmlFor="passwordRepeat">
+                      Potwierdź hasło
+                    </InputLabel>
+                    <Input
+                      type="password"
+                      id="passwordRepeat"
+                      name="passwordRepeat"
+                      value={this.state.passwordRepeat}
+                      onChange={this.handleChange}
+                    />
+                  </FormControl>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Zmień hasło
+                  </Button>
+                </form>
+              )}
+            </Mutation>
           </Paper>
         </main>
       );
