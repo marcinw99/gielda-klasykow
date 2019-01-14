@@ -11,9 +11,9 @@ import {
   withStyles
 } from "@material-ui/core";
 
-import { SIGNOUT_MUTATION } from "../src/Mutations/HeaderMutations";
-import { RESETPASSWORD_MUTATION } from "../src/Mutations/UserMutations";
-import { CURRENT_USER_QUERY } from "../src/Queries/User";
+import { SIGNOUT_MUTATION } from "../src/Mutations/Login";
+import { RESETPASSWORD_MUTATION } from "../src/Mutations/PasswordReset";
+import { CURRENT_USER_QUERY } from "../src/QueryComponents/User";
 
 const RootComponent = props => {
   if (props.thisUser) {

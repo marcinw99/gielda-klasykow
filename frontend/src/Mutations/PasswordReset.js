@@ -17,3 +17,11 @@ export const RESETPASSWORD_MUTATION = gql`
     }
   }
 `;
+
+export const REQUESTPASSWORDRESET_MUTATION = gql`
+  mutation REQUESTPASSWORDRESET_MUTATION($email: String!) {
+    requestPasswordReset(email: $email) {
+      message
+    }
+  }
+`;

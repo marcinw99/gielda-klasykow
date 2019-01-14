@@ -10,8 +10,8 @@ import { withStyles } from "@material-ui/core/styles";
 import { Mutation } from "react-apollo";
 
 import StyledPopover from "./StyledPopover";
-import { SIGNUP_MUTATION } from "../../src/Mutations/HeaderMutations";
-import { CURRENT_USER_QUERY } from "../../src/Queries/User";
+import { SIGNUP_MUTATION } from "../../src/Mutations/Login";
+import { CURRENT_USER_QUERY } from "../../src/QueryComponents/User";
 
 const styles = theme => ({
   submit: {

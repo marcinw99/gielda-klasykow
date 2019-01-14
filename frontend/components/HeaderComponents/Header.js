@@ -1,4 +1,5 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+import { Mutation } from "react-apollo";
 import {
   AppBar,
   Typography,
@@ -12,7 +13,8 @@ import { withStyles } from "@material-ui/core/styles";
 
 import Register from "./Register";
 import Login from "./Login";
-import SignOut from "./SignOut";
+import { SIGNOUT_MUTATION } from "../../src/Mutations/Login";
+import { CURRENT_USER_QUERY } from "../../src/QueryComponents/User";
 
 const styles = theme => ({
   grow: {
@@ -135,5 +137,24 @@ const HeaderWithoutUser = props => (
     </Grid>
   </Fade>
 );
+
+const SignOut = () => {
+  return (
+    <Mutation
+      mutation={SIGNOUT_MUTATION}
+      refetchQueries={[
+        {
+          query: CURRENT_USER_QUERY
+        }
+      ]}
+    >
+      {send => (
+        <Button onClick={send} variant="outlined">
+          Wyloguj się
+        </Button>
+      )}
+    </Mutation>
+  );
+};
 
 export default withStyles(styles)(Header);
