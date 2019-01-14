@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
+import Link from "next/link";
 import {
   AppBar,
   Typography,
@@ -64,11 +65,13 @@ class Header extends Component {
       <AppBar position="static" color="primary">
         <Toolbar>
           <Typography className={classes.grow}>
-            <img
-              src="/static/Baner.png"
-              alt="Giełda klasyków"
-              className={classes.logo}
-            />
+            <Link href="/">
+              <img
+                src="/static/Baner.png"
+                alt="Giełda klasyków"
+                className={classes.logo}
+              />
+            </Link>
           </Typography>
           <HeaderWithUser thisUser={thisUser} />
           <HeaderWithoutUser

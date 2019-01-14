@@ -5,7 +5,8 @@ import {
   Select,
   MenuItem,
   TextField,
-  Button
+  Button,
+  Fab
 } from "@material-ui/core";
 import { Search, Clear } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
@@ -210,17 +211,16 @@ const Filters = ({
       </FormControl>
     </div>
     <div>
-      <Button
+      <Fab
         onClick={resetFilters}
         color="secondary"
-        variant="fab"
         className={classes.fabButton}
       >
         <Clear />
-      </Button>
-      <Button color="primary" variant="fab" className={classes.fabButton}>
+      </Fab>
+      <Fab color="primary" className={classes.fabButton}>
         <Search />
-      </Button>
+      </Fab>
     </div>
   </form>
 );
