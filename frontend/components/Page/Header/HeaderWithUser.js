@@ -1,11 +1,12 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 import { Typography, Button, Grid, Slide } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 import { SIGNOUT_MUTATION } from "../../../src/Mutations/Login";
 import { CURRENT_USER_QUERY } from "../../../src/QueryComponents/User";
 
-export default props => (
+const HeaderWithUser = props => (
   <Slide
     in={Boolean(props.thisUser)}
     direction="left"
@@ -40,3 +41,9 @@ const SignOut = () => {
     </Mutation>
   );
 };
+
+HeaderWithUser.propTypes = {
+  thisUser: PropTypes.object
+};
+
+export default HeaderWithUser;

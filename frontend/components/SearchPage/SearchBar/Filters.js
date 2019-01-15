@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { Search, Clear } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 import NumberInputs from "./NumberInputs";
 import enumDisplayedText from "../../../resources/enumsDisplayedText";
@@ -224,5 +225,12 @@ const Filters = ({
     </div>
   </form>
 );
+
+Filters.propTypes = {
+  selectsOptions: PropTypes.object.isRequired,
+  filters: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  resetFilters: PropTypes.func.isRequired
+};
 
 export default withStyles(styles)(Filters);

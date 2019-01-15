@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Link from "next/link";
 import { AppBar, Typography, Toolbar } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 import Register from "./Register";
 import Login from "./Login";
@@ -86,5 +87,9 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  thisUser: PropTypes.object
+};
 
 export default withStyles(styles)(Header);

@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Mutation } from "react-apollo";
+import PropTypes from "prop-types";
 
 import StyledPopover from "./StyledPopover";
 import { SIGNIN_MUTATION } from "../../../src/Mutations/Login";
@@ -189,5 +190,11 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  open: PropTypes.bool.isRequired,
+  anchorEl: PropTypes.object,
+  handleClose: PropTypes.func.isRequired
+};
 
 export default withStyles(styles)(Login);

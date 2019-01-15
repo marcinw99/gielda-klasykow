@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, Grid, Fade } from "@material-ui/core";
+import PropTypes from "prop-types";
 
-export default props => (
+const HeaderWithoutUser = props => (
   <Fade
     in={Boolean(!props.thisUser)}
     mountOnEnter
@@ -28,3 +29,11 @@ export default props => (
     </Grid>
   </Fade>
 );
+
+HeaderWithoutUser.propTypes = {
+  thisUser: PropTypes.object,
+  openRegister: PropTypes.func.isRequired,
+  openLogin: PropTypes.func.isRequired
+};
+
+export default HeaderWithoutUser;

@@ -1,5 +1,6 @@
 import React from "react";
 import { FormControl, TextField, InputAdornment } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const NumberInputs = props => (
   <div>
@@ -61,5 +62,16 @@ const NumberInputs = props => (
     </FormControl>
   </div>
 );
+
+NumberInputs.propTypes = {
+  nameLeft: PropTypes.string.isRequired,
+  labelLeft: PropTypes.string.isRequired,
+  valueLeft: PropTypes.string.isRequired,
+  nameRight: PropTypes.string.isRequired,
+  labelRight: PropTypes.string.isRequired,
+  valueRight: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  endAdornment: PropTypes.string
+};
 
 export default NumberInputs;

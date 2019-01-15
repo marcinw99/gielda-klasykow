@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -15,5 +16,9 @@ const Page = props => (
     )}
   </User>
 );
+
+Page.propTypes = {
+  children: PropTypes.element.isRequired
+};
 
 export default Page;
