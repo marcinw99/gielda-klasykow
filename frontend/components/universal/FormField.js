@@ -2,7 +2,15 @@ import React from "react";
 import { FormControl, Input, InputLabel } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-const FormField = ({ label, name, type, value, onChange, autoFocus }) => (
+const FormField = ({
+  label,
+  name,
+  type,
+  value,
+  onChange,
+  autoFocus,
+  inputProps
+}) => (
   <FormControl margin="normal" required fullWidth>
     <InputLabel htmlFor={name}>{label}</InputLabel>
     <Input
@@ -11,6 +19,7 @@ const FormField = ({ label, name, type, value, onChange, autoFocus }) => (
       type={type ? type : "string"}
       name={name}
       autoFocus={autoFocus ? autoFocus : false}
+      inputProps={inputProps ? inputProps : {}}
     />
   </FormControl>
 );

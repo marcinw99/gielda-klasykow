@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
-import FormField from "./FormField";
+import FormField from "../../../universal/FormField";
 import StyledPopover from "../StyledPopover";
 import { SIGNUP_MUTATION } from "../../../../src/Mutations/Login";
 import { CURRENT_USER_QUERY } from "../../../../src/QueryComponents/User";
@@ -92,7 +92,11 @@ class Register extends Component {
         id="register-popper"
         open={this.props.open}
         anchorEl={this.props.anchorEl}
-        handleClose={this.props.handleClose}
+        handleClose={() =>
+          this.setState(initialState, () => {
+            this.props.handleClose();
+          })
+        }
       >
         <Typography variant="h4" color="primary">
           Rejestracja
@@ -128,28 +132,41 @@ class Register extends Component {
                   name: "name",
                   value: this.state.name,
                   autoFocus: true,
-                  onChange: this.handleChange
+                  onChange: this.handleChange,
+                  inputProps: {
+                    minLength: 4,
+                    maxLength: 30
+                  }
                 },
                 {
                   label: "Adres email",
                   name: "email",
                   type: "email",
                   value: this.state.email,
-                  onChange: this.handleChange
+                  onChange: this.handleChange,
+                  inputProps: {
+                    maxLength: 30
+                  }
                 },
                 {
                   label: "Hasło",
                   name: "password",
                   type: "password",
                   value: this.state.password,
-                  onChange: this.handlePasswordChange
+                  onChange: this.handlePasswordChange,
+                  inputProps: {
+                    maxLength: 30
+                  }
                 },
                 {
                   label: "Powtórz hasło",
                   name: "passwordRepeat",
                   type: "password",
                   value: this.state.passwordRepeat,
-                  onChange: this.handlePasswordChange
+                  onChange: this.handlePasswordChange,
+                  inputProps: {
+                    maxLength: 30
+                  }
                 }
               ].map(item => (
                 <FormField key={item.id} {...item} />
