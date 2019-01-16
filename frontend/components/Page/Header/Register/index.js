@@ -5,7 +5,7 @@ import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
 import FormField from "../../../universal/FormField";
-import StrengthLevelLabel from "./StrengthLevelLabel";
+import StrengthLevelLabel from "../../../universal/StrengthLevelLabel";
 import StyledPopover from "../StyledPopover";
 import { updatePasswordStrength } from "../../../../src/dataValidation";
 import { SIGNUP_MUTATION } from "../../../../src/Mutations/Login";
@@ -111,8 +111,7 @@ class Register extends Component {
                 autoFocus={true}
                 onChange={this.handleChange}
                 inputProps={{
-                  minLength: 4,
-                  maxLength: 30
+                  minLength: 4
                 }}
               />
               <FormField
@@ -121,9 +120,6 @@ class Register extends Component {
                 type="email"
                 value={this.state.email}
                 onChange={this.handleChange}
-                inputProps={{
-                  maxLength: 30
-                }}
               />
               <FormField
                 label="Hasło"
@@ -131,9 +127,6 @@ class Register extends Component {
                 type="password"
                 value={this.state.password}
                 onChange={this.handlePasswordChange}
-                inputProps={{
-                  maxLength: 30
-                }}
               />
               <StrengthLevelLabel level={this.state.passwordStrengthLevel} />
               <FormField
@@ -142,9 +135,6 @@ class Register extends Component {
                 type="password"
                 value={this.state.passwordRepeat}
                 onChange={this.handlePasswordChange}
-                inputProps={{
-                  maxLength: 30
-                }}
               />
               <Typography color="error">
                 {this.state.passwordErrors.map(item => (

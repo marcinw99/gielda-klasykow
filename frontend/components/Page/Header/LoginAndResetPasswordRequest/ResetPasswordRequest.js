@@ -15,6 +15,9 @@ class ResetPasswordRequest extends Component {
 
   handleChange = event => {
     event.preventDefault();
+    if (event.target.value.length >= 30) {
+      return null;
+    }
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -49,9 +52,6 @@ class ResetPasswordRequest extends Component {
                 value={this.state.emailReset}
                 onChange={this.handleChange}
                 autoFocus={true}
-                inputProps={{
-                  maxLength: 30
-                }}
               />
               <Button
                 onClick={this.props.switchView}

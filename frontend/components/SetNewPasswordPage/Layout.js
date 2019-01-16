@@ -10,6 +10,8 @@ import {
   withStyles
 } from "@material-ui/core";
 
+import StrengthLevelLabel from "../universal/StrengthLevelLabel";
+import { updatePasswordStrength } from "../../src/dataValidation";
 import { RESETPASSWORD_MUTATION } from "../../src/Mutations/PasswordReset";
 
 const styles = theme => ({
@@ -42,13 +44,32 @@ const styles = theme => ({
 class Layout extends Component {
   state = {
     password: "",
-    passwordRepeat: ""
+    passwordRepeat: "",
+    passwordStrengthLevel: "weak",
+    passwordErrors: []
   };
 
   handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+    event.preventDefault();
+    if (event.target.value.length >= 30) {
+      return null;
+    }
+    this.setState(
+      {
+        [event.target.name]: event.target.value
+      },
+      () => {
+        const {
+          passwordErrors,
+          passwordStrengthLevel
+        } = updatePasswordStrength({
+          password: this.state.password,
+          passwordRepeat: this.state.passwordRepeat
+        });
+        const canSubmit = passwordErrors.length === 0 ? true : false;
+        this.setState({ passwordErrors, canSubmit, passwordStrengthLevel });
+      }
+    );
   };
 
   render() {
@@ -87,6 +108,7 @@ class Layout extends Component {
                     autoFocus
                   />
                 </FormControl>
+                <StrengthLevelLabel level={this.state.passwordStrengthLevel} />
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="passwordRepeat">
                     Potwierdź hasło
@@ -99,6 +121,13 @@ class Layout extends Component {
                     onChange={this.handleChange}
                   />
                 </FormControl>
+                <Typography color="error">
+                  {this.state.passwordErrors.map(item => (
+                    <span key={item}>
+                      {item} <br />
+                    </span>
+                  ))}
+                </Typography>
                 <Button
                   type="submit"
                   fullWidth

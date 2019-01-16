@@ -23,6 +23,9 @@ class Login extends Component {
 
   handleChange = event => {
     event.preventDefault();
+    if (event.target.value.length >= 30) {
+      return null;
+    }
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -63,9 +66,6 @@ class Login extends Component {
                 value={this.state.email}
                 onChange={this.handleChange}
                 autoFocus={true}
-                inputProps={{
-                  maxLength: 30
-                }}
               />
               <FormField
                 label="Hasło"
@@ -73,9 +73,6 @@ class Login extends Component {
                 type="password"
                 value={this.state.password}
                 onChange={this.handleChange}
-                inputProps={{
-                  maxLength: 30
-                }}
               />
               <Grid container justify="space-between">
                 <FormControlLabel
