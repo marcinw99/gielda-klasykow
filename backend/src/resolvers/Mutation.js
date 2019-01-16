@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import { randomBytes } from "crypto";
 import { promisify } from "util";
 
+import { isPasswordValid } from "../dataValidation";
+
 const Mutation = {
   createCar: async function(parent, args, context, info) {
     const item = await context.db.mutation.createCar({ data: args }, info);
@@ -23,6 +25,11 @@ const Mutation = {
     return item;
   },
   async signUp(parent, args, context, info) {
+    if (!isPasswordValid(args.password)) {
+      throw new Error(
+        "Podane hasło nie spełnia minimalnych wymagań złożoności."
+      );
+    }
     const password = await bcrypt.hash(args.password, 10);
     const user = await context.db.mutation.createUser(
       {
@@ -85,6 +92,11 @@ const Mutation = {
   ) {
     if (password !== repeatedPassword) {
       throw new Error("Podane hasła nie są identyczne.");
+    }
+    if (!isPasswordValid(password)) {
+      throw new Error(
+        "Podane hasło nie spełnia minimalnych wymagań złożoności."
+      );
     }
     const [user] = await ctx.db.query.users({
       where: { resetToken, resetTokenExpiry_gte: Date.now() - 3600000 }
