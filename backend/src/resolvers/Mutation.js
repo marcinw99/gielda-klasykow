@@ -3,7 +3,13 @@ import jwt from "jsonwebtoken";
 import { randomBytes } from "crypto";
 import { promisify } from "util";
 
-import { isPasswordValid } from "../dataValidation";
+import { isPasswordValid, areArgumentsLengthsInRange } from "../dataValidation";
+
+function argsValidation(args) {
+  if (!areArgumentsLengthsInRange(args)) {
+    throw new Error("Ilość znaków w podanych argumentach jest nieprawidłowa");
+  }
+}
 
 const Mutation = {
   createCar: async function(parent, args, context, info) {
@@ -30,6 +36,7 @@ const Mutation = {
         "Podane hasło nie spełnia minimalnych wymagań złożoności."
       );
     }
+    argsValidation(args);
     const password = await bcrypt.hash(args.password, 10);
     const user = await context.db.mutation.createUser(
       {
@@ -48,7 +55,8 @@ const Mutation = {
     });
     return user;
   },
-  async signIn(parent, { email, password }, ctx, info) {
+  async signIn(parent, args = { email, password }, ctx, info) {
+    argsValidation(args);
     const user = await ctx.db.query.user({ where: { email } });
     if (!user) {
       throw new Error(`Nie znaleziono użytkownika z emailem ${email}`);
@@ -68,7 +76,8 @@ const Mutation = {
     ctx.response.clearCookie("token");
     return { message: "Goodbye" };
   },
-  async requestPasswordReset(parent, { email }, ctx, info) {
+  async requestPasswordReset(parent, args = { email }, ctx, info) {
+    argsValidation(args);
     const user = await ctx.db.query.user({ where: { email } });
     if (!user) {
       throw new Error(`Nie znaleziono użytkownika z adresem email '${email}'.`);
@@ -86,10 +95,11 @@ const Mutation = {
   },
   async resetPassword(
     parent,
-    { password, repeatedPassword, resetToken },
+    args = { password, repeatedPassword, resetToken },
     ctx,
     info
   ) {
+    argsValidation(args);
     if (password !== repeatedPassword) {
       throw new Error("Podane hasła nie są identyczne.");
     }

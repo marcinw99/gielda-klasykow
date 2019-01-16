@@ -21,8 +21,14 @@ export function isPasswordValid(password) {
       return false;
     }
   }
-  if (password.length > 30) {
-    return false;
+  return true;
+}
+
+export function areArgumentsLengthsInRange(args) {
+  for (const index in args) {
+    if (args[index] > 30) {
+      return false;
+    }
   }
   return true;
 }
