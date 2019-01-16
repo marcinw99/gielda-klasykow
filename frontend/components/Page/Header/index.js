@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
 import Register from "./Register";
-import Login from "./Login";
+import LoginAndResetPasswordRequest from "./LoginAndResetPasswordRequest";
 import HeaderWithUser from "./HeaderWithUser";
 import HeaderWithoutUser from "./HeaderWithoutUser";
 
@@ -77,7 +77,7 @@ class Header extends Component {
             anchorEl={this.state.registerAnchorEl}
             handleClose={this.handleClose}
           />
-          <Login
+          <LoginAndResetPasswordRequest
             open={Boolean(this.state.loginAnchorEl)}
             anchorEl={this.state.loginAnchorEl}
             handleClose={this.handleClose}
