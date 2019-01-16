@@ -5,7 +5,9 @@ import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
 import FormField from "../../../universal/FormField";
+import StrengthLevelLabel from "./StrengthLevelLabel";
 import StyledPopover from "../StyledPopover";
+import { updatePasswordStrength } from "../../../../src/dataValidation";
 import { SIGNUP_MUTATION } from "../../../../src/Mutations/Login";
 import { CURRENT_USER_QUERY } from "../../../../src/QueryComponents/User";
 
@@ -21,7 +23,8 @@ const initialState = {
   password: "",
   passwordRepeat: "",
   canSubmit: false,
-  errors: []
+  passwordErrors: [],
+  passwordStrengthLevel: "weak"
 };
 
 class Register extends Component {
@@ -29,6 +32,9 @@ class Register extends Component {
 
   handleChange = event => {
     event.preventDefault();
+    if (event.target.value.length >= 30) {
+      return null;
+    }
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -37,53 +43,25 @@ class Register extends Component {
   handlePasswordChange = event => {
     const { name, value } = event.target;
     event.preventDefault();
+    if (value.length >= 30) {
+      return null;
+    }
     this.setState(
       {
         [name]: value
       },
       () => {
-        this.updatePasswordStrength({ name, value });
+        const {
+          passwordErrors,
+          passwordStrengthLevel
+        } = updatePasswordStrength({
+          password: this.state.password,
+          passwordRepeat: this.state.passwordRepeat
+        });
+        const canSubmit = passwordErrors.length === 0 ? true : false;
+        this.setState({ passwordErrors, canSubmit, passwordStrengthLevel });
       }
     );
-  };
-
-  updatePasswordStrength = ({ name, value }) => {
-    let errors = [];
-    // weak - can't submit
-    // average - 6 chars, min 1 number, min 1 letter
-    // strong - average with 8 chars and min 1 special character
-
-    const regExpressions = [
-      {
-        regexp: new RegExp("\\d"),
-        message: "Hasło nie zawiera minimum jednej cyfry."
-      },
-      {
-        regexp: new RegExp("[a-z]", "i"),
-        message: "Hasło nie zawiera minimum jednej litery."
-      },
-      {
-        regexp: new RegExp(".{6,}"),
-        message: "Hasło nie zawiera minimum 6 znaków."
-      }
-    ];
-
-    regExpressions.map(item => {
-      if (!item.regexp.test(value)) {
-        errors.push(item.message);
-      }
-    });
-
-    if (this.state.password !== this.state.passwordRepeat) {
-      errors.push("Podane hasła nie som identyczne.");
-    }
-
-    const canSubmit = errors.length === 0 ? true : false;
-
-    this.setState({
-      errors,
-      canSubmit
-    });
   };
 
   render() {
@@ -126,61 +104,55 @@ class Register extends Component {
                 }
               }}
             >
-              {[
-                {
-                  label: "Nazwa konta",
-                  name: "name",
-                  value: this.state.name,
-                  autoFocus: true,
-                  onChange: this.handleChange,
-                  inputProps: {
-                    minLength: 4,
-                    maxLength: 30
-                  }
-                },
-                {
-                  label: "Adres email",
-                  name: "email",
-                  type: "email",
-                  value: this.state.email,
-                  onChange: this.handleChange,
-                  inputProps: {
-                    maxLength: 30
-                  }
-                },
-                {
-                  label: "Hasło",
-                  name: "password",
-                  type: "password",
-                  value: this.state.password,
-                  onChange: this.handlePasswordChange,
-                  inputProps: {
-                    maxLength: 30
-                  }
-                },
-                {
-                  label: "Powtórz hasło",
-                  name: "passwordRepeat",
-                  type: "password",
-                  value: this.state.passwordRepeat,
-                  onChange: this.handlePasswordChange,
-                  inputProps: {
-                    maxLength: 30
-                  }
-                }
-              ].map(item => (
-                <FormField key={item.id} {...item} />
-              ))}
-
-              {this.state.errors && (
-                <Typography color="error">
-                  {this.state.errors.map(item => (
-                    <Fragment>
-                      {item} <br />
-                    </Fragment>
-                  ))}
-                </Typography>
-              )}
+              <FormField
+                label="Nazwa konta"
+                name="name"
+                value={this.state.name}
+                autoFocus={true}
+                onChange={this.handleChange}
+                inputProps={{
+                  minLength: 4,
+                  maxLength: 30
+                }}
+              />
+              <FormField
+                label="Adres email"
+                name="email"
+                type="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+                inputProps={{
+                  maxLength: 30
+                }}
+              />
+              <FormField
+                label="Hasło"
+                name="password"
+                type="password"
+                value={this.state.password}
+                onChange={this.handlePasswordChange}
+                inputProps={{
+                  maxLength: 30
+                }}
+              />
+              <StrengthLevelLabel level={this.state.passwordStrengthLevel} />
+              <FormField
+                label="Powtórz hasło"
+                name="passwordRepeat"
+                type="password"
+                value={this.state.passwordRepeat}
+                onChange={this.handlePasswordChange}
+                inputProps={{
+                  maxLength: 30
+                }}
+              />
+              <Typography color="error">
+                {this.state.passwordErrors.map(item => (
+                  <p key={item}>
+                    {item} <br />
+                  </p>
+                ))}
+              </Typography>
               <Button
                 className={this.props.classes.submit}
                 type="submit"
