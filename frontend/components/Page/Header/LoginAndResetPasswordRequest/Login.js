@@ -9,6 +9,7 @@ import {
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
+import Error from "../../../universal/Error";
 import FormField from "../../../universal/FormField";
 import { SIGNIN_MUTATION } from "../../../../src/Mutations/Login";
 import { CURRENT_USER_QUERY } from "../../../../src/QueryComponents/User";
@@ -74,6 +75,7 @@ class Login extends Component {
                 value={this.state.password}
                 onChange={this.handleChange}
               />
+              <Error error={error} />
               <Grid container justify="space-between">
                 <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}

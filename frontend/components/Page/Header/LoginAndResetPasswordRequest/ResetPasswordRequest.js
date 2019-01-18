@@ -3,6 +3,7 @@ import { Typography, Button } from "@material-ui/core";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
+import Error from "../../../universal/Error";
 import FormField from "../../../universal/FormField";
 import { REQUESTPASSWORDRESET_MUTATION } from "../../../../src/Mutations/PasswordReset";
 
@@ -60,6 +61,7 @@ class ResetPasswordRequest extends Component {
               >
                 Dobra przypomniałem sobie
               </Button>
+              <Error error={error} />
               <Button
                 className={this.props.submitBtnCss}
                 type="submit"
