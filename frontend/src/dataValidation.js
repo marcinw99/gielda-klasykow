@@ -62,7 +62,7 @@ function getStrengthLevel(value) {
   }
 }
 
-export function updatePasswordStrength({ password, passwordRepeat }) {
+export function updatePasswordStrength({ password, repeatedPassword }) {
   let passwordErrors = [];
   let passwordStrengthLevel = "weak";
 
@@ -77,7 +77,7 @@ export function updatePasswordStrength({ password, passwordRepeat }) {
     passwordStrengthLevel = getStrengthLevel(password);
   }
 
-  if (password !== passwordRepeat) {
+  if (password !== repeatedPassword) {
     passwordErrors.push("Podane hasła nie som identyczne.");
   }
 

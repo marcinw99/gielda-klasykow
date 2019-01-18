@@ -44,7 +44,7 @@ const styles = theme => ({
 class Layout extends Component {
   state = {
     password: "",
-    passwordRepeat: "",
+    repeatedPassword: "",
     passwordStrengthLevel: "weak",
     passwordErrors: []
   };
@@ -64,7 +64,7 @@ class Layout extends Component {
           passwordStrengthLevel
         } = updatePasswordStrength({
           password: this.state.password,
-          passwordRepeat: this.state.passwordRepeat
+          repeatedPassword: this.state.repeatedPassword
         });
         const canSubmit = passwordErrors.length === 0 ? true : false;
         this.setState({ passwordErrors, canSubmit, passwordStrengthLevel });
@@ -85,7 +85,7 @@ class Layout extends Component {
             variables={{
               resetToken: this.props.token,
               password: this.state.password,
-              passwordRepeat: this.state.passwordRepeat
+              repeatedPassword: this.state.repeatedPassword
             }}
           >
             {send => (
@@ -110,14 +110,14 @@ class Layout extends Component {
                 </FormControl>
                 <StrengthLevelLabel level={this.state.passwordStrengthLevel} />
                 <FormControl margin="normal" required fullWidth>
-                  <InputLabel htmlFor="passwordRepeat">
+                  <InputLabel htmlFor="repeatedPassword">
                     Potwierdź hasło
                   </InputLabel>
                   <Input
                     type="password"
-                    id="passwordRepeat"
-                    name="passwordRepeat"
-                    value={this.state.passwordRepeat}
+                    id="repeatedPassword"
+                    name="repeatedPassword"
+                    value={this.state.repeatedPassword}
                     onChange={this.handleChange}
                   />
                 </FormControl>

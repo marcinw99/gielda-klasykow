@@ -21,7 +21,7 @@ const initialState = {
   name: "",
   email: "",
   password: "",
-  passwordRepeat: "",
+  repeatedPassword: "",
   canSubmit: false,
   passwordErrors: [],
   passwordStrengthLevel: "weak"
@@ -56,7 +56,7 @@ class Register extends Component {
           passwordStrengthLevel
         } = updatePasswordStrength({
           password: this.state.password,
-          passwordRepeat: this.state.passwordRepeat
+          repeatedPassword: this.state.repeatedPassword
         });
         const canSubmit = passwordErrors.length === 0 ? true : false;
         this.setState({ passwordErrors, canSubmit, passwordStrengthLevel });
@@ -84,7 +84,8 @@ class Register extends Component {
           variables={{
             name: this.state.name,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            repeatedPassword: this.state.repeatedPassword
           }}
           refetchQueries={[
             {
@@ -131,9 +132,9 @@ class Register extends Component {
               <StrengthLevelLabel level={this.state.passwordStrengthLevel} />
               <FormField
                 label="Powtórz hasło"
-                name="passwordRepeat"
+                name="repeatedPassword"
                 type="password"
-                value={this.state.passwordRepeat}
+                value={this.state.repeatedPassword}
                 onChange={this.handlePasswordChange}
               />
               <Typography color="error">

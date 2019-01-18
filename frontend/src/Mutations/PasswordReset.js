@@ -4,12 +4,12 @@ export const RESETPASSWORD_MUTATION = gql`
   mutation RESETPASSWORD_MUTATION(
     $resetToken: String!
     $password: String!
-    $passwordRepeat: String!
+    $repeatedPassword: String!
   ) {
     resetPassword(
       resetToken: $resetToken
       password: $password
-      repeatedPassword: $passwordRepeat
+      repeatedPassword: $repeatedPassword
     ) {
       id
       email
