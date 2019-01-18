@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
+import Error from "../../../universal/Error";
 import FormField from "../../../universal/FormField";
 import StrengthLevelLabel from "../../../universal/StrengthLevelLabel";
 import StyledPopover from "../StyledPopover";
@@ -139,10 +140,11 @@ class Register extends Component {
               />
               <Typography color="error">
                 {this.state.passwordErrors.map(item => (
-                  <p key={item}>
+                  <span key={item}>
                     {item} <br />
-                  </p>
+                  </span>
                 ))}
+                <Error error={error} />
               </Typography>
               <Button
                 className={this.props.classes.submit}
