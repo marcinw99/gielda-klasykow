@@ -5,8 +5,14 @@ export const SIGNUP_MUTATION = gql`
     $email: String!
     $name: String!
     $password: String!
+    $repeatedPassword: String!
   ) {
-    signUp(email: $email, name: $name, password: $password) {
+    signUp(
+      email: $email
+      name: $name
+      password: $password
+      repeatedPassword: $repeatedPassword
+    ) {
       id
       email
       name
