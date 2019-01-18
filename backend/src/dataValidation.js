@@ -1,15 +1,15 @@
 const minimumRequirementsRegExpressions = [
   {
-    regexp: new RegExp(".{6,}"),
-    message: "Hasło nie zawiera minimum 6 znaków."
+    regexp: new RegExp(".{6,}")
+    // message: "Hasło nie zawiera minimum 6 znaków."
   },
   {
-    regexp: new RegExp("\\d"),
-    message: "Hasło nie zawiera minimum jednej cyfry."
+    regexp: new RegExp("\\d")
+    // message: "Hasło nie zawiera minimum jednej cyfry."
   },
   {
-    regexp: new RegExp("[a-z]", "i"),
-    message: "Hasło nie zawiera minimum jednej litery."
+    regexp: new RegExp("[a-z]", "i")
+    // message: "Hasło nie zawiera minimum jednej litery."
   }
 ];
 

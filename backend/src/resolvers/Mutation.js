@@ -4,19 +4,20 @@ import { randomBytes } from "crypto";
 import { promisify } from "util";
 
 import { isPasswordValid, areArgumentsLengthsInRange } from "../dataValidation";
+import messageCodes from "../messageCodes";
 
 function argsValidation(args) {
   if (!areArgumentsLengthsInRange(args)) {
-    throw new Error("Ilość znaków w podanych argumentach jest nieprawidłowa");
+    throw new Error(messageCodes.argumentsLengthsNotInRange);
   }
 }
 
 function newPasswordValidation(password, repeatedPassword) {
   if (!isPasswordValid(password)) {
-    throw new Error("Podane hasło nie spełnia minimalnych wymagań złożoności.");
+    throw new Error(JSON.stringify({ code: messageCodes.invalidPassword }));
   }
   if (password !== repeatedPassword) {
-    throw new Error("Podane hasła nie są identyczne.");
+    throw new Error(messageCodes.passwordsNotIdentical);
   }
 }
 
@@ -73,11 +74,18 @@ const Mutation = {
     argsValidation(args);
     const user = await context.db.query.user({ where: { email: args.email } });
     if (!user) {
-      throw new Error(`Nie znaleziono użytkownika z emailem ${args.email}`);
+      throw new Error(
+        JSON.stringify({
+          code: messageCodes.userWithGivenEmailNotFound,
+          args: [args.email]
+        })
+      );
     }
     const valid = await bcrypt.compare(args.password, user.password);
     if (!valid) {
-      throw new Error(`Podane hasło jest nieprawidłowe`);
+      throw new Error(
+        JSON.stringify({ code: messageCodes.passwordNotCorrect })
+      );
     }
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     context.response.cookie("token", token, userCookieParameters);
@@ -86,7 +94,7 @@ const Mutation = {
 
   signOut(parent, args, context, info) {
     context.response.clearCookie("token");
-    return { message: "Goodbye" };
+    return { code: 700 };
   },
 
   async requestPasswordReset(parent, args, context, info) {
@@ -94,7 +102,10 @@ const Mutation = {
     const user = await context.db.query.user({ where: { email: args.email } });
     if (!user) {
       throw new Error(
-        `Nie znaleziono użytkownika z adresem email '${args.email}'.`
+        JSON.stringify({
+          code: messageCodes.userWithGivenEmailNotFound,
+          args: [args.email]
+        })
       );
     }
     const randomBytesPromiseified = promisify(randomBytes);
@@ -105,7 +116,7 @@ const Mutation = {
       data: { resetToken, resetTokenExpiry }
     });
     return {
-      message: "Link do resetowania hasła został wysłany na podany adres email."
+      code: messageCodes.emailWithResetLinkSent
     };
   },
 
@@ -121,9 +132,9 @@ const Mutation = {
       where: { resetToken, resetTokenExpiry_gte: Date.now() - 3600000 }
     });
     if (!user) {
-      throw new Error(
-        "Ten link do resetowania hasła wygasł lub jest nieprawidłowy."
-      );
+      throw new Error({
+        code: messageCodes.resetLinkExpiredOrInvalid
+      });
     }
     const encryptedPassword = await getEncryptedPassword(password);
     const updatedUser = await context.db.mutation.updateUser({
