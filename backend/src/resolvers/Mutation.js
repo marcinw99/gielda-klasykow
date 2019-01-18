@@ -6,18 +6,22 @@ import { promisify } from "util";
 import { isPasswordValid, areArgumentsLengthsInRange } from "../dataValidation";
 import messageCodes from "../messageCodes";
 
+function throwError(code, args) {
+  throw new Error(JSON.stringify({ code, args }));
+}
+
 function argsValidation(args) {
   if (!areArgumentsLengthsInRange(args)) {
-    throw new Error(messageCodes.argumentsLengthsNotInRange);
+    throwError(messageCodes.argumentsLengthsNotInRange);
   }
 }
 
 function newPasswordValidation(password, repeatedPassword) {
   if (!isPasswordValid(password)) {
-    throw new Error(JSON.stringify({ code: messageCodes.invalidPassword }));
+    throwError(messageCodes.invalidPassword);
   }
   if (password !== repeatedPassword) {
-    throw new Error(messageCodes.passwordsNotIdentical);
+    throwError(messageCodes.passwordsNotIdentical);
   }
 }
 
@@ -74,18 +78,11 @@ const Mutation = {
     argsValidation(args);
     const user = await context.db.query.user({ where: { email: args.email } });
     if (!user) {
-      throw new Error(
-        JSON.stringify({
-          code: messageCodes.userWithGivenEmailNotFound,
-          args: [args.email]
-        })
-      );
+      throwError(messageCodes.userWithGivenEmailNotFound, [args.email]);
     }
     const valid = await bcrypt.compare(args.password, user.password);
     if (!valid) {
-      throw new Error(
-        JSON.stringify({ code: messageCodes.passwordNotCorrect })
-      );
+      throwError(messageCodes.passwordNotCorrect);
     }
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     context.response.cookie("token", token, userCookieParameters);
@@ -101,12 +98,7 @@ const Mutation = {
     argsValidation(args);
     const user = await context.db.query.user({ where: { email: args.email } });
     if (!user) {
-      throw new Error(
-        JSON.stringify({
-          code: messageCodes.userWithGivenEmailNotFound,
-          args: [args.email]
-        })
-      );
+      throwError(messageCodes.userWithGivenEmailNotFound, [args.email]);
     }
     const randomBytesPromiseified = promisify(randomBytes);
     const resetToken = (await randomBytesPromiseified(20)).toString("hex");
@@ -132,9 +124,7 @@ const Mutation = {
       where: { resetToken, resetTokenExpiry_gte: Date.now() - 3600000 }
     });
     if (!user) {
-      throw new Error({
-        code: messageCodes.resetLinkExpiredOrInvalid
-      });
+      throwError(messageCodes.resetLinkExpiredOrInvalid);
     }
     const encryptedPassword = await getEncryptedPassword(password);
     const updatedUser = await context.db.mutation.updateUser({
