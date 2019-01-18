@@ -1,6 +1,9 @@
 import React from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+
+import SortOptions from "./SortOptions";
 
 const styles = theme => ({
   root: {
@@ -30,14 +33,20 @@ const Sorters = ({ classes, value, handleChange }) => {
             id: "sortBy"
           }}
         >
-          <MenuItem value="createdAt_DESC">Data dodania malejąco</MenuItem>
-          <MenuItem value="createdAt_ASC">Data dodania rosnąco</MenuItem>
-          <MenuItem value="price_DESC">Cena malejąco</MenuItem>
-          <MenuItem value="price_ASC">Cena rosnąco</MenuItem>
+          {SortOptions.map(item => (
+            <MenuItem key={item.value} value={item.value}>
+              {item.label}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </div>
   );
+};
+
+Sorters.propTypes = {
+  value: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Sorters);

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Grid } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 import Filters from "./Filters";
 import Sorters from "./Sorters";
@@ -114,5 +115,11 @@ class Searcharea extends Component {
     );
   }
 }
+
+Searcharea.propTypes = {
+  refreshFiltersQuery: PropTypes.func.isRequired,
+  refreshSortersQuery: PropTypes.func.isRequired,
+  initialSortBy: PropTypes.string.isRequired
+};
 
 export default Searcharea;

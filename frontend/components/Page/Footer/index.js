@@ -2,8 +2,10 @@ import React from "react";
 import { Typography, Button, Grid, SvgIcon } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
-import SvgIcons from "../resources/SvgIcons";
-import linkHrefs from "../resources/linkHrefs";
+import SvgIcons from "../../../resources/SvgIcons";
+import linkHrefs from "../../../resources/linkHrefs";
+import SocialMediaLink from "./SocialMediaLink";
+import SimpleLink from "./SimpleLink";
 
 const styles = theme => ({
   root: {
@@ -24,29 +26,6 @@ const styles = theme => ({
     width: "100%"
   }
 });
-
-const SocialMediaLink = props => (
-  <Button
-    target="_blank"
-    className={props.rootCss}
-    variant="outlined"
-    color="primary"
-    href={props.href}
-  >
-    <SvgIcon>
-      <path {...props.svgIcon} />
-    </SvgIcon>{" "}
-    {props.label}
-  </Button>
-);
-
-const SimpleLink = props => (
-  <Button className={props.rootCss} variant="text" href={props.href}>
-    <Typography align="left" className={props.typographyCss}>
-      {props.label}
-    </Typography>
-  </Button>
-);
 
 const Footer = props => (
   <Grid

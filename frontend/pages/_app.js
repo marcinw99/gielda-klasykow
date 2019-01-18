@@ -4,6 +4,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import JssProvider from "react-jss/lib/JssProvider";
 import { ApolloProvider } from "react-apollo";
+import PropTypes from "prop-types";
 
 import withData from "../src/withData";
 import Page from "../components/Page";
@@ -56,5 +57,14 @@ class MyApp extends App {
     );
   }
 }
+
+MyApp.propTypes = {
+  Component: PropTypes.func.isRequired,
+  pageProps: PropTypes.object
+};
+
+MyApp.defaultProps = {
+  pageProps: {}
+};
 
 export default withData(MyApp);

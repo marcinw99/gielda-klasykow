@@ -1,6 +1,7 @@
 import React from "react";
 import { Popover, Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 const styles = theme => ({
   root: {
@@ -42,5 +43,14 @@ const StyledPopover = ({
     <Paper className={classes.paper}>{children}</Paper>
   </Popover>
 );
+
+StyledPopover.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.array]),
+  classes: PropTypes.object,
+  id: PropTypes.string.isRequired,
+  open: PropTypes.bool.isRequired,
+  anchorEl: PropTypes.object,
+  handleClose: PropTypes.func.isRequired
+};
 
 export default withStyles(styles)(StyledPopover);

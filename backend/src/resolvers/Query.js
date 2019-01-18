@@ -1,5 +1,7 @@
 const { forwardTo } = require("prisma-binding");
 
+import messageCodes from "../messageCodes";
+
 const Query = {
   car: forwardTo("db"),
   post: forwardTo("db"),
@@ -19,9 +21,9 @@ const Query = {
   async resetTokenValid(parent, { resetToken }, ctx, info) {
     const [user] = await ctx.db.query.users({ where: { resetToken } });
     if (!user) {
-      return { message: "Token wygasł lub jest nieprawidłowy." };
+      return { code: messageCodes.resetLinkExpiredOrInvalid };
     }
-    return { message: "git token" };
+    return { code: messageCodes.resetTokenCorrect };
   }
 };
 

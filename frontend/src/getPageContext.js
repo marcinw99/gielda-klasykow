@@ -8,7 +8,8 @@ import { red, brown } from "@material-ui/core/colors";
 const theme = createMuiTheme({
   palette: {
     primary: brown,
-    secondary: red
+    secondary: red,
+    error: red
   },
   typography: {
     useNextVariants: true,

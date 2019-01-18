@@ -8,8 +8,8 @@ type User {
   permissions: [Permission]
 }
 
-type SuccessMessage {
-  message: String
+type MessageCode {
+  code: Int
 }
 
 type Query {
@@ -34,7 +34,7 @@ type Query {
     last: Int
   ): [Post]!
   thisUser: User
-  resetTokenValid(resetToken: String!): SuccessMessage
+  resetTokenValid(resetToken: String!): MessageCode
 }
 
 type Mutation {
@@ -57,10 +57,15 @@ type Mutation {
     avatar: String
     car: CarCreateOneInput
   ): Post
-  signUp(email: String!, password: String!, name: String!): User!
+  signUp(
+    email: String!
+    password: String!
+    repeatedPassword: String!
+    name: String!
+  ): User!
   signIn(email: String!, password: String!): User!
-  signOut: SuccessMessage
-  requestPasswordReset(email: String!): SuccessMessage
+  signOut: MessageCode
+  requestPasswordReset(email: String!): MessageCode
   resetPassword(
     password: String!
     repeatedPassword: String!
