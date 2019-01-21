@@ -12,6 +12,11 @@ type MessageCode {
   code: Int
 }
 
+type ValueCount {
+  value: String!
+  count: Int!
+}
+
 type Query {
   car(where: CarWhereUniqueInput!): Car
   cars(
@@ -36,6 +41,7 @@ type Query {
   thisUser: User
   resetTokenValid(resetToken: String!): MessageCode
   modelsOfBrand(brand: Brand!): [String]
+  availableModelsOfBrand(brand: Brand!): [ValueCount]
 }
 
 type Mutation {

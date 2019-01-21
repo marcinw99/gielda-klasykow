@@ -2,6 +2,7 @@ const { forwardTo } = require("prisma-binding");
 import { CarQuery } from "car-query";
 
 import messageCodes from "../messageCodes";
+import { getOccurrencesOfValuesInArray } from "../helpers";
 
 const Query = {
   car: forwardTo("db"),
@@ -26,13 +27,26 @@ const Query = {
     }
     return { code: messageCodes.resetTokenCorrect };
   },
-  async modelsOfBrand(parent, args, context, info) {
+  async modelsOfBrand(parent, args) {
     var results = [];
     const carQuery = new CarQuery();
     await carQuery.getModels({ make: args.brand }).then(models => {
       results = models.map(item => item.name);
     });
     return results;
+  },
+  async availableModelsOfBrand(parent, args, context, info) {
+    const allModelsRaw = await context.db.query.cars(
+      {
+        where: { brand: args.brand }
+      },
+      `{
+      model
+    }`
+    );
+    const allModels = allModelsRaw.map(item => item.model);
+    var modelsCount = getOccurrencesOfValuesInArray(allModels);
+    return modelsCount;
   }
 };
 
