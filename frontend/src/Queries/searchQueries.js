@@ -53,3 +53,12 @@ export const SEARCHAREA_QUERIES = gql`
     }
   }
 `;
+
+export const AVAILABLE_MODELS_OF_BRAND = gql`
+  query AVAILABLE_MODELS_OF_BRAND($brand: Brand!) {
+    availableModelsOfBrand(brand: $brand) {
+      value
+      count
+    }
+  }
+`;
