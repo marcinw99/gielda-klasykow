@@ -10,10 +10,12 @@ import {
 } from "@material-ui/core";
 import { Search, Clear } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
+import { Query } from "react-apollo";
 import PropTypes from "prop-types";
 
 import NumberInputs from "./NumberInputs";
 import enumDisplayedText from "../../../resources/enumsDisplayedText";
+import { AVAILABLE_MODELS_OF_BRAND } from "../../../src/Queries/searchQueries";
 
 const styles = theme => ({
   form: {
@@ -95,24 +97,41 @@ const Filters = ({
         ))}
       </Select>
     </FormControl>
-    <FormControl className={classes.formControl}>
-      <InputLabel className={classes.InputLabel} htmlFor="model">
-        Model pojazdu
-      </InputLabel>
-      <Select
-        value={filters.model}
-        onChange={handleChange}
-        inputProps={{
-          name: "model",
-          id: "model"
+    {filters.brand && filters.brand.length !== 0 ? (
+      <Query
+        query={AVAILABLE_MODELS_OF_BRAND}
+        variables={{
+          brand: filters.brand
         }}
       >
-        <MenuItem value="deleteFromFilters">
-          <em>Wszystkie</em>
-        </MenuItem>
-      </Select>
-    </FormControl>
-
+        {({ data, error, loading }) => (
+          <FormControl className={classes.formControl}>
+            <InputLabel className={classes.InputLabel} htmlFor="model">
+              Model pojazdu
+            </InputLabel>
+            <Select
+              value={filters.model}
+              onChange={handleChange}
+              inputProps={{
+                name: "model",
+                id: "model"
+              }}
+            >
+              <MenuItem value="deleteFromFilters">
+                <em>Wszystkie</em>
+              </MenuItem>
+              {data.availableModelsOfBrand
+                ? data.availableModelsOfBrand.map(item => (
+                    <MenuItem key={item.value} value={item.value}>
+                      {`${item.value} (${item.count})`}
+                    </MenuItem>
+                  ))
+                : null}
+            </Select>
+          </FormControl>
+        )}
+      </Query>
+    ) : null}
     <NumberInputs
       classes={classes}
       nameLeft="productionYear_gt"

@@ -59,13 +59,27 @@ class Searcharea extends Component {
 
   handleFiltersChange = event => {
     if (this.state.readyToSearch === false) return null;
-    const { name, value } = event.target;
+    const { name } = event.target;
+    const valueRaw = event.target.value;
+    // Material UI <input type="number" /> returns a string, this parses to number
+    // If input is model, dont parse to number
+    var value;
+    if (name !== "model") {
+      if (isNaN(Number(valueRaw))) {
+        value = valueRaw;
+      } else {
+        value = Number(valueRaw);
+      }
+    } else {
+      value = valueRaw;
+    }
     this.setState(
       prevState => ({
         filters: {
           ...prevState.filters,
-          // Material UI <input type="number" /> returns a string, this parses to number
-          [name]: isNaN(Number(value)) ? value : Number(value)
+          // reset model if brand is changed
+          model: name === "brand" ? "" : prevState.filters.model || "",
+          [name]: value
         }
       }),
       () => {
