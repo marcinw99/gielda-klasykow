@@ -185,19 +185,178 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type PostOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "price_ASC"
-  | "price_DESC"
-  | "localization_ASC"
-  | "localization_DESC"
-  | "avatar_ASC"
-  | "avatar_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
+export type AdditionalAccessory_Safety =
+  | "ABS"
+  | "ESP"
+  | "ASR"
+  | "CENTRAL_LOCKING"
+  | "IMMOBILIZER"
+  | "ALARM"
+  | "DRIVER_AIRBAG"
+  | "PASSENGER_AIRBAG"
+  | "SIDE_FRONT_AIRBAGS"
+  | "SIDE_BACK_AIRBAGS";
+
+export type Country =
+  | "AUSTRIA"
+  | "BELGIUM"
+  | "BELARUS"
+  | "BULGARIA"
+  | "CROATIA"
+  | "CZECH_REPUBLIC"
+  | "DENMARK"
+  | "ESTONIA"
+  | "FINLAND"
+  | "FRANCE"
+  | "GREECE"
+  | "SPAIN"
+  | "NETHERLANDS"
+  | "IRELAND"
+  | "ICELAND"
+  | "CANADA"
+  | "LIECHTENSTEIN"
+  | "LITHUANIA"
+  | "LUXEMBOURG"
+  | "LATVIA"
+  | "MONACO"
+  | "GERMANY"
+  | "NORWAY"
+  | "POLAND"
+  | "RUSSIA"
+  | "ROMANIA"
+  | "SLOVAKIA"
+  | "SLOVENIA"
+  | "USA"
+  | "SWITZERLAND"
+  | "SWEDEN"
+  | "TURKEY"
+  | "UKRAINE"
+  | "HUNGARY"
+  | "UK"
+  | "ITALY";
+
+export type AdditionalAccessory_Comfort_Passenger =
+  | "ELECTRIC_FRONT_WINDOWS"
+  | "ELECTRIC_BACK_WINDOWS"
+  | "FACTORY_RADIO"
+  | "NON_STANDARD_RADIO"
+  | "AUX"
+  | "MP3"
+  | "CD"
+  | "CD_CHANGER"
+  | "DVD_PLAYER"
+  | "TV_TUNER"
+  | "LEATHER_UPHOLSTERY"
+  | "VELOR_UPHOLSTERY"
+  | "ELECTRIC_ADJUSTABLE_FRONT_SEATS"
+  | "ELECTRIC_ADJUSTABLE_BACK_SEATS"
+  | "HEATED_FRONT_SEATS"
+  | "HEATED_BACK_SEATS"
+  | "PANORAMIC_ROOF"
+  | "SUNROOF"
+  | "ROOF_RACK"
+  | "PARKING_HEATER"
+  | "HEATED_FRONT_WINDSCREEN"
+  | "AIR_CONDITIONING_AUTOMATIC"
+  | "AIR_CONDITIONING_DUAL_ZONE"
+  | "AIR_CONDITIONING_THREE_ZONE"
+  | "AIR_CONDITIONING_FOUR_ZONE"
+  | "AIR_CONDITIONING_MANUAL";
+
+export type Brand =
+  | "ABARTH"
+  | "ALFA_ROMEO"
+  | "ASTON_MARTIN"
+  | "AUDI"
+  | "BENTLEY"
+  | "BMW"
+  | "CADILLAC"
+  | "CHEVROLET"
+  | "CHRYSLER"
+  | "CITROEN"
+  | "DE_LOREAN"
+  | "DODGE"
+  | "FERRARI"
+  | "FIAT"
+  | "FORD"
+  | "HONDA"
+  | "HUMMER"
+  | "JAGUAR"
+  | "JEEP"
+  | "KIA"
+  | "LADA"
+  | "LAMBORGHINI"
+  | "LANCIA"
+  | "LEXUS"
+  | "MASERATI"
+  | "MAYBACH"
+  | "MAZDA"
+  | "MERCEDES_BENZ"
+  | "MERCURY"
+  | "MITSUBISHI"
+  | "MOSKWICZ"
+  | "NISSAN"
+  | "OLDSMOBILE"
+  | "OPEL"
+  | "PEUGEOT"
+  | "PLYMOUTH"
+  | "POLONEZ"
+  | "PONTIAC"
+  | "PORSCHE"
+  | "RENAULT"
+  | "ROLLS_ROYCE"
+  | "ROVER"
+  | "SAAB"
+  | "SKODA"
+  | "SYRENA"
+  | "TOYOTA"
+  | "TRABANT"
+  | "TRIUMPH"
+  | "VOLKSWAGEN"
+  | "VOLVO"
+  | "WARSZAWA"
+  | "WARTBURG"
+  | "WOLGA"
+  | "ZAPOROZEC"
+  | "ZUK"
+  | "OTHER";
+
+export type AdditionalAccessory_Comfort_Driver =
+  | "POWER_STEERING"
+  | "HEATED_STEERING_WHEEL"
+  | "MULTIFUNCTION_STEERING_WHEEL"
+  | "PADDLE_SHIFTERS"
+  | "ACTIVE_SUSPENSION"
+  | "REGULATED_SUSPENSION"
+  | "ELECTRIC_MIRRORS"
+  | "HEATED_MIRRORS"
+  | "ON_BOARD_COMPUTER"
+  | "PARKING_SENSOR_FRONT"
+  | "PARKING_SENSOR_BACK"
+  | "REVERSE_CAMERA"
+  | "RAIN_SENSOR"
+  | "CRUISE_CONTROL"
+  | "FOG_LIGHTS"
+  | "LED_LIGHTS"
+  | "XENON_LIGHTS"
+  | "GPS_NAVIGATION"
+  | "SPEED_LIMITER";
+
+export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+
+export type AdditionalAccessory_Appereance =
+  | "ALLOY_WHEELS"
+  | "TINTED_WINDOWS"
+  | "METALLIC_PAINT"
+  | "MATTE_PAINT"
+  | "PEARL_PAINT";
+
+export type Transmission =
+  | "MANUAL"
+  | "AUTOMATIC_CLASSIC"
+  | "AUTOMATIC_SHIFTLESS"
+  | "AUTOMATIC_SEMI"
+  | "AUTOMATIC_DUAL_CLUTCH";
 
 export type CarOrderByInput =
   | "id_ASC"
@@ -224,10 +383,64 @@ export type CarOrderByInput =
   | "torque_DESC"
   | "transmission_ASC"
   | "transmission_DESC"
+  | "drive_ASC"
+  | "drive_DESC"
+  | "damaged_ASC"
+  | "damaged_DESC"
+  | "accidentFree_ASC"
+  | "accidentFree_DESC"
+  | "firstOwner_ASC"
+  | "firstOwner_DESC"
+  | "registeredInPoland_ASC"
+  | "registeredInPoland_DESC"
+  | "registeredAsAntiqueCar_ASC"
+  | "registeredAsAntiqueCar_DESC"
+  | "hasVIN_ASC"
+  | "hasVIN_DESC"
+  | "tuning_ASC"
+  | "tuning_DESC"
+  | "hasParticulateFilter_ASC"
+  | "hasParticulateFilter_DESC"
+  | "steeringWheelOnTheRight_ASC"
+  | "steeringWheelOnTheRight_DESC"
+  | "color_ASC"
+  | "color_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
+
+export type PostOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "price_ASC"
+  | "price_DESC"
+  | "localization_ASC"
+  | "localization_DESC"
+  | "avatar_ASC"
+  | "avatar_DESC"
+  | "fromCountry_ASC"
+  | "fromCountry_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type Color =
+  | "WHITE"
+  | "BEIGE"
+  | "MAROON"
+  | "BROWN"
+  | "BLACK"
+  | "RED"
+  | "VIOLET"
+  | "BLUE"
+  | "SILVER"
+  | "GRAY"
+  | "GREEN"
+  | "GOLD"
+  | "YELLOW"
+  | "OTHER";
 
 export type Permission =
   | "ADMIN"
@@ -236,6 +449,13 @@ export type Permission =
   | "ITEMUPDATE"
   | "ITEMDELETE";
 
+export type Drive =
+  | "FRONT_WHEEL_DRIVE"
+  | "REAR_WHEEL_DRIVE"
+  | "FOUR_WHEEL_DRIVE_AUTOMATIC"
+  | "FOUR_WHEEL_DRIVE_MANUAL"
+  | "FOUR_WHEEL_DRIVE_FIXED";
+
 export type FuelType =
   | "BENZYNA"
   | "BENZYNA_LPG"
@@ -243,9 +463,7 @@ export type FuelType =
   | "DIESEL"
   | "HYBRYDA"
   | "ELEKTRYCZNY"
-  | "INNY";
-
-export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+  | "OTHER";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -264,8 +482,6 @@ export type UserOrderByInput =
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
-
-export type Brand = "AUDI" | "BMW" | "MERCEDES_BENZ" | "SAAB";
 
 export type Segment = "A" | "B" | "C" | "D" | "E" | "F";
 
@@ -321,12 +537,149 @@ export interface PostWhereInput {
   avatar_not_starts_with?: String;
   avatar_ends_with?: String;
   avatar_not_ends_with?: String;
+  fromCountry?: Country;
+  fromCountry_not?: Country;
+  fromCountry_in?: Country[] | Country;
+  fromCountry_not_in?: Country[] | Country;
   AND?: PostWhereInput[] | PostWhereInput;
   OR?: PostWhereInput[] | PostWhereInput;
   NOT?: PostWhereInput[] | PostWhereInput;
 }
 
-export interface CarUpdateInput {
+export interface CarUpdateadditionalAccessories_AppereanceInput {
+  set?: AdditionalAccessory_Appereance[] | AdditionalAccessory_Appereance;
+}
+
+export interface UserWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  email?: String;
+  email_not?: String;
+  email_in?: String[] | String;
+  email_not_in?: String[] | String;
+  email_lt?: String;
+  email_lte?: String;
+  email_gt?: String;
+  email_gte?: String;
+  email_contains?: String;
+  email_not_contains?: String;
+  email_starts_with?: String;
+  email_not_starts_with?: String;
+  email_ends_with?: String;
+  email_not_ends_with?: String;
+  password?: String;
+  password_not?: String;
+  password_in?: String[] | String;
+  password_not_in?: String[] | String;
+  password_lt?: String;
+  password_lte?: String;
+  password_gt?: String;
+  password_gte?: String;
+  password_contains?: String;
+  password_not_contains?: String;
+  password_starts_with?: String;
+  password_not_starts_with?: String;
+  password_ends_with?: String;
+  password_not_ends_with?: String;
+  resetToken?: String;
+  resetToken_not?: String;
+  resetToken_in?: String[] | String;
+  resetToken_not_in?: String[] | String;
+  resetToken_lt?: String;
+  resetToken_lte?: String;
+  resetToken_gt?: String;
+  resetToken_gte?: String;
+  resetToken_contains?: String;
+  resetToken_not_contains?: String;
+  resetToken_starts_with?: String;
+  resetToken_not_starts_with?: String;
+  resetToken_ends_with?: String;
+  resetToken_not_ends_with?: String;
+  resetTokenExpiry?: Float;
+  resetTokenExpiry_not?: Float;
+  resetTokenExpiry_in?: Float[] | Float;
+  resetTokenExpiry_not_in?: Float[] | Float;
+  resetTokenExpiry_lt?: Float;
+  resetTokenExpiry_lte?: Float;
+  resetTokenExpiry_gt?: Float;
+  resetTokenExpiry_gte?: Float;
+  AND?: UserWhereInput[] | UserWhereInput;
+  OR?: UserWhereInput[] | UserWhereInput;
+  NOT?: UserWhereInput[] | UserWhereInput;
+}
+
+export type CarWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface PostSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: PostWhereInput;
+  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+}
+
+export interface UserUpdatepermissionsInput {
+  set?: Permission[] | Permission;
+}
+
+export interface CarCreateOneInput {
+  create?: CarCreateInput;
+  connect?: CarWhereUniqueInput;
+}
+
+export interface UserCreatepermissionsInput {
+  set?: Permission[] | Permission;
+}
+
+export interface PostCreateInput {
+  car?: CarCreateOneInput;
+  price: Int;
+  localization?: String;
+  avatar?: String;
+  fromCountry?: Country;
+}
+
+export interface UserCreateInput {
+  name: String;
+  email: String;
+  password: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions?: UserCreatepermissionsInput;
+}
+
+export interface CarUpdateManyMutationInput {
   segment?: Segment;
   brand?: Brand;
   model?: String;
@@ -337,17 +690,99 @@ export interface CarUpdateInput {
   engineSize?: Int;
   power?: Int;
   torque?: Int;
-  transmission?: String;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety?: CarUpdateadditionalAccessories_SafetyInput;
+  additionalAccessories_Comfort_Passenger?: CarUpdateadditionalAccessories_Comfort_PassengerInput;
+  additionalAccessories_Comfort_Driver?: CarUpdateadditionalAccessories_Comfort_DriverInput;
+  additionalAccessories_Appereance?: CarUpdateadditionalAccessories_AppereanceInput;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  email?: String;
-}>;
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+}
 
-export type CarWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface PostUpdateManyMutationInput {
+  price?: Int;
+  localization?: String;
+  avatar?: String;
+  fromCountry?: Country;
+}
+
+export interface CarUpdateDataInput {
+  segment?: Segment;
+  brand?: Brand;
+  model?: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType?: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety?: CarUpdateadditionalAccessories_SafetyInput;
+  additionalAccessories_Comfort_Passenger?: CarUpdateadditionalAccessories_Comfort_PassengerInput;
+  additionalAccessories_Comfort_Driver?: CarUpdateadditionalAccessories_Comfort_DriverInput;
+  additionalAccessories_Appereance?: CarUpdateadditionalAccessories_AppereanceInput;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+}
+
+export interface CarCreateInput {
+  segment?: Segment;
+  brand: Brand;
+  model: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety?: CarCreateadditionalAccessories_SafetyInput;
+  additionalAccessories_Comfort_Passenger?: CarCreateadditionalAccessories_Comfort_PassengerInput;
+  additionalAccessories_Comfort_Driver?: CarCreateadditionalAccessories_Comfort_DriverInput;
+  additionalAccessories_Appereance?: CarCreateadditionalAccessories_AppereanceInput;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+}
 
 export interface CarUpdateOneInput {
   create?: CarCreateInput;
@@ -358,29 +793,35 @@ export interface CarUpdateOneInput {
   connect?: CarWhereUniqueInput;
 }
 
-export interface UserUpdateManyMutationInput {
-  name?: String;
-  email?: String;
-  password?: String;
-  resetToken?: String;
-  resetTokenExpiry?: Float;
-  permissions?: UserUpdatepermissionsInput;
+export interface CarCreateadditionalAccessories_SafetyInput {
+  set?: AdditionalAccessory_Safety[] | AdditionalAccessory_Safety;
 }
 
-export interface PostUpdateInput {
-  car?: CarUpdateOneInput;
-  price?: Int;
-  localization?: String;
-  avatar?: String;
+export interface CarSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: CarWhereInput;
+  AND?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
+  OR?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
+  NOT?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
 }
 
-export interface UserUpdateInput {
-  name?: String;
-  email?: String;
-  password?: String;
-  resetToken?: String;
-  resetTokenExpiry?: Float;
-  permissions?: UserUpdatepermissionsInput;
+export interface CarCreateadditionalAccessories_Comfort_PassengerInput {
+  set?:
+    | AdditionalAccessory_Comfort_Passenger[]
+    | AdditionalAccessory_Comfort_Passenger;
+}
+
+export type PostWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface CarCreateadditionalAccessories_Comfort_DriverInput {
+  set?:
+    | AdditionalAccessory_Comfort_Driver[]
+    | AdditionalAccessory_Comfort_Driver;
 }
 
 export interface CarWhereInput {
@@ -478,210 +919,101 @@ export interface CarWhereInput {
   torque_lte?: Int;
   torque_gt?: Int;
   torque_gte?: Int;
-  transmission?: String;
-  transmission_not?: String;
-  transmission_in?: String[] | String;
-  transmission_not_in?: String[] | String;
-  transmission_lt?: String;
-  transmission_lte?: String;
-  transmission_gt?: String;
-  transmission_gte?: String;
-  transmission_contains?: String;
-  transmission_not_contains?: String;
-  transmission_starts_with?: String;
-  transmission_not_starts_with?: String;
-  transmission_ends_with?: String;
-  transmission_not_ends_with?: String;
+  transmission?: Transmission;
+  transmission_not?: Transmission;
+  transmission_in?: Transmission[] | Transmission;
+  transmission_not_in?: Transmission[] | Transmission;
+  drive?: Drive;
+  drive_not?: Drive;
+  drive_in?: Drive[] | Drive;
+  drive_not_in?: Drive[] | Drive;
+  damaged?: Boolean;
+  damaged_not?: Boolean;
+  accidentFree?: Boolean;
+  accidentFree_not?: Boolean;
+  firstOwner?: Boolean;
+  firstOwner_not?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredInPoland_not?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  registeredAsAntiqueCar_not?: Boolean;
+  hasVIN?: Boolean;
+  hasVIN_not?: Boolean;
+  tuning?: Boolean;
+  tuning_not?: Boolean;
+  hasParticulateFilter?: Boolean;
+  hasParticulateFilter_not?: Boolean;
+  steeringWheelOnTheRight?: Boolean;
+  steeringWheelOnTheRight_not?: Boolean;
+  color?: Color;
+  color_not?: Color;
+  color_in?: Color[] | Color;
+  color_not_in?: Color[] | Color;
   AND?: CarWhereInput[] | CarWhereInput;
   OR?: CarWhereInput[] | CarWhereInput;
   NOT?: CarWhereInput[] | CarWhereInput;
 }
 
-export type PostWhereUniqueInput = AtLeastOne<{
+export interface CarCreateadditionalAccessories_AppereanceInput {
+  set?: AdditionalAccessory_Appereance[] | AdditionalAccessory_Appereance;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  email?: String;
 }>;
 
-export interface UserWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
-  email?: String;
-  email_not?: String;
-  email_in?: String[] | String;
-  email_not_in?: String[] | String;
-  email_lt?: String;
-  email_lte?: String;
-  email_gt?: String;
-  email_gte?: String;
-  email_contains?: String;
-  email_not_contains?: String;
-  email_starts_with?: String;
-  email_not_starts_with?: String;
-  email_ends_with?: String;
-  email_not_ends_with?: String;
-  password?: String;
-  password_not?: String;
-  password_in?: String[] | String;
-  password_not_in?: String[] | String;
-  password_lt?: String;
-  password_lte?: String;
-  password_gt?: String;
-  password_gte?: String;
-  password_contains?: String;
-  password_not_contains?: String;
-  password_starts_with?: String;
-  password_not_starts_with?: String;
-  password_ends_with?: String;
-  password_not_ends_with?: String;
-  resetToken?: String;
-  resetToken_not?: String;
-  resetToken_in?: String[] | String;
-  resetToken_not_in?: String[] | String;
-  resetToken_lt?: String;
-  resetToken_lte?: String;
-  resetToken_gt?: String;
-  resetToken_gte?: String;
-  resetToken_contains?: String;
-  resetToken_not_contains?: String;
-  resetToken_starts_with?: String;
-  resetToken_not_starts_with?: String;
-  resetToken_ends_with?: String;
-  resetToken_not_ends_with?: String;
-  resetTokenExpiry?: Float;
-  resetTokenExpiry_not?: Float;
-  resetTokenExpiry_in?: Float[] | Float;
-  resetTokenExpiry_not_in?: Float[] | Float;
-  resetTokenExpiry_lt?: Float;
-  resetTokenExpiry_lte?: Float;
-  resetTokenExpiry_gt?: Float;
-  resetTokenExpiry_gte?: Float;
-  AND?: UserWhereInput[] | UserWhereInput;
-  OR?: UserWhereInput[] | UserWhereInput;
-  NOT?: UserWhereInput[] | UserWhereInput;
+export interface CarUpdateadditionalAccessories_Comfort_DriverInput {
+  set?:
+    | AdditionalAccessory_Comfort_Driver[]
+    | AdditionalAccessory_Comfort_Driver;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+export interface CarUpdateadditionalAccessories_Comfort_PassengerInput {
+  set?:
+    | AdditionalAccessory_Comfort_Passenger[]
+    | AdditionalAccessory_Comfort_Passenger;
 }
 
-export interface PostSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: PostWhereInput;
-  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+export interface CarUpdateadditionalAccessories_SafetyInput {
+  set?: AdditionalAccessory_Safety[] | AdditionalAccessory_Safety;
 }
 
-export interface PostUpdateManyMutationInput {
+export interface CarUpdateInput {
+  segment?: Segment;
+  brand?: Brand;
+  model?: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType?: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety?: CarUpdateadditionalAccessories_SafetyInput;
+  additionalAccessories_Comfort_Passenger?: CarUpdateadditionalAccessories_Comfort_PassengerInput;
+  additionalAccessories_Comfort_Driver?: CarUpdateadditionalAccessories_Comfort_DriverInput;
+  additionalAccessories_Appereance?: CarUpdateadditionalAccessories_AppereanceInput;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+}
+
+export interface PostUpdateInput {
+  car?: CarUpdateOneInput;
   price?: Int;
   localization?: String;
   avatar?: String;
-}
-
-export interface CarCreateOneInput {
-  create?: CarCreateInput;
-  connect?: CarWhereUniqueInput;
-}
-
-export interface CarUpdateDataInput {
-  segment?: Segment;
-  brand?: Brand;
-  model?: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType?: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: String;
-}
-
-export interface UserCreatepermissionsInput {
-  set?: Permission[] | Permission;
-}
-
-export interface CarCreateInput {
-  segment?: Segment;
-  brand: Brand;
-  model: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: String;
-}
-
-export interface CarUpdateManyMutationInput {
-  segment?: Segment;
-  brand?: Brand;
-  model?: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType?: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: String;
-}
-
-export interface PostCreateInput {
-  car?: CarCreateOneInput;
-  price: Int;
-  localization?: String;
-  avatar?: String;
-}
-
-export interface UserCreateInput {
-  name: String;
-  email: String;
-  password: String;
-  resetToken?: String;
-  resetTokenExpiry?: Float;
-  permissions?: UserCreatepermissionsInput;
-}
-
-export interface UserUpdatepermissionsInput {
-  set?: Permission[] | Permission;
+  fromCountry?: Country;
 }
 
 export interface CarUpsertNestedInput {
@@ -689,15 +1021,22 @@ export interface CarUpsertNestedInput {
   create: CarCreateInput;
 }
 
-export interface CarSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: CarWhereInput;
-  AND?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
-  OR?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
-  NOT?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
+export interface UserUpdateManyMutationInput {
+  name?: String;
+  email?: String;
+  password?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions?: UserUpdatepermissionsInput;
+}
+
+export interface UserUpdateInput {
+  name?: String;
+  email?: String;
+  password?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions?: UserUpdatepermissionsInput;
 }
 
 export interface NodeNode {
@@ -770,59 +1109,27 @@ export interface UserPreviousValuesSubscription
   permissions: () => Promise<AsyncIterator<Permission[]>>;
 }
 
-export interface AggregateCar {
-  count: Int;
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
 }
 
-export interface AggregateCarPromise
-  extends Promise<AggregateCar>,
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
     Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateCarSubscription
-  extends Promise<AsyncIterator<AggregateCar>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PostSubscriptionPayload {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface PostSubscriptionPayloadPromise
-  extends Promise<PostSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = PostPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PostPreviousValuesPromise>() => T;
-}
-
-export interface PostSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PostSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PostPreviousValuesSubscription>() => T;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateUser {
@@ -841,51 +1148,40 @@ export interface AggregateUserSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface Car {
-  id: ID_Output;
-  segment?: Segment;
-  brand: Brand;
-  model: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: String;
-}
+export interface CarConnection {}
 
-export interface CarPromise extends Promise<Car>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  segment: () => Promise<Segment>;
-  brand: () => Promise<Brand>;
-  model: () => Promise<String>;
-  version: () => Promise<String>;
-  mileage: () => Promise<Int>;
-  productionYear: () => Promise<Int>;
-  fuelType: () => Promise<FuelType>;
-  engineSize: () => Promise<Int>;
-  power: () => Promise<Int>;
-  torque: () => Promise<Int>;
-  transmission: () => Promise<String>;
-}
-
-export interface CarSubscription
-  extends Promise<AsyncIterator<Car>>,
+export interface CarConnectionPromise
+  extends Promise<CarConnection>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  segment: () => Promise<AsyncIterator<Segment>>;
-  brand: () => Promise<AsyncIterator<Brand>>;
-  model: () => Promise<AsyncIterator<String>>;
-  version: () => Promise<AsyncIterator<String>>;
-  mileage: () => Promise<AsyncIterator<Int>>;
-  productionYear: () => Promise<AsyncIterator<Int>>;
-  fuelType: () => Promise<AsyncIterator<FuelType>>;
-  engineSize: () => Promise<AsyncIterator<Int>>;
-  power: () => Promise<AsyncIterator<Int>>;
-  torque: () => Promise<AsyncIterator<Int>>;
-  transmission: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CarEdge>>() => T;
+  aggregate: <T = AggregateCarPromise>() => T;
+}
+
+export interface CarConnectionSubscription
+  extends Promise<AsyncIterator<CarConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CarEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCarSubscription>() => T;
+}
+
+export interface UserConnection {}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
 }
 
 export interface UserSubscriptionPayload {
@@ -911,64 +1207,30 @@ export interface UserSubscriptionPayloadSubscription
   previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
+export interface PostSubscriptionPayload {
+  mutation: MutationType;
+  updatedFields?: String[];
 }
 
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
+export interface PostSubscriptionPayloadPromise
+  extends Promise<PostSubscriptionPayload>,
     Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
+  mutation: () => Promise<MutationType>;
+  node: <T = PostPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = PostPreviousValuesPromise>() => T;
 }
 
-export interface AggregatePost {
-  count: Int;
-}
-
-export interface AggregatePostPromise
-  extends Promise<AggregatePost>,
+export interface PostSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
     Fragmentable {
-  count: () => Promise<Int>;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = PostSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = PostPreviousValuesSubscription>() => T;
 }
 
-export interface AggregatePostSubscription
-  extends Promise<AsyncIterator<AggregatePost>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PostConnection {}
-
-export interface PostConnectionPromise
-  extends Promise<PostConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PostEdge>>() => T;
-  aggregate: <T = AggregatePostPromise>() => T;
-}
-
-export interface PostConnectionSubscription
-  extends Promise<AsyncIterator<PostConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePostSubscription>() => T;
-}
-
-export interface CarPreviousValues {
+export interface Car {
   id: ID_Output;
   segment?: Segment;
   brand: Brand;
@@ -980,12 +1242,25 @@ export interface CarPreviousValues {
   engineSize?: Int;
   power?: Int;
   torque?: Int;
-  transmission?: String;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety: AdditionalAccessory_Safety[];
+  additionalAccessories_Comfort_Passenger: AdditionalAccessory_Comfort_Passenger[];
+  additionalAccessories_Comfort_Driver: AdditionalAccessory_Comfort_Driver[];
+  additionalAccessories_Appereance: AdditionalAccessory_Appereance[];
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
 }
 
-export interface CarPreviousValuesPromise
-  extends Promise<CarPreviousValues>,
-    Fragmentable {
+export interface CarPromise extends Promise<Car>, Fragmentable {
   id: () => Promise<ID_Output>;
   segment: () => Promise<Segment>;
   brand: () => Promise<Brand>;
@@ -997,11 +1272,32 @@ export interface CarPreviousValuesPromise
   engineSize: () => Promise<Int>;
   power: () => Promise<Int>;
   torque: () => Promise<Int>;
-  transmission: () => Promise<String>;
+  transmission: () => Promise<Transmission>;
+  drive: () => Promise<Drive>;
+  additionalAccessories_Safety: () => Promise<AdditionalAccessory_Safety[]>;
+  additionalAccessories_Comfort_Passenger: () => Promise<
+    AdditionalAccessory_Comfort_Passenger[]
+  >;
+  additionalAccessories_Comfort_Driver: () => Promise<
+    AdditionalAccessory_Comfort_Driver[]
+  >;
+  additionalAccessories_Appereance: () => Promise<
+    AdditionalAccessory_Appereance[]
+  >;
+  damaged: () => Promise<Boolean>;
+  accidentFree: () => Promise<Boolean>;
+  firstOwner: () => Promise<Boolean>;
+  registeredInPoland: () => Promise<Boolean>;
+  registeredAsAntiqueCar: () => Promise<Boolean>;
+  hasVIN: () => Promise<Boolean>;
+  tuning: () => Promise<Boolean>;
+  hasParticulateFilter: () => Promise<Boolean>;
+  steeringWheelOnTheRight: () => Promise<Boolean>;
+  color: () => Promise<Color>;
 }
 
-export interface CarPreviousValuesSubscription
-  extends Promise<AsyncIterator<CarPreviousValues>>,
+export interface CarSubscription
+  extends Promise<AsyncIterator<Car>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   segment: () => Promise<AsyncIterator<Segment>>;
@@ -1014,114 +1310,30 @@ export interface CarPreviousValuesSubscription
   engineSize: () => Promise<AsyncIterator<Int>>;
   power: () => Promise<AsyncIterator<Int>>;
   torque: () => Promise<AsyncIterator<Int>>;
-  transmission: () => Promise<AsyncIterator<String>>;
-}
-
-export interface CarSubscriptionPayload {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface CarSubscriptionPayloadPromise
-  extends Promise<CarSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = CarPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = CarPreviousValuesPromise>() => T;
-}
-
-export interface CarSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CarSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CarSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CarPreviousValuesSubscription>() => T;
-}
-
-export interface PostPreviousValues {
-  id: ID_Output;
-  price: Int;
-  localization?: String;
-  avatar?: String;
-}
-
-export interface PostPreviousValuesPromise
-  extends Promise<PostPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  price: () => Promise<Int>;
-  localization: () => Promise<String>;
-  avatar: () => Promise<String>;
-}
-
-export interface PostPreviousValuesSubscription
-  extends Promise<AsyncIterator<PostPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  price: () => Promise<AsyncIterator<Int>>;
-  localization: () => Promise<AsyncIterator<String>>;
-  avatar: () => Promise<AsyncIterator<String>>;
-}
-
-export interface CarConnection {}
-
-export interface CarConnectionPromise
-  extends Promise<CarConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CarEdge>>() => T;
-  aggregate: <T = AggregateCarPromise>() => T;
-}
-
-export interface CarConnectionSubscription
-  extends Promise<AsyncIterator<CarConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CarEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCarSubscription>() => T;
-}
-
-export interface Post {
-  id: ID_Output;
-  price: Int;
-  localization?: String;
-  avatar?: String;
-}
-
-export interface PostPromise extends Promise<Post>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  car: <T = CarPromise>() => T;
-  price: () => Promise<Int>;
-  localization: () => Promise<String>;
-  avatar: () => Promise<String>;
-}
-
-export interface PostSubscription
-  extends Promise<AsyncIterator<Post>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  car: <T = CarSubscription>() => T;
-  price: () => Promise<AsyncIterator<Int>>;
-  localization: () => Promise<AsyncIterator<String>>;
-  avatar: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PostEdge {
-  cursor: String;
-}
-
-export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
-  node: <T = PostPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PostEdgeSubscription
-  extends Promise<AsyncIterator<PostEdge>>,
-    Fragmentable {
-  node: <T = PostSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  transmission: () => Promise<AsyncIterator<Transmission>>;
+  drive: () => Promise<AsyncIterator<Drive>>;
+  additionalAccessories_Safety: () => Promise<
+    AsyncIterator<AdditionalAccessory_Safety[]>
+  >;
+  additionalAccessories_Comfort_Passenger: () => Promise<
+    AsyncIterator<AdditionalAccessory_Comfort_Passenger[]>
+  >;
+  additionalAccessories_Comfort_Driver: () => Promise<
+    AsyncIterator<AdditionalAccessory_Comfort_Driver[]>
+  >;
+  additionalAccessories_Appereance: () => Promise<
+    AsyncIterator<AdditionalAccessory_Appereance[]>
+  >;
+  damaged: () => Promise<AsyncIterator<Boolean>>;
+  accidentFree: () => Promise<AsyncIterator<Boolean>>;
+  firstOwner: () => Promise<AsyncIterator<Boolean>>;
+  registeredInPoland: () => Promise<AsyncIterator<Boolean>>;
+  registeredAsAntiqueCar: () => Promise<AsyncIterator<Boolean>>;
+  hasVIN: () => Promise<AsyncIterator<Boolean>>;
+  tuning: () => Promise<AsyncIterator<Boolean>>;
+  hasParticulateFilter: () => Promise<AsyncIterator<Boolean>>;
+  steeringWheelOnTheRight: () => Promise<AsyncIterator<Boolean>>;
+  color: () => Promise<AsyncIterator<Color>>;
 }
 
 export interface User {
@@ -1156,22 +1368,273 @@ export interface UserSubscription
   permissions: () => Promise<AsyncIterator<Permission[]>>;
 }
 
-export interface UserConnection {}
+export interface PostConnection {}
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface PostConnectionPromise
+  extends Promise<PostConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<PostEdge>>() => T;
+  aggregate: <T = AggregatePostPromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface PostConnectionSubscription
+  extends Promise<AsyncIterator<PostConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePostSubscription>() => T;
+}
+
+export interface CarPreviousValues {
+  id: ID_Output;
+  segment?: Segment;
+  brand: Brand;
+  model: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety: AdditionalAccessory_Safety[];
+  additionalAccessories_Comfort_Passenger: AdditionalAccessory_Comfort_Passenger[];
+  additionalAccessories_Comfort_Driver: AdditionalAccessory_Comfort_Driver[];
+  additionalAccessories_Appereance: AdditionalAccessory_Appereance[];
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+}
+
+export interface CarPreviousValuesPromise
+  extends Promise<CarPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  segment: () => Promise<Segment>;
+  brand: () => Promise<Brand>;
+  model: () => Promise<String>;
+  version: () => Promise<String>;
+  mileage: () => Promise<Int>;
+  productionYear: () => Promise<Int>;
+  fuelType: () => Promise<FuelType>;
+  engineSize: () => Promise<Int>;
+  power: () => Promise<Int>;
+  torque: () => Promise<Int>;
+  transmission: () => Promise<Transmission>;
+  drive: () => Promise<Drive>;
+  additionalAccessories_Safety: () => Promise<AdditionalAccessory_Safety[]>;
+  additionalAccessories_Comfort_Passenger: () => Promise<
+    AdditionalAccessory_Comfort_Passenger[]
+  >;
+  additionalAccessories_Comfort_Driver: () => Promise<
+    AdditionalAccessory_Comfort_Driver[]
+  >;
+  additionalAccessories_Appereance: () => Promise<
+    AdditionalAccessory_Appereance[]
+  >;
+  damaged: () => Promise<Boolean>;
+  accidentFree: () => Promise<Boolean>;
+  firstOwner: () => Promise<Boolean>;
+  registeredInPoland: () => Promise<Boolean>;
+  registeredAsAntiqueCar: () => Promise<Boolean>;
+  hasVIN: () => Promise<Boolean>;
+  tuning: () => Promise<Boolean>;
+  hasParticulateFilter: () => Promise<Boolean>;
+  steeringWheelOnTheRight: () => Promise<Boolean>;
+  color: () => Promise<Color>;
+}
+
+export interface CarPreviousValuesSubscription
+  extends Promise<AsyncIterator<CarPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  segment: () => Promise<AsyncIterator<Segment>>;
+  brand: () => Promise<AsyncIterator<Brand>>;
+  model: () => Promise<AsyncIterator<String>>;
+  version: () => Promise<AsyncIterator<String>>;
+  mileage: () => Promise<AsyncIterator<Int>>;
+  productionYear: () => Promise<AsyncIterator<Int>>;
+  fuelType: () => Promise<AsyncIterator<FuelType>>;
+  engineSize: () => Promise<AsyncIterator<Int>>;
+  power: () => Promise<AsyncIterator<Int>>;
+  torque: () => Promise<AsyncIterator<Int>>;
+  transmission: () => Promise<AsyncIterator<Transmission>>;
+  drive: () => Promise<AsyncIterator<Drive>>;
+  additionalAccessories_Safety: () => Promise<
+    AsyncIterator<AdditionalAccessory_Safety[]>
+  >;
+  additionalAccessories_Comfort_Passenger: () => Promise<
+    AsyncIterator<AdditionalAccessory_Comfort_Passenger[]>
+  >;
+  additionalAccessories_Comfort_Driver: () => Promise<
+    AsyncIterator<AdditionalAccessory_Comfort_Driver[]>
+  >;
+  additionalAccessories_Appereance: () => Promise<
+    AsyncIterator<AdditionalAccessory_Appereance[]>
+  >;
+  damaged: () => Promise<AsyncIterator<Boolean>>;
+  accidentFree: () => Promise<AsyncIterator<Boolean>>;
+  firstOwner: () => Promise<AsyncIterator<Boolean>>;
+  registeredInPoland: () => Promise<AsyncIterator<Boolean>>;
+  registeredAsAntiqueCar: () => Promise<AsyncIterator<Boolean>>;
+  hasVIN: () => Promise<AsyncIterator<Boolean>>;
+  tuning: () => Promise<AsyncIterator<Boolean>>;
+  hasParticulateFilter: () => Promise<AsyncIterator<Boolean>>;
+  steeringWheelOnTheRight: () => Promise<AsyncIterator<Boolean>>;
+  color: () => Promise<AsyncIterator<Color>>;
+}
+
+export interface CarSubscriptionPayload {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface CarSubscriptionPayloadPromise
+  extends Promise<CarSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CarPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CarPreviousValuesPromise>() => T;
+}
+
+export interface CarSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CarSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CarSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CarPreviousValuesSubscription>() => T;
+}
+
+export interface PostPreviousValues {
+  id: ID_Output;
+  price: Int;
+  localization?: String;
+  avatar?: String;
+  fromCountry?: Country;
+}
+
+export interface PostPreviousValuesPromise
+  extends Promise<PostPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Int>;
+  localization: () => Promise<String>;
+  avatar: () => Promise<String>;
+  fromCountry: () => Promise<Country>;
+}
+
+export interface PostPreviousValuesSubscription
+  extends Promise<AsyncIterator<PostPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  price: () => Promise<AsyncIterator<Int>>;
+  localization: () => Promise<AsyncIterator<String>>;
+  avatar: () => Promise<AsyncIterator<String>>;
+  fromCountry: () => Promise<AsyncIterator<Country>>;
+}
+
+export interface AggregatePost {
+  count: Int;
+}
+
+export interface AggregatePostPromise
+  extends Promise<AggregatePost>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregatePostSubscription
+  extends Promise<AsyncIterator<AggregatePost>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Post {
+  id: ID_Output;
+  price: Int;
+  localization?: String;
+  avatar?: String;
+  fromCountry?: Country;
+}
+
+export interface PostPromise extends Promise<Post>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  car: <T = CarPromise>() => T;
+  price: () => Promise<Int>;
+  localization: () => Promise<String>;
+  avatar: () => Promise<String>;
+  fromCountry: () => Promise<Country>;
+}
+
+export interface PostSubscription
+  extends Promise<AsyncIterator<Post>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  car: <T = CarSubscription>() => T;
+  price: () => Promise<AsyncIterator<Int>>;
+  localization: () => Promise<AsyncIterator<String>>;
+  avatar: () => Promise<AsyncIterator<String>>;
+  fromCountry: () => Promise<AsyncIterator<Country>>;
+}
+
+export interface PostEdge {
+  cursor: String;
+}
+
+export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
+  node: <T = PostPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface PostEdgeSubscription
+  extends Promise<AsyncIterator<PostEdge>>,
+    Fragmentable {
+  node: <T = PostSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface AggregateCar {
+  count: Int;
+}
+
+export interface AggregateCarPromise
+  extends Promise<AggregateCar>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCarSubscription
+  extends Promise<AsyncIterator<AggregateCar>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 /*
@@ -1182,15 +1645,15 @@ export type Boolean = boolean;
 export type Long = string;
 
 /*
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). 
-*/
-export type Float = number;
-
-/*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
 export type ID_Input = string | number;
 export type ID_Output = string;
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). 
+*/
+export type Float = number;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
@@ -1208,11 +1671,39 @@ export type String = string;
 
 export const models = [
   {
+    name: "AdditionalAccessory_Appereance",
+    embedded: false
+  },
+  {
+    name: "AdditionalAccessory_Comfort_Driver",
+    embedded: false
+  },
+  {
+    name: "AdditionalAccessory_Comfort_Passenger",
+    embedded: false
+  },
+  {
+    name: "AdditionalAccessory_Safety",
+    embedded: false
+  },
+  {
     name: "Brand",
     embedded: false
   },
   {
     name: "Car",
+    embedded: false
+  },
+  {
+    name: "Color",
+    embedded: false
+  },
+  {
+    name: "Country",
+    embedded: false
+  },
+  {
+    name: "Drive",
     embedded: false
   },
   {
@@ -1229,6 +1720,10 @@ export const models = [
   },
   {
     name: "Segment",
+    embedded: false
+  },
+  {
+    name: "Transmission",
     embedded: false
   },
   {

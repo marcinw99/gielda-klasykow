@@ -1,29 +1,3 @@
-enum Segment {
-  A
-  B
-  C
-  D
-  E
-  F
-}
-
-enum Brand {
-  AUDI
-  BMW
-  MERCEDES_BENZ
-  SAAB
-}
-
-enum FuelType {
-  BENZYNA
-  BENZYNA_LPG
-  BENZYNA_CNG
-  DIESEL
-  HYBRYDA
-  ELEKTRYCZNY
-  INNY
-}
-
 type Car {
   id: ID! @unique
   segment: Segment
@@ -36,7 +10,22 @@ type Car {
   engineSize: Int
   power: Int
   torque: Int
-  transmission: String
+  transmission: Transmission
+  drive: Drive
+  additionalAccessories_Safety: [AdditionalAccessory_Safety]
+  additionalAccessories_Comfort_Passenger: [AdditionalAccessory_Comfort_Passenger]
+  additionalAccessories_Comfort_Driver: [AdditionalAccessory_Comfort_Driver]
+  additionalAccessories_Appereance: [AdditionalAccessory_Appereance]
+  damaged: Boolean
+  accidentFree: Boolean
+  firstOwner: Boolean
+  registeredInPoland: Boolean
+  registeredAsAntiqueCar: Boolean
+  hasVIN: Boolean
+  tuning: Boolean
+  hasParticulateFilter: Boolean
+  steeringWheelOnTheRight: Boolean
+  color: Color
 }
 
 type Post {
@@ -45,14 +34,7 @@ type Post {
   price: Int!
   localization: String
   avatar: String
-}
-
-enum Permission {
-  ADMIN
-  USER
-  ITEMCREATE
-  ITEMUPDATE
-  ITEMDELETE
+  fromCountry: Country
 }
 
 type User {
