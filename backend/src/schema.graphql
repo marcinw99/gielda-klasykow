@@ -35,6 +35,7 @@ type Query {
   ): [Post]!
   thisUser: User
   resetTokenValid(resetToken: String!): MessageCode
+  modelsOfBrand(brand: Brand!): [String]
 }
 
 type Mutation {
