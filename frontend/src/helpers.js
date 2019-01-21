@@ -27,7 +27,7 @@ export function prepareSelectsOptions(input) {
 }
 
 export const shouldBeInQueryObject = value =>
-  value.length === 0 || value == null || value === "deleteFromFilters"
+  value == null || value.length === 0 || value === "deleteFromFilters"
     ? false
     : true;
 
