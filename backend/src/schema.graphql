@@ -38,6 +38,15 @@ type Query {
     first: Int
     last: Int
   ): [Post]!
+  postsConnection(
+    where: PostWhereInput
+    orderBy: PostOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): PostConnection!
   thisUser: User
   resetTokenValid(resetToken: String!): MessageCode
   modelsOfBrand(brand: Brand!): [String]

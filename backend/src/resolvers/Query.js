@@ -9,6 +9,7 @@ const Query = {
   post: forwardTo("db"),
   cars: forwardTo("db"),
   posts: forwardTo("db"),
+  postsConnection: forwardTo("db"),
   thisUser(parent, args, context, info) {
     if (!context.request.userId) {
       return null;

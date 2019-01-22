@@ -2,20 +2,34 @@ import gql from "graphql-tag";
 
 export const ALL_POSTS_QUERY = gql`
   query ALL_POSTS_QUERY($filters: PostWhereInput, $sorters: PostOrderByInput) {
-    posts(where: $filters, orderBy: $sorters) {
-      price
-      avatar
-      car {
-        segment
-        brand
-        model
-        version
-        fuelType
-        productionYear
-        mileage
-        engineSize
-        power
-        torque
+    postsConnection(where: $filters, orderBy: $sorters) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+      aggregate {
+        count
+      }
+      edges {
+        node {
+          price
+          avatar
+          car {
+            segment
+            brand
+            model
+            version
+            fuelType
+            productionYear
+            mileage
+            engineSize
+            power
+            torque
+          }
+        }
+        cursor
       }
     }
   }
