@@ -2,42 +2,23 @@ import React, { Component } from "react";
 import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 
+import { initialSearchParameters, blankFiltersState } from "../config";
 import Filters from "./Filters";
 import Sorters from "./Sorters";
-import {
-  prepareSelectsOptions,
-  shouldBeInQueryObject,
-  typeAcceptsValue
-} from "../../../src/helpers";
+import ItemsLimit from "./ItemsLimit";
 
-const blankFiltersState = {
-  segment: "",
-  brand: "",
-  model: "",
-  fuelType: "",
-  localization: "",
-  productionYear_gt: "",
-  productionYear_lt: "",
-  mileage_gt: "",
-  mileage_lt: "",
-  price_lt: "",
-  price_gt: "",
-  keywords: ""
+const initialState = {
+  filters: blankFiltersState,
+  ...initialSearchParameters
 };
 
-class Searcharea extends Component {
-  state = {
-    filters: blankFiltersState,
-    readyToSearch: false,
-    sortBy: this.props.initialSortBy
-  };
+class SearchBar extends Component {
+  state = initialState;
 
   componentDidMount() {
-    const Post = this.props.data.Post.fields.map(item => item.name);
-    const Car = this.props.data.Car.fields.map(item => item.name);
+    const { Post, Car } = getFormattedQueryAttributes(this.props.data);
     this.setState({
-      queryAttributes: { Post, Car },
-      readyToSearch: true
+      queryAttributes: { Post, Car }
     });
   }
 
@@ -54,11 +35,10 @@ class Searcharea extends Component {
         queryObject.car[name] = this.state.filters[name];
       }
     });
-    this.props.refreshFiltersQuery(queryObject);
+    this.props.setValueInMainState({ refreshFilters: queryObject });
   };
 
   handleFiltersChange = event => {
-    if (this.state.readyToSearch === false) return null;
     const { name } = event.target;
     const valueRaw = event.target.value;
     // Material UI <input type="number" /> returns a string, this parses to number
@@ -88,24 +68,13 @@ class Searcharea extends Component {
     );
   };
 
-  handleSortersChange = event => {
-    if (this.state.readyToSearch === false) return null;
-    const { name, value } = event.target;
-    this.setState(
-      {
-        [name]: value
-      },
-      () => {
-        this.props.refreshSortersQuery(this.state.sortBy);
-      }
-    );
-  };
-
   resetFilters = () => {
     this.setState({ filters: blankFiltersState }, () => {
       this.sendFiltersQueryObject();
     });
   };
+
+  handleItemsLimitChange = event => {};
 
   render() {
     const selectsOptions = prepareSelectsOptions(this.props.data.Enums.fields);
@@ -120,20 +89,61 @@ class Searcharea extends Component {
           />
         </Grid>
         <Grid item>
-          <Sorters
-            value={this.state.sortBy}
-            handleChange={this.handleSortersChange}
-          />
+          <Grid container justify="space-between">
+            <ItemsLimit
+              value={this.state.itemsLimit}
+              handleChange={this.handleItemsLimitChange}
+            />
+            <Sorters setValueInMainState={this.props.setValueInMainState} />
+          </Grid>
         </Grid>
       </Grid>
     );
   }
 }
 
-Searcharea.propTypes = {
-  refreshFiltersQuery: PropTypes.func.isRequired,
-  refreshSortersQuery: PropTypes.func.isRequired,
-  initialSortBy: PropTypes.string.isRequired
+function getFormattedQueryAttributes(data) {
+  const Post = data.Post.fields.map(item => item.name);
+  const Car = data.Car.fields.map(item => item.name);
+  return { Post, Car };
+}
+
+function prepareSelectsOptions(input) {
+  // returns possible values of enum types in db
+  // sometimes (when value is required in db) enumValues and typename are in type.ofType instead of type
+  var values = input.filter(item => {
+    if (item.type.kind === "ENUM") {
+      return true;
+    }
+    if (item.type.ofType != null) {
+      if (item.type.ofType.kind === "ENUM") {
+        return true;
+      }
+    }
+    return false;
+  });
+  var results = {};
+  for (let item in values) {
+    results[values[item].name] = (values[item].type.enumValues == null
+      ? values[item].type.ofType.enumValues
+      : values[item].type.enumValues
+    ).map(item => item.name);
+  }
+  return results;
+}
+
+const shouldBeInQueryObject = value =>
+  value == null || value.length === 0 || value === "deleteFromFilters"
+    ? false
+    : true;
+
+const typeAcceptsValue = (type, value) =>
+  type.indexOf(value) !== -1 || type.indexOf(value.slice(0, -3)) !== -1
+    ? true
+    : false;
+
+SearchBar.propTypes = {
+  setValueInMainState: PropTypes.func.isRequired
 };
 
-export default Searcharea;
+export default SearchBar;

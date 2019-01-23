@@ -1,14 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
-import SortOptions from "./SortOptions";
+import { initialSearchParameters, SortOptions } from "../config";
 
 const styles = theme => ({
-  root: {
-    textAlign: "right"
-  },
   formControl: {
     minWidth: 160,
     margin: theme.spacing.unit
@@ -18,16 +15,33 @@ const styles = theme => ({
   }
 });
 
-const Sorters = ({ classes, value, handleChange }) => {
-  return (
-    <div className={classes.root}>
+class Sorters extends Component {
+  state = {
+    sortBy: initialSearchParameters.sortBy
+  };
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState(
+      {
+        [name]: value
+      },
+      () => {
+        this.props.setValueInMainState({ querySorters: this.state.sortBy });
+      }
+    );
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
       <FormControl className={classes.formControl}>
         <InputLabel className={classes.InputLabel} htmlFor="sortBy">
           Sortuj według
         </InputLabel>
         <Select
-          value={value}
-          onChange={handleChange}
+          value={this.state.sortBy}
+          onChange={this.handleChange}
           inputProps={{
             name: "sortBy",
             id: "sortBy"
@@ -40,13 +54,12 @@ const Sorters = ({ classes, value, handleChange }) => {
           ))}
         </Select>
       </FormControl>
-    </div>
-  );
-};
+    );
+  }
+}
 
 Sorters.propTypes = {
-  value: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired
+  setValueInMainState: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Sorters);

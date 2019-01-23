@@ -1,20 +1,20 @@
 import React, { Component } from "react";
+import { Query } from "react-apollo";
 import {
   Grid,
   Typography,
   CircularProgress,
   LinearProgress
 } from "@material-ui/core";
-import { Query } from "react-apollo";
+import { withStyles } from "@material-ui/core/styles";
 
+import { initialSearchParameters } from "./config";
 import SearchBar from "./SearchBar";
 import Results from "./Results";
 import {
   ALL_POSTS_QUERY,
   SEARCHAREA_QUERIES
 } from "../../src/Queries/searchQueries";
-
-import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   root: {
@@ -34,20 +34,17 @@ const styles = theme => ({
   }
 });
 
-const initialSortBy = "createdAt_DESC";
+const initialState = {
+  queryFilters: initialSearchParameters.filters,
+  querySorters: initialSearchParameters.sortBy,
+  itemsLimit: initialSearchParameters.itemsLimit
+};
 
 class Search extends Component {
-  state = {
-    queryFilters: {},
-    querySorters: initialSortBy
-  };
+  state = initialState;
 
-  refreshFiltersQuery = queryFilters => {
-    this.setState({ queryFilters });
-  };
-
-  refreshSortersQuery = querySorters => {
-    this.setState({ querySorters });
+  setValueInState = value => {
+    this.setState({ ...value });
   };
 
   render() {
@@ -59,23 +56,14 @@ class Search extends Component {
             {({ data, error, loading }) => {
               if (loading) {
                 return (
-                  <div className={classes.loadingScreen}>
-                    <LinearProgress size={100} />
-                  </div>
+                  <SearchBarLoadingScreen rootCss={classes.loadingScreen} />
                 );
               }
-              if (error)
-                return (
-                  <Typography variant="h6" color="secondary">
-                    Błąd przy pobieraniu opcji filtrowania
-                  </Typography>
-                );
+              if (error) return <SearchBarError />;
               return (
                 <SearchBar
                   data={data}
-                  refreshFiltersQuery={this.refreshFiltersQuery}
-                  refreshSortersQuery={this.refreshSortersQuery}
-                  initialSortBy={initialSortBy}
+                  setValueInMainState={this.setValueInState}
                 />
               );
             }}
@@ -91,24 +79,47 @@ class Search extends Component {
           >
             {({ data, error, loading }) => {
               if (loading)
-                return (
-                  <div className={classes.loadingScreen}>
-                    <CircularProgress size={100} />
-                  </div>
-                );
-              if (error)
-                return (
-                  <Typography variant="h6" color="secondary">
-                    Błąd przy pobieraniu wyników
-                  </Typography>
-                );
-              return <Results results={data.posts} />;
+                return <ResultsLoadingScreen rootCss={classes.loadingScreen} />;
+              if (error) return <ResultsError />;
+              return <Results results={data.postsConnection.edges} />;
             }}
           </Query>
         </Grid>
       </Grid>
     );
   }
+}
+
+function ResultsLoadingScreen({ rootCss }) {
+  return (
+    <div className={rootCss}>
+      <CircularProgress size={100} />
+    </div>
+  );
+}
+
+function ResultsError() {
+  return (
+    <Typography variant="h6" color="secondary">
+      Błąd przy pobieraniu wyników
+    </Typography>
+  );
+}
+
+function SearchBarLoadingScreen({ rootCss }) {
+  return (
+    <div className={rootCss}>
+      <LinearProgress size={100} />
+    </div>
+  );
+}
+
+function SearchBarError() {
+  return (
+    <Typography variant="h6" color="secondary">
+      Błąd przy pobieraniu opcji filtrowania
+    </Typography>
+  );
 }
 
 export default withStyles(styles)(Search);
