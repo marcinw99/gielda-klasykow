@@ -18,10 +18,7 @@ class SearchBar extends Component {
         </Grid>
         <Grid item>
           <Grid container justify="space-between">
-            {/*<ItemsLimit
-              value={this.state.itemsLimit}
-              handleChange={this.handleItemsLimitChange}
-            /> */}
+            <ItemsLimit setValueInMainState={this.props.setValueInMainState} />
             <Sorters setValueInMainState={this.props.setValueInMainState} />
           </Grid>
         </Grid>

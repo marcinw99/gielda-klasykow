@@ -11,6 +11,8 @@ export const SortOptions = [
   { value: "price_ASC", label: "Cena rosnąco" }
 ];
 
+export const itemsLimitOptions = [5, 10, 15, 20];
+
 export const blankFiltersState = {
   segment: "",
   brand: "",
