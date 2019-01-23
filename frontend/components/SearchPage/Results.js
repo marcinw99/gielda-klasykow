@@ -6,8 +6,8 @@ import ResultCard from "./ResultCard";
 const Results = ({ results }) => (
   <Grid justify="center" container>
     {results.map((item, key) => (
-      <Grid item key={`${item.car.brand}${key}`}>
-        <ResultCard {...item} />
+      <Grid item key={`${item.node.car.brand}${key}`}>
+        <ResultCard {...item.node} />
       </Grid>
     ))}
   </Grid>
