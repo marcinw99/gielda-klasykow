@@ -32,7 +32,6 @@ const SearchBar = ({
 );
 
 SearchBar.propTypes = {
-  data: PropTypes.object.isRequired,
   setValueInMainState: PropTypes.func.isRequired
 };
 

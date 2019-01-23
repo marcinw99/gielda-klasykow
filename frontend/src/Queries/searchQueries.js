@@ -35,8 +35,8 @@ export const ALL_POSTS_QUERY = gql`
   }
 `;
 
-export const SEARCHAREA_QUERIES = gql`
-  query SEARCHAREA_QUERIES {
+export const FILTERS_QUERIES = gql`
+  query FILTERS_QUERIES {
     Enums: __type(name: "Car") {
       fields {
         name

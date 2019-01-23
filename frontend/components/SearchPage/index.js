@@ -1,20 +1,12 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
-import {
-  Grid,
-  Typography,
-  CircularProgress,
-  LinearProgress
-} from "@material-ui/core";
+import { Grid, Typography, CircularProgress } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import { initialSearchParameters } from "./config";
 import SearchBar from "./SearchBar";
 import Results from "./Results";
-import {
-  ALL_POSTS_QUERY,
-  SEARCHAREA_QUERIES
-} from "../../src/Queries/searchQueries";
+import { ALL_POSTS_QUERY } from "../../src/Queries/searchQueries";
 
 const styles = theme => ({
   root: {
@@ -52,24 +44,11 @@ class Search extends Component {
     return (
       <Grid className={classes.root} container>
         <Grid className={classes.SearchareaGridItem} item xs={12}>
-          <Query query={SEARCHAREA_QUERIES}>
-            {({ data, error, loading }) => {
-              if (loading) {
-                return (
-                  <SearchBarLoadingScreen rootCss={classes.loadingScreen} />
-                );
-              }
-              if (error) return <SearchBarError />;
-              return (
-                <SearchBar
-                  data={data}
-                  setValueInMainState={this.setValueInState}
-                  itemsLimitValue={this.state.itemsLimit}
-                  querySortersValue={this.state.querySorters}
-                />
-              );
-            }}
-          </Query>
+          <SearchBar
+            setValueInMainState={this.setValueInState}
+            itemsLimitValue={this.state.itemsLimit}
+            querySortersValue={this.state.querySorters}
+          />
         </Grid>
         <Grid className={classes.resultsGridItem} item xs={12}>
           <Query
@@ -104,22 +83,6 @@ function ResultsError() {
   return (
     <Typography variant="h6" color="secondary">
       Błąd przy pobieraniu wyników
-    </Typography>
-  );
-}
-
-function SearchBarLoadingScreen({ rootCss }) {
-  return (
-    <div className={rootCss}>
-      <LinearProgress size={100} />
-    </div>
-  );
-}
-
-function SearchBarError() {
-  return (
-    <Typography variant="h6" color="secondary">
-      Błąd przy pobieraniu opcji filtrowania
     </Typography>
   );
 }
