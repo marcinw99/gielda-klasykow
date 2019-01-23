@@ -2,7 +2,7 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-import { spacesInNumbers } from "../../../src/helpers";
+import { spacesInNumbers } from "./helpers";
 
 const Price = ({ price, rootCss }) => (
   <Typography className={rootCss} variant="h6" color="secondary">

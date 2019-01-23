@@ -9,7 +9,7 @@ import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
 import enumsDisplayedText from "../../../resources/enumsDisplayedText";
-import { spacesInNumbers } from "../../../src/helpers";
+import { spacesInNumbers } from "./helpers";
 import Price from "./Price";
 import CardTitle from "./CardTitle";
 import ListItem from "./ListItem";

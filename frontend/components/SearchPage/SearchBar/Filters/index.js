@@ -14,7 +14,7 @@ import { Query } from "react-apollo";
 import PropTypes from "prop-types";
 
 import { initialSearchParameters, blankFiltersState } from "../../config";
-import NumberInputs from "../NumberInputs";
+import NumberInputs from "./NumberInputs";
 import enumDisplayedText from "../../../../resources/enumsDisplayedText";
 import { AVAILABLE_MODELS_OF_BRAND } from "../../../../src/Queries/searchQueries";
 
