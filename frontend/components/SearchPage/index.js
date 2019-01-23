@@ -64,6 +64,8 @@ class Search extends Component {
                 <SearchBar
                   data={data}
                   setValueInMainState={this.setValueInState}
+                  itemsLimitValue={this.state.itemsLimit}
+                  querySortersValue={this.state.querySorters}
                 />
               );
             }}

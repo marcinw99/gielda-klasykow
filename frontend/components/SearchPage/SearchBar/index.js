@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 
@@ -6,28 +6,33 @@ import Filters from "./Filters";
 import Sorters from "./Sorters";
 import ItemsLimit from "./ItemsLimit";
 
-class SearchBar extends Component {
-  render() {
-    return (
-      <Grid container direction="column">
-        <Grid item>
-          <Filters
-            data={this.props.data}
-            setValueInMainState={this.props.setValueInMainState}
-          />
-        </Grid>
-        <Grid item>
-          <Grid container justify="space-between">
-            <ItemsLimit setValueInMainState={this.props.setValueInMainState} />
-            <Sorters setValueInMainState={this.props.setValueInMainState} />
-          </Grid>
-        </Grid>
+const SearchBar = ({
+  data,
+  setValueInMainState,
+  itemsLimitValue,
+  querySortersValue
+}) => (
+  <Grid container direction="column">
+    <Grid item>
+      <Filters data={data} setValueInMainState={setValueInMainState} />
+    </Grid>
+    <Grid item>
+      <Grid container justify="space-between">
+        <ItemsLimit
+          value={itemsLimitValue}
+          setValueInMainState={setValueInMainState}
+        />
+        <Sorters
+          value={querySortersValue}
+          setValueInMainState={setValueInMainState}
+        />
       </Grid>
-    );
-  }
-}
+    </Grid>
+  </Grid>
+);
 
 SearchBar.propTypes = {
+  data: PropTypes.object.isRequired,
   setValueInMainState: PropTypes.func.isRequired
 };
 
