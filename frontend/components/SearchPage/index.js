@@ -19,7 +19,7 @@ const styles = theme => ({
   resultsGridItem: {
     margin: "0 auto",
     maxWidth: 1200,
-    marginTop: theme.spacing.unit * 4
+    marginTop: theme.spacing.unit * 2
   },
   loadingScreen: {
     textAlign: "center"

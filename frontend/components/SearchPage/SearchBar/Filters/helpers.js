@@ -51,3 +51,6 @@ export const typeAcceptsValue = (type, value) =>
   type.indexOf(value) !== -1 || type.indexOf(value.slice(0, -3)) !== -1
     ? true
     : false;
+
+export const filterArrayOfObjects = (arr, criteria) =>
+  arr.filter(obj => Object.keys(criteria).every(c => obj[c] === criteria[c]));
