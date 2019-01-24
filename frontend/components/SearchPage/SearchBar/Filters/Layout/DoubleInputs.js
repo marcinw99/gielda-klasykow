@@ -1,28 +1,3 @@
-/*      <TextField
-        name={props.nameLeft}
-        label={props.labelLeft}
-        value={props.valueLeft}
-        onChange={props.handleChange}
-        type="number"
-        inputProps={{
-          min: 0,
-          max: 10000000
-        }}
-        InputProps={
-          props.endAdornment
-            ? {
-                endAdornment: (
-                  <InputAdornment position="end">
-                    {props.endAdornment}
-                  </InputAdornment>
-                )
-              }
-            : {}
-        }
-      /> */
-
-// implement input adornment in Autocomplete
-
 import React from "react";
 import { FormControl } from "@material-ui/core";
 import PropTypes from "prop-types";
@@ -30,7 +5,7 @@ import PropTypes from "prop-types";
 import Autocomplete from "./Autocomplete";
 
 const DoubleInputs = props => (
-  <div>
+  <div classsName={props.classes.doubleInputsContainer}>
     <FormControl className={props.classes.formControl}>
       <Autocomplete
         value={props.valueLeft}

@@ -14,7 +14,7 @@ const styles = theme => ({
   },
   SearchareaGridItem: {
     margin: "0 auto",
-    maxWidth: 1000
+    maxWidth: 1100
   },
   resultsGridItem: {
     margin: "0 auto",
