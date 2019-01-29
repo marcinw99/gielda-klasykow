@@ -1,20 +1,22 @@
-import React, { Fragment } from "react";
+import React from "react";
 import {
   Card,
   CardActionArea,
   CardMedia,
   CardContent,
-  Grid,
-  Typography,
-  SvgIcon
+  Grid
 } from "@material-ui/core";
-import { LocationOn } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
-import SvgIcons from "../../../resources/SvgIcons";
-import enumsDisplayedText from "../../../resources/enumsDisplayedText";
-import { spacesInNumbers } from "./helpers";
+import {
+  CardTitle,
+  FuelType,
+  Engine,
+  Mileage,
+  Price,
+  Location
+} from "./components";
 
 const styles = theme => ({
   root: {
@@ -43,42 +45,13 @@ const ResultCard = ({ classes, car, price, avatar }) => (
       <CardContent>
         <CardTitle car={car} />
         <div className={classes.details}>
-          <Grid className={classes.detail} container alignItems="center">
-            <SvgIcon color="secondary">
-              <path {...SvgIcons.gas} />
-            </SvgIcon>
-            <Typography className={classes.bold}>
-              {enumsDisplayedText("Car", "fuelType", car.fuelType)}
-            </Typography>
-          </Grid>
-          <Grid
-            className={classes.detail}
-            container
-            alignItems="center"
-            spacing={8}
-          >
-            <Grid item style={{ paddingLeft: 0 }}>
-              <SvgIcon color="secondary">
-                <path {...SvgIcons.engine} />
-              </SvgIcon>
-            </Grid>
-            <Grid item>
-              <Typography className={classes.bold}>
-                {car.engineSize} cm<sup>3</sup>, {car.power} km
-              </Typography>
-            </Grid>
-          </Grid>
-          <Typography className={`${classes.bold} ${classes.detail}`}>
-            <Typography
-              component="span"
-              inline
-              color="secondary"
-              className={classes.bold}
-            >
-              {spacesInNumbers(car.mileage)}
-            </Typography>{" "}
-            kilometrów przebiegu
-          </Typography>
+          <FuelType classes={classes} value={car.fuelType} />
+          <Engine
+            classes={classes}
+            engineSize={car.engineSize}
+            power={car.power}
+          />
+          <Mileage classes={classes} value={car.mileage} />
         </div>
         <Grid container justify="space-between">
           <Location rootCss={classes.bold} location={"Gdańsk"} />
@@ -87,30 +60,6 @@ const ResultCard = ({ classes, car, price, avatar }) => (
       </CardContent>
     </CardActionArea>
   </Card>
-);
-
-const Price = ({ price, rootCss }) => (
-  <Typography className={rootCss} variant="h6" color="secondary">
-    {spacesInNumbers(price)} PLN
-  </Typography>
-);
-
-const Location = ({ location, rootCss }) => (
-  <Typography className={rootCss} variant="h6">
-    <LocationOn color="secondary" /> {location}
-  </Typography>
-);
-
-const CardTitle = ({ car: { brand, model, version, productionYear } }) => (
-  <Grid container justify="space-between">
-    <Typography variant="h6">
-      {enumsDisplayedText("Car", "brand", brand)} {model} {version}
-    </Typography>
-    <div style={{ minWidth: "20px" }} />
-    <Typography variant="h6" color="secondary">
-      {productionYear}
-    </Typography>
-  </Grid>
 );
 
 ResultCard.propTypes = {

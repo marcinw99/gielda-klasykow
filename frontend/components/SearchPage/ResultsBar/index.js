@@ -1,17 +1,25 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
 import Sorters from "./Sorters";
 import ItemsLimit from "./ItemsLimit";
 
+const styles = theme => ({
+  root: {
+    padding: theme.spacing.unit
+  }
+});
+
 const ResultsBar = ({
   setValueInMainState,
   itemsLimitValue,
-  querySortersValue
+  querySortersValue,
+  classes
 }) => {
   return (
-    <Grid container justify="flex-end">
+    <Grid className={classes.root} container justify="flex-end">
       <ItemsLimit
         value={itemsLimitValue}
         setValueInMainState={setValueInMainState}
@@ -24,4 +32,10 @@ const ResultsBar = ({
   );
 };
 
-export default ResultsBar;
+ResultsBar.propTypes = {
+  setValueInMainState: PropTypes.func.isRequired,
+  itemsLimitValue: PropTypes.number.isRequired,
+  querySortersValue: PropTypes.string.isRequired
+};
+
+export default withStyles(styles)(ResultsBar);
