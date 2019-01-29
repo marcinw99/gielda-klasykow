@@ -21,6 +21,13 @@ const theme = createMuiTheme({
   custom: {
     headerHeight: 65,
     drawerWidth: 400
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        borderRadius: 0
+      }
+    }
   }
 });
 

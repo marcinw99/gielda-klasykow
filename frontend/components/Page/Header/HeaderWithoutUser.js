@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 const styles = theme => ({
   buttons: {
-    borderRadius: 0,
     margin: theme.spacing.unit
   }
 });
