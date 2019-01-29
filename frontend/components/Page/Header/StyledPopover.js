@@ -7,13 +7,17 @@ const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit
   },
+  rootPaper: {
+    borderRadius: 0
+  },
   paper: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     maxWidth: 400,
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
-      .spacing.unit * 3}px`
+      .spacing.unit * 3}px`,
+    borderRadius: 0
   }
 });
 
@@ -27,6 +31,7 @@ const StyledPopover = ({
 }) => (
   <Popover
     className={classes.root}
+    classes={{ paper: classes.rootPaper }}
     id={id}
     open={open}
     anchorEl={anchorEl}
@@ -40,7 +45,9 @@ const StyledPopover = ({
       horizontal: "center"
     }}
   >
-    <Paper className={classes.paper}>{children}</Paper>
+    <Paper square className={classes.paper}>
+      {children}
+    </Paper>
   </Popover>
 );
 

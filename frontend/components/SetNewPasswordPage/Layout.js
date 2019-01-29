@@ -77,7 +77,7 @@ class Layout extends Component {
     const { classes } = this.props;
     return (
       <main className={classes.container}>
-        <Paper className={classes.paper}>
+        <Paper square className={classes.paper}>
           <Typography variant="h4" color="primary">
             Resetowanie hasła
           </Typography>

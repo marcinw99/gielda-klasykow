@@ -27,6 +27,11 @@ const theme = createMuiTheme({
       root: {
         borderRadius: 0
       }
+    },
+    MuiPaper: {
+      root: {
+        borderRadius: 0
+      }
     }
   }
 });
