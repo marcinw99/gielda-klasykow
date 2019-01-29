@@ -1,3 +1,5 @@
+import { staticFiltersOptions } from "./resources";
+
 function formatTypeFields(fields) {
   return fields.map(item => item.name);
 }
@@ -30,7 +32,7 @@ export function prepareSelectsOptions(input) {
       : values[item].type.enumValues
     ).map(item => item.name);
   }
-  return results;
+  return { ...results, ...staticFiltersOptions };
 }
 
 export function formatObjectValuesToStrings(object) {

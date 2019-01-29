@@ -7,13 +7,20 @@ import { red, brown } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   palette: {
-    primary: brown,
+    primary: {
+      main: brown[700],
+      dark: brown[900]
+    },
     secondary: red,
     error: red
   },
   typography: {
     useNextVariants: true,
     fontFamily: "Roboto"
+  },
+  custom: {
+    headerHeight: 65,
+    drawerWidth: 400
   }
 });
 

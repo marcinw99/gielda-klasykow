@@ -1,12 +1,6 @@
 import React from "react";
 import Select from "react-select";
-import {
-  NoSsr,
-  MenuItem,
-  Typography,
-  Paper,
-  TextField
-} from "@material-ui/core/";
+import { MenuItem, Typography, Paper, TextField } from "@material-ui/core/";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
@@ -14,7 +8,8 @@ import { filterArrayOfObjects } from "../helpers";
 
 const styles = theme => ({
   singleValue: {
-    fontSize: 16
+    fontSize: 16,
+    color: "#e0e0e0"
   },
   valueContainer: {
     display: "flex",
@@ -33,7 +28,8 @@ const styles = theme => ({
   placeholder: {
     position: "absolute",
     left: 2,
-    fontSize: 16
+    fontSize: 16,
+    color: "#e0e0e0"
   },
   input: {
     display: "flex",
@@ -90,7 +86,6 @@ function ValueContainer(props) {
 function Placeholder(props) {
   return (
     <Typography
-      color="primary"
       className={props.selectProps.classes.placeholder}
       {...props.innerProps}
     >
@@ -158,17 +153,15 @@ const Autocomplete = props => {
       ? null
       : filterArrayOfObjects(props.options, { value: props.value })[0];
   return (
-    <NoSsr>
-      <Select
-        classes={props.classes}
-        components={components}
-        options={props.options}
-        value={value || null}
-        onChange={handleChange}
-        placeholder={props.placeholder}
-        isClearable
-      />
-    </NoSsr>
+    <Select
+      classes={props.classes}
+      components={components}
+      options={props.options}
+      value={value}
+      onChange={handleChange}
+      placeholder={props.placeholder}
+      isClearable
+    />
   );
 };
 

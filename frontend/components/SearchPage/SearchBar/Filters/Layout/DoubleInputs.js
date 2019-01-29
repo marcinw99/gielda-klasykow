@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
 import Autocomplete from "./Autocomplete";
 
 const DoubleInputs = props => (
-  <div classsName={props.classes.doubleInputsContainer}>
+  <div className={props.classes.doubleInputsContainer}>
     <FormControl className={props.classes.formControl}>
       <Autocomplete
         value={props.valueLeft}
-        options={[]}
+        options={props.options}
         handleChange={props.handleChange}
         name={props.nameLeft}
         placeholder={props.labelLeft}
@@ -18,7 +18,7 @@ const DoubleInputs = props => (
     <FormControl className={props.classes.formControl}>
       <Autocomplete
         value={props.valueRight}
-        options={[]}
+        options={props.options}
         handleChange={props.handleChange}
         name={props.nameRight}
         placeholder={props.labelRight}

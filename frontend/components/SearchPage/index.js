@@ -1,28 +1,33 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Query } from "react-apollo";
-import { Grid, Typography, CircularProgress } from "@material-ui/core";
+import { Typography, CircularProgress, Drawer } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import { initialSearchParameters } from "./config";
+import ResultsBar from "./ResultsBar";
 import SearchBar from "./SearchBar";
 import Results from "./Results";
 import { ALL_POSTS_QUERY } from "../../src/Queries/searchQueries";
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit * 2
-  },
-  SearchareaGridItem: {
-    margin: "0 auto",
-    maxWidth: 1100
-  },
-  resultsGridItem: {
-    margin: "0 auto",
-    maxWidth: 1200,
-    marginTop: theme.spacing.unit * 2
+    display: "flex"
   },
   loadingScreen: {
+    paddingTop: "30vh",
     textAlign: "center"
+  },
+  drawer: {
+    width: theme.custom.drawerWidth,
+    flexShrink: 0
+  },
+  drawerPaper: {
+    marginTop: theme.custom.headerHeight,
+    width: theme.custom.drawerWidth,
+    background: theme.palette.primary.main
+  },
+  content: {
+    flexGrow: 1
   }
 });
 
@@ -42,15 +47,18 @@ class Search extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid className={classes.root} container>
-        <Grid className={classes.SearchareaGridItem} item xs={12}>
-          <SearchBar
-            setValueInMainState={this.setValueInState}
-            itemsLimitValue={this.state.itemsLimit}
-            querySortersValue={this.state.querySorters}
-          />
-        </Grid>
-        <Grid className={classes.resultsGridItem} item xs={12}>
+      <div className={classes.root}>
+        <Drawer
+          className={classes.drawer}
+          classes={{
+            paper: classes.drawerPaper
+          }}
+          variant="permanent"
+          anchor="left"
+        >
+          <SearchBar setValueInMainState={this.setValueInState} />
+        </Drawer>
+        <div className={classes.content}>
           <Query
             query={ALL_POSTS_QUERY}
             variables={{
@@ -62,11 +70,20 @@ class Search extends Component {
               if (loading)
                 return <ResultsLoadingScreen rootCss={classes.loadingScreen} />;
               if (error) return <ResultsError />;
-              return <Results results={data.postsConnection.edges} />;
+              return (
+                <Fragment>
+                  <ResultsBar
+                    setValueInMainState={this.setValueInState}
+                    itemsLimitValue={this.state.itemsLimit}
+                    querySortersValue={this.state.querySorters}
+                  />
+                  <Results results={data.postsConnection.edges} />
+                </Fragment>
+              );
             }}
           </Query>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     );
   }
 }

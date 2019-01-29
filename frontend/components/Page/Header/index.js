@@ -1,28 +1,24 @@
-import React, { Component } from "react";
-import Link from "next/link";
-import { AppBar, Typography, Toolbar } from "@material-ui/core";
+import React, { Component, Fragment } from "react";
+import { AppBar, Toolbar } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
+import Logo from "./Logo";
 import Register from "./Register";
 import LoginAndResetPasswordRequest from "./LoginAndResetPasswordRequest";
 import HeaderWithUser from "./HeaderWithUser";
 import HeaderWithoutUser from "./HeaderWithoutUser";
 
 const styles = theme => ({
+  root: {
+    zIndex: theme.zIndex.drawer + 1,
+    height: theme.custom.headerHeight
+  },
   grow: {
     flexGrow: 1
   },
-  logo: {
-    height: "60px",
-    width: "auto",
-    marginTop: theme.spacing.unit
-  },
-  buttons: {
-    background: "rgba(1,1,1,0)",
-    color: "white",
-    borderColor: "white",
-    margin: theme.spacing.unit
+  whitespace: {
+    minHeight: theme.custom.headerHeight
   }
 });
 
@@ -54,36 +50,30 @@ class Header extends Component {
   render() {
     const { classes, thisUser } = this.props;
     return (
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <Typography className={classes.grow}>
-            <Link href="/">
-              <img
-                src="/static/Baner.png"
-                alt="Giełda klasyków"
-                className={classes.logo}
-              />
-            </Link>
-          </Typography>
-          <HeaderWithUser thisUser={thisUser} />
-          <HeaderWithoutUser
-            thisUser={thisUser}
-            classes={classes}
-            openRegister={this.openRegister}
-            openLogin={this.openLogin}
-          />
-          <Register
-            open={Boolean(this.state.registerAnchorEl)}
-            anchorEl={this.state.registerAnchorEl}
-            handleClose={this.handleClose}
-          />
-          <LoginAndResetPasswordRequest
-            open={Boolean(this.state.loginAnchorEl)}
-            anchorEl={this.state.loginAnchorEl}
-            handleClose={this.handleClose}
-          />
-        </Toolbar>
-      </AppBar>
+      <Fragment>
+        <AppBar position="fixed" color="default" className={classes.root}>
+          <Toolbar>
+            <Logo />
+            <HeaderWithUser thisUser={thisUser} />
+            <HeaderWithoutUser
+              thisUser={thisUser}
+              openRegister={this.openRegister}
+              openLogin={this.openLogin}
+            />
+            <Register
+              open={Boolean(this.state.registerAnchorEl)}
+              anchorEl={this.state.registerAnchorEl}
+              handleClose={this.handleClose}
+            />
+            <LoginAndResetPasswordRequest
+              open={Boolean(this.state.loginAnchorEl)}
+              anchorEl={this.state.loginAnchorEl}
+              handleClose={this.handleClose}
+            />
+          </Toolbar>
+        </AppBar>
+        <div className={classes.whitespace} />
+      </Fragment>
     );
   }
 }

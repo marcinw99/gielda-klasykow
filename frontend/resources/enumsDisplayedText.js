@@ -64,7 +64,7 @@ const variants = {
       BENZYNA: "Benzyna",
       BENZYNA_LPG: "Benzyna + LPG",
       BENZYNA_CNG: "Benzyna + CNG",
-      DIESEL: "Diesel",
+      DIESEL: "Olej napędowy",
       HYBRYDA: "Hybryda",
       ELEKTRYCZNY: "Elektryczny",
       INNY: "Inny"
