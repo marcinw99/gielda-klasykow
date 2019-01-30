@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import Error from "../../../universal/Error";
 import FormField from "../../../universal/FormField";
 import StrengthLevelLabel from "../../../universal/StrengthLevelLabel";
-import { StyledPopover, StyledSubmit, StyledTitle } from "../styles";
+import { StyledPopover, StyledSubmit, StyledTitle } from "../styledComponents";
 import { updatePasswordStrength } from "../../../../src/dataValidation";
 import { SIGNUP_MUTATION } from "../../../../src/Mutations/Login";
 import { CURRENT_USER_QUERY } from "../../../../src/QueryComponents/User";

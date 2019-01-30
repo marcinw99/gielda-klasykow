@@ -13,17 +13,23 @@ const fabStyles = theme => ({
   }
 });
 
-const ClearFab = ({ classes, rootProps }) => (
-  <Fab color="default" className={classes.root} {...rootProps}>
-    <Clear />
-  </Fab>
-);
+const ClearFab = props => {
+  const { classes, ...other } = props;
+  return (
+    <Fab color="default" className={classes.root} {...other}>
+      <Clear />
+    </Fab>
+  );
+};
 
-const SearchFab = ({ classes, rootProps }) => (
-  <Fab color="default" className={classes.root} {...rootProps}>
-    <Search />
-  </Fab>
-);
+const SearchFab = props => {
+  const { classes, ...other } = props;
+  return (
+    <Fab color="default" className={classes.root} {...other}>
+      <Search />
+    </Fab>
+  );
+};
 
 export const StyledClearFab = withStyles(fabStyles)(ClearFab);
 

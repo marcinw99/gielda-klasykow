@@ -72,26 +72,26 @@ const submitStyles = theme => ({
   }
 });
 
-const Submit = ({ classes, children }) => (
-  <Button
-    className={classes.root}
-    type="submit"
-    fullWidth
-    variant="contained"
-    color="primary"
-  >
-    {children}
-  </Button>
-);
+const Submit = props => {
+  const { classes, ...other } = props;
+  return (
+    <Button
+      className={classes.root}
+      type="submit"
+      fullWidth
+      variant="contained"
+      color="primary"
+      {...other}
+    />
+  );
+};
 
 export const StyledSubmit = withStyles(submitStyles)(Submit);
 
 // StyledTitle
 
-export const StyledTitle = ({ children }) => (
-  <Typography variant="h4" color="primary">
-    {children}
-  </Typography>
+export const StyledTitle = props => (
+  <Typography variant="h4" color="primary" {...props} />
 );
 
 // StyledSwitchView
@@ -101,10 +101,9 @@ const switchViewStyles = theme => ({
     textTransform: "none"
   }
 });
-const SwitchView = ({ classes, rootProps, children }) => (
-  <Button variant="outlined" className={classes.root} {...rootProps}>
-    {children}
-  </Button>
-);
+const SwitchView = props => {
+  const { classes, ...other } = props;
+  return <Button variant="outlined" className={classes.root} {...other} />;
+};
 
 export const StyledSwitchView = withStyles(switchViewStyles)(SwitchView);

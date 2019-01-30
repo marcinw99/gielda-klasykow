@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import Login from "./Login";
 import ResetPasswordRequest from "./ResetPasswordRequest";
-import { StyledPopover } from "../styles";
+import { StyledPopover } from "../styledComponents";
 
 class LoginAndResetPasswordRequest extends Component {
   state = { forgotPasswordLayout: false };

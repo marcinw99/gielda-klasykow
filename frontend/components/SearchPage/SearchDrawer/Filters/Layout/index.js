@@ -215,8 +215,8 @@ const FormActions = props => (
       />
     </Grid>
     <Grid item>
-      <StyledClearFab rootProps={{ onClick: props.resetFilters }} />
-      <StyledSearchFab rootProps={{ disabled: props.automaticFiltering }} />
+      <StyledClearFab onClick={props.resetFilters} />
+      <StyledSearchFab disabled={props.automaticFiltering} />
     </Grid>
   </Grid>
 );

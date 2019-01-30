@@ -3,7 +3,11 @@ import { FormControlLabel, Checkbox, Grid } from "@material-ui/core";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
-import { StyledSubmit, StyledTitle, StyledSwitchView } from "../styles";
+import {
+  StyledSubmit,
+  StyledTitle,
+  StyledSwitchView
+} from "../styledComponents";
 import Error from "../../../universal/Error";
 import FormField from "../../../universal/FormField";
 import { SIGNIN_MUTATION } from "../../../../src/Mutations/Login";
@@ -74,9 +78,7 @@ class Login extends Component {
                   control={<Checkbox value="remember" color="primary" />}
                   label="Zapamiętaj mnie"
                 />{" "}
-                <StyledSwitchView
-                  rootProps={{ onClick: this.props.switchView }}
-                >
+                <StyledSwitchView onClick={this.props.switchView}>
                   Nie pamiętam hasła
                 </StyledSwitchView>
               </Grid>

@@ -2,7 +2,11 @@ import React, { Component, Fragment } from "react";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
-import { StyledSubmit, StyledTitle, StyledSwitchView } from "../styles";
+import {
+  StyledSubmit,
+  StyledTitle,
+  StyledSwitchView
+} from "../styledComponents";
 import Error from "../../../universal/Error";
 import FormField from "../../../universal/FormField";
 import { REQUESTPASSWORDRESET_MUTATION } from "../../../../src/Mutations/PasswordReset";
@@ -52,7 +56,7 @@ class ResetPasswordRequest extends Component {
                 onChange={this.handleChange}
                 autoFocus={true}
               />
-              <StyledSwitchView rootProps={{ onClick: this.props.switchView }}>
+              <StyledSwitchView onClick={this.props.switchView}>
                 Dobra przypomniałem sobie
               </StyledSwitchView>
               <Error error={error} />
