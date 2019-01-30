@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
-import { Typography, Button } from "@material-ui/core";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
+import { StyledSubmit, StyledTitle, StyledSwitchView } from "../styles";
 import Error from "../../../universal/Error";
 import FormField from "../../../universal/FormField";
 import { REQUESTPASSWORDRESET_MUTATION } from "../../../../src/Mutations/PasswordReset";
@@ -27,9 +27,7 @@ class ResetPasswordRequest extends Component {
   render() {
     return (
       <Fragment>
-        <Typography variant="h4" color="primary">
-          Zresetuj hasło
-        </Typography>
+        <StyledTitle>Zresetuj hasło</StyledTitle>
         <Mutation
           mutation={REQUESTPASSWORDRESET_MUTATION}
           variables={{
@@ -54,23 +52,11 @@ class ResetPasswordRequest extends Component {
                 onChange={this.handleChange}
                 autoFocus={true}
               />
-              <Button
-                onClick={this.props.switchView}
-                variant="outlined"
-                className={this.props.switchViewBtnCss}
-              >
+              <StyledSwitchView rootProps={{ onClick: this.props.switchView }}>
                 Dobra przypomniałem sobie
-              </Button>
+              </StyledSwitchView>
               <Error error={error} />
-              <Button
-                className={this.props.submitBtnCss}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Zresetuj hasło
-              </Button>
+              <StyledSubmit>Zresetuj hasło</StyledSubmit>
             </form>
           )}
         </Mutation>
@@ -81,9 +67,7 @@ class ResetPasswordRequest extends Component {
 
 ResetPasswordRequest.propTypes = {
   handleClose: PropTypes.func.isRequired,
-  switchView: PropTypes.func.isRequired,
-  submitBtnCss: PropTypes.string.isRequired,
-  switchViewBtnCss: PropTypes.string.isRequired
+  switchView: PropTypes.func.isRequired
 };
 
 export default ResetPasswordRequest;

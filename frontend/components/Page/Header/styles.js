@@ -1,9 +1,11 @@
 import React from "react";
-import { Popover, Paper } from "@material-ui/core";
+import { Popover, Paper, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
-const styles = theme => ({
+// StyledPopover
+
+const popoverStyles = theme => ({
   root: {
     marginTop: theme.spacing.unit
   },
@@ -21,7 +23,7 @@ const styles = theme => ({
   }
 });
 
-const StyledPopover = ({
+const CustomPopover = ({
   children,
   classes,
   id,
@@ -51,7 +53,7 @@ const StyledPopover = ({
   </Popover>
 );
 
-StyledPopover.propTypes = {
+CustomPopover.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.array]),
   classes: PropTypes.object,
   id: PropTypes.string.isRequired,
@@ -60,4 +62,49 @@ StyledPopover.propTypes = {
   handleClose: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(StyledPopover);
+export const StyledPopover = withStyles(popoverStyles)(CustomPopover);
+
+// Submit
+
+const submitStyles = theme => ({
+  root: {
+    marginTop: theme.spacing.unit * 3
+  }
+});
+
+const Submit = ({ classes, children }) => (
+  <Button
+    className={classes.root}
+    type="submit"
+    fullWidth
+    variant="contained"
+    color="primary"
+  >
+    {children}
+  </Button>
+);
+
+export const StyledSubmit = withStyles(submitStyles)(Submit);
+
+// StyledTitle
+
+export const StyledTitle = ({ children }) => (
+  <Typography variant="h4" color="primary">
+    {children}
+  </Typography>
+);
+
+// StyledSwitchView
+
+const switchViewStyles = theme => ({
+  root: {
+    textTransform: "none"
+  }
+});
+const SwitchView = ({ classes, rootProps, children }) => (
+  <Button variant="outlined" className={classes.root} {...rootProps}>
+    {children}
+  </Button>
+);
+
+export const StyledSwitchView = withStyles(switchViewStyles)(SwitchView);

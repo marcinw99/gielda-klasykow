@@ -18,6 +18,7 @@ const HeaderWithUser = props => (
       <Typography variant="h4">
         {props.thisUser && props.thisUser.name}
       </Typography>
+      {"   "}
       <SignOut />
     </Grid>
   </Slide>

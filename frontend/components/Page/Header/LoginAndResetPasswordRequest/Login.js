@@ -1,14 +1,9 @@
 import React, { Component, Fragment } from "react";
-import {
-  Typography,
-  FormControlLabel,
-  Button,
-  Checkbox,
-  Grid
-} from "@material-ui/core";
+import { FormControlLabel, Checkbox, Grid } from "@material-ui/core";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
+import { StyledSubmit, StyledTitle, StyledSwitchView } from "../styles";
 import Error from "../../../universal/Error";
 import FormField from "../../../universal/FormField";
 import { SIGNIN_MUTATION } from "../../../../src/Mutations/Login";
@@ -35,9 +30,7 @@ class Login extends Component {
   render() {
     return (
       <Fragment>
-        <Typography variant="h4" color="primary">
-          Zaloguj się
-        </Typography>
+        <StyledTitle>Zaloguj się</StyledTitle>
         <Mutation
           mutation={SIGNIN_MUTATION}
           variables={{
@@ -80,25 +73,14 @@ class Login extends Component {
                 <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
                   label="Zapamiętaj mnie"
-                />
-                <Button
-                  onClick={this.props.switchView}
-                  variant="outlined"
-                  className={this.props.switchViewBtnCss}
+                />{" "}
+                <StyledSwitchView
+                  rootProps={{ onClick: this.props.switchView }}
                 >
                   Nie pamiętam hasła
-                </Button>
+                </StyledSwitchView>
               </Grid>
-
-              <Button
-                className={this.props.submitBtnCss}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Zaloguj się
-              </Button>
+              <StyledSubmit>Zaloguj się</StyledSubmit>
             </form>
           )}
         </Mutation>
@@ -109,9 +91,7 @@ class Login extends Component {
 
 Login.propTypes = {
   handleClose: PropTypes.func.isRequired,
-  switchView: PropTypes.func.isRequired,
-  submitBtnCss: PropTypes.string.isRequired,
-  switchViewBtnCss: PropTypes.string.isRequired
+  switchView: PropTypes.func.isRequired
 };
 
 export default Login;

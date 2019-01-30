@@ -1,25 +1,23 @@
 import React from "react";
-import { Typography, Button, Grid, SvgIcon } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
-import SvgIcons from "../../../resources/SvgIcons";
-import linkHrefs from "../../../resources/linkHrefs";
+import { socialMedia, mainLinks, tools, additionalInfo } from "./resources";
 import SocialMediaLink from "./SocialMediaLink";
 import SimpleLink from "./SimpleLink";
 
 const styles = theme => ({
   root: {
-    maxWidth: "1000px",
-    margin: "600px auto 0 auto"
+    marginTop: theme.spacing.unit * 4
   },
   socialMediaGrid: {
-    marginTop: "8px"
+    marginTop: theme.spacing.unit
   },
   socialMediaButton: {
-    margin: "12px"
+    margin: theme.spacing.unit * 1.5
   },
   simpleLink: {
-    paddingLeft: "2px"
+    paddingLeft: theme.spacing.unit * 0.2
   },
   simpleLinkTypography: {
     color: theme.palette.primary.main,
@@ -27,40 +25,21 @@ const styles = theme => ({
   }
 });
 
-const Footer = props => (
+const Footer = ({ classes }) => (
   <Grid
-    className={props.classes.root}
-    justify="space-around"
+    className={classes.root}
+    justify="center"
     component="footer"
+    spacing={24}
     container
   >
     <Grid item>
       <Typography variant="h6">ZNAJDŹ NAS NA:</Typography>
-      <Grid
-        className={props.classes.socialMediaGrid}
-        container
-        direction="column"
-      >
-        {[
-          {
-            href: linkHrefs.facebook,
-            svgIcon: SvgIcons.facebook,
-            label: "Facebook"
-          },
-          {
-            href: linkHrefs.youtube,
-            svgIcon: SvgIcons.youtube,
-            label: "Youtube"
-          },
-          {
-            href: linkHrefs.instagram,
-            svgIcon: SvgIcons.instagram,
-            label: "Instagram"
-          }
-        ].map((item, key) => (
+      <Grid className={classes.socialMediaGrid} container direction="column">
+        {socialMedia.map((item, key) => (
           <SocialMediaLink
             key={`${item.label}${key}`}
-            rootCss={props.classes.socialMediaButton}
+            rootCss={classes.socialMediaButton}
             {...item}
           />
         ))}
@@ -69,19 +48,12 @@ const Footer = props => (
     <Grid item>
       <Typography variant="h6">GIEŁDA ZABYTKÓW</Typography>
       <Grid container direction="column">
-        {[
-          { href: "#", label: "Pomoc" },
-          { href: "#", label: "Kontakt" },
-          { href: "#", label: "Reklama" },
-          { href: "#", label: "Polityka prywatności" },
-          { href: "#", label: "Regulamin plików Cookies" },
-          { href: "#", label: "Regulamin Giełda Zabytków" }
-        ].map(item => (
+        {mainLinks.map(item => (
           <SimpleLink
             key={item.label}
             {...item}
-            rootCss={props.classes.simpleLink}
-            typographyCss={props.classes.simpleLinkTypography}
+            rootCss={classes.simpleLink}
+            typographyCss={classes.simpleLinkTypography}
           />
         ))}
       </Grid>
@@ -89,27 +61,26 @@ const Footer = props => (
     <Grid item>
       <Typography variant="h6">USŁUGI I NARZĘDZIA</Typography>
       <Grid container direction="column">
-        <SimpleLink
-          href="#"
-          label="Umowa kupna sprzedaży"
-          rootCss={props.classes.simpleLink}
-          typographyCss={props.classes.simpleLinkTypography}
-        />
+        {tools.map(item => (
+          <SimpleLink
+            key={item.label}
+            href={item.href}
+            label={item.label}
+            rootCss={classes.simpleLink}
+            typographyCss={classes.simpleLinkTypography}
+          />
+        ))}
       </Grid>
     </Grid>
     <Grid item>
       <Typography variant="h6">PRZYDATNE INFORMACJE</Typography>
       <Grid container direction="column">
-        {[
-          { href: "#", label: "Magazyn Giełda Zabytków" },
-          { href: "#", label: "Mapa kategorii" },
-          { href: "#", label: "Kariera" }
-        ].map(item => (
+        {additionalInfo.map(item => (
           <SimpleLink
             key={item.label}
             {...item}
-            rootCss={props.classes.simpleLink}
-            typographyCss={props.classes.simpleLinkTypography}
+            rootCss={classes.simpleLink}
+            typographyCss={classes.simpleLinkTypography}
           />
         ))}
       </Grid>
