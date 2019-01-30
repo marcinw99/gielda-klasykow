@@ -11,7 +11,8 @@ import {
 } from "./helpers";
 
 const initialState = {
-  filters: { ...blankFiltersState, ...initialSearchParameters.filters }
+  filters: { ...blankFiltersState, ...initialSearchParameters.filters },
+  automaticFiltering: true
 };
 
 class Logic extends Component {
@@ -68,10 +69,18 @@ class Logic extends Component {
     });
   };
 
+  toggleAutomaticFiltering = () => {
+    this.setState(prevState => ({
+      automaticFiltering: !prevState.automaticFiltering
+    }));
+  };
+
   render() {
     const selectsOptions = prepareSelectsOptions(this.props.data.Enums.fields);
     return React.cloneElement(this.props.children, {
       values: formatObjectValuesToStrings(this.state.filters),
+      automaticFiltering: this.state.automaticFiltering,
+      toggleAutomaticFiltering: this.toggleAutomaticFiltering,
       handleChange: this.handleChange,
       resetFilters: this.resetFilters,
       selectsOptions: selectsOptions

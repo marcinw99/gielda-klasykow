@@ -1,4 +1,4 @@
-import { staticFiltersOptions } from "./resources";
+import { staticFiltersOptions } from "../../config";
 
 function formatTypeFields(fields) {
   return fields.map(item => item.name);

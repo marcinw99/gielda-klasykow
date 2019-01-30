@@ -2,7 +2,10 @@ import React from "react";
 import { Query } from "react-apollo";
 import PropTypes from "prop-types";
 
-import { SearchBarError, SearchBarLoadingScreen } from "./Layout";
+import {
+  SearchDrawerError,
+  StyledSearchDrawerLoadingScreen
+} from "./Layout/styledComponents";
 import { FILTERS_QUERIES } from "../../../../src/Queries/searchQueries";
 
 const FiltersQuery = ({ children }) => {
@@ -10,11 +13,11 @@ const FiltersQuery = ({ children }) => {
     <Query query={FILTERS_QUERIES}>
       {({ data, error, loading }) => {
         if (loading) {
-          return <SearchBarLoadingScreen />;
+          return <StyledSearchDrawerLoadingScreen />;
         }
-        if (error) return <SearchBarError />;
+        if (error) return <SearchDrawerError />;
         if (data) return React.cloneElement(children, { data });
-        return <SearchBarError />;
+        return <SearchDrawerError />;
       }}
     </Query>
   );
