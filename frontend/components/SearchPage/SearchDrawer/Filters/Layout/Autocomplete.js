@@ -1,6 +1,7 @@
 import React from "react";
 import Select from "react-select";
 import { MenuItem, Typography, Paper, TextField } from "@material-ui/core/";
+import { grey } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
@@ -9,7 +10,7 @@ import { filterArrayOfObjects } from "../helpers";
 const styles = theme => ({
   singleValue: {
     fontSize: 16,
-    color: "#e0e0e0"
+    color: theme.palette.primary.contrastText
   },
   valueContainer: {
     display: "flex",
@@ -29,7 +30,7 @@ const styles = theme => ({
     position: "absolute",
     left: 2,
     fontSize: 16,
-    color: "#e0e0e0"
+    color: grey[400]
   },
   input: {
     display: "flex",

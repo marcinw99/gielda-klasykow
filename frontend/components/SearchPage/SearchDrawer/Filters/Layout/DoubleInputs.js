@@ -1,12 +1,13 @@
 import React from "react";
-import { FormControl } from "@material-ui/core";
+import { StyledFormControl } from "./styledComponents";
 import PropTypes from "prop-types";
 
 import Autocomplete from "./Autocomplete";
+import { Grid } from "@material-ui/core";
 
 const DoubleInputs = props => (
-  <div className={props.classes.doubleInputsContainer}>
-    <FormControl className={props.classes.formControl}>
+  <Grid container justify="center">
+    <StyledFormControl>
       <Autocomplete
         value={props.valueLeft}
         options={props.options}
@@ -14,8 +15,8 @@ const DoubleInputs = props => (
         name={props.nameLeft}
         placeholder={props.labelLeft}
       />
-    </FormControl>
-    <FormControl className={props.classes.formControl}>
+    </StyledFormControl>
+    <StyledFormControl>
       <Autocomplete
         value={props.valueRight}
         options={props.options}
@@ -23,8 +24,8 @@ const DoubleInputs = props => (
         name={props.nameRight}
         placeholder={props.labelRight}
       />
-    </FormControl>
-  </div>
+    </StyledFormControl>
+  </Grid>
 );
 
 DoubleInputs.propTypes = {

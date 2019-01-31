@@ -1,16 +1,17 @@
 import React from "react";
-import {
-  FormControl,
-  Grid,
-  Fab,
-  Switch,
-  FormControlLabel
-} from "@material-ui/core";
+import { Grid, FormControlLabel } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Query } from "react-apollo";
 import PropTypes from "prop-types";
 
-import { StyledClearFab, StyledSearchFab } from "./styledComponents";
+import {
+  StyledClearFab,
+  StyledSearchFab,
+  StyledFilterTitle,
+  StyledSwitch,
+  StyledExtendedFab,
+  StyledFormControl
+} from "./styledComponents";
 import Autocomplete from "./Autocomplete";
 import DoubleInputs from "./DoubleInputs";
 import enumDisplayedText from "../../../../../resources/enumsDisplayedText";
@@ -18,35 +19,20 @@ import { AVAILABLE_MODELS_OF_BRAND } from "../../../../../src/Queries/searchQuer
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit
-  },
-  switchLabel: {
-    color: "#fafafa"
-  },
-  basicFiltersRoot: {
-    textAlign: "center"
-  },
-  doubleInputsContainer: {
-    display: "inline-flex"
-  },
-  formControl: {
-    minWidth: 160,
-    margin: theme.spacing.unit
-  },
-  InputLabel: {
-    color: theme.palette.primary.main
-  },
-  button: {
-    color: theme.palette.primary.dark,
-    minWidth: 140,
-    margin: `${theme.spacing.unit * 0.8}px ${theme.spacing.unit * 0.5}px`
+    padding: theme.spacing.unit * 1.5
   },
   formActionsRoot: {
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`
   },
+  basicFiltersRoot: {
+    textAlign: "center"
+  },
   advancedFiltersRoot: {
     marginTop: theme.spacing.unit,
     textAlign: "center"
+  },
+  switchLabel: {
+    color: theme.palette.primary.contrastText
   }
 });
 
@@ -54,7 +40,47 @@ const Layout = props => (
   <form className={props.classes.root}>
     <FormActions {...props} />
     <div className={props.classes.basicFiltersRoot}>
-      <FormControl className={props.classes.formControl}>
+      <StyledFilterTitle>Cena (zł)</StyledFilterTitle>
+      <DoubleInputs
+        nameLeft="price_gt"
+        nameRight="price_lt"
+        labelLeft="Cena od"
+        labelRight="Cena do"
+        valueLeft={props.values.price_gt}
+        valueRight={props.values.price_lt}
+        handleChange={e => props.handleChange(e, true)}
+        options={props.selectsOptions.price.map(item => ({
+          label: `${item} PLN`,
+          value: item
+        }))}
+      />
+      <StyledFilterTitle>Lokalizacja</StyledFilterTitle>
+      <StyledFormControl>
+        <Autocomplete
+          options={props.selectsOptions.localization.map(item => ({
+            label: item,
+            value: item
+          }))}
+          value={props.values.localization}
+          handleChange={props.handleChange}
+          name="localization"
+          placeholder="Miejscowość"
+        />
+      </StyledFormControl>
+      <StyledFormControl>
+        <Autocomplete
+          options={props.selectsOptions.localization.map(item => ({
+            label: item,
+            value: item
+          }))}
+          value={props.values.localization}
+          handleChange={props.handleChange}
+          name="localization"
+          placeholder="Zasięg"
+        />
+      </StyledFormControl>
+      <StyledFilterTitle>Cechy pojazdu</StyledFilterTitle>
+      <StyledFormControl>
         <Autocomplete
           value={props.values.segment}
           options={props.selectsOptions.segment.map(item => ({
@@ -65,8 +91,8 @@ const Layout = props => (
           name="segment"
           placeholder="Segment"
         />
-      </FormControl>
-      <FormControl className={props.classes.formControl}>
+      </StyledFormControl>
+      <StyledFormControl>
         <Autocomplete
           value={props.values.fuelType}
           options={props.selectsOptions.fuelType.map(item => ({
@@ -77,8 +103,8 @@ const Layout = props => (
           name="fuelType"
           placeholder="Rodzaj paliwa"
         />
-      </FormControl>
-      <FormControl className={props.classes.formControl}>
+      </StyledFormControl>
+      <StyledFormControl>
         <Autocomplete
           value={props.values.brand}
           options={props.selectsOptions.brand.map(item => ({
@@ -89,7 +115,7 @@ const Layout = props => (
           name="brand"
           placeholder="Marka pojazdu"
         />
-      </FormControl>
+      </StyledFormControl>
       {props.values.brand && props.values.brand.length !== 0 ? (
         <Query
           query={AVAILABLE_MODELS_OF_BRAND}
@@ -98,7 +124,7 @@ const Layout = props => (
           }}
         >
           {({ data, error, loading }) => (
-            <FormControl className={props.classes.formControl}>
+            <StyledFormControl>
               <Autocomplete
                 value={props.values.model}
                 options={
@@ -113,65 +139,42 @@ const Layout = props => (
                 name="model"
                 placeholder="Model pojazdu"
               />
-            </FormControl>
+            </StyledFormControl>
           )}
         </Query>
-      ) : null}
-      <FormControl className={props.classes.formControl}>
-        <Autocomplete
-          options={props.selectsOptions.localization.map(item => ({
-            label: item,
-            value: item
-          }))}
-          value={props.values.localization}
-          handleChange={props.handleChange}
-          name="localization"
-          placeholder="Miejscowość"
-        />
-      </FormControl>
+      ) : (
+        <StyledFormControl>
+          <Autocomplete options={[]} placeholder="Model pojazdu" />
+        </StyledFormControl>
+      )}
       <DoubleInputs
-        classes={props.classes}
         nameLeft="productionYear_gt"
         nameRight="productionYear_lt"
         labelLeft="Rok produkcji od"
         labelRight="Rok produkcji do"
         valueLeft={props.values.productionYear_gt}
         valueRight={props.values.productionYear_lt}
-        handleChange={e => handleChange(e, true)}
+        handleChange={e => props.handleChange(e, true)}
         options={props.selectsOptions.productionYear.map(item => ({
           label: item,
           value: item
         }))}
       />
       <DoubleInputs
-        classes={props.classes}
-        nameLeft="price_gt"
-        nameRight="price_lt"
-        labelLeft="Cena od"
-        labelRight="Cena do"
-        valueLeft={props.values.price_gt}
-        valueRight={props.values.price_lt}
-        handleChange={e => handleChange(e, true)}
-        options={props.selectsOptions.price.map(item => ({
-          label: `${item} PLN`,
-          value: item
-        }))}
-      />
-      <DoubleInputs
-        classes={props.classes}
         nameLeft="mileage_gt"
         nameRight="mileage_lt"
         labelLeft="Przebieg od"
         labelRight="Przebieg do"
         valueLeft={props.values.mileage_gt}
         valueRight={props.values.mileage_lt}
-        handleChange={e => handleChange(e, true)}
+        handleChange={e => props.handleChange(e, true)}
         options={props.selectsOptions.mileage.map(item => ({
           label: `${item} km`,
           value: item
         }))}
       />
     </div>
+    <StyledFilterTitle>Zaawansowane filtrowanie</StyledFilterTitle>
     <div className={props.classes.advancedFiltersRoot}>
       {[
         "Silnik i napęd",
@@ -180,14 +183,7 @@ const Layout = props => (
         "Status pojazdu",
         "Informacje finansowe"
       ].map(item => (
-        <Fab
-          key={item}
-          className={props.classes.button}
-          variant="extended"
-          color="default"
-        >
-          {item}
-        </Fab>
+        <StyledExtendedFab key={item}>{item}</StyledExtendedFab>
       ))}
     </div>
   </form>
@@ -202,16 +198,14 @@ const FormActions = props => (
   >
     <Grid item>
       <FormControlLabel
-        classes={{
-          label: props.classes.switchLabel
-        }}
+        classes={{ label: props.classes.switchLabel }}
         control={
-          <Switch
+          <StyledSwitch
             checked={props.automaticFiltering}
             onChange={props.toggleAutomaticFiltering}
           />
         }
-        label="Automatyczne filtrowanie"
+        label="Filtruj po zmianie"
       />
     </Grid>
     <Grid item>
