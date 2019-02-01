@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { Query } from "react-apollo";
-import { Typography, CircularProgress } from "@material-ui/core";
+import { Typography, CircularProgress, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import { initialSearchParameters } from "./config";
-import ResultsBar from "./ResultsBar";
 import SearchDrawer from "./SearchDrawer";
+import ResultsBar from "./ResultsBar";
 import Results from "./Results";
+import ResultsPagination from "./ResultsPagination";
 import { ALL_POSTS_QUERY } from "../../src/Queries/searchQueries";
 
 const styles = theme => ({
@@ -25,7 +26,8 @@ const styles = theme => ({
 const initialState = {
   queryFilters: initialSearchParameters.filters,
   querySorters: initialSearchParameters.sortBy,
-  itemsLimit: initialSearchParameters.itemsLimit
+  itemsLimit: initialSearchParameters.itemsLimit,
+  activePage: 1
 };
 
 class Search extends Component {
@@ -37,6 +39,10 @@ class Search extends Component {
 
   render() {
     const { classes } = this.props;
+    const pagination = {
+      first: this.state.itemsLimit,
+      skip: (this.state.activePage - 1) * this.state.itemsLimit
+    };
     return (
       <div className={classes.root}>
         <SearchDrawer setValueInMainState={this.setValueInState} />
@@ -45,7 +51,8 @@ class Search extends Component {
             query={ALL_POSTS_QUERY}
             variables={{
               filters: this.state.queryFilters,
-              sorters: this.state.querySorters
+              sorters: this.state.querySorters,
+              ...pagination
             }}
           >
             {({ data, error, loading }) => {
@@ -60,6 +67,13 @@ class Search extends Component {
                     querySortersValue={this.state.querySorters}
                   />
                   <Results results={data.postsConnection.edges} />
+                  <Grid container justify="center">
+                    <ResultsPagination
+                      setValueInMainState={this.setValueInState}
+                      pageInfo={data.postsConnection.pageInfo}
+                      activePage={this.state.activePage}
+                    />
+                  </Grid>
                 </Fragment>
               );
             }}

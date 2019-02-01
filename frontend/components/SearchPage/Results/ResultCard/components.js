@@ -2,8 +2,8 @@ import React from "react";
 import { Grid, Typography, SvgIcon } from "@material-ui/core";
 import { LocationOn } from "@material-ui/icons";
 
-import SvgIcons from "../../../resources/SvgIcons";
-import enumsDisplayedText from "../../../resources/enumsDisplayedText";
+import SvgIcons from "../../../../resources/SvgIcons";
+import enumsDisplayedText from "../../../../resources/enumsDisplayedText";
 import { spacesInNumbers } from "./helpers";
 
 export const CardTitle = ({

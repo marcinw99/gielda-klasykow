@@ -1,7 +1,7 @@
 export const initialSearchParameters = {
   filters: {},
   sortBy: "createdAt_DESC",
-  itemsLimit: 5
+  itemsLimit: 10
 };
 
 export const SortOptions = [

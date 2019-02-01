@@ -1,8 +1,18 @@
 import gql from "graphql-tag";
 
 export const ALL_POSTS_QUERY = gql`
-  query ALL_POSTS_QUERY($filters: PostWhereInput, $sorters: PostOrderByInput) {
-    postsConnection(where: $filters, orderBy: $sorters) {
+  query ALL_POSTS_QUERY(
+    $filters: PostWhereInput
+    $sorters: PostOrderByInput
+    $first: Int
+    $skip: Int
+  ) {
+    postsConnection(
+      where: $filters
+      orderBy: $sorters
+      skip: $skip
+      first: $first
+    ) {
       pageInfo {
         hasNextPage
         hasPreviousPage
