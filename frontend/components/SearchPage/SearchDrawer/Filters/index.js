@@ -5,9 +5,9 @@ import FiltersQuery from "./FiltersQuery";
 import Logic from "./Logic";
 import Layout from "./Layout";
 
-const Filters = ({ setValueInMainState }) => (
+const Filters = props => (
   <FiltersQuery>
-    <Logic setValueInMainState={setValueInMainState}>
+    <Logic {...props}>
       <Layout />
     </Logic>
   </FiltersQuery>

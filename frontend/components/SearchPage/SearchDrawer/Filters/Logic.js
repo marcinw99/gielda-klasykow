@@ -58,7 +58,9 @@ class Logic extends Component {
         }
       }),
       () => {
-        this.submitFilters();
+        if (this.state.automaticFiltering) {
+          this.submitFilters();
+        }
       }
     );
   };
@@ -79,11 +81,12 @@ class Logic extends Component {
     const selectsOptions = prepareSelectsOptions(this.props.data.Enums.fields);
     return React.cloneElement(this.props.children, {
       values: formatObjectValuesToStrings(this.state.filters),
-      automaticFiltering: this.state.automaticFiltering,
-      toggleAutomaticFiltering: this.toggleAutomaticFiltering,
       handleChange: this.handleChange,
       resetFilters: this.resetFilters,
-      selectsOptions: selectsOptions
+      selectsOptions: selectsOptions,
+      automaticFiltering: this.state.automaticFiltering,
+      toggleAutomaticFiltering: this.toggleAutomaticFiltering,
+      manualResultsRefetch: this.submitFilters
     });
   }
 }

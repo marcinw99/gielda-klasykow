@@ -210,7 +210,10 @@ const FormActions = props => (
     </Grid>
     <Grid item>
       <StyledClearFab onClick={props.resetFilters} />
-      <StyledSearchFab disabled={props.automaticFiltering} />
+      <StyledSearchFab
+        disabled={props.automaticFiltering}
+        onClick={props.manualResultsRefetch}
+      />
     </Grid>
   </Grid>
 );

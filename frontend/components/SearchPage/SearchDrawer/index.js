@@ -17,18 +17,21 @@ const styles = theme => ({
   }
 });
 
-const SearchDrawer = ({ setValueInMainState, classes }) => (
-  <Drawer
-    className={classes.drawer}
-    classes={{
-      paper: classes.drawerPaper
-    }}
-    variant="permanent"
-    anchor="left"
-  >
-    <Filters setValueInMainState={setValueInMainState} />
-  </Drawer>
-);
+const SearchDrawer = props => {
+  const { classes, ...other } = props;
+  return (
+    <Drawer
+      className={classes.drawer}
+      classes={{
+        paper: classes.drawerPaper
+      }}
+      variant="permanent"
+      anchor="left"
+    >
+      <Filters {...other} />
+    </Drawer>
+  );
+};
 
 SearchDrawer.propTypes = {
   setValueInMainState: PropTypes.func.isRequired
