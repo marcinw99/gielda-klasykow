@@ -3,30 +3,54 @@ import { Grid } from "@material-ui/core";
 import { StyledFormControl } from "./styledComponents";
 import PropTypes from "prop-types";
 
-import Autocomplete from "./Autocomplete";
+import { Autocomplete, Creatable } from "./Autocompletes";
 
-const DoubleInputs = props => (
-  <Grid container justify="center">
-    <StyledFormControl>
-      <Autocomplete
-        value={props.valueLeft}
-        options={props.options}
-        handleChange={props.handleChange}
-        name={props.nameLeft}
-        placeholder={props.labelLeft}
-      />
-    </StyledFormControl>
-    <StyledFormControl>
-      <Autocomplete
-        value={props.valueRight}
-        options={props.options}
-        handleChange={props.handleChange}
-        name={props.nameRight}
-        placeholder={props.labelRight}
-      />
-    </StyledFormControl>
-  </Grid>
-);
+const DoubleInputs = props =>
+  props.canCreateOption ? (
+    <Grid container justify="center">
+      <StyledFormControl>
+        <Creatable
+          unit={props.unit}
+          value={props.valueLeft}
+          options={props.options}
+          handleChange={props.handleChange}
+          name={props.nameLeft}
+          placeholder={props.labelLeft}
+        />
+      </StyledFormControl>
+      <StyledFormControl>
+        <Creatable
+          unit={props.unit}
+          value={props.valueRight}
+          options={props.options}
+          handleChange={props.handleChange}
+          name={props.nameRight}
+          placeholder={props.labelRight}
+        />
+      </StyledFormControl>
+    </Grid>
+  ) : (
+    <Grid container justify="center">
+      <StyledFormControl>
+        <Autocomplete
+          value={props.valueLeft}
+          options={props.options}
+          handleChange={props.handleChange}
+          name={props.nameLeft}
+          placeholder={props.labelLeft}
+        />
+      </StyledFormControl>
+      <StyledFormControl>
+        <Autocomplete
+          value={props.valueRight}
+          options={props.options}
+          handleChange={props.handleChange}
+          name={props.nameRight}
+          placeholder={props.labelRight}
+        />
+      </StyledFormControl>
+    </Grid>
+  );
 
 DoubleInputs.propTypes = {
   nameLeft: PropTypes.string.isRequired,

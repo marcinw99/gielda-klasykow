@@ -12,7 +12,7 @@ import {
   StyledExtendedFab,
   StyledFormControl
 } from "./styledComponents";
-import Autocomplete from "./Autocomplete";
+import { Autocomplete, Creatable } from "./Autocompletes";
 import DoubleInputs from "./DoubleInputs";
 import enumDisplayedText from "../../../../../resources/enumsDisplayedText";
 import { AVAILABLE_MODELS_OF_BRAND } from "../../../../../src/Queries/searchQueries";
@@ -42,6 +42,8 @@ const Layout = props => (
     <div className={props.classes.basicFiltersRoot}>
       <StyledFilterTitle>Cena (zł)</StyledFilterTitle>
       <DoubleInputs
+        canCreateOption
+        unit="PLN"
         nameLeft="price_gt"
         nameRight="price_lt"
         labelLeft="Cena od"
@@ -155,6 +157,8 @@ const Layout = props => (
         </Query>
       )}
       <DoubleInputs
+        canCreateOption
+        unit=""
         nameLeft="productionYear_gt"
         nameRight="productionYear_lt"
         labelLeft="Rok produkcji od"
@@ -168,6 +172,8 @@ const Layout = props => (
         }))}
       />
       <DoubleInputs
+        canCreateOption
+        unit="km"
         nameLeft="mileage_gt"
         nameRight="mileage_lt"
         labelLeft="Przebieg od"

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import isEqual from "react-fast-compare";
-import Creatable from "react-select/lib/Creatable";
+import Select from "react-select";
+import CreatableSelect from "react-select/lib/Creatable";
 import { MenuItem, Typography, Paper, TextField } from "@material-ui/core/";
 import { grey } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/core/styles";
@@ -138,7 +139,55 @@ const components = {
   NoOptionsMessage
 };
 
-class Autocomplete extends Component {
+class CreatableComponent extends Component {
+  state = {
+    options: [...this.props.options]
+  };
+
+  shouldComponentUpdate(nextProps) {
+    return !isEqual(nextProps, this.props);
+  }
+
+  handleChange = value => {
+    this.props.handleChange({
+      value,
+      name: this.props.name
+    });
+  };
+
+  handleCreate = inputValue => {
+    const { options } = this.props;
+    const newOption = this.createOption(inputValue);
+    this.setState({ options: [...options, newOption] }, () => {
+      this.handleChange(newOption);
+    });
+  };
+
+  createOption = input => ({
+    label: this.getFormatCreateLabel(input),
+    value: Number(input)
+  });
+
+  getFormatCreateLabel = label => `${label} ${this.props.unit}`;
+
+  render() {
+    return (
+      <CreatableSelect
+        classes={this.props.classes}
+        components={components}
+        options={this.state.options}
+        value={this.props.value}
+        onChange={this.handleChange}
+        onCreateOption={this.handleCreate}
+        formatCreateLabel={this.getFormatCreateLabel}
+        placeholder={this.props.placeholder}
+        isClearable
+      />
+    );
+  }
+}
+
+class AutocompleteComponent extends Component {
   shouldComponentUpdate(nextProps) {
     return !isEqual(nextProps, this.props);
   }
@@ -151,7 +200,7 @@ class Autocomplete extends Component {
   };
   render() {
     return (
-      <Creatable
+      <Select
         classes={this.props.classes}
         components={components}
         options={this.props.options}
@@ -164,11 +213,20 @@ class Autocomplete extends Component {
   }
 }
 
-Autocomplete.propTypes = {
+CreatableComponent.propTypes = {
   classes: PropTypes.object.isRequired,
   value: PropTypes.object,
   options: PropTypes.array.isRequired,
   handleChange: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(Autocomplete);
+AutocompleteComponent.propTypes = {
+  classes: PropTypes.object.isRequired,
+  value: PropTypes.object,
+  options: PropTypes.array.isRequired,
+  handleChange: PropTypes.func.isRequired
+};
+
+export const Creatable = withStyles(styles)(CreatableComponent);
+
+export const Autocomplete = withStyles(styles)(AutocompleteComponent);
