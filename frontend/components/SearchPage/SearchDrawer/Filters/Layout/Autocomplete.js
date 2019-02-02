@@ -1,11 +1,10 @@
 import React, { Component } from "react";
+import isEqual from "react-fast-compare";
 import Creatable from "react-select/lib/Creatable";
 import { MenuItem, Typography, Paper, TextField } from "@material-ui/core/";
 import { grey } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-
-import { filterArrayOfObjects } from "../helpers";
 
 const styles = theme => ({
   singleValue: {
@@ -140,30 +139,23 @@ const components = {
 };
 
 class Autocomplete extends Component {
-  handleChange = payload => {
-    const value = payload == null ? "" : payload.value;
+  shouldComponentUpdate(nextProps) {
+    return !isEqual(nextProps, this.props);
+  }
+
+  handleChange = value => {
     this.props.handleChange({
-      target: {
-        value,
-        name: this.props.name
-      }
+      value,
+      name: this.props.name
     });
   };
-
   render() {
-    console.log(this.props.value);
-    const value =
-      this.props.value == null
-        ? null
-        : filterArrayOfObjects(this.props.options, {
-            value: this.props.value
-          })[0];
     return (
       <Creatable
         classes={this.props.classes}
         components={components}
         options={this.props.options}
-        value={value}
+        value={this.props.value}
         onChange={this.handleChange}
         placeholder={this.props.placeholder}
         isClearable
@@ -173,7 +165,10 @@ class Autocomplete extends Component {
 }
 
 Autocomplete.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  value: PropTypes.object,
+  options: PropTypes.array.isRequired,
+  handleChange: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Autocomplete);

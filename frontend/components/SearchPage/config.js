@@ -1,3 +1,5 @@
+import { getArrayOfNumbers } from "./helpers";
+
 export const initialSearchParameters = {
   filters: {},
   sortBy: "createdAt_DESC",
@@ -14,18 +16,18 @@ export const SortOptions = [
 export const itemsLimitOptions = [5, 10, 15, 20];
 
 export const blankFiltersState = {
-  segment: "",
-  brand: "",
-  model: "",
-  fuelType: "",
-  localization: "",
-  productionYear_gt: "",
-  productionYear_lt: "",
-  mileage_gt: "",
-  mileage_lt: "",
-  price_lt: "",
-  price_gt: "",
-  keywords: ""
+  segment: null,
+  brand: null,
+  model: null,
+  fuelType: null,
+  localization: null,
+  productionYear_gt: null,
+  productionYear_lt: null,
+  mileage_gt: null,
+  mileage_lt: null,
+  price_lt: null,
+  price_gt: null,
+  keywords: null
 };
 
 export const staticFiltersOptions = {
@@ -38,13 +40,3 @@ export const staticFiltersOptions = {
   ),
   productionYear: getArrayOfNumbers(1960, 1, 60)
 };
-
-function getArrayOfNumbers(startWith, incrementBy, amountOfValues) {
-  var array = [];
-  var value = startWith;
-  for (let i = 0; i <= amountOfValues; i++) {
-    array.push(value);
-    value += incrementBy;
-  }
-  return array;
-}

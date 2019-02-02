@@ -5,10 +5,9 @@ import { blankFiltersState, initialSearchParameters } from "../../config";
 import {
   getTypesFields,
   prepareSelectsOptions,
-  formatObjectValuesToStrings,
-  shouldBeInQueryObject,
-  typeAcceptsValue
-} from "./helpers";
+  getFormattedFiltersData,
+  assignFiltersToProperQueryObject
+} from "../../helpers";
 
 const initialState = {
   filters: { ...blankFiltersState, ...initialSearchParameters.filters },
@@ -19,53 +18,33 @@ class Logic extends Component {
   state = initialState;
 
   componentDidMount() {
-    const { Post, Car } = getTypesFields(this.props.data);
-    this.setState({
-      typesFields: { Post, Car }
+    const typesFields = getTypesFields({
+      Car: this.props.data.Car.fields,
+      Post: this.props.data.Post.fields
     });
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.automaticFiltering !== this.state.automaticFiltering) {
-      return true;
-    }
-    return false;
+    this.setState({
+      typesFields
+    });
   }
 
   submitFilters = () => {
-    var queryObject = { car: {} };
-    Object.keys(this.state.filters).map(name => {
-      if (!shouldBeInQueryObject(this.state.filters[name])) {
-        return false;
-      }
-      if (typeAcceptsValue(this.state.typesFields.Post, name)) {
-        queryObject[name] = this.state.filters[name];
-      }
-      if (typeAcceptsValue(this.state.typesFields.Car, name)) {
-        queryObject.car[name] = this.state.filters[name];
-      }
+    const formattedFiltersData = getFormattedFiltersData({
+      ...this.state.filters
     });
-    this.props.setValueInMainState({ queryFilters: queryObject });
+    const queryFilters = assignFiltersToProperQueryObject({
+      filters: formattedFiltersData,
+      typesFields: this.state.typesFields
+    });
+    this.props.setValueInMainState({ queryFilters });
   };
 
-  handleChange = (event, shouldParseToNumber) => {
-    const { name } = event.target;
-    var value;
-    if (event.target.value.length === 0) {
-      value = "";
-    } else {
-      value =
-        shouldParseToNumber === true
-          ? Number(event.target.value)
-          : event.target.value;
-    }
-
+  handleChange = ({ name, value }) => {
     this.setState(
       prevState => ({
         filters: {
           ...prevState.filters,
           // reset model if brand is changed
-          model: name === "brand" ? "" : prevState.filters.model || "",
+          model: name === "brand" ? null : prevState.filters.model,
           [name]: value
         }
       }),
@@ -92,7 +71,7 @@ class Logic extends Component {
   render() {
     const selectsOptions = prepareSelectsOptions(this.props.data.Enums.fields);
     return React.cloneElement(this.props.children, {
-      values: formatObjectValuesToStrings(this.state.filters),
+      values: this.state.filters,
       handleChange: this.handleChange,
       resetFilters: this.resetFilters,
       selectsOptions: selectsOptions,

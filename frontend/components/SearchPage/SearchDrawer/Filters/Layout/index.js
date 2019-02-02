@@ -48,7 +48,7 @@ const Layout = props => (
         labelRight="Cena do"
         valueLeft={props.values.price_gt}
         valueRight={props.values.price_lt}
-        handleChange={e => props.handleChange(e, true)}
+        handleChange={props.handleChange}
         options={props.selectsOptions.price.map(item => ({
           label: `${item} PLN`,
           value: item
@@ -116,36 +116,43 @@ const Layout = props => (
           placeholder="Marka pojazdu"
         />
       </StyledFormControl>
-      {props.values.brand && props.values.brand.length !== 0 ? (
+      {props.values.brand == null ? (
+        <StyledFormControl>
+          <Autocomplete
+            options={[]}
+            handleChange={() => null}
+            placeholder="Model pojazdu"
+            name="model"
+          />
+        </StyledFormControl>
+      ) : (
         <Query
           query={AVAILABLE_MODELS_OF_BRAND}
           variables={{
-            brand: props.values.brand
+            brand: props.values.brand.value
           }}
         >
-          {({ data, error, loading }) => (
-            <StyledFormControl>
-              <Autocomplete
-                value={props.values.model}
-                options={
-                  data.availableModelsOfBrand
-                    ? data.availableModelsOfBrand.map(item => ({
-                        label: `${item.value} (${item.count})`,
-                        value: item.value
-                      }))
-                    : []
-                }
-                handleChange={props.handleChange}
-                name="model"
-                placeholder="Model pojazdu"
-              />
-            </StyledFormControl>
-          )}
+          {({ data, error, loading }) => {
+            return data ? (
+              <StyledFormControl>
+                <Autocomplete
+                  value={props.values.model}
+                  options={
+                    data.availableModelsOfBrand
+                      ? data.availableModelsOfBrand.map(item => ({
+                          label: `${item.value} (${item.count})`,
+                          value: item.value
+                        }))
+                      : []
+                  }
+                  handleChange={props.handleChange}
+                  name="model"
+                  placeholder="Model pojazdu"
+                />
+              </StyledFormControl>
+            ) : null;
+          }}
         </Query>
-      ) : (
-        <StyledFormControl>
-          <Autocomplete options={[]} placeholder="Model pojazdu" name="model" />
-        </StyledFormControl>
       )}
       <DoubleInputs
         nameLeft="productionYear_gt"
@@ -154,7 +161,7 @@ const Layout = props => (
         labelRight="Rok produkcji do"
         valueLeft={props.values.productionYear_gt}
         valueRight={props.values.productionYear_lt}
-        handleChange={e => props.handleChange(e, true)}
+        handleChange={props.handleChange}
         options={props.selectsOptions.productionYear.map(item => ({
           label: item,
           value: item
@@ -167,7 +174,7 @@ const Layout = props => (
         labelRight="Przebieg do"
         valueLeft={props.values.mileage_gt}
         valueRight={props.values.mileage_lt}
-        handleChange={e => props.handleChange(e, true)}
+        handleChange={props.handleChange}
         options={props.selectsOptions.mileage.map(item => ({
           label: `${item} km`,
           value: item
