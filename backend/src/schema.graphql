@@ -51,6 +51,7 @@ type Query {
   resetTokenValid(resetToken: String!): MessageCode
   modelsOfBrand(brand: Brand!): [String]
   availableModelsOfBrand(brand: Brand!): [ValueCount]
+  availableBrands: [ValueCount]
 }
 
 type Mutation {

@@ -48,6 +48,17 @@ const Query = {
     const allModels = allModelsRaw.map(item => item.model);
     var modelsCount = getOccurrencesOfValuesInArray(allModels);
     return modelsCount;
+  },
+  async availableBrands(parent, args, context, info) {
+    const allBrandsRaw = await context.db.query.cars(
+      {},
+      `{
+      brand
+    }`
+    );
+    const allBrands = allBrandsRaw.map(item => item.brand);
+    var brandCount = getOccurrencesOfValuesInArray(allBrands);
+    return brandCount;
   }
 };
 

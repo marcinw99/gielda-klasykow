@@ -74,7 +74,7 @@ class Logic extends Component {
       values: this.state.filters,
       handleChange: this.handleChange,
       resetFilters: this.resetFilters,
-      selectsOptions: selectsOptions,
+      selectsOptions: { ...selectsOptions, brand: this.props.data.Brands },
       automaticFiltering: this.state.automaticFiltering,
       toggleAutomaticFiltering: this.toggleAutomaticFiltering,
       manualResultsRefetch: this.submitFilters

@@ -12,7 +12,7 @@ import {
   StyledExtendedFab,
   StyledFormControl
 } from "./styledComponents";
-import { Autocomplete, Creatable } from "./Autocompletes";
+import { Autocomplete } from "./Autocompletes";
 import DoubleInputs from "./DoubleInputs";
 import enumDisplayedText from "../../../../../resources/enumsDisplayedText";
 import { AVAILABLE_MODELS_OF_BRAND } from "../../../../../src/Queries/searchQueries";
@@ -109,10 +109,16 @@ const Layout = props => (
       <StyledFormControl>
         <Autocomplete
           value={props.values.brand}
-          options={props.selectsOptions.brand.map(item => ({
-            label: enumDisplayedText("Car", "brand", item),
-            value: item
-          }))}
+          options={
+            props.selectsOptions.brand
+              ? props.selectsOptions.brand.map(item => ({
+                  label: `${enumDisplayedText("Car", "brand", item.value)} (${
+                    item.count
+                  })`,
+                  value: item.value
+                }))
+              : []
+          }
           handleChange={props.handleChange}
           name="brand"
           placeholder="Marka pojazdu"

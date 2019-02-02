@@ -14,7 +14,7 @@ const themeTogglerStyles = () => ({
 const ThemeTogglerComponent = props => {
   const { classes, darkTheme, ...other } = props;
   return (
-    <Fab size="small" color="primary" classes={classes} {...props}>
+    <Fab size="small" color="primary" classes={classes} {...other}>
       {darkTheme ? <Brightness7 /> : <Brightness3 />}
     </Fab>
   );

@@ -75,6 +75,10 @@ export const FILTERS_QUERIES = gql`
         name
       }
     }
+    Brands: availableBrands {
+      value
+      count
+    }
   }
 `;
 
