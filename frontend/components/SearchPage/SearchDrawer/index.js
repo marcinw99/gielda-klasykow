@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Drawer } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -17,21 +17,23 @@ const styles = theme => ({
   }
 });
 
-const SearchDrawer = props => {
-  const { classes, ...other } = props;
-  return (
-    <Drawer
-      className={classes.drawer}
-      classes={{
-        paper: classes.drawerPaper
-      }}
-      variant="permanent"
-      anchor="left"
-    >
-      <Filters {...other} />
-    </Drawer>
-  );
-};
+class SearchDrawer extends PureComponent {
+  render() {
+    const { classes, ...other } = this.props;
+    return (
+      <Drawer
+        className={classes.drawer}
+        classes={{
+          paper: classes.drawerPaper
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        <Filters {...other} />
+      </Drawer>
+    );
+  }
+}
 
 SearchDrawer.propTypes = {
   setValueInMainState: PropTypes.func.isRequired

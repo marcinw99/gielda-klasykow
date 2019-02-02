@@ -144,7 +144,7 @@ const Layout = props => (
         </Query>
       ) : (
         <StyledFormControl>
-          <Autocomplete options={[]} placeholder="Model pojazdu" />
+          <Autocomplete options={[]} placeholder="Model pojazdu" name="model" />
         </StyledFormControl>
       )}
       <DoubleInputs

@@ -1,5 +1,5 @@
-import React from "react";
-import Select from "react-select";
+import React, { Component } from "react";
+import Creatable from "react-select/lib/Creatable";
 import { MenuItem, Typography, Paper, TextField } from "@material-ui/core/";
 import { grey } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/core/styles";
@@ -139,32 +139,38 @@ const components = {
   NoOptionsMessage
 };
 
-const Autocomplete = props => {
-  const handleChange = payload => {
+class Autocomplete extends Component {
+  handleChange = payload => {
     const value = payload == null ? "" : payload.value;
-    props.handleChange({
+    this.props.handleChange({
       target: {
         value,
-        name: props.name
+        name: this.props.name
       }
     });
   };
-  const value =
-    props.value == null
-      ? null
-      : filterArrayOfObjects(props.options, { value: props.value })[0];
-  return (
-    <Select
-      classes={props.classes}
-      components={components}
-      options={props.options}
-      value={value}
-      onChange={handleChange}
-      placeholder={props.placeholder}
-      isClearable
-    />
-  );
-};
+
+  render() {
+    console.log(this.props.value);
+    const value =
+      this.props.value == null
+        ? null
+        : filterArrayOfObjects(this.props.options, {
+            value: this.props.value
+          })[0];
+    return (
+      <Creatable
+        classes={this.props.classes}
+        components={components}
+        options={this.props.options}
+        value={value}
+        onChange={this.handleChange}
+        placeholder={this.props.placeholder}
+        isClearable
+      />
+    );
+  }
+}
 
 Autocomplete.propTypes = {
   classes: PropTypes.object.isRequired

@@ -25,6 +25,13 @@ class Logic extends Component {
     });
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.automaticFiltering !== this.state.automaticFiltering) {
+      return true;
+    }
+    return false;
+  }
+
   submitFilters = () => {
     var queryObject = { car: {} };
     Object.keys(this.state.filters).map(name => {
@@ -43,10 +50,15 @@ class Logic extends Component {
 
   handleChange = (event, shouldParseToNumber) => {
     const { name } = event.target;
-    const value =
-      shouldParseToNumber === true
-        ? Number(event.target.value)
-        : event.target.value;
+    var value;
+    if (event.target.value.length === 0) {
+      value = "";
+    } else {
+      value =
+        shouldParseToNumber === true
+          ? Number(event.target.value)
+          : event.target.value;
+    }
 
     this.setState(
       prevState => ({
