@@ -9,11 +9,15 @@ import PropTypes from "prop-types";
 import withData from "../src/withData";
 import Page from "../components/Page";
 import getPageContext from "../src/getPageContext";
+import { theme, darkTheme } from "../src/customTheme";
 
 class MyApp extends App {
   constructor(props) {
     super(props);
     this.pageContext = getPageContext();
+    this.state = {
+      darkTheme: false
+    };
   }
 
   static async getInitialProps({ Component, ctx }) {
@@ -33,6 +37,12 @@ class MyApp extends App {
     }
   }
 
+  toggleTheme = () => {
+    this.setState(prevProps => ({
+      darkTheme: !prevProps.darkTheme
+    }));
+  };
+
   render() {
     const { Component, pageProps } = this.props;
     return (
@@ -42,12 +52,15 @@ class MyApp extends App {
           generateClassName={this.pageContext.generateClassName}
         >
           <MuiThemeProvider
-            theme={this.pageContext.theme}
+            theme={this.state.darkTheme ? darkTheme : theme}
             sheetsManager={this.pageContext.sheetsManager}
           >
             <CssBaseline />
             <ApolloProvider client={this.props.apollo}>
-              <Page>
+              <Page
+                toggleTheme={this.toggleTheme}
+                darkTheme={this.state.darkTheme}
+              >
                 <Component pageContext={this.pageContext} {...pageProps} />
               </Page>
             </ApolloProvider>

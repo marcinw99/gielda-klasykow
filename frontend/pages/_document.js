@@ -34,10 +34,7 @@ class MyDocument extends Document {
           <link rel="shortcut icon" href="static/favicons/favicon.ico" />
           <link rel="manifest" href="static/favicons/site.webmanifest" />
           <meta name="msapplication-TileColor" content="#da532c" />
-          <meta
-            name="theme-color"
-            content={this.props.pageContext.theme.palette.primary.main}
-          />
+          <meta name="theme-color" content="#3e2723" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"

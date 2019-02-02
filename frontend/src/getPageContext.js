@@ -1,10 +1,8 @@
 import { SheetsRegistry } from "jss";
 import { createGenerateClassName } from "@material-ui/core/styles";
-import theme from "./customTheme";
 
 function createPageContext() {
   return {
-    theme,
     sheetsManager: new Map(),
     sheetsRegistry: new SheetsRegistry(),
     generateClassName: createGenerateClassName()

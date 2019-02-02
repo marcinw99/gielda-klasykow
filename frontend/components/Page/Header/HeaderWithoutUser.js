@@ -4,8 +4,15 @@ import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
 const styles = theme => ({
-  buttons: {
+  root: {
     margin: theme.spacing.unit
+  },
+  contained: {
+    background: theme.palette.primary.dark
+  },
+  outlined: {
+    color: theme.palette.primary.dark,
+    borderColor: theme.palette.primary.dark
   }
 });
 
@@ -20,7 +27,7 @@ const HeaderWithoutUser = props => (
       <Button
         color="primary"
         variant="contained"
-        className={props.classes.buttons}
+        classes={props.classes}
         aria-haspopup="true"
         onClick={props.openRegister}
       >
@@ -29,7 +36,7 @@ const HeaderWithoutUser = props => (
       <Button
         color="primary"
         variant="outlined"
-        className={props.classes.buttons}
+        classes={props.classes}
         aria-haspopup="true"
         onClick={props.openLogin}
       >

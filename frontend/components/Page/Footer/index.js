@@ -14,13 +14,15 @@ const styles = theme => ({
     marginTop: theme.spacing.unit
   },
   socialMediaButton: {
+    color: theme.palette.primary.dark,
+    borderColor: theme.palette.primary.dark,
     margin: theme.spacing.unit * 1.5
   },
   simpleLink: {
     paddingLeft: theme.spacing.unit * 0.2
   },
   simpleLinkTypography: {
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.dark,
     width: "100%"
   }
 });
