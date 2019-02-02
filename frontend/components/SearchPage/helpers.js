@@ -1,5 +1,6 @@
 import { pipe } from "lodash/fp";
 import { staticFiltersOptions } from "./config";
+import { isArray } from "util";
 
 // standalone functions
 
@@ -71,7 +72,11 @@ const filterOutEmptyValues = data => {
 const normalizeObjectProperties = data => {
   var result = {};
   for (const key in data) {
-    result[key] = data[key].value;
+    if (isArray(data[key])) {
+      result[key] = data[key];
+    } else {
+      result[key] = data[key].value;
+    }
   }
   return result;
 };

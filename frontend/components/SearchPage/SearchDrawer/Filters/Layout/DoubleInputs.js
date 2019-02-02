@@ -7,9 +7,10 @@ import { Autocomplete, Creatable } from "./Autocompletes";
 
 const DoubleInputs = props =>
   props.canCreateOption ? (
-    <Grid container justify="center">
+    <Grid container justify={props.justify ? props.justify : "center"}>
       <StyledFormControl>
         <Creatable
+          darkLabel={props.darkLabel}
           unit={props.unit}
           value={props.valueLeft}
           options={props.options}
@@ -20,6 +21,7 @@ const DoubleInputs = props =>
       </StyledFormControl>
       <StyledFormControl>
         <Creatable
+          darkLabel={props.darkLabel}
           unit={props.unit}
           value={props.valueRight}
           options={props.options}
@@ -33,6 +35,7 @@ const DoubleInputs = props =>
     <Grid container justify="center">
       <StyledFormControl>
         <Autocomplete
+          darkLabel={props.darkLabel}
           value={props.valueLeft}
           options={props.options}
           handleChange={props.handleChange}
@@ -42,6 +45,7 @@ const DoubleInputs = props =>
       </StyledFormControl>
       <StyledFormControl>
         <Autocomplete
+          darkLabel={props.darkLabel}
           value={props.valueRight}
           options={props.options}
           handleChange={props.handleChange}

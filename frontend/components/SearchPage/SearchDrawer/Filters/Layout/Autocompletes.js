@@ -12,6 +12,10 @@ const styles = theme => ({
     fontSize: 16,
     color: theme.palette.primary.contrastText
   },
+  singleValueDark: {
+    fontSize: 16,
+    color: theme.palette.primary.dark
+  },
   valueContainer: {
     display: "flex",
     flexWrap: "wrap",
@@ -66,9 +70,14 @@ function Menu(props) {
 }
 
 function SingleValue(props) {
+  console.log(props);
   return (
     <Typography
-      className={props.selectProps.classes.singleValue}
+      className={
+        props.selectProps.darkLabel
+          ? props.selectProps.classes.singleValueDark
+          : props.selectProps.classes.singleValue
+      }
       {...props.innerProps}
     >
       {props.children}
@@ -173,6 +182,7 @@ class CreatableComponent extends Component {
   render() {
     return (
       <CreatableSelect
+        darkLabel={this.props.darkLabel}
         classes={this.props.classes}
         components={components}
         options={this.state.options}
@@ -201,6 +211,7 @@ class AutocompleteComponent extends Component {
   render() {
     return (
       <Select
+        darkLabel={this.props.darkLabel}
         classes={this.props.classes}
         components={components}
         options={this.props.options}

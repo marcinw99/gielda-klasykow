@@ -15,6 +15,33 @@ export const SortOptions = [
 
 export const itemsLimitOptions = [5, 10, 15, 20];
 
+export const staticFiltersOptions = {
+  localization: ["Dębica", "Rzeszów", "Kraków", "Podlasie", "Warszawa"],
+  price: getArrayOfNumbers(10000, 10000, 10).concat(
+    getArrayOfNumbers(125000, 25000, 7)
+  ),
+  mileage: getArrayOfNumbers(10000, 10000, 10).concat(
+    getArrayOfNumbers(125000, 25000, 7)
+  ),
+  productionYear: getArrayOfNumbers(1960, 1, 60),
+  engineSize: getArrayOfNumbers(500, 250, 6).concat(
+    getArrayOfNumbers(2500, 500, 9)
+  ),
+  power: getArrayOfNumbers(50, 25, 8).concat(getArrayOfNumbers(300, 50, 6)),
+  torque: getArrayOfNumbers(100, 50, 12)
+};
+
+export const blankFiltersStateEngineAndDrive = {
+  engineSize_gt: null,
+  engineSize_lt: null,
+  power_gt: null,
+  power_lt: null,
+  torque_gt: null,
+  torque_lt: null,
+  transmission_in: [],
+  drive_in: []
+};
+
 export const blankFiltersState = {
   segment: null,
   brand: null,
@@ -27,16 +54,6 @@ export const blankFiltersState = {
   mileage_lt: null,
   price_lt: null,
   price_gt: null,
-  keywords: null
-};
-
-export const staticFiltersOptions = {
-  localization: ["Dębica", "Rzeszów", "Kraków", "Podlasie", "Warszawa"],
-  price: getArrayOfNumbers(10000, 10000, 10).concat(
-    getArrayOfNumbers(125000, 25000, 7)
-  ),
-  mileage: getArrayOfNumbers(10000, 10000, 10).concat(
-    getArrayOfNumbers(125000, 25000, 7)
-  ),
-  productionYear: getArrayOfNumbers(1960, 1, 60)
+  keywords: null,
+  ...blankFiltersStateEngineAndDrive
 };

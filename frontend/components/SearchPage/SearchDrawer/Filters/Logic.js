@@ -56,10 +56,27 @@ class Logic extends Component {
     );
   };
 
+  handleChangeWithoutFiltering = ({ name, value }) => {
+    this.setState(prevState => ({
+      filters: {
+        ...prevState.filters,
+        // reset model if brand is changed
+        model: name === "brand" ? null : prevState.filters.model,
+        [name]: value
+      }
+    }));
+  };
+
   resetFilters = () => {
     this.setState({ filters: blankFiltersState }, () => {
       this.submitFilters();
     });
+  };
+
+  resetSpecificFiltersWithoutFiltering = blankFilters => {
+    this.setState(prevState => ({
+      filters: { ...prevState.filters, ...blankFilters }
+    }));
   };
 
   toggleAutomaticFiltering = () => {
@@ -73,7 +90,10 @@ class Logic extends Component {
     return React.cloneElement(this.props.children, {
       values: this.state.filters,
       handleChange: this.handleChange,
+      handleChangeWithoutFiltering: this.handleChangeWithoutFiltering,
       resetFilters: this.resetFilters,
+      resetSpecificFiltersWithoutFiltering: this
+        .resetSpecificFiltersWithoutFiltering,
       selectsOptions: { ...selectsOptions, brand: this.props.data.Brands },
       automaticFiltering: this.state.automaticFiltering,
       toggleAutomaticFiltering: this.toggleAutomaticFiltering,

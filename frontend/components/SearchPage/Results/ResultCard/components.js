@@ -11,7 +11,7 @@ export const CardTitle = ({
 }) => (
   <Grid container justify="space-between">
     <Typography variant="h6">
-      {enumsDisplayedText("Car", "brand", brand)} {model} {version}
+      {enumsDisplayedText("brand", brand)} {model} {version}
     </Typography>
     <div style={{ minWidth: "20px" }} />
     <Typography variant="h6" color="secondary">
@@ -26,7 +26,7 @@ export const FuelType = ({ classes, value }) => (
       <path {...SvgIcons.gas} />
     </SvgIcon>
     <Typography className={classes.bold}>
-      {enumsDisplayedText("Car", "fuelType", value)}
+      {enumsDisplayedText("fuelType", value)}
     </Typography>
   </Grid>
 );
