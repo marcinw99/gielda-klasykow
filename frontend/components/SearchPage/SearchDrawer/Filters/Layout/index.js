@@ -3,6 +3,7 @@ import { Grid, FormControlLabel } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Query } from "react-apollo";
 import PropTypes from "prop-types";
+import { remove } from "lodash";
 
 import {
   StyledClearFab,
@@ -17,7 +18,7 @@ import DoubleInputs from "./DoubleInputs";
 import enumDisplayedText from "../../../../../resources/enumsDisplayedText";
 import { AVAILABLE_MODELS_OF_BRAND } from "../../../../../src/Queries/searchQueries";
 import EngineAndDriveModal from "./modals/EngineAndDriveModal";
-import BodyModal from "./modals/BodyModal";
+import BodyAndAppereanceModal from "./modals/BodyAndAppereanceModal";
 import AdditionalAccessoriesModal from "./modals/AdditionalAccessoriesModal";
 import VehicleStatusModal from "./modals/VehicleStatusModal";
 
@@ -68,10 +69,35 @@ class Layout extends Component {
     );
   };
 
+  handleMultiCheckboxChange = field => event => {
+    var result;
+    const prevValue = [...this.props.values[field]];
+    const { value, checked } = event.target;
+    if (checked && prevValue.indexOf(value) === -1) {
+      result = [...prevValue, value];
+    }
+    if (!checked && prevValue.indexOf(value) !== -1) {
+      result = remove(prevValue, item => item !== value);
+    }
+    this.props.handleChangeWithoutFiltering({
+      name: field,
+      value: result
+    });
+  };
+
+  handleSingleCheckboxChange = field => event => {
+    this.props.handleChangeWithoutFiltering({
+      name: field,
+      value: event.target.checked
+    });
+  };
+
   render() {
     const modalProps = {
       openedModal: this.state.openedModal,
-      handleChange: this.props.handleChangeWithoutFiltering,
+      handleChangeWithoutFiltering: this.props.handleChangeWithoutFiltering,
+      handleMultiCheckboxChange: this.handleMultiCheckboxChange,
+      handleSingleCheckboxChange: this.handleSingleCheckboxChange,
       values: this.props.values,
       resetSpecificFiltersWithoutFiltering: this.props
         .resetSpecificFiltersWithoutFiltering,
@@ -95,7 +121,7 @@ class Layout extends Component {
               valueLeft={this.props.values.price_gt}
               valueRight={this.props.values.price_lt}
               handleChange={this.props.handleChange}
-              options={this.props.selectsOptions.price.map(item => ({
+              options={this.props.selectsOptions.Price.map(item => ({
                 label: `${item} PLN`,
                 value: item
               }))}
@@ -103,7 +129,7 @@ class Layout extends Component {
             <StyledFilterTitle>Lokalizacja</StyledFilterTitle>
             <StyledFormControl>
               <Autocomplete
-                options={this.props.selectsOptions.localization.map(item => ({
+                options={this.props.selectsOptions.Localization.map(item => ({
                   label: item,
                   value: item
                 }))}
@@ -115,7 +141,7 @@ class Layout extends Component {
             </StyledFormControl>
             <StyledFormControl>
               <Autocomplete
-                options={this.props.selectsOptions.localization.map(item => ({
+                options={this.props.selectsOptions.Localization.map(item => ({
                   label: item,
                   value: item
                 }))}
@@ -129,7 +155,7 @@ class Layout extends Component {
             <StyledFormControl>
               <Autocomplete
                 value={this.props.values.segment}
-                options={this.props.selectsOptions.segment.map(item => ({
+                options={this.props.selectsOptions.Segment.map(item => ({
                   label: item,
                   value: item
                 }))}
@@ -141,7 +167,7 @@ class Layout extends Component {
             <StyledFormControl>
               <Autocomplete
                 value={this.props.values.fuelType}
-                options={this.props.selectsOptions.fuelType.map(item => ({
+                options={this.props.selectsOptions.FuelType.map(item => ({
                   label: enumDisplayedText("fuelType", item),
                   value: item
                 }))}
@@ -154,8 +180,8 @@ class Layout extends Component {
               <Autocomplete
                 value={this.props.values.brand}
                 options={
-                  this.props.selectsOptions.brand
-                    ? this.props.selectsOptions.brand.map(item => ({
+                  this.props.selectsOptions.Brand
+                    ? this.props.selectsOptions.Brand.map(item => ({
                         label: `${enumDisplayedText("brand", item.value)} (${
                           item.count
                         })`,
@@ -216,7 +242,7 @@ class Layout extends Component {
               valueLeft={this.props.values.productionYear_gt}
               valueRight={this.props.values.productionYear_lt}
               handleChange={this.props.handleChange}
-              options={this.props.selectsOptions.productionYear.map(item => ({
+              options={this.props.selectsOptions.ProductionYear.map(item => ({
                 label: item,
                 value: item
               }))}
@@ -231,7 +257,7 @@ class Layout extends Component {
               valueLeft={this.props.values.mileage_gt}
               valueRight={this.props.values.mileage_lt}
               handleChange={this.props.handleChange}
-              options={this.props.selectsOptions.mileage.map(item => ({
+              options={this.props.selectsOptions.Mileage.map(item => ({
                 label: `${item} km`,
                 value: item
               }))}
@@ -244,8 +270,10 @@ class Layout extends Component {
             >
               Silnik i napęd
             </StyledExtendedFab>
-            <StyledExtendedFab onClick={() => this.openModal("BodyModal")}>
-              Nadwozie
+            <StyledExtendedFab
+              onClick={() => this.openModal("BodyAndAppereanceModal")}
+            >
+              Nadwozie i wygląd
             </StyledExtendedFab>
             <StyledExtendedFab
               onClick={() => this.openModal("AdditionalAccessoriesModal")}
@@ -260,7 +288,7 @@ class Layout extends Component {
           </div>
         </form>
         <EngineAndDriveModal {...modalProps} />
-        <BodyModal {...modalProps} />
+        <BodyAndAppereanceModal {...modalProps} />
         <AdditionalAccessoriesModal {...modalProps} />
         <VehicleStatusModal {...modalProps} />
       </Fragment>

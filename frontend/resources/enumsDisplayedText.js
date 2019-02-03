@@ -81,5 +81,28 @@ const variants = {
     FOUR_WHEEL_DRIVE_AUTOMATIC: "4x4 dołączany automatycznie",
     FOUR_WHEEL_DRIVE_MANUAL: "4x4 dołączany ręcznie",
     FOUR_WHEEL_DRIVE_FIXED: "4x4 stały"
+  },
+  color: {
+    WHITE: "Biały",
+    BEIGE: "Beżowy",
+    MAROON: "Bordowy",
+    BROWN: "Brązowy",
+    BLACK: "Czarny",
+    RED: "Czerwony",
+    VIOLET: "Fioletowy",
+    BLUE: "Niebieski",
+    SILVER: "Srebrny",
+    GRAY: "Szary",
+    GREEN: "Zielony",
+    GOLD: "Złoty",
+    YELLOW: "Żółty",
+    OTHER: "Inny"
+  },
+  AdditionalAccessory_Appereance: {
+    ALLOY_WHEELS: "Ameliniowe felgi",
+    TINTED_WINDOWS: "Przyciemniane szyby",
+    METALLIC_PAINT: "Lakier metalik",
+    MATTE_PAINT: "Lakier matowy",
+    PEARL_PAINT: "Lakier perłowy"
   }
 };

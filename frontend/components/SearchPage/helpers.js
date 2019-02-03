@@ -1,5 +1,5 @@
 import { pipe } from "lodash/fp";
-import { staticFiltersOptions } from "./config";
+import { staticFiltersOptions, fetchedFiltersOptions } from "./config";
 import { isArray } from "util";
 
 // standalone functions
@@ -18,25 +18,13 @@ export function getArrayOfNumbers(startWith, incrementBy, amountOfValues) {
 }
 
 export function prepareSelectsOptions(input) {
-  // returns possible values of enum types in db
-  // enumValues are differently nested ( don't know why ),
-  var values = input.filter(item => {
-    if (item.type.kind === "ENUM") {
-      return true;
-    }
-    if (item.type.ofType != null) {
-      if (item.type.ofType.kind === "ENUM") {
-        return true;
-      }
-    }
-    return false;
-  });
+  var values = input.filter(
+    item =>
+      item.kind === "ENUM" && fetchedFiltersOptions.indexOf(item.name) !== -1
+  );
   var results = {};
   for (let item in values) {
-    results[values[item].name] = (values[item].type.enumValues == null
-      ? values[item].type.ofType.enumValues
-      : values[item].type.enumValues
-    ).map(item => item.name);
+    results[values[item].name] = values[item].enumValues.map(item => item.name);
   }
   return { ...results, ...staticFiltersOptions };
 }

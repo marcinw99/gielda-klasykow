@@ -47,21 +47,12 @@ export const ALL_POSTS_QUERY = gql`
 
 export const FILTERS_QUERIES = gql`
   query FILTERS_QUERIES {
-    Enums: __type(name: "Car") {
-      fields {
+    Enums: __schema {
+      types {
         name
-        type {
-          enumValues {
-            name
-          }
-          kind
-          ofType {
-            enumValues {
-              name
-            }
-            name
-            kind
-          }
+        kind
+        enumValues {
+          name
         }
       }
     }

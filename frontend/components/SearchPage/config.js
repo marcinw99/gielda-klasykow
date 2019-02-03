@@ -15,20 +15,34 @@ export const SortOptions = [
 
 export const itemsLimitOptions = [5, 10, 15, 20];
 
+/* Brand and Model fetched separately */
+export const fetchedFiltersOptions = [
+  "Segment",
+  "FuelType",
+  "Transmission",
+  "Drive",
+  "AdditionalAccessory_Safety",
+  "AdditionalAccessory_Comfort_Passenger",
+  "AdditionalAccessory_Comfort_Driver",
+  "AdditionalAccessory_Appereance",
+  "Color",
+  "Country"
+];
+
 export const staticFiltersOptions = {
-  localization: ["Dębica", "Rzeszów", "Kraków", "Podlasie", "Warszawa"],
-  price: getArrayOfNumbers(10000, 10000, 10).concat(
+  Localization: ["Dębica", "Rzeszów", "Kraków", "Podlasie", "Warszawa"],
+  Price: getArrayOfNumbers(10000, 10000, 10).concat(
     getArrayOfNumbers(125000, 25000, 7)
   ),
-  mileage: getArrayOfNumbers(10000, 10000, 10).concat(
+  Mileage: getArrayOfNumbers(10000, 10000, 10).concat(
     getArrayOfNumbers(125000, 25000, 7)
   ),
-  productionYear: getArrayOfNumbers(1960, 1, 60),
-  engineSize: getArrayOfNumbers(500, 250, 6).concat(
+  ProductionYear: getArrayOfNumbers(1960, 1, 60),
+  EngineSize: getArrayOfNumbers(500, 250, 6).concat(
     getArrayOfNumbers(2500, 500, 9)
   ),
-  power: getArrayOfNumbers(50, 25, 8).concat(getArrayOfNumbers(300, 50, 6)),
-  torque: getArrayOfNumbers(100, 50, 12)
+  Power: getArrayOfNumbers(50, 25, 8).concat(getArrayOfNumbers(300, 50, 6)),
+  Torque: getArrayOfNumbers(100, 50, 12)
 };
 
 export const blankFiltersStateEngineAndDrive = {
@@ -38,8 +52,15 @@ export const blankFiltersStateEngineAndDrive = {
   power_lt: null,
   torque_gt: null,
   torque_lt: null,
+  hasParticulateFilter: "deleteFromFilters",
   transmission_in: [],
   drive_in: []
+};
+
+export const blankFiltersStateBody = {
+  color_in: [],
+  steeringWheelOnTheRight: "deleteFromFilters",
+  AdditionalAccessory_Appereance_in: []
 };
 
 export const blankFiltersState = {
@@ -55,5 +76,6 @@ export const blankFiltersState = {
   price_lt: null,
   price_gt: null,
   keywords: null,
-  ...blankFiltersStateEngineAndDrive
+  ...blankFiltersStateEngineAndDrive,
+  ...blankFiltersStateBody
 };

@@ -86,7 +86,10 @@ class Logic extends Component {
   };
 
   render() {
-    const selectsOptions = prepareSelectsOptions(this.props.data.Enums.fields);
+    const selectsOptions = {
+      ...prepareSelectsOptions(this.props.data.Enums.types),
+      Brand: this.props.data.Brands
+    };
     return React.cloneElement(this.props.children, {
       values: this.state.filters,
       handleChange: this.handleChange,
@@ -94,7 +97,7 @@ class Logic extends Component {
       resetFilters: this.resetFilters,
       resetSpecificFiltersWithoutFiltering: this
         .resetSpecificFiltersWithoutFiltering,
-      selectsOptions: { ...selectsOptions, brand: this.props.data.Brands },
+      selectsOptions,
       automaticFiltering: this.state.automaticFiltering,
       toggleAutomaticFiltering: this.toggleAutomaticFiltering,
       manualResultsRefetch: this.submitFilters
