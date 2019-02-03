@@ -57,10 +57,16 @@ export const blankFiltersStateEngineAndDrive = {
   drive_in: []
 };
 
-export const blankFiltersStateBody = {
+export const blankFiltersStateBodyAndAppereance = {
   color_in: [],
   steeringWheelOnTheRight: "deleteFromFilters",
-  AdditionalAccessory_Appereance_in: []
+  additionalAccessories_Appereance_in: []
+};
+
+export const blankFiltersStateAdditionalAccessories = {
+  additionalAccessories_Safety_in: [],
+  additionalAccessories_Comfort_Driver_in: [],
+  additionalAccessories_Comfort_Passenger_in: []
 };
 
 export const blankFiltersState = {
@@ -77,5 +83,6 @@ export const blankFiltersState = {
   price_gt: null,
   keywords: null,
   ...blankFiltersStateEngineAndDrive,
-  ...blankFiltersStateBody
+  ...blankFiltersStateBodyAndAppereance,
+  ...blankFiltersStateAdditionalAccessories
 };

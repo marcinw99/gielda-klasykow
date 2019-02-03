@@ -6,18 +6,32 @@ import { Paper, Typography, withStyles, FormControl } from "@material-ui/core";
 const modalPaperStyles = theme => ({
   root: {
     position: "absolute",
-    width: theme.spacing.unit * 80,
     padding: theme.spacing.unit * 4,
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    outline: "none"
+    outline: "none",
+    maxHeight: "90vh",
+    overflowY: "auto"
+  },
+  normal: {
+    width: theme.spacing.unit * 80
+  },
+  wide: {
+    width: theme.spacing.unit * 90
   }
 });
 
 const ModalPaperComponent = props => {
-  const { classes, ...other } = props;
-  return <Paper square classes={classes} elevation={24} {...other} />;
+  const { classes, wide, ...other } = props;
+  return (
+    <Paper
+      square
+      className={`${classes.root} ${wide ? classes.wide : classes.normal}`}
+      elevation={24}
+      {...other}
+    />
+  );
 };
 
 export const ModalPaper = withStyles(modalPaperStyles)(ModalPaperComponent);

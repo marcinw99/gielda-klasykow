@@ -9,7 +9,7 @@ import {
   Select
 } from "@material-ui/core";
 
-import { blankFiltersStateBody } from "../../../../config";
+import { blankFiltersStateBodyAndAppereance } from "../../../../config";
 import enumsDisplayedText from "../../../../../../resources/enumsDisplayedText";
 import {
   ModalPaper,
@@ -34,7 +34,7 @@ const BodyAndAppereanceModal = props => (
     onClose={props.closeModal}
   >
     <ModalPaper>
-      <Header title="Nadwozie" handleClose={props.closeModal} />
+      <Header title="Nadwozie i wygląd" handleClose={props.closeModal} />
       <ModalContent>
         <StyledFilterTitle>Kolor lakieru</StyledFilterTitle>
         <StyledFormControl>
@@ -83,18 +83,18 @@ const BodyAndAppereanceModal = props => (
                 control={
                   <Checkbox
                     checked={
-                      props.values.AdditionalAccessory_Appereance_in.indexOf(
+                      props.values.additionalAccessories_Appereance_in.indexOf(
                         item
                       ) !== -1
                     }
                     onChange={props.handleMultiCheckboxChange(
-                      "AdditionalAccessory_Appereance_in"
+                      "additionalAccessories_Appereance_in"
                     )}
                     value={item}
                   />
                 }
                 label={enumsDisplayedText(
-                  "AdditionalAccessory_Appereance",
+                  "additionalAccessories_Appereance",
                   item
                 )}
               />
@@ -105,7 +105,9 @@ const BodyAndAppereanceModal = props => (
       <Footer
         handleSubmit={props.submitModal}
         handleReset={() => {
-          props.resetSpecificFiltersWithoutFiltering(blankFiltersStateBody);
+          props.resetSpecificFiltersWithoutFiltering(
+            blankFiltersStateBodyAndAppereance
+          );
         }}
       />
     </ModalPaper>
