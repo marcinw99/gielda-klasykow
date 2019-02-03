@@ -56,3 +56,21 @@ const FilterTitle = props => {
 };
 
 export const StyledFilterTitle = withStyles(filterTitleStyles)(FilterTitle);
+
+// StyledFormControl
+
+const formControlStyles = theme => ({
+  root: {
+    minWidth: 150,
+    margin: theme.spacing.unit
+  }
+});
+
+const FormControlComponent = props => {
+  const { classes, ...other } = props;
+  return <FormControl classes={classes} {...other} />;
+};
+
+export const StyledFormControl = withStyles(formControlStyles)(
+  FormControlComponent
+);

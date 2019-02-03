@@ -3,7 +3,6 @@ import {
   Modal,
   FormControlLabel,
   Checkbox,
-  FormControl,
   Grid,
   Select,
   MenuItem,
@@ -16,7 +15,8 @@ import DoubleInputs from "../DoubleInputs";
 import {
   ModalPaper,
   ModalContent,
-  StyledFilterTitle
+  StyledFilterTitle,
+  StyledFormControl
 } from "./styledComponents";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -25,10 +25,6 @@ const styles = theme => ({
   formControlLabel: {
     width: 250,
     maxHeight: 32
-  },
-  formControl: {
-    minWidth: 150,
-    margin: theme.spacing.unit
   }
 });
 
@@ -98,7 +94,7 @@ const EngineAndDriveModal = props => (
           }))}
         />
         <StyledFilterTitle>Posiada filtr cząstek stałych</StyledFilterTitle>
-        <FormControl className={props.classes.formControl}>
+        <StyledFormControl>
           <Select
             value={props.values.hasParticulateFilter}
             onChange={e => props.handleChangeWithoutFiltering(e.target)}
@@ -112,9 +108,9 @@ const EngineAndDriveModal = props => (
             <MenuItem value={true}>Tak</MenuItem>
             <MenuItem value={false}>Nie</MenuItem>
           </Select>
-        </FormControl>
+        </StyledFormControl>
         <StyledFilterTitle>Rodzaj skrzyni biegów</StyledFilterTitle>
-        <FormControl>
+        <StyledFormControl>
           <Grid container justify="flex-start">
             {props.selectsOptions.Transmission.map(item => (
               <FormControlLabel
@@ -133,9 +129,9 @@ const EngineAndDriveModal = props => (
               />
             ))}
           </Grid>
-        </FormControl>
+        </StyledFormControl>
         <StyledFilterTitle>Rodzaj układu napędowego</StyledFilterTitle>
-        <FormControl>
+        <StyledFormControl>
           <Grid container justify="flex-start">
             {props.selectsOptions.Drive.map(item => (
               <FormControlLabel
@@ -152,7 +148,7 @@ const EngineAndDriveModal = props => (
               />
             ))}
           </Grid>
-        </FormControl>
+        </StyledFormControl>
       </ModalContent>
       <Footer
         handleSubmit={props.submitModal}

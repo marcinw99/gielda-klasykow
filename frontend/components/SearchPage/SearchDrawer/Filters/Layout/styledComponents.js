@@ -4,8 +4,7 @@ import {
   LinearProgress,
   Typography,
   Switch,
-  FormControl,
-  Paper
+  FormControl
 } from "@material-ui/core";
 import { Search, Clear } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";

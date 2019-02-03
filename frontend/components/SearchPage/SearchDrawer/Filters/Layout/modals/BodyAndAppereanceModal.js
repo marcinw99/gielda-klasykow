@@ -3,7 +3,6 @@ import {
   Modal,
   FormControlLabel,
   Checkbox,
-  FormControl,
   Grid,
   withStyles,
   MenuItem,
@@ -15,7 +14,8 @@ import enumsDisplayedText from "../../../../../../resources/enumsDisplayedText";
 import {
   ModalPaper,
   ModalContent,
-  StyledFilterTitle
+  StyledFilterTitle,
+  StyledFormControl
 } from "./styledComponents";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -24,10 +24,6 @@ const styles = theme => ({
   formControlLabel: {
     width: 250,
     maxHeight: 32
-  },
-  formControl: {
-    minWidth: 150,
-    margin: theme.spacing.unit
   }
 });
 
@@ -41,7 +37,7 @@ const BodyAndAppereanceModal = props => (
       <Header title="Nadwozie" handleClose={props.closeModal} />
       <ModalContent>
         <StyledFilterTitle>Kolor lakieru</StyledFilterTitle>
-        <FormControl>
+        <StyledFormControl>
           <Grid container justify="flex-start">
             {props.selectsOptions.Color.map(item => (
               <FormControlLabel
@@ -58,11 +54,11 @@ const BodyAndAppereanceModal = props => (
               />
             ))}
           </Grid>
-        </FormControl>
+        </StyledFormControl>
         <StyledFilterTitle>
           Kierownica po prawej stronie (anglik)
         </StyledFilterTitle>
-        <FormControl className={props.classes.formControl}>
+        <StyledFormControl>
           <Select
             value={props.values.steeringWheelOnTheRight}
             onChange={e => props.handleChangeWithoutFiltering(e.target)}
@@ -76,9 +72,9 @@ const BodyAndAppereanceModal = props => (
             <MenuItem value={true}>Tak</MenuItem>
             <MenuItem value={false}>Nie</MenuItem>
           </Select>
-        </FormControl>
+        </StyledFormControl>
         <StyledFilterTitle>Wygląd</StyledFilterTitle>
-        <FormControl>
+        <StyledFormControl>
           <Grid container justify="flex-start">
             {props.selectsOptions.AdditionalAccessory_Appereance.map(item => (
               <FormControlLabel
@@ -104,7 +100,7 @@ const BodyAndAppereanceModal = props => (
               />
             ))}
           </Grid>
-        </FormControl>
+        </StyledFormControl>
       </ModalContent>
       <Footer
         handleSubmit={props.submitModal}
