@@ -72,6 +72,16 @@ export const blankFiltersStateAdditionalAccessories = {
   additionalAccessories_Comfort_Passenger: []
 };
 
+export const blankFiltersVehicleStatus = {
+  damaged: "deleteFromFilters",
+  accidentFree: "deleteFromFilters",
+  firstOwner: "deleteFromFilters",
+  registeredInPoland: "deleteFromFilters",
+  registeredAsAntiqueCar: "deleteFromFilters",
+  hasVIN: "deleteFromFilters",
+  tuning: "deleteFromFilters"
+};
+
 export const blankFiltersState = {
   segment: null,
   brand: null,
@@ -87,5 +97,6 @@ export const blankFiltersState = {
   keywords: null,
   ...blankFiltersStateEngineAndDrive,
   ...blankFiltersStateBodyAndAppereance,
-  ...blankFiltersStateAdditionalAccessories
+  ...blankFiltersStateAdditionalAccessories,
+  ...blankFiltersVehicleStatus
 };

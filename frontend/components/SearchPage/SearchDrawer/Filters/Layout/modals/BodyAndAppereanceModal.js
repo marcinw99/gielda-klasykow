@@ -1,8 +1,9 @@
 import React from "react";
-import { Modal, Grid, MenuItem, Select } from "@material-ui/core";
+import { Modal, Grid } from "@material-ui/core";
 
 import { blankFiltersStateBodyAndAppereance } from "../../../../config";
 import CheckboxGenerator from "../CheckboxGenerator";
+import BooleanSelect from "../BooleanSelect";
 import {
   ModalPaper,
   ModalContent,
@@ -37,19 +38,11 @@ const BodyAndAppereanceModal = props => (
           Kierownica po prawej stronie (anglik)
         </StyledFilterTitle>
         <StyledFormControl>
-          <Select
+          <BooleanSelect
+            name="steeringWheelOnTheRight"
             value={props.values.steeringWheelOnTheRight}
-            onChange={e => props.handleChangeWithoutFiltering(e.target)}
-            inputProps={{
-              name: "steeringWheelOnTheRight"
-            }}
-          >
-            <MenuItem value="deleteFromFilters">
-              <em>Nie wybrano</em>
-            </MenuItem>
-            <MenuItem value={true}>Tak</MenuItem>
-            <MenuItem value={false}>Nie</MenuItem>
-          </Select>
+            handleChange={props.handleChangeWithoutFiltering}
+          />
         </StyledFormControl>
         <StyledFilterTitle>Wygląd</StyledFilterTitle>
         <StyledFormControl>

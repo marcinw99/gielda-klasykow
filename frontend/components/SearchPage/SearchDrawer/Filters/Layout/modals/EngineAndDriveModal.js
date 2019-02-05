@@ -1,8 +1,9 @@
 import React from "react";
-import { Modal, Grid, Select, MenuItem } from "@material-ui/core";
+import { Modal, Grid } from "@material-ui/core";
 
 import { blankFiltersStateEngineAndDrive } from "../../../../config";
 import CheckboxGenerator from "../CheckboxGenerator";
+import BooleanSelect from "../BooleanSelect";
 import DoubleInputs from "../DoubleInputs";
 import {
   ModalPaper,
@@ -80,19 +81,11 @@ const EngineAndDriveModal = props => (
         />
         <StyledFilterTitle>Posiada filtr cząstek stałych</StyledFilterTitle>
         <StyledFormControl>
-          <Select
+          <BooleanSelect
+            name="hasParticulateFilter"
             value={props.values.hasParticulateFilter}
-            onChange={e => props.handleChangeWithoutFiltering(e.target)}
-            inputProps={{
-              name: "hasParticulateFilter"
-            }}
-          >
-            <MenuItem value="deleteFromFilters">
-              <em>Nie wybrano</em>
-            </MenuItem>
-            <MenuItem value={true}>Tak</MenuItem>
-            <MenuItem value={false}>Nie</MenuItem>
-          </Select>
+            handleChange={props.handleChangeWithoutFiltering}
+          />
         </StyledFormControl>
         <StyledFilterTitle>Rodzaj skrzyni biegów</StyledFilterTitle>
         <StyledFormControl>
