@@ -13,6 +13,18 @@ var models = [
     embedded: false
   },
   {
+    name: "Color",
+    embedded: false
+  },
+  {
+    name: "Country",
+    embedded: false
+  },
+  {
+    name: "Drive",
+    embedded: false
+  },
+  {
     name: "FuelType",
     embedded: false
   },
@@ -29,7 +41,27 @@ var models = [
     embedded: false
   },
   {
+    name: "Transmission",
+    embedded: false
+  },
+  {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Appereance",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Comfort_Driver",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Comfort_Passenger",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Safety",
     embedded: false
   }
 ];
@@ -49,6 +81,18 @@ var models = [
     embedded: false
   },
   {
+    name: "Color",
+    embedded: false
+  },
+  {
+    name: "Country",
+    embedded: false
+  },
+  {
+    name: "Drive",
+    embedded: false
+  },
+  {
     name: "FuelType",
     embedded: false
   },
@@ -65,7 +109,27 @@ var models = [
     embedded: false
   },
   {
+    name: "Transmission",
+    embedded: false
+  },
+  {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Appereance",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Comfort_Driver",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Comfort_Passenger",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Safety",
     embedded: false
   }
 ];

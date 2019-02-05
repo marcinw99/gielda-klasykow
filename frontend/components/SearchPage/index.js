@@ -1,114 +1,103 @@
-import React, { Component } from "react";
-import {
-  Grid,
-  Typography,
-  CircularProgress,
-  LinearProgress
-} from "@material-ui/core";
+import React, { Component, Fragment } from "react";
 import { Query } from "react-apollo";
-
-import SearchBar from "./SearchBar";
-import Results from "./Results";
-import {
-  ALL_POSTS_QUERY,
-  SEARCHAREA_QUERIES
-} from "../../src/Queries/searchQueries";
-
+import { Typography, CircularProgress, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+
+import { initialSearchParameters } from "./config";
+import SearchDrawer from "./SearchDrawer";
+import ResultsBar from "./ResultsBar";
+import Results from "./Results";
+import ResultsPagination from "./ResultsPagination";
+import { ALL_POSTS_QUERY } from "../../src/Queries/searchQueries";
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit * 2
-  },
-  SearchareaGridItem: {
-    margin: "0 auto",
-    maxWidth: 1000
-  },
-  resultsGridItem: {
-    margin: "0 auto",
-    maxWidth: 1200,
-    marginTop: theme.spacing.unit * 4
+    display: "flex"
   },
   loadingScreen: {
+    paddingTop: "30vh",
     textAlign: "center"
+  },
+  content: {
+    flexGrow: 1
   }
 });
 
-const initialSortBy = "createdAt_DESC";
+const initialState = {
+  queryFilters: initialSearchParameters.filters,
+  querySorters: initialSearchParameters.sortBy,
+  itemsLimit: initialSearchParameters.itemsLimit,
+  activePage: 1
+};
 
 class Search extends Component {
-  state = {
-    queryFilters: {},
-    querySorters: initialSortBy
-  };
+  state = initialState;
 
-  refreshFiltersQuery = queryFilters => {
-    this.setState({ queryFilters });
-  };
-
-  refreshSortersQuery = querySorters => {
-    this.setState({ querySorters });
+  setValueInState = value => {
+    this.setState({ ...value });
   };
 
   render() {
     const { classes } = this.props;
+    const pagination = {
+      first: this.state.itemsLimit,
+      skip: (this.state.activePage - 1) * this.state.itemsLimit
+    };
     return (
-      <Grid className={classes.root} container>
-        <Grid className={classes.SearchareaGridItem} item xs={12}>
-          <Query query={SEARCHAREA_QUERIES}>
-            {({ data, error, loading }) => {
-              if (loading) {
-                return (
-                  <div className={classes.loadingScreen}>
-                    <LinearProgress size={100} />
-                  </div>
-                );
-              }
-              if (error)
-                return (
-                  <Typography variant="h6" color="secondary">
-                    Błąd przy pobieraniu opcji filtrowania
-                  </Typography>
-                );
-              return (
-                <SearchBar
-                  data={data}
-                  refreshFiltersQuery={this.refreshFiltersQuery}
-                  refreshSortersQuery={this.refreshSortersQuery}
-                  initialSortBy={initialSortBy}
-                />
-              );
-            }}
-          </Query>
-        </Grid>
-        <Grid className={classes.resultsGridItem} item xs={12}>
+      <div className={classes.root}>
+        <SearchDrawer setValueInMainState={this.setValueInState} />
+        <div className={classes.content}>
           <Query
             query={ALL_POSTS_QUERY}
             variables={{
               filters: this.state.queryFilters,
-              sorters: this.state.querySorters
+              sorters: this.state.querySorters,
+              ...pagination
             }}
           >
             {({ data, error, loading }) => {
               if (loading)
-                return (
-                  <div className={classes.loadingScreen}>
-                    <CircularProgress size={100} />
-                  </div>
-                );
-              if (error)
-                return (
-                  <Typography variant="h6" color="secondary">
-                    Błąd przy pobieraniu wyników
-                  </Typography>
-                );
-              return <Results results={data.posts} />;
+                return <ResultsLoadingScreen rootCss={classes.loadingScreen} />;
+              if (error) return <ResultsError />;
+              return (
+                <Fragment>
+                  <ResultsBar
+                    setValueInMainState={this.setValueInState}
+                    itemsLimitValue={this.state.itemsLimit}
+                    querySortersValue={this.state.querySorters}
+                  />
+                  <Results results={data.postsConnection.edges} />
+                  <Grid container justify="center">
+                    <ResultsPagination
+                      setValueInMainState={this.setValueInState}
+                      pageInfo={data.postsConnection.pageInfo}
+                      activePage={this.state.activePage}
+                    />
+                  </Grid>
+                </Fragment>
+              );
             }}
           </Query>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     );
   }
+}
+
+function ResultsLoadingScreen({ rootCss }) {
+  return (
+    <div className={rootCss}>
+      <CircularProgress size={100} />
+    </div>
+  );
+}
+
+function ResultsError() {
+  return (
+    <Typography variant="h6" color="secondary">
+      Błąd przy pobieraniu wyników
+    </Typography>
+  );
 }
 
 export default withStyles(styles)(Search);

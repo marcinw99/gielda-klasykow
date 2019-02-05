@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Link from "next/link";
 import { Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -9,17 +9,14 @@ const styles = theme => ({
   }
 });
 
-class Index extends Component {
-  render() {
-    const { classes } = this.props;
-    return (
-      <Link href="/search">
-        <Button variant="contained" className={classes.linkBtn}>
-          Wyszukiwarka
-        </Button>
-      </Link>
-    );
-  }
-}
+const Index = ({ classes }) => {
+  return (
+    <Link href="/search">
+      <Button variant="contained" className={classes.linkBtn}>
+        Wyszukiwarka
+      </Button>
+    </Link>
+  );
+};
 
 export default withStyles(styles)(Index);

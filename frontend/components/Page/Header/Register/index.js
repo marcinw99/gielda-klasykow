@@ -1,22 +1,15 @@
-import React, { Component, Fragment } from "react";
-import { Typography, Button } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
+import React, { Component } from "react";
+import { Typography } from "@material-ui/core";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
 import Error from "../../../universal/Error";
 import FormField from "../../../universal/FormField";
 import StrengthLevelLabel from "../../../universal/StrengthLevelLabel";
-import StyledPopover from "../StyledPopover";
+import { StyledPopover, StyledSubmit, StyledTitle } from "../styledComponents";
 import { updatePasswordStrength } from "../../../../src/dataValidation";
 import { SIGNUP_MUTATION } from "../../../../src/Mutations/Login";
 import { CURRENT_USER_QUERY } from "../../../../src/QueryComponents/User";
-
-const styles = theme => ({
-  submit: {
-    marginTop: theme.spacing.unit * 3
-  }
-});
 
 const initialState = {
   name: "",
@@ -77,9 +70,7 @@ class Register extends Component {
           })
         }
       >
-        <Typography variant="h4" color="primary">
-          Rejestracja
-        </Typography>
+        <StyledTitle>Rejestracja</StyledTitle>
         <Mutation
           mutation={SIGNUP_MUTATION}
           variables={{
@@ -146,15 +137,7 @@ class Register extends Component {
                 ))}
                 <Error error={error} />
               </Typography>
-              <Button
-                className={this.props.classes.submit}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Zarejestruj się
-              </Button>
+              <StyledSubmit>Zarejestruj się</StyledSubmit>
             </form>
           )}
         </Mutation>
@@ -169,4 +152,4 @@ Register.propTypes = {
   handleClose: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(Register);
+export default Register;

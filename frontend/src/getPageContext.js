@@ -1,25 +1,8 @@
 import { SheetsRegistry } from "jss";
-import {
-  createMuiTheme,
-  createGenerateClassName
-} from "@material-ui/core/styles";
-import { red, brown } from "@material-ui/core/colors";
-
-const theme = createMuiTheme({
-  palette: {
-    primary: brown,
-    secondary: red,
-    error: red
-  },
-  typography: {
-    useNextVariants: true,
-    fontFamily: "Roboto"
-  }
-});
+import { createGenerateClassName } from "@material-ui/core/styles";
 
 function createPageContext() {
   return {
-    theme,
     sheetsManager: new Map(),
     sheetsRegistry: new SheetsRegistry(),
     generateClassName: createGenerateClassName()

@@ -1,6 +1,7 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
+import { ThemeToggler } from "./styledComponents";
 import Header from "./Header";
 import Footer from "./Footer";
 import User from "../../src/QueryComponents/User";
@@ -8,11 +9,12 @@ import User from "../../src/QueryComponents/User";
 const Page = props => (
   <User>
     {({ data }) => (
-      <Fragment>
+      <div>
         <Header {...data} />
         {React.cloneElement(props.children, data)}
         <Footer />
-      </Fragment>
+        <ThemeToggler darkTheme={props.darkTheme} onClick={props.toggleTheme} />
+      </div>
     )}
   </User>
 );

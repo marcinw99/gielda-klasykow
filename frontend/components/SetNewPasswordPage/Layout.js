@@ -77,10 +77,8 @@ class Layout extends Component {
     const { classes } = this.props;
     return (
       <main className={classes.container}>
-        <Paper className={classes.paper}>
-          <Typography variant="h4" color="primary">
-            Resetowanie hasła
-          </Typography>
+        <Paper square className={classes.paper}>
+          <Title>Resetowanie hasła</Title>
           <Mutation
             mutation={RESETPASSWORD_MUTATION}
             variables={{
@@ -130,15 +128,7 @@ class Layout extends Component {
                   ))}
                   <Error error={error} />
                 </Typography>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                >
-                  Zmień hasło
-                </Button>
+                <Submit className={classes.submit}>Zmień hasło</Submit>
               </form>
             )}
           </Mutation>
@@ -147,5 +137,17 @@ class Layout extends Component {
     );
   }
 }
+
+const Title = props => <Typography variant="h4" color="primary" {...props} />;
+
+const Submit = props => (
+  <Button
+    type="submit"
+    fullWidth
+    variant="contained"
+    color="primary"
+    {...props}
+  />
+);
 
 export default withStyles(styles)(Layout);

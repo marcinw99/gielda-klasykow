@@ -1,19 +1,9 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
 import Login from "./Login";
 import ResetPasswordRequest from "./ResetPasswordRequest";
-import StyledPopover from "../StyledPopover";
-
-const styles = theme => ({
-  submit: {
-    marginTop: theme.spacing.unit * 3
-  },
-  switchViewBtn: {
-    textTransform: "none"
-  }
-});
+import { StyledPopover } from "../styledComponents";
 
 class LoginAndResetPasswordRequest extends Component {
   state = { forgotPasswordLayout: false };
@@ -36,15 +26,11 @@ class LoginAndResetPasswordRequest extends Component {
           <ResetPasswordRequest
             handleClose={this.props.handleClose}
             switchView={this.switchView}
-            submitBtnCss={this.props.classes.submit}
-            switchViewBtnCss={this.props.classes.switchViewBtn}
           />
         ) : (
           <Login
             handleClose={this.props.handleClose}
             switchView={this.switchView}
-            submitBtnCss={this.props.classes.submit}
-            switchViewBtnCss={this.props.classes.switchViewBtn}
           />
         )}
       </StyledPopover>
@@ -58,4 +44,4 @@ LoginAndResetPasswordRequest.propTypes = {
   handleClose: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(LoginAndResetPasswordRequest);
+export default LoginAndResetPasswordRequest;
