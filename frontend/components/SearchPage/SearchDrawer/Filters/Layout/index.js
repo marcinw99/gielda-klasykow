@@ -85,19 +85,11 @@ class Layout extends Component {
     });
   };
 
-  handleSingleCheckboxChange = event => {
-    this.props.handleChangeWithoutFiltering({
-      name: event.target.value,
-      value: event.target.checked
-    });
-  };
-
   render() {
     const modalProps = {
       openedModal: this.state.openedModal,
       handleChangeWithoutFiltering: this.props.handleChangeWithoutFiltering,
       handleMultiCheckboxChange: this.handleMultiCheckboxChange,
-      handleSingleCheckboxChange: this.handleSingleCheckboxChange,
       values: this.props.values,
       resetSpecificFiltersWithoutFiltering: this.props
         .resetSpecificFiltersWithoutFiltering,

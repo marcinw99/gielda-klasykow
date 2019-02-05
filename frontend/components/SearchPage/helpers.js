@@ -4,7 +4,7 @@ import {
   fetchedFiltersOptions,
   fetchedSubTypes
 } from "./config";
-import { isArray, isObject, isString, isUndefined } from "util";
+import { isArray, isObject, isString, isUndefined, isBoolean } from "util";
 
 // standalone functions
 
@@ -90,7 +90,7 @@ const filterOutEmptyValues = data => {
 const normalizeObjectProperties = data => {
   var result = {};
   for (const key in data) {
-    if (isArray(data[key])) {
+    if (isArray(data[key]) || isBoolean(data[key])) {
       result[key] = data[key];
     } else {
       result[key] = data[key].value;

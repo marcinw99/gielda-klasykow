@@ -9,7 +9,7 @@ const styles = theme => ({
     maxHeight: 32
   },
   smallLabel: {
-    fontSize: 12
+    fontSize: 13
   }
 });
 
