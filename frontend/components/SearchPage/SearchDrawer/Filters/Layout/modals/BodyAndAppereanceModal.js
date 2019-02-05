@@ -1,16 +1,8 @@
 import React from "react";
-import {
-  Modal,
-  FormControlLabel,
-  Checkbox,
-  Grid,
-  withStyles,
-  MenuItem,
-  Select
-} from "@material-ui/core";
+import { Modal, Grid, MenuItem, Select } from "@material-ui/core";
 
 import { blankFiltersStateBodyAndAppereance } from "../../../../config";
-import enumsDisplayedText from "../../../../../../resources/enumsDisplayedText";
+import CheckboxGenerator from "../CheckboxGenerator";
 import {
   ModalPaper,
   ModalContent,
@@ -19,13 +11,6 @@ import {
 } from "./styledComponents";
 import Header from "./Header";
 import Footer from "./Footer";
-
-const styles = theme => ({
-  formControlLabel: {
-    width: 250,
-    maxHeight: 32
-  }
-});
 
 const BodyAndAppereanceModal = props => (
   <Modal
@@ -39,20 +24,13 @@ const BodyAndAppereanceModal = props => (
         <StyledFilterTitle>Kolor lakieru</StyledFilterTitle>
         <StyledFormControl>
           <Grid container justify="flex-start">
-            {props.selectsOptions.Color.map(item => (
-              <FormControlLabel
-                className={props.classes.formControlLabel}
-                key={item}
-                control={
-                  <Checkbox
-                    checked={props.values.color_in.indexOf(item) !== -1}
-                    onChange={props.handleMultiCheckboxChange("color_in")}
-                    value={item}
-                  />
-                }
-                label={enumsDisplayedText("color", item)}
-              />
-            ))}
+            <CheckboxGenerator
+              name="color"
+              valueName="color_in"
+              options={props.options.Color}
+              values={props.values}
+              handleChange={props.handleMultiCheckboxChange}
+            />
           </Grid>
         </StyledFormControl>
         <StyledFilterTitle>
@@ -76,29 +54,12 @@ const BodyAndAppereanceModal = props => (
         <StyledFilterTitle>Wygląd</StyledFilterTitle>
         <StyledFormControl>
           <Grid container justify="flex-start">
-            {props.selectsOptions.AdditionalAccessory_Appereance.map(item => (
-              <FormControlLabel
-                className={props.classes.formControlLabel}
-                key={item}
-                control={
-                  <Checkbox
-                    checked={
-                      props.values.additionalAccessories_Appereance_in.indexOf(
-                        item
-                      ) !== -1
-                    }
-                    onChange={props.handleMultiCheckboxChange(
-                      "additionalAccessories_Appereance_in"
-                    )}
-                    value={item}
-                  />
-                }
-                label={enumsDisplayedText(
-                  "additionalAccessories_Appereance",
-                  item
-                )}
-              />
-            ))}
+            <CheckboxGenerator
+              name="additionalAccessories_Appereance"
+              options={props.options.additionalAccessories_Appereance}
+              values={props.values}
+              handleChange={props.handleMultiCheckboxChange}
+            />
           </Grid>
         </StyledFormControl>
       </ModalContent>
@@ -114,4 +75,4 @@ const BodyAndAppereanceModal = props => (
   </Modal>
 );
 
-export default withStyles(styles)(BodyAndAppereanceModal);
+export default BodyAndAppereanceModal;

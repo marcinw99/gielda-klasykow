@@ -41,17 +41,7 @@ const Mutation = {
   },
 
   createPost: async function(parent, args, context, info) {
-    const item = await context.db.mutation.createPost(
-      {
-        data: {
-          ...args,
-          car: {
-            ...args.car
-          }
-        }
-      },
-      info
-    );
+    const item = await context.db.mutation.createPost({ data: args }, info);
     return item;
   },
 

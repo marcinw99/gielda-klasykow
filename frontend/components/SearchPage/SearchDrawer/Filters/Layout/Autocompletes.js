@@ -70,7 +70,6 @@ function Menu(props) {
 }
 
 function SingleValue(props) {
-  console.log(props);
   return (
     <Typography
       className={

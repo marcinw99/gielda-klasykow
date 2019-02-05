@@ -15,7 +15,7 @@ import {
 } from "./styledComponents";
 import { Autocomplete } from "./Autocompletes";
 import DoubleInputs from "./DoubleInputs";
-import enumDisplayedText from "../../../../../resources/enumsDisplayedText";
+import displayedText from "../../../../../resources/displayedText";
 import { AVAILABLE_MODELS_OF_BRAND } from "../../../../../src/Queries/searchQueries";
 import EngineAndDriveModal from "./modals/EngineAndDriveModal";
 import BodyAndAppereanceModal from "./modals/BodyAndAppereanceModal";
@@ -85,9 +85,9 @@ class Layout extends Component {
     });
   };
 
-  handleSingleCheckboxChange = field => event => {
+  handleSingleCheckboxChange = event => {
     this.props.handleChangeWithoutFiltering({
-      name: field,
+      name: event.target.value,
       value: event.target.checked
     });
   };
@@ -101,7 +101,7 @@ class Layout extends Component {
       values: this.props.values,
       resetSpecificFiltersWithoutFiltering: this.props
         .resetSpecificFiltersWithoutFiltering,
-      selectsOptions: this.props.selectsOptions,
+      options: this.props.options,
       submitModal: this.submitModal,
       closeModal: this.closeModal
     };
@@ -121,7 +121,7 @@ class Layout extends Component {
               valueLeft={this.props.values.price_gt}
               valueRight={this.props.values.price_lt}
               handleChange={this.props.handleChange}
-              options={this.props.selectsOptions.Price.map(item => ({
+              options={this.props.options.Price.map(item => ({
                 label: `${item} PLN`,
                 value: item
               }))}
@@ -129,7 +129,7 @@ class Layout extends Component {
             <StyledFilterTitle>Lokalizacja</StyledFilterTitle>
             <StyledFormControl>
               <Autocomplete
-                options={this.props.selectsOptions.Localization.map(item => ({
+                options={this.props.options.Localization.map(item => ({
                   label: item,
                   value: item
                 }))}
@@ -141,7 +141,7 @@ class Layout extends Component {
             </StyledFormControl>
             <StyledFormControl>
               <Autocomplete
-                options={this.props.selectsOptions.Localization.map(item => ({
+                options={this.props.options.Localization.map(item => ({
                   label: item,
                   value: item
                 }))}
@@ -155,7 +155,7 @@ class Layout extends Component {
             <StyledFormControl>
               <Autocomplete
                 value={this.props.values.segment}
-                options={this.props.selectsOptions.Segment.map(item => ({
+                options={this.props.options.Segment.map(item => ({
                   label: item,
                   value: item
                 }))}
@@ -167,8 +167,8 @@ class Layout extends Component {
             <StyledFormControl>
               <Autocomplete
                 value={this.props.values.fuelType}
-                options={this.props.selectsOptions.FuelType.map(item => ({
-                  label: enumDisplayedText("fuelType", item),
+                options={this.props.options.FuelType.map(item => ({
+                  label: displayedText("fuelType", item),
                   value: item
                 }))}
                 handleChange={this.props.handleChange}
@@ -180,9 +180,9 @@ class Layout extends Component {
               <Autocomplete
                 value={this.props.values.brand}
                 options={
-                  this.props.selectsOptions.Brand
-                    ? this.props.selectsOptions.Brand.map(item => ({
-                        label: `${enumDisplayedText("brand", item.value)} (${
+                  this.props.options.Brand
+                    ? this.props.options.Brand.map(item => ({
+                        label: `${displayedText("brand", item.value)} (${
                           item.count
                         })`,
                         value: item.value
@@ -242,7 +242,7 @@ class Layout extends Component {
               valueLeft={this.props.values.productionYear_gt}
               valueRight={this.props.values.productionYear_lt}
               handleChange={this.props.handleChange}
-              options={this.props.selectsOptions.ProductionYear.map(item => ({
+              options={this.props.options.ProductionYear.map(item => ({
                 label: item,
                 value: item
               }))}
@@ -257,7 +257,7 @@ class Layout extends Component {
               valueLeft={this.props.values.mileage_gt}
               valueRight={this.props.values.mileage_lt}
               handleChange={this.props.handleChange}
-              options={this.props.selectsOptions.Mileage.map(item => ({
+              options={this.props.options.Mileage.map(item => ({
                 label: `${item} km`,
                 value: item
               }))}
@@ -328,7 +328,7 @@ const FormActions = props => (
 Layout.propTypes = {
   values: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
-  selectsOptions: PropTypes.object.isRequired
+  options: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Layout);

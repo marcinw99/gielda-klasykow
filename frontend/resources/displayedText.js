@@ -1,4 +1,4 @@
-export default (enumName, key) => variants[enumName][key];
+export default (name, key) => variants[name][key];
 
 const variants = {
   brand: {

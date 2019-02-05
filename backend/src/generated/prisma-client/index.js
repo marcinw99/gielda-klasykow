@@ -5,22 +5,6 @@ var typeDefs = require("./prisma-schema").typeDefs;
 
 var models = [
   {
-    name: "AdditionalAccessory_Appereance",
-    embedded: false
-  },
-  {
-    name: "AdditionalAccessory_Comfort_Driver",
-    embedded: false
-  },
-  {
-    name: "AdditionalAccessory_Comfort_Passenger",
-    embedded: false
-  },
-  {
-    name: "AdditionalAccessory_Safety",
-    embedded: false
-  },
-  {
     name: "Brand",
     embedded: false
   },
@@ -62,6 +46,22 @@ var models = [
   },
   {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Appereance",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Comfort_Driver",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Comfort_Passenger",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Safety",
     embedded: false
   }
 ];
@@ -73,22 +73,6 @@ exports.Prisma = prisma_lib_1.makePrismaClientClass({
 exports.prisma = new exports.Prisma();
 var models = [
   {
-    name: "AdditionalAccessory_Appereance",
-    embedded: false
-  },
-  {
-    name: "AdditionalAccessory_Comfort_Driver",
-    embedded: false
-  },
-  {
-    name: "AdditionalAccessory_Comfort_Passenger",
-    embedded: false
-  },
-  {
-    name: "AdditionalAccessory_Safety",
-    embedded: false
-  },
-  {
     name: "Brand",
     embedded: false
   },
@@ -130,6 +114,22 @@ var models = [
   },
   {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Appereance",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Comfort_Driver",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Comfort_Passenger",
+    embedded: false
+  },
+  {
+    name: "additionalAccessories_Safety",
     embedded: false
   }
 ];

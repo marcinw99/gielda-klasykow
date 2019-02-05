@@ -12,10 +12,10 @@ type Car {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: [AdditionalAccessory_Safety]
-  additionalAccessories_Comfort_Passenger: [AdditionalAccessory_Comfort_Passenger]
-  additionalAccessories_Comfort_Driver: [AdditionalAccessory_Comfort_Driver]
-  additionalAccessories_Appereance: [AdditionalAccessory_Appereance]
+  additionalAccessories_Safety: additionalAccessories_Safety
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_Passenger
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_Driver
+  additionalAccessories_Appereance: additionalAccessories_Appereance
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -45,4 +45,80 @@ type User {
   resetToken: String
   resetTokenExpiry: Float
   permissions: [Permission]
+}
+
+type additionalAccessories_Safety {
+  id: ID! @unique
+  ABS: Boolean
+  ESP: Boolean
+  ASR: Boolean
+  CENTRAL_LOCKING: Boolean
+  IMMOBILIZER: Boolean
+  ALARM: Boolean
+  DRIVER_AIRBAG: Boolean
+  PASSENGER_AIRBAG: Boolean
+  SIDE_FRONT_AIRBAGS: Boolean
+  SIDE_BACK_AIRBAGS: Boolean
+}
+
+type additionalAccessories_Comfort_Passenger {
+  id: ID! @unique
+  ELECTRIC_FRONT_WINDOWS: Boolean
+  ELECTRIC_BACK_WINDOWS: Boolean
+  FACTORY_RADIO: Boolean
+  NON_STANDARD_RADIO: Boolean
+  AUX: Boolean
+  MP3: Boolean
+  CD: Boolean
+  CD_CHANGER: Boolean
+  DVD_PLAYER: Boolean
+  TV_TUNER: Boolean
+  LEATHER_UPHOLSTERY: Boolean
+  VELOR_UPHOLSTERY: Boolean
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS: Boolean
+  ELECTRIC_ADJUSTABLE_BACK_SEATS: Boolean
+  HEATED_FRONT_SEATS: Boolean
+  HEATED_BACK_SEATS: Boolean
+  PANORAMIC_ROOF: Boolean
+  SUNROOF: Boolean
+  ROOF_RACK: Boolean
+  PARKING_HEATER: Boolean
+  HEATED_FRONT_WINDSCREEN: Boolean
+  AIR_CONDITIONING_AUTOMATIC: Boolean
+  AIR_CONDITIONING_DUAL_ZONE: Boolean
+  AIR_CONDITIONING_THREE_ZONE: Boolean
+  AIR_CONDITIONING_FOUR_ZONE: Boolean
+  AIR_CONDITIONING_MANUAL: Boolean
+}
+
+type additionalAccessories_Comfort_Driver {
+  id: ID! @unique
+  POWER_STEERING: Boolean
+  HEATED_STEERING_WHEEL: Boolean
+  MULTIFUNCTION_STEERING_WHEEL: Boolean
+  PADDLE_SHIFTERS: Boolean
+  ACTIVE_SUSPENSION: Boolean
+  REGULATED_SUSPENSION: Boolean
+  ELECTRIC_MIRRORS: Boolean
+  HEATED_MIRRORS: Boolean
+  ON_BOARD_COMPUTER: Boolean
+  PARKING_SENSOR_FRONT: Boolean
+  PARKING_SENSOR_BACK: Boolean
+  REVERSE_CAMERA: Boolean
+  RAIN_SENSOR: Boolean
+  CRUISE_CONTROL: Boolean
+  FOG_LIGHTS: Boolean
+  LED_LIGHTS: Boolean
+  XENON_LIGHTS: Boolean
+  GPS_NAVIGATION: Boolean
+  SPEED_LIMITER: Boolean
+}
+
+type additionalAccessories_Appereance {
+  id: ID! @unique
+  ALLOY_WHEELS: Boolean
+  TINTED_WINDOWS: Boolean
+  METALLIC_PAINT: Boolean
+  MATTE_PAINT: Boolean
+  PEARL_PAINT: Boolean
 }

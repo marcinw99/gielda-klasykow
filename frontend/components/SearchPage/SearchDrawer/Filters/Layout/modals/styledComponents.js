@@ -1,5 +1,14 @@
-import React from "react";
-import { Paper, Typography, withStyles, FormControl } from "@material-ui/core";
+import React, { Fragment } from "react";
+import {
+  Paper,
+  Typography,
+  withStyles,
+  FormControl,
+  FormControlLabel,
+  Checkbox
+} from "@material-ui/core";
+
+import displayedText from "../../../../../../resources/displayedText";
 
 // ModalPaper
 
@@ -11,7 +20,7 @@ const modalPaperStyles = theme => ({
     left: "50%",
     transform: "translate(-50%, -50%)",
     outline: "none",
-    maxHeight: "90vh",
+    maxHeight: "96vh",
     overflowY: "auto"
   },
   normal: {
@@ -87,4 +96,33 @@ const FormControlComponent = props => {
 
 export const StyledFormControl = withStyles(formControlStyles)(
   FormControlComponent
+);
+
+// AdditionalAccessories
+
+export const AdditionalAccessories = ({
+  name,
+  options,
+  values,
+  handleChange,
+  rootClassName,
+  labelClassName
+}) => (
+  <Fragment key={name}>
+    {options.map(item => (
+      <FormControlLabel
+        className={rootClassName}
+        classes={labelClassName ? { label: labelClassName } : {}}
+        key={item}
+        control={
+          <Checkbox
+            checked={values[name].indexOf(item) !== -1}
+            onChange={handleChange(name)}
+            value={item}
+          />
+        }
+        label={displayedText(name, item)}
+      />
+    ))}
+  </Fragment>
 );

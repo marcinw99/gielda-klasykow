@@ -3,7 +3,7 @@ import { Grid, Typography, SvgIcon } from "@material-ui/core";
 import { LocationOn } from "@material-ui/icons";
 
 import SvgIcons from "../../../../resources/SvgIcons";
-import enumsDisplayedText from "../../../../resources/enumsDisplayedText";
+import displayedText from "../../../../resources/displayedText";
 import { spacesInNumbers } from "./helpers";
 
 export const CardTitle = ({
@@ -11,7 +11,7 @@ export const CardTitle = ({
 }) => (
   <Grid container justify="space-between">
     <Typography variant="h6">
-      {enumsDisplayedText("brand", brand)} {model} {version}
+      {displayedText("brand", brand)} {model} {version}
     </Typography>
     <div style={{ minWidth: "20px" }} />
     <Typography variant="h6" color="secondary">
@@ -26,7 +26,7 @@ export const FuelType = ({ classes, value }) => (
       <path {...SvgIcons.gas} />
     </SvgIcon>
     <Typography className={classes.bold}>
-      {enumsDisplayedText("fuelType", value)}
+      {displayedText("fuelType", value)}
     </Typography>
   </Grid>
 );

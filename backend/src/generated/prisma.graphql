@@ -1,73 +1,1021 @@
-enum AdditionalAccessory_Appereance {
-  ALLOY_WHEELS
-  TINTED_WINDOWS
-  METALLIC_PAINT
-  MATTE_PAINT
-  PEARL_PAINT
+type additionalAccessories_Appereance {
+  id: ID!
+  ALLOY_WHEELS: Boolean
+  TINTED_WINDOWS: Boolean
+  METALLIC_PAINT: Boolean
+  MATTE_PAINT: Boolean
+  PEARL_PAINT: Boolean
 }
 
-enum AdditionalAccessory_Comfort_Driver {
-  POWER_STEERING
-  HEATED_STEERING_WHEEL
-  MULTIFUNCTION_STEERING_WHEEL
-  PADDLE_SHIFTERS
-  ACTIVE_SUSPENSION
-  REGULATED_SUSPENSION
-  ELECTRIC_MIRRORS
-  HEATED_MIRRORS
-  ON_BOARD_COMPUTER
-  PARKING_SENSOR_FRONT
-  PARKING_SENSOR_BACK
-  REVERSE_CAMERA
-  RAIN_SENSOR
-  CRUISE_CONTROL
-  FOG_LIGHTS
-  LED_LIGHTS
-  XENON_LIGHTS
-  GPS_NAVIGATION
-  SPEED_LIMITER
+type additionalAccessories_AppereanceConnection {
+  pageInfo: PageInfo!
+  edges: [additionalAccessories_AppereanceEdge]!
+  aggregate: AggregateadditionalAccessories_Appereance!
 }
 
-enum AdditionalAccessory_Comfort_Passenger {
-  ELECTRIC_FRONT_WINDOWS
-  ELECTRIC_BACK_WINDOWS
-  FACTORY_RADIO
-  NON_STANDARD_RADIO
-  AUX
-  MP3
-  CD
-  CD_CHANGER
-  DVD_PLAYER
-  TV_TUNER
-  LEATHER_UPHOLSTERY
-  VELOR_UPHOLSTERY
-  ELECTRIC_ADJUSTABLE_FRONT_SEATS
-  ELECTRIC_ADJUSTABLE_BACK_SEATS
-  HEATED_FRONT_SEATS
-  HEATED_BACK_SEATS
-  PANORAMIC_ROOF
-  SUNROOF
-  ROOF_RACK
-  PARKING_HEATER
-  HEATED_FRONT_WINDSCREEN
-  AIR_CONDITIONING_AUTOMATIC
-  AIR_CONDITIONING_DUAL_ZONE
-  AIR_CONDITIONING_THREE_ZONE
-  AIR_CONDITIONING_FOUR_ZONE
-  AIR_CONDITIONING_MANUAL
+input additionalAccessories_AppereanceCreateInput {
+  ALLOY_WHEELS: Boolean
+  TINTED_WINDOWS: Boolean
+  METALLIC_PAINT: Boolean
+  MATTE_PAINT: Boolean
+  PEARL_PAINT: Boolean
 }
 
-enum AdditionalAccessory_Safety {
-  ABS
-  ESP
-  ASR
-  CENTRAL_LOCKING
-  IMMOBILIZER
-  ALARM
-  DRIVER_AIRBAG
-  PASSENGER_AIRBAG
-  SIDE_FRONT_AIRBAGS
-  SIDE_BACK_AIRBAGS
+input additionalAccessories_AppereanceCreateOneInput {
+  create: additionalAccessories_AppereanceCreateInput
+  connect: additionalAccessories_AppereanceWhereUniqueInput
+}
+
+type additionalAccessories_AppereanceEdge {
+  node: additionalAccessories_Appereance!
+  cursor: String!
+}
+
+enum additionalAccessories_AppereanceOrderByInput {
+  id_ASC
+  id_DESC
+  ALLOY_WHEELS_ASC
+  ALLOY_WHEELS_DESC
+  TINTED_WINDOWS_ASC
+  TINTED_WINDOWS_DESC
+  METALLIC_PAINT_ASC
+  METALLIC_PAINT_DESC
+  MATTE_PAINT_ASC
+  MATTE_PAINT_DESC
+  PEARL_PAINT_ASC
+  PEARL_PAINT_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type additionalAccessories_AppereancePreviousValues {
+  id: ID!
+  ALLOY_WHEELS: Boolean
+  TINTED_WINDOWS: Boolean
+  METALLIC_PAINT: Boolean
+  MATTE_PAINT: Boolean
+  PEARL_PAINT: Boolean
+}
+
+type additionalAccessories_AppereanceSubscriptionPayload {
+  mutation: MutationType!
+  node: additionalAccessories_Appereance
+  updatedFields: [String!]
+  previousValues: additionalAccessories_AppereancePreviousValues
+}
+
+input additionalAccessories_AppereanceSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: additionalAccessories_AppereanceWhereInput
+  AND: [additionalAccessories_AppereanceSubscriptionWhereInput!]
+  OR: [additionalAccessories_AppereanceSubscriptionWhereInput!]
+  NOT: [additionalAccessories_AppereanceSubscriptionWhereInput!]
+}
+
+input additionalAccessories_AppereanceUpdateDataInput {
+  ALLOY_WHEELS: Boolean
+  TINTED_WINDOWS: Boolean
+  METALLIC_PAINT: Boolean
+  MATTE_PAINT: Boolean
+  PEARL_PAINT: Boolean
+}
+
+input additionalAccessories_AppereanceUpdateInput {
+  ALLOY_WHEELS: Boolean
+  TINTED_WINDOWS: Boolean
+  METALLIC_PAINT: Boolean
+  MATTE_PAINT: Boolean
+  PEARL_PAINT: Boolean
+}
+
+input additionalAccessories_AppereanceUpdateManyMutationInput {
+  ALLOY_WHEELS: Boolean
+  TINTED_WINDOWS: Boolean
+  METALLIC_PAINT: Boolean
+  MATTE_PAINT: Boolean
+  PEARL_PAINT: Boolean
+}
+
+input additionalAccessories_AppereanceUpdateOneInput {
+  create: additionalAccessories_AppereanceCreateInput
+  update: additionalAccessories_AppereanceUpdateDataInput
+  upsert: additionalAccessories_AppereanceUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: additionalAccessories_AppereanceWhereUniqueInput
+}
+
+input additionalAccessories_AppereanceUpsertNestedInput {
+  update: additionalAccessories_AppereanceUpdateDataInput!
+  create: additionalAccessories_AppereanceCreateInput!
+}
+
+input additionalAccessories_AppereanceWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  ALLOY_WHEELS: Boolean
+  ALLOY_WHEELS_not: Boolean
+  TINTED_WINDOWS: Boolean
+  TINTED_WINDOWS_not: Boolean
+  METALLIC_PAINT: Boolean
+  METALLIC_PAINT_not: Boolean
+  MATTE_PAINT: Boolean
+  MATTE_PAINT_not: Boolean
+  PEARL_PAINT: Boolean
+  PEARL_PAINT_not: Boolean
+  AND: [additionalAccessories_AppereanceWhereInput!]
+  OR: [additionalAccessories_AppereanceWhereInput!]
+  NOT: [additionalAccessories_AppereanceWhereInput!]
+}
+
+input additionalAccessories_AppereanceWhereUniqueInput {
+  id: ID
+}
+
+type additionalAccessories_Comfort_Driver {
+  id: ID!
+  POWER_STEERING: Boolean
+  HEATED_STEERING_WHEEL: Boolean
+  MULTIFUNCTION_STEERING_WHEEL: Boolean
+  PADDLE_SHIFTERS: Boolean
+  ACTIVE_SUSPENSION: Boolean
+  REGULATED_SUSPENSION: Boolean
+  ELECTRIC_MIRRORS: Boolean
+  HEATED_MIRRORS: Boolean
+  ON_BOARD_COMPUTER: Boolean
+  PARKING_SENSOR_FRONT: Boolean
+  PARKING_SENSOR_BACK: Boolean
+  REVERSE_CAMERA: Boolean
+  RAIN_SENSOR: Boolean
+  CRUISE_CONTROL: Boolean
+  FOG_LIGHTS: Boolean
+  LED_LIGHTS: Boolean
+  XENON_LIGHTS: Boolean
+  GPS_NAVIGATION: Boolean
+  SPEED_LIMITER: Boolean
+}
+
+type additionalAccessories_Comfort_DriverConnection {
+  pageInfo: PageInfo!
+  edges: [additionalAccessories_Comfort_DriverEdge]!
+  aggregate: AggregateadditionalAccessories_Comfort_Driver!
+}
+
+input additionalAccessories_Comfort_DriverCreateInput {
+  POWER_STEERING: Boolean
+  HEATED_STEERING_WHEEL: Boolean
+  MULTIFUNCTION_STEERING_WHEEL: Boolean
+  PADDLE_SHIFTERS: Boolean
+  ACTIVE_SUSPENSION: Boolean
+  REGULATED_SUSPENSION: Boolean
+  ELECTRIC_MIRRORS: Boolean
+  HEATED_MIRRORS: Boolean
+  ON_BOARD_COMPUTER: Boolean
+  PARKING_SENSOR_FRONT: Boolean
+  PARKING_SENSOR_BACK: Boolean
+  REVERSE_CAMERA: Boolean
+  RAIN_SENSOR: Boolean
+  CRUISE_CONTROL: Boolean
+  FOG_LIGHTS: Boolean
+  LED_LIGHTS: Boolean
+  XENON_LIGHTS: Boolean
+  GPS_NAVIGATION: Boolean
+  SPEED_LIMITER: Boolean
+}
+
+input additionalAccessories_Comfort_DriverCreateOneInput {
+  create: additionalAccessories_Comfort_DriverCreateInput
+  connect: additionalAccessories_Comfort_DriverWhereUniqueInput
+}
+
+type additionalAccessories_Comfort_DriverEdge {
+  node: additionalAccessories_Comfort_Driver!
+  cursor: String!
+}
+
+enum additionalAccessories_Comfort_DriverOrderByInput {
+  id_ASC
+  id_DESC
+  POWER_STEERING_ASC
+  POWER_STEERING_DESC
+  HEATED_STEERING_WHEEL_ASC
+  HEATED_STEERING_WHEEL_DESC
+  MULTIFUNCTION_STEERING_WHEEL_ASC
+  MULTIFUNCTION_STEERING_WHEEL_DESC
+  PADDLE_SHIFTERS_ASC
+  PADDLE_SHIFTERS_DESC
+  ACTIVE_SUSPENSION_ASC
+  ACTIVE_SUSPENSION_DESC
+  REGULATED_SUSPENSION_ASC
+  REGULATED_SUSPENSION_DESC
+  ELECTRIC_MIRRORS_ASC
+  ELECTRIC_MIRRORS_DESC
+  HEATED_MIRRORS_ASC
+  HEATED_MIRRORS_DESC
+  ON_BOARD_COMPUTER_ASC
+  ON_BOARD_COMPUTER_DESC
+  PARKING_SENSOR_FRONT_ASC
+  PARKING_SENSOR_FRONT_DESC
+  PARKING_SENSOR_BACK_ASC
+  PARKING_SENSOR_BACK_DESC
+  REVERSE_CAMERA_ASC
+  REVERSE_CAMERA_DESC
+  RAIN_SENSOR_ASC
+  RAIN_SENSOR_DESC
+  CRUISE_CONTROL_ASC
+  CRUISE_CONTROL_DESC
+  FOG_LIGHTS_ASC
+  FOG_LIGHTS_DESC
+  LED_LIGHTS_ASC
+  LED_LIGHTS_DESC
+  XENON_LIGHTS_ASC
+  XENON_LIGHTS_DESC
+  GPS_NAVIGATION_ASC
+  GPS_NAVIGATION_DESC
+  SPEED_LIMITER_ASC
+  SPEED_LIMITER_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type additionalAccessories_Comfort_DriverPreviousValues {
+  id: ID!
+  POWER_STEERING: Boolean
+  HEATED_STEERING_WHEEL: Boolean
+  MULTIFUNCTION_STEERING_WHEEL: Boolean
+  PADDLE_SHIFTERS: Boolean
+  ACTIVE_SUSPENSION: Boolean
+  REGULATED_SUSPENSION: Boolean
+  ELECTRIC_MIRRORS: Boolean
+  HEATED_MIRRORS: Boolean
+  ON_BOARD_COMPUTER: Boolean
+  PARKING_SENSOR_FRONT: Boolean
+  PARKING_SENSOR_BACK: Boolean
+  REVERSE_CAMERA: Boolean
+  RAIN_SENSOR: Boolean
+  CRUISE_CONTROL: Boolean
+  FOG_LIGHTS: Boolean
+  LED_LIGHTS: Boolean
+  XENON_LIGHTS: Boolean
+  GPS_NAVIGATION: Boolean
+  SPEED_LIMITER: Boolean
+}
+
+type additionalAccessories_Comfort_DriverSubscriptionPayload {
+  mutation: MutationType!
+  node: additionalAccessories_Comfort_Driver
+  updatedFields: [String!]
+  previousValues: additionalAccessories_Comfort_DriverPreviousValues
+}
+
+input additionalAccessories_Comfort_DriverSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: additionalAccessories_Comfort_DriverWhereInput
+  AND: [additionalAccessories_Comfort_DriverSubscriptionWhereInput!]
+  OR: [additionalAccessories_Comfort_DriverSubscriptionWhereInput!]
+  NOT: [additionalAccessories_Comfort_DriverSubscriptionWhereInput!]
+}
+
+input additionalAccessories_Comfort_DriverUpdateDataInput {
+  POWER_STEERING: Boolean
+  HEATED_STEERING_WHEEL: Boolean
+  MULTIFUNCTION_STEERING_WHEEL: Boolean
+  PADDLE_SHIFTERS: Boolean
+  ACTIVE_SUSPENSION: Boolean
+  REGULATED_SUSPENSION: Boolean
+  ELECTRIC_MIRRORS: Boolean
+  HEATED_MIRRORS: Boolean
+  ON_BOARD_COMPUTER: Boolean
+  PARKING_SENSOR_FRONT: Boolean
+  PARKING_SENSOR_BACK: Boolean
+  REVERSE_CAMERA: Boolean
+  RAIN_SENSOR: Boolean
+  CRUISE_CONTROL: Boolean
+  FOG_LIGHTS: Boolean
+  LED_LIGHTS: Boolean
+  XENON_LIGHTS: Boolean
+  GPS_NAVIGATION: Boolean
+  SPEED_LIMITER: Boolean
+}
+
+input additionalAccessories_Comfort_DriverUpdateInput {
+  POWER_STEERING: Boolean
+  HEATED_STEERING_WHEEL: Boolean
+  MULTIFUNCTION_STEERING_WHEEL: Boolean
+  PADDLE_SHIFTERS: Boolean
+  ACTIVE_SUSPENSION: Boolean
+  REGULATED_SUSPENSION: Boolean
+  ELECTRIC_MIRRORS: Boolean
+  HEATED_MIRRORS: Boolean
+  ON_BOARD_COMPUTER: Boolean
+  PARKING_SENSOR_FRONT: Boolean
+  PARKING_SENSOR_BACK: Boolean
+  REVERSE_CAMERA: Boolean
+  RAIN_SENSOR: Boolean
+  CRUISE_CONTROL: Boolean
+  FOG_LIGHTS: Boolean
+  LED_LIGHTS: Boolean
+  XENON_LIGHTS: Boolean
+  GPS_NAVIGATION: Boolean
+  SPEED_LIMITER: Boolean
+}
+
+input additionalAccessories_Comfort_DriverUpdateManyMutationInput {
+  POWER_STEERING: Boolean
+  HEATED_STEERING_WHEEL: Boolean
+  MULTIFUNCTION_STEERING_WHEEL: Boolean
+  PADDLE_SHIFTERS: Boolean
+  ACTIVE_SUSPENSION: Boolean
+  REGULATED_SUSPENSION: Boolean
+  ELECTRIC_MIRRORS: Boolean
+  HEATED_MIRRORS: Boolean
+  ON_BOARD_COMPUTER: Boolean
+  PARKING_SENSOR_FRONT: Boolean
+  PARKING_SENSOR_BACK: Boolean
+  REVERSE_CAMERA: Boolean
+  RAIN_SENSOR: Boolean
+  CRUISE_CONTROL: Boolean
+  FOG_LIGHTS: Boolean
+  LED_LIGHTS: Boolean
+  XENON_LIGHTS: Boolean
+  GPS_NAVIGATION: Boolean
+  SPEED_LIMITER: Boolean
+}
+
+input additionalAccessories_Comfort_DriverUpdateOneInput {
+  create: additionalAccessories_Comfort_DriverCreateInput
+  update: additionalAccessories_Comfort_DriverUpdateDataInput
+  upsert: additionalAccessories_Comfort_DriverUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: additionalAccessories_Comfort_DriverWhereUniqueInput
+}
+
+input additionalAccessories_Comfort_DriverUpsertNestedInput {
+  update: additionalAccessories_Comfort_DriverUpdateDataInput!
+  create: additionalAccessories_Comfort_DriverCreateInput!
+}
+
+input additionalAccessories_Comfort_DriverWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  POWER_STEERING: Boolean
+  POWER_STEERING_not: Boolean
+  HEATED_STEERING_WHEEL: Boolean
+  HEATED_STEERING_WHEEL_not: Boolean
+  MULTIFUNCTION_STEERING_WHEEL: Boolean
+  MULTIFUNCTION_STEERING_WHEEL_not: Boolean
+  PADDLE_SHIFTERS: Boolean
+  PADDLE_SHIFTERS_not: Boolean
+  ACTIVE_SUSPENSION: Boolean
+  ACTIVE_SUSPENSION_not: Boolean
+  REGULATED_SUSPENSION: Boolean
+  REGULATED_SUSPENSION_not: Boolean
+  ELECTRIC_MIRRORS: Boolean
+  ELECTRIC_MIRRORS_not: Boolean
+  HEATED_MIRRORS: Boolean
+  HEATED_MIRRORS_not: Boolean
+  ON_BOARD_COMPUTER: Boolean
+  ON_BOARD_COMPUTER_not: Boolean
+  PARKING_SENSOR_FRONT: Boolean
+  PARKING_SENSOR_FRONT_not: Boolean
+  PARKING_SENSOR_BACK: Boolean
+  PARKING_SENSOR_BACK_not: Boolean
+  REVERSE_CAMERA: Boolean
+  REVERSE_CAMERA_not: Boolean
+  RAIN_SENSOR: Boolean
+  RAIN_SENSOR_not: Boolean
+  CRUISE_CONTROL: Boolean
+  CRUISE_CONTROL_not: Boolean
+  FOG_LIGHTS: Boolean
+  FOG_LIGHTS_not: Boolean
+  LED_LIGHTS: Boolean
+  LED_LIGHTS_not: Boolean
+  XENON_LIGHTS: Boolean
+  XENON_LIGHTS_not: Boolean
+  GPS_NAVIGATION: Boolean
+  GPS_NAVIGATION_not: Boolean
+  SPEED_LIMITER: Boolean
+  SPEED_LIMITER_not: Boolean
+  AND: [additionalAccessories_Comfort_DriverWhereInput!]
+  OR: [additionalAccessories_Comfort_DriverWhereInput!]
+  NOT: [additionalAccessories_Comfort_DriverWhereInput!]
+}
+
+input additionalAccessories_Comfort_DriverWhereUniqueInput {
+  id: ID
+}
+
+type additionalAccessories_Comfort_Passenger {
+  id: ID!
+  ELECTRIC_FRONT_WINDOWS: Boolean
+  ELECTRIC_BACK_WINDOWS: Boolean
+  FACTORY_RADIO: Boolean
+  NON_STANDARD_RADIO: Boolean
+  AUX: Boolean
+  MP3: Boolean
+  CD: Boolean
+  CD_CHANGER: Boolean
+  DVD_PLAYER: Boolean
+  TV_TUNER: Boolean
+  LEATHER_UPHOLSTERY: Boolean
+  VELOR_UPHOLSTERY: Boolean
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS: Boolean
+  ELECTRIC_ADJUSTABLE_BACK_SEATS: Boolean
+  HEATED_FRONT_SEATS: Boolean
+  HEATED_BACK_SEATS: Boolean
+  PANORAMIC_ROOF: Boolean
+  SUNROOF: Boolean
+  ROOF_RACK: Boolean
+  PARKING_HEATER: Boolean
+  HEATED_FRONT_WINDSCREEN: Boolean
+  AIR_CONDITIONING_AUTOMATIC: Boolean
+  AIR_CONDITIONING_DUAL_ZONE: Boolean
+  AIR_CONDITIONING_THREE_ZONE: Boolean
+  AIR_CONDITIONING_FOUR_ZONE: Boolean
+  AIR_CONDITIONING_MANUAL: Boolean
+}
+
+type additionalAccessories_Comfort_PassengerConnection {
+  pageInfo: PageInfo!
+  edges: [additionalAccessories_Comfort_PassengerEdge]!
+  aggregate: AggregateadditionalAccessories_Comfort_Passenger!
+}
+
+input additionalAccessories_Comfort_PassengerCreateInput {
+  ELECTRIC_FRONT_WINDOWS: Boolean
+  ELECTRIC_BACK_WINDOWS: Boolean
+  FACTORY_RADIO: Boolean
+  NON_STANDARD_RADIO: Boolean
+  AUX: Boolean
+  MP3: Boolean
+  CD: Boolean
+  CD_CHANGER: Boolean
+  DVD_PLAYER: Boolean
+  TV_TUNER: Boolean
+  LEATHER_UPHOLSTERY: Boolean
+  VELOR_UPHOLSTERY: Boolean
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS: Boolean
+  ELECTRIC_ADJUSTABLE_BACK_SEATS: Boolean
+  HEATED_FRONT_SEATS: Boolean
+  HEATED_BACK_SEATS: Boolean
+  PANORAMIC_ROOF: Boolean
+  SUNROOF: Boolean
+  ROOF_RACK: Boolean
+  PARKING_HEATER: Boolean
+  HEATED_FRONT_WINDSCREEN: Boolean
+  AIR_CONDITIONING_AUTOMATIC: Boolean
+  AIR_CONDITIONING_DUAL_ZONE: Boolean
+  AIR_CONDITIONING_THREE_ZONE: Boolean
+  AIR_CONDITIONING_FOUR_ZONE: Boolean
+  AIR_CONDITIONING_MANUAL: Boolean
+}
+
+input additionalAccessories_Comfort_PassengerCreateOneInput {
+  create: additionalAccessories_Comfort_PassengerCreateInput
+  connect: additionalAccessories_Comfort_PassengerWhereUniqueInput
+}
+
+type additionalAccessories_Comfort_PassengerEdge {
+  node: additionalAccessories_Comfort_Passenger!
+  cursor: String!
+}
+
+enum additionalAccessories_Comfort_PassengerOrderByInput {
+  id_ASC
+  id_DESC
+  ELECTRIC_FRONT_WINDOWS_ASC
+  ELECTRIC_FRONT_WINDOWS_DESC
+  ELECTRIC_BACK_WINDOWS_ASC
+  ELECTRIC_BACK_WINDOWS_DESC
+  FACTORY_RADIO_ASC
+  FACTORY_RADIO_DESC
+  NON_STANDARD_RADIO_ASC
+  NON_STANDARD_RADIO_DESC
+  AUX_ASC
+  AUX_DESC
+  MP3_ASC
+  MP3_DESC
+  CD_ASC
+  CD_DESC
+  CD_CHANGER_ASC
+  CD_CHANGER_DESC
+  DVD_PLAYER_ASC
+  DVD_PLAYER_DESC
+  TV_TUNER_ASC
+  TV_TUNER_DESC
+  LEATHER_UPHOLSTERY_ASC
+  LEATHER_UPHOLSTERY_DESC
+  VELOR_UPHOLSTERY_ASC
+  VELOR_UPHOLSTERY_DESC
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS_ASC
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS_DESC
+  ELECTRIC_ADJUSTABLE_BACK_SEATS_ASC
+  ELECTRIC_ADJUSTABLE_BACK_SEATS_DESC
+  HEATED_FRONT_SEATS_ASC
+  HEATED_FRONT_SEATS_DESC
+  HEATED_BACK_SEATS_ASC
+  HEATED_BACK_SEATS_DESC
+  PANORAMIC_ROOF_ASC
+  PANORAMIC_ROOF_DESC
+  SUNROOF_ASC
+  SUNROOF_DESC
+  ROOF_RACK_ASC
+  ROOF_RACK_DESC
+  PARKING_HEATER_ASC
+  PARKING_HEATER_DESC
+  HEATED_FRONT_WINDSCREEN_ASC
+  HEATED_FRONT_WINDSCREEN_DESC
+  AIR_CONDITIONING_AUTOMATIC_ASC
+  AIR_CONDITIONING_AUTOMATIC_DESC
+  AIR_CONDITIONING_DUAL_ZONE_ASC
+  AIR_CONDITIONING_DUAL_ZONE_DESC
+  AIR_CONDITIONING_THREE_ZONE_ASC
+  AIR_CONDITIONING_THREE_ZONE_DESC
+  AIR_CONDITIONING_FOUR_ZONE_ASC
+  AIR_CONDITIONING_FOUR_ZONE_DESC
+  AIR_CONDITIONING_MANUAL_ASC
+  AIR_CONDITIONING_MANUAL_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type additionalAccessories_Comfort_PassengerPreviousValues {
+  id: ID!
+  ELECTRIC_FRONT_WINDOWS: Boolean
+  ELECTRIC_BACK_WINDOWS: Boolean
+  FACTORY_RADIO: Boolean
+  NON_STANDARD_RADIO: Boolean
+  AUX: Boolean
+  MP3: Boolean
+  CD: Boolean
+  CD_CHANGER: Boolean
+  DVD_PLAYER: Boolean
+  TV_TUNER: Boolean
+  LEATHER_UPHOLSTERY: Boolean
+  VELOR_UPHOLSTERY: Boolean
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS: Boolean
+  ELECTRIC_ADJUSTABLE_BACK_SEATS: Boolean
+  HEATED_FRONT_SEATS: Boolean
+  HEATED_BACK_SEATS: Boolean
+  PANORAMIC_ROOF: Boolean
+  SUNROOF: Boolean
+  ROOF_RACK: Boolean
+  PARKING_HEATER: Boolean
+  HEATED_FRONT_WINDSCREEN: Boolean
+  AIR_CONDITIONING_AUTOMATIC: Boolean
+  AIR_CONDITIONING_DUAL_ZONE: Boolean
+  AIR_CONDITIONING_THREE_ZONE: Boolean
+  AIR_CONDITIONING_FOUR_ZONE: Boolean
+  AIR_CONDITIONING_MANUAL: Boolean
+}
+
+type additionalAccessories_Comfort_PassengerSubscriptionPayload {
+  mutation: MutationType!
+  node: additionalAccessories_Comfort_Passenger
+  updatedFields: [String!]
+  previousValues: additionalAccessories_Comfort_PassengerPreviousValues
+}
+
+input additionalAccessories_Comfort_PassengerSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: additionalAccessories_Comfort_PassengerWhereInput
+  AND: [additionalAccessories_Comfort_PassengerSubscriptionWhereInput!]
+  OR: [additionalAccessories_Comfort_PassengerSubscriptionWhereInput!]
+  NOT: [additionalAccessories_Comfort_PassengerSubscriptionWhereInput!]
+}
+
+input additionalAccessories_Comfort_PassengerUpdateDataInput {
+  ELECTRIC_FRONT_WINDOWS: Boolean
+  ELECTRIC_BACK_WINDOWS: Boolean
+  FACTORY_RADIO: Boolean
+  NON_STANDARD_RADIO: Boolean
+  AUX: Boolean
+  MP3: Boolean
+  CD: Boolean
+  CD_CHANGER: Boolean
+  DVD_PLAYER: Boolean
+  TV_TUNER: Boolean
+  LEATHER_UPHOLSTERY: Boolean
+  VELOR_UPHOLSTERY: Boolean
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS: Boolean
+  ELECTRIC_ADJUSTABLE_BACK_SEATS: Boolean
+  HEATED_FRONT_SEATS: Boolean
+  HEATED_BACK_SEATS: Boolean
+  PANORAMIC_ROOF: Boolean
+  SUNROOF: Boolean
+  ROOF_RACK: Boolean
+  PARKING_HEATER: Boolean
+  HEATED_FRONT_WINDSCREEN: Boolean
+  AIR_CONDITIONING_AUTOMATIC: Boolean
+  AIR_CONDITIONING_DUAL_ZONE: Boolean
+  AIR_CONDITIONING_THREE_ZONE: Boolean
+  AIR_CONDITIONING_FOUR_ZONE: Boolean
+  AIR_CONDITIONING_MANUAL: Boolean
+}
+
+input additionalAccessories_Comfort_PassengerUpdateInput {
+  ELECTRIC_FRONT_WINDOWS: Boolean
+  ELECTRIC_BACK_WINDOWS: Boolean
+  FACTORY_RADIO: Boolean
+  NON_STANDARD_RADIO: Boolean
+  AUX: Boolean
+  MP3: Boolean
+  CD: Boolean
+  CD_CHANGER: Boolean
+  DVD_PLAYER: Boolean
+  TV_TUNER: Boolean
+  LEATHER_UPHOLSTERY: Boolean
+  VELOR_UPHOLSTERY: Boolean
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS: Boolean
+  ELECTRIC_ADJUSTABLE_BACK_SEATS: Boolean
+  HEATED_FRONT_SEATS: Boolean
+  HEATED_BACK_SEATS: Boolean
+  PANORAMIC_ROOF: Boolean
+  SUNROOF: Boolean
+  ROOF_RACK: Boolean
+  PARKING_HEATER: Boolean
+  HEATED_FRONT_WINDSCREEN: Boolean
+  AIR_CONDITIONING_AUTOMATIC: Boolean
+  AIR_CONDITIONING_DUAL_ZONE: Boolean
+  AIR_CONDITIONING_THREE_ZONE: Boolean
+  AIR_CONDITIONING_FOUR_ZONE: Boolean
+  AIR_CONDITIONING_MANUAL: Boolean
+}
+
+input additionalAccessories_Comfort_PassengerUpdateManyMutationInput {
+  ELECTRIC_FRONT_WINDOWS: Boolean
+  ELECTRIC_BACK_WINDOWS: Boolean
+  FACTORY_RADIO: Boolean
+  NON_STANDARD_RADIO: Boolean
+  AUX: Boolean
+  MP3: Boolean
+  CD: Boolean
+  CD_CHANGER: Boolean
+  DVD_PLAYER: Boolean
+  TV_TUNER: Boolean
+  LEATHER_UPHOLSTERY: Boolean
+  VELOR_UPHOLSTERY: Boolean
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS: Boolean
+  ELECTRIC_ADJUSTABLE_BACK_SEATS: Boolean
+  HEATED_FRONT_SEATS: Boolean
+  HEATED_BACK_SEATS: Boolean
+  PANORAMIC_ROOF: Boolean
+  SUNROOF: Boolean
+  ROOF_RACK: Boolean
+  PARKING_HEATER: Boolean
+  HEATED_FRONT_WINDSCREEN: Boolean
+  AIR_CONDITIONING_AUTOMATIC: Boolean
+  AIR_CONDITIONING_DUAL_ZONE: Boolean
+  AIR_CONDITIONING_THREE_ZONE: Boolean
+  AIR_CONDITIONING_FOUR_ZONE: Boolean
+  AIR_CONDITIONING_MANUAL: Boolean
+}
+
+input additionalAccessories_Comfort_PassengerUpdateOneInput {
+  create: additionalAccessories_Comfort_PassengerCreateInput
+  update: additionalAccessories_Comfort_PassengerUpdateDataInput
+  upsert: additionalAccessories_Comfort_PassengerUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: additionalAccessories_Comfort_PassengerWhereUniqueInput
+}
+
+input additionalAccessories_Comfort_PassengerUpsertNestedInput {
+  update: additionalAccessories_Comfort_PassengerUpdateDataInput!
+  create: additionalAccessories_Comfort_PassengerCreateInput!
+}
+
+input additionalAccessories_Comfort_PassengerWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  ELECTRIC_FRONT_WINDOWS: Boolean
+  ELECTRIC_FRONT_WINDOWS_not: Boolean
+  ELECTRIC_BACK_WINDOWS: Boolean
+  ELECTRIC_BACK_WINDOWS_not: Boolean
+  FACTORY_RADIO: Boolean
+  FACTORY_RADIO_not: Boolean
+  NON_STANDARD_RADIO: Boolean
+  NON_STANDARD_RADIO_not: Boolean
+  AUX: Boolean
+  AUX_not: Boolean
+  MP3: Boolean
+  MP3_not: Boolean
+  CD: Boolean
+  CD_not: Boolean
+  CD_CHANGER: Boolean
+  CD_CHANGER_not: Boolean
+  DVD_PLAYER: Boolean
+  DVD_PLAYER_not: Boolean
+  TV_TUNER: Boolean
+  TV_TUNER_not: Boolean
+  LEATHER_UPHOLSTERY: Boolean
+  LEATHER_UPHOLSTERY_not: Boolean
+  VELOR_UPHOLSTERY: Boolean
+  VELOR_UPHOLSTERY_not: Boolean
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS: Boolean
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS_not: Boolean
+  ELECTRIC_ADJUSTABLE_BACK_SEATS: Boolean
+  ELECTRIC_ADJUSTABLE_BACK_SEATS_not: Boolean
+  HEATED_FRONT_SEATS: Boolean
+  HEATED_FRONT_SEATS_not: Boolean
+  HEATED_BACK_SEATS: Boolean
+  HEATED_BACK_SEATS_not: Boolean
+  PANORAMIC_ROOF: Boolean
+  PANORAMIC_ROOF_not: Boolean
+  SUNROOF: Boolean
+  SUNROOF_not: Boolean
+  ROOF_RACK: Boolean
+  ROOF_RACK_not: Boolean
+  PARKING_HEATER: Boolean
+  PARKING_HEATER_not: Boolean
+  HEATED_FRONT_WINDSCREEN: Boolean
+  HEATED_FRONT_WINDSCREEN_not: Boolean
+  AIR_CONDITIONING_AUTOMATIC: Boolean
+  AIR_CONDITIONING_AUTOMATIC_not: Boolean
+  AIR_CONDITIONING_DUAL_ZONE: Boolean
+  AIR_CONDITIONING_DUAL_ZONE_not: Boolean
+  AIR_CONDITIONING_THREE_ZONE: Boolean
+  AIR_CONDITIONING_THREE_ZONE_not: Boolean
+  AIR_CONDITIONING_FOUR_ZONE: Boolean
+  AIR_CONDITIONING_FOUR_ZONE_not: Boolean
+  AIR_CONDITIONING_MANUAL: Boolean
+  AIR_CONDITIONING_MANUAL_not: Boolean
+  AND: [additionalAccessories_Comfort_PassengerWhereInput!]
+  OR: [additionalAccessories_Comfort_PassengerWhereInput!]
+  NOT: [additionalAccessories_Comfort_PassengerWhereInput!]
+}
+
+input additionalAccessories_Comfort_PassengerWhereUniqueInput {
+  id: ID
+}
+
+type additionalAccessories_Safety {
+  id: ID!
+  ABS: Boolean
+  ESP: Boolean
+  ASR: Boolean
+  CENTRAL_LOCKING: Boolean
+  IMMOBILIZER: Boolean
+  ALARM: Boolean
+  DRIVER_AIRBAG: Boolean
+  PASSENGER_AIRBAG: Boolean
+  SIDE_FRONT_AIRBAGS: Boolean
+  SIDE_BACK_AIRBAGS: Boolean
+}
+
+type additionalAccessories_SafetyConnection {
+  pageInfo: PageInfo!
+  edges: [additionalAccessories_SafetyEdge]!
+  aggregate: AggregateadditionalAccessories_Safety!
+}
+
+input additionalAccessories_SafetyCreateInput {
+  ABS: Boolean
+  ESP: Boolean
+  ASR: Boolean
+  CENTRAL_LOCKING: Boolean
+  IMMOBILIZER: Boolean
+  ALARM: Boolean
+  DRIVER_AIRBAG: Boolean
+  PASSENGER_AIRBAG: Boolean
+  SIDE_FRONT_AIRBAGS: Boolean
+  SIDE_BACK_AIRBAGS: Boolean
+}
+
+input additionalAccessories_SafetyCreateOneInput {
+  create: additionalAccessories_SafetyCreateInput
+  connect: additionalAccessories_SafetyWhereUniqueInput
+}
+
+type additionalAccessories_SafetyEdge {
+  node: additionalAccessories_Safety!
+  cursor: String!
+}
+
+enum additionalAccessories_SafetyOrderByInput {
+  id_ASC
+  id_DESC
+  ABS_ASC
+  ABS_DESC
+  ESP_ASC
+  ESP_DESC
+  ASR_ASC
+  ASR_DESC
+  CENTRAL_LOCKING_ASC
+  CENTRAL_LOCKING_DESC
+  IMMOBILIZER_ASC
+  IMMOBILIZER_DESC
+  ALARM_ASC
+  ALARM_DESC
+  DRIVER_AIRBAG_ASC
+  DRIVER_AIRBAG_DESC
+  PASSENGER_AIRBAG_ASC
+  PASSENGER_AIRBAG_DESC
+  SIDE_FRONT_AIRBAGS_ASC
+  SIDE_FRONT_AIRBAGS_DESC
+  SIDE_BACK_AIRBAGS_ASC
+  SIDE_BACK_AIRBAGS_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type additionalAccessories_SafetyPreviousValues {
+  id: ID!
+  ABS: Boolean
+  ESP: Boolean
+  ASR: Boolean
+  CENTRAL_LOCKING: Boolean
+  IMMOBILIZER: Boolean
+  ALARM: Boolean
+  DRIVER_AIRBAG: Boolean
+  PASSENGER_AIRBAG: Boolean
+  SIDE_FRONT_AIRBAGS: Boolean
+  SIDE_BACK_AIRBAGS: Boolean
+}
+
+type additionalAccessories_SafetySubscriptionPayload {
+  mutation: MutationType!
+  node: additionalAccessories_Safety
+  updatedFields: [String!]
+  previousValues: additionalAccessories_SafetyPreviousValues
+}
+
+input additionalAccessories_SafetySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: additionalAccessories_SafetyWhereInput
+  AND: [additionalAccessories_SafetySubscriptionWhereInput!]
+  OR: [additionalAccessories_SafetySubscriptionWhereInput!]
+  NOT: [additionalAccessories_SafetySubscriptionWhereInput!]
+}
+
+input additionalAccessories_SafetyUpdateDataInput {
+  ABS: Boolean
+  ESP: Boolean
+  ASR: Boolean
+  CENTRAL_LOCKING: Boolean
+  IMMOBILIZER: Boolean
+  ALARM: Boolean
+  DRIVER_AIRBAG: Boolean
+  PASSENGER_AIRBAG: Boolean
+  SIDE_FRONT_AIRBAGS: Boolean
+  SIDE_BACK_AIRBAGS: Boolean
+}
+
+input additionalAccessories_SafetyUpdateInput {
+  ABS: Boolean
+  ESP: Boolean
+  ASR: Boolean
+  CENTRAL_LOCKING: Boolean
+  IMMOBILIZER: Boolean
+  ALARM: Boolean
+  DRIVER_AIRBAG: Boolean
+  PASSENGER_AIRBAG: Boolean
+  SIDE_FRONT_AIRBAGS: Boolean
+  SIDE_BACK_AIRBAGS: Boolean
+}
+
+input additionalAccessories_SafetyUpdateManyMutationInput {
+  ABS: Boolean
+  ESP: Boolean
+  ASR: Boolean
+  CENTRAL_LOCKING: Boolean
+  IMMOBILIZER: Boolean
+  ALARM: Boolean
+  DRIVER_AIRBAG: Boolean
+  PASSENGER_AIRBAG: Boolean
+  SIDE_FRONT_AIRBAGS: Boolean
+  SIDE_BACK_AIRBAGS: Boolean
+}
+
+input additionalAccessories_SafetyUpdateOneInput {
+  create: additionalAccessories_SafetyCreateInput
+  update: additionalAccessories_SafetyUpdateDataInput
+  upsert: additionalAccessories_SafetyUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: additionalAccessories_SafetyWhereUniqueInput
+}
+
+input additionalAccessories_SafetyUpsertNestedInput {
+  update: additionalAccessories_SafetyUpdateDataInput!
+  create: additionalAccessories_SafetyCreateInput!
+}
+
+input additionalAccessories_SafetyWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  ABS: Boolean
+  ABS_not: Boolean
+  ESP: Boolean
+  ESP_not: Boolean
+  ASR: Boolean
+  ASR_not: Boolean
+  CENTRAL_LOCKING: Boolean
+  CENTRAL_LOCKING_not: Boolean
+  IMMOBILIZER: Boolean
+  IMMOBILIZER_not: Boolean
+  ALARM: Boolean
+  ALARM_not: Boolean
+  DRIVER_AIRBAG: Boolean
+  DRIVER_AIRBAG_not: Boolean
+  PASSENGER_AIRBAG: Boolean
+  PASSENGER_AIRBAG_not: Boolean
+  SIDE_FRONT_AIRBAGS: Boolean
+  SIDE_FRONT_AIRBAGS_not: Boolean
+  SIDE_BACK_AIRBAGS: Boolean
+  SIDE_BACK_AIRBAGS_not: Boolean
+  AND: [additionalAccessories_SafetyWhereInput!]
+  OR: [additionalAccessories_SafetyWhereInput!]
+  NOT: [additionalAccessories_SafetyWhereInput!]
+}
+
+input additionalAccessories_SafetyWhereUniqueInput {
+  id: ID
+}
+
+type AggregateadditionalAccessories_Appereance {
+  count: Int!
+}
+
+type AggregateadditionalAccessories_Comfort_Driver {
+  count: Int!
+}
+
+type AggregateadditionalAccessories_Comfort_Passenger {
+  count: Int!
+}
+
+type AggregateadditionalAccessories_Safety {
+  count: Int!
 }
 
 type AggregateCar {
@@ -159,10 +1107,10 @@ type Car {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: [AdditionalAccessory_Safety!]!
-  additionalAccessories_Comfort_Passenger: [AdditionalAccessory_Comfort_Passenger!]!
-  additionalAccessories_Comfort_Driver: [AdditionalAccessory_Comfort_Driver!]!
-  additionalAccessories_Appereance: [AdditionalAccessory_Appereance!]!
+  additionalAccessories_Safety: additionalAccessories_Safety
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_Passenger
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_Driver
+  additionalAccessories_Appereance: additionalAccessories_Appereance
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -181,22 +1129,6 @@ type CarConnection {
   aggregate: AggregateCar!
 }
 
-input CarCreateadditionalAccessories_AppereanceInput {
-  set: [AdditionalAccessory_Appereance!]
-}
-
-input CarCreateadditionalAccessories_Comfort_DriverInput {
-  set: [AdditionalAccessory_Comfort_Driver!]
-}
-
-input CarCreateadditionalAccessories_Comfort_PassengerInput {
-  set: [AdditionalAccessory_Comfort_Passenger!]
-}
-
-input CarCreateadditionalAccessories_SafetyInput {
-  set: [AdditionalAccessory_Safety!]
-}
-
 input CarCreateInput {
   segment: Segment
   brand: Brand!
@@ -210,10 +1142,10 @@ input CarCreateInput {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: CarCreateadditionalAccessories_SafetyInput
-  additionalAccessories_Comfort_Passenger: CarCreateadditionalAccessories_Comfort_PassengerInput
-  additionalAccessories_Comfort_Driver: CarCreateadditionalAccessories_Comfort_DriverInput
-  additionalAccessories_Appereance: CarCreateadditionalAccessories_AppereanceInput
+  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneInput
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneInput
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneInput
+  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneInput
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -303,10 +1235,6 @@ type CarPreviousValues {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: [AdditionalAccessory_Safety!]!
-  additionalAccessories_Comfort_Passenger: [AdditionalAccessory_Comfort_Passenger!]!
-  additionalAccessories_Comfort_Driver: [AdditionalAccessory_Comfort_Driver!]!
-  additionalAccessories_Appereance: [AdditionalAccessory_Appereance!]!
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -337,22 +1265,6 @@ input CarSubscriptionWhereInput {
   NOT: [CarSubscriptionWhereInput!]
 }
 
-input CarUpdateadditionalAccessories_AppereanceInput {
-  set: [AdditionalAccessory_Appereance!]
-}
-
-input CarUpdateadditionalAccessories_Comfort_DriverInput {
-  set: [AdditionalAccessory_Comfort_Driver!]
-}
-
-input CarUpdateadditionalAccessories_Comfort_PassengerInput {
-  set: [AdditionalAccessory_Comfort_Passenger!]
-}
-
-input CarUpdateadditionalAccessories_SafetyInput {
-  set: [AdditionalAccessory_Safety!]
-}
-
 input CarUpdateDataInput {
   segment: Segment
   brand: Brand
@@ -366,10 +1278,10 @@ input CarUpdateDataInput {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: CarUpdateadditionalAccessories_SafetyInput
-  additionalAccessories_Comfort_Passenger: CarUpdateadditionalAccessories_Comfort_PassengerInput
-  additionalAccessories_Comfort_Driver: CarUpdateadditionalAccessories_Comfort_DriverInput
-  additionalAccessories_Appereance: CarUpdateadditionalAccessories_AppereanceInput
+  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneInput
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneInput
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneInput
+  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneInput
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -395,10 +1307,10 @@ input CarUpdateInput {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: CarUpdateadditionalAccessories_SafetyInput
-  additionalAccessories_Comfort_Passenger: CarUpdateadditionalAccessories_Comfort_PassengerInput
-  additionalAccessories_Comfort_Driver: CarUpdateadditionalAccessories_Comfort_DriverInput
-  additionalAccessories_Appereance: CarUpdateadditionalAccessories_AppereanceInput
+  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneInput
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneInput
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneInput
+  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneInput
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -424,10 +1336,6 @@ input CarUpdateManyMutationInput {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: CarUpdateadditionalAccessories_SafetyInput
-  additionalAccessories_Comfort_Passenger: CarUpdateadditionalAccessories_Comfort_PassengerInput
-  additionalAccessories_Comfort_Driver: CarUpdateadditionalAccessories_Comfort_DriverInput
-  additionalAccessories_Appereance: CarUpdateadditionalAccessories_AppereanceInput
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -557,6 +1465,10 @@ input CarWhereInput {
   drive_not: Drive
   drive_in: [Drive!]
   drive_not_in: [Drive!]
+  additionalAccessories_Safety: additionalAccessories_SafetyWhereInput
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerWhereInput
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverWhereInput
+  additionalAccessories_Appereance: additionalAccessories_AppereanceWhereInput
   damaged: Boolean
   damaged_not: Boolean
   accidentFree: Boolean
@@ -683,6 +1595,30 @@ type Mutation {
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   deleteUser(where: UserWhereUniqueInput!): User
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createadditionalAccessories_Appereance(data: additionalAccessories_AppereanceCreateInput!): additionalAccessories_Appereance!
+  updateadditionalAccessories_Appereance(data: additionalAccessories_AppereanceUpdateInput!, where: additionalAccessories_AppereanceWhereUniqueInput!): additionalAccessories_Appereance
+  updateManyadditionalAccessories_Appereances(data: additionalAccessories_AppereanceUpdateManyMutationInput!, where: additionalAccessories_AppereanceWhereInput): BatchPayload!
+  upsertadditionalAccessories_Appereance(where: additionalAccessories_AppereanceWhereUniqueInput!, create: additionalAccessories_AppereanceCreateInput!, update: additionalAccessories_AppereanceUpdateInput!): additionalAccessories_Appereance!
+  deleteadditionalAccessories_Appereance(where: additionalAccessories_AppereanceWhereUniqueInput!): additionalAccessories_Appereance
+  deleteManyadditionalAccessories_Appereances(where: additionalAccessories_AppereanceWhereInput): BatchPayload!
+  createadditionalAccessories_Comfort_Driver(data: additionalAccessories_Comfort_DriverCreateInput!): additionalAccessories_Comfort_Driver!
+  updateadditionalAccessories_Comfort_Driver(data: additionalAccessories_Comfort_DriverUpdateInput!, where: additionalAccessories_Comfort_DriverWhereUniqueInput!): additionalAccessories_Comfort_Driver
+  updateManyadditionalAccessories_Comfort_Drivers(data: additionalAccessories_Comfort_DriverUpdateManyMutationInput!, where: additionalAccessories_Comfort_DriverWhereInput): BatchPayload!
+  upsertadditionalAccessories_Comfort_Driver(where: additionalAccessories_Comfort_DriverWhereUniqueInput!, create: additionalAccessories_Comfort_DriverCreateInput!, update: additionalAccessories_Comfort_DriverUpdateInput!): additionalAccessories_Comfort_Driver!
+  deleteadditionalAccessories_Comfort_Driver(where: additionalAccessories_Comfort_DriverWhereUniqueInput!): additionalAccessories_Comfort_Driver
+  deleteManyadditionalAccessories_Comfort_Drivers(where: additionalAccessories_Comfort_DriverWhereInput): BatchPayload!
+  createadditionalAccessories_Comfort_Passenger(data: additionalAccessories_Comfort_PassengerCreateInput!): additionalAccessories_Comfort_Passenger!
+  updateadditionalAccessories_Comfort_Passenger(data: additionalAccessories_Comfort_PassengerUpdateInput!, where: additionalAccessories_Comfort_PassengerWhereUniqueInput!): additionalAccessories_Comfort_Passenger
+  updateManyadditionalAccessories_Comfort_Passengers(data: additionalAccessories_Comfort_PassengerUpdateManyMutationInput!, where: additionalAccessories_Comfort_PassengerWhereInput): BatchPayload!
+  upsertadditionalAccessories_Comfort_Passenger(where: additionalAccessories_Comfort_PassengerWhereUniqueInput!, create: additionalAccessories_Comfort_PassengerCreateInput!, update: additionalAccessories_Comfort_PassengerUpdateInput!): additionalAccessories_Comfort_Passenger!
+  deleteadditionalAccessories_Comfort_Passenger(where: additionalAccessories_Comfort_PassengerWhereUniqueInput!): additionalAccessories_Comfort_Passenger
+  deleteManyadditionalAccessories_Comfort_Passengers(where: additionalAccessories_Comfort_PassengerWhereInput): BatchPayload!
+  createadditionalAccessories_Safety(data: additionalAccessories_SafetyCreateInput!): additionalAccessories_Safety!
+  updateadditionalAccessories_Safety(data: additionalAccessories_SafetyUpdateInput!, where: additionalAccessories_SafetyWhereUniqueInput!): additionalAccessories_Safety
+  updateManyadditionalAccessories_Safeties(data: additionalAccessories_SafetyUpdateManyMutationInput!, where: additionalAccessories_SafetyWhereInput): BatchPayload!
+  upsertadditionalAccessories_Safety(where: additionalAccessories_SafetyWhereUniqueInput!, create: additionalAccessories_SafetyCreateInput!, update: additionalAccessories_SafetyUpdateInput!): additionalAccessories_Safety!
+  deleteadditionalAccessories_Safety(where: additionalAccessories_SafetyWhereUniqueInput!): additionalAccessories_Safety
+  deleteManyadditionalAccessories_Safeties(where: additionalAccessories_SafetyWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -871,6 +1807,18 @@ type Query {
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  additionalAccessories_Appereance(where: additionalAccessories_AppereanceWhereUniqueInput!): additionalAccessories_Appereance
+  additionalAccessories_Appereances(where: additionalAccessories_AppereanceWhereInput, orderBy: additionalAccessories_AppereanceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [additionalAccessories_Appereance]!
+  additionalAccessories_AppereancesConnection(where: additionalAccessories_AppereanceWhereInput, orderBy: additionalAccessories_AppereanceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): additionalAccessories_AppereanceConnection!
+  additionalAccessories_Comfort_Driver(where: additionalAccessories_Comfort_DriverWhereUniqueInput!): additionalAccessories_Comfort_Driver
+  additionalAccessories_Comfort_Drivers(where: additionalAccessories_Comfort_DriverWhereInput, orderBy: additionalAccessories_Comfort_DriverOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [additionalAccessories_Comfort_Driver]!
+  additionalAccessories_Comfort_DriversConnection(where: additionalAccessories_Comfort_DriverWhereInput, orderBy: additionalAccessories_Comfort_DriverOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): additionalAccessories_Comfort_DriverConnection!
+  additionalAccessories_Comfort_Passenger(where: additionalAccessories_Comfort_PassengerWhereUniqueInput!): additionalAccessories_Comfort_Passenger
+  additionalAccessories_Comfort_Passengers(where: additionalAccessories_Comfort_PassengerWhereInput, orderBy: additionalAccessories_Comfort_PassengerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [additionalAccessories_Comfort_Passenger]!
+  additionalAccessories_Comfort_PassengersConnection(where: additionalAccessories_Comfort_PassengerWhereInput, orderBy: additionalAccessories_Comfort_PassengerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): additionalAccessories_Comfort_PassengerConnection!
+  additionalAccessories_Safety(where: additionalAccessories_SafetyWhereUniqueInput!): additionalAccessories_Safety
+  additionalAccessories_Safeties(where: additionalAccessories_SafetyWhereInput, orderBy: additionalAccessories_SafetyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [additionalAccessories_Safety]!
+  additionalAccessories_SafetiesConnection(where: additionalAccessories_SafetyWhereInput, orderBy: additionalAccessories_SafetyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): additionalAccessories_SafetyConnection!
   node(id: ID!): Node
 }
 
@@ -887,6 +1835,10 @@ type Subscription {
   car(where: CarSubscriptionWhereInput): CarSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  additionalAccessories_Appereance(where: additionalAccessories_AppereanceSubscriptionWhereInput): additionalAccessories_AppereanceSubscriptionPayload
+  additionalAccessories_Comfort_Driver(where: additionalAccessories_Comfort_DriverSubscriptionWhereInput): additionalAccessories_Comfort_DriverSubscriptionPayload
+  additionalAccessories_Comfort_Passenger(where: additionalAccessories_Comfort_PassengerSubscriptionWhereInput): additionalAccessories_Comfort_PassengerSubscriptionPayload
+  additionalAccessories_Safety(where: additionalAccessories_SafetySubscriptionWhereInput): additionalAccessories_SafetySubscriptionPayload
 }
 
 enum Transmission {

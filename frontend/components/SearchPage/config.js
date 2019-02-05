@@ -21,12 +21,15 @@ export const fetchedFiltersOptions = [
   "FuelType",
   "Transmission",
   "Drive",
-  "AdditionalAccessory_Safety",
-  "AdditionalAccessory_Comfort_Passenger",
-  "AdditionalAccessory_Comfort_Driver",
-  "AdditionalAccessory_Appereance",
   "Color",
   "Country"
+];
+
+export const fetchedSubTypes = [
+  "additionalAccessories_Safety",
+  "additionalAccessories_Comfort_Passenger",
+  "additionalAccessories_Comfort_Driver",
+  "additionalAccessories_Appereance"
 ];
 
 export const staticFiltersOptions = {
@@ -60,13 +63,13 @@ export const blankFiltersStateEngineAndDrive = {
 export const blankFiltersStateBodyAndAppereance = {
   color_in: [],
   steeringWheelOnTheRight: "deleteFromFilters",
-  additionalAccessories_Appereance_in: []
+  additionalAccessories_Appereance: []
 };
 
 export const blankFiltersStateAdditionalAccessories = {
-  additionalAccessories_Safety_in: [],
-  additionalAccessories_Comfort_Driver_in: [],
-  additionalAccessories_Comfort_Passenger_in: []
+  additionalAccessories_Safety: [],
+  additionalAccessories_Comfort_Driver: [],
+  additionalAccessories_Comfort_Passenger: []
 };
 
 export const blankFiltersState = {

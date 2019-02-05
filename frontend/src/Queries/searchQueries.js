@@ -54,6 +54,9 @@ export const FILTERS_QUERIES = gql`
         enumValues {
           name
         }
+        fields {
+          name
+        }
       }
     }
     Post: __type(name: "Post") {

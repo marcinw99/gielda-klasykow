@@ -1,16 +1,8 @@
 import React from "react";
-import {
-  Modal,
-  FormControlLabel,
-  Checkbox,
-  Grid,
-  Select,
-  MenuItem,
-  withStyles
-} from "@material-ui/core";
+import { Modal, Grid, Select, MenuItem } from "@material-ui/core";
 
 import { blankFiltersStateEngineAndDrive } from "../../../../config";
-import enumsDisplayedText from "../../../../../../resources/enumsDisplayedText";
+import CheckboxGenerator from "../CheckboxGenerator";
 import DoubleInputs from "../DoubleInputs";
 import {
   ModalPaper,
@@ -20,13 +12,6 @@ import {
 } from "./styledComponents";
 import Header from "./Header";
 import Footer from "./Footer";
-
-const styles = theme => ({
-  formControlLabel: {
-    width: 250,
-    maxHeight: 32
-  }
-});
 
 const EngineAndDriveModal = props => (
   <Modal
@@ -52,7 +37,7 @@ const EngineAndDriveModal = props => (
           valueLeft={props.values.engineSize_gt}
           valueRight={props.values.engineSize_lt}
           handleChange={props.handleChangeWithoutFiltering}
-          options={props.selectsOptions.EngineSize.map(item => ({
+          options={props.options.EngineSize.map(item => ({
             label: `${item} cm3`,
             value: item
           }))}
@@ -70,7 +55,7 @@ const EngineAndDriveModal = props => (
           valueLeft={props.values.power_gt}
           valueRight={props.values.power_lt}
           handleChange={props.handleChangeWithoutFiltering}
-          options={props.selectsOptions.Power.map(item => ({
+          options={props.options.Power.map(item => ({
             label: `${item} km`,
             value: item
           }))}
@@ -88,7 +73,7 @@ const EngineAndDriveModal = props => (
           valueLeft={props.values.torque_gt}
           valueRight={props.values.torque_lt}
           handleChange={props.handleChangeWithoutFiltering}
-          options={props.selectsOptions.Torque.map(item => ({
+          options={props.options.Torque.map(item => ({
             label: `${item} nm`,
             value: item
           }))}
@@ -112,41 +97,25 @@ const EngineAndDriveModal = props => (
         <StyledFilterTitle>Rodzaj skrzyni biegów</StyledFilterTitle>
         <StyledFormControl>
           <Grid container justify="flex-start">
-            {props.selectsOptions.Transmission.map(item => (
-              <FormControlLabel
-                className={props.classes.formControlLabel}
-                key={item}
-                control={
-                  <Checkbox
-                    checked={props.values.transmission_in.indexOf(item) !== -1}
-                    onChange={props.handleMultiCheckboxChange(
-                      "transmission_in"
-                    )}
-                    value={item}
-                  />
-                }
-                label={enumsDisplayedText("transmission", item)}
-              />
-            ))}
+            <CheckboxGenerator
+              name="transmission"
+              valueName="transmission_in"
+              options={props.options.Transmission}
+              values={props.values}
+              handleChange={props.handleMultiCheckboxChange}
+            />
           </Grid>
         </StyledFormControl>
         <StyledFilterTitle>Rodzaj układu napędowego</StyledFilterTitle>
         <StyledFormControl>
           <Grid container justify="flex-start">
-            {props.selectsOptions.Drive.map(item => (
-              <FormControlLabel
-                className={props.classes.formControlLabel}
-                key={item}
-                control={
-                  <Checkbox
-                    checked={props.values.drive_in.indexOf(item) !== -1}
-                    onChange={props.handleMultiCheckboxChange("drive_in")}
-                    value={item}
-                  />
-                }
-                label={enumsDisplayedText("drive", item)}
-              />
-            ))}
+            <CheckboxGenerator
+              name="drive"
+              valueName="drive_in"
+              options={props.options.Drive}
+              values={props.values}
+              handleChange={props.handleMultiCheckboxChange}
+            />
           </Grid>
         </StyledFormControl>
       </ModalContent>
@@ -162,4 +131,4 @@ const EngineAndDriveModal = props => (
   </Modal>
 );
 
-export default withStyles(styles)(EngineAndDriveModal);
+export default EngineAndDriveModal;
