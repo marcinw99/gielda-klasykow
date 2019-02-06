@@ -41,7 +41,12 @@ const getBooleans = input => {
   var values = types.filter(item => fetchedSubTypes.indexOf(item.name) !== -1);
   var results = {};
   for (let item in values) {
-    results[values[item].name] = values[item].fields.map(item => item.name);
+    const normalizedTypeValues = values[item].fields.map(item => item.name);
+    const filteredTypeValues = normalizedTypeValues.filter(
+      item => item !== "id"
+    );
+    const typeName = values[item].name;
+    results[typeName] = filteredTypeValues;
   }
   return results;
 };
