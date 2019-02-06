@@ -1,7 +1,13 @@
 import React from "react";
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid, withStyles } from "@material-ui/core";
 
 import { steps } from "./config";
+
+const styles = theme => ({
+  marginRight: {
+    marginRight: theme.spacing.unit * 2
+  }
+});
 
 const Navigation = props => {
   const handleNext = () => {
@@ -28,10 +34,20 @@ const Navigation = props => {
         <Button onClick={handleReset}>Zresetuj formularz</Button>
       </Grid>
       <Grid item>
-        <Button disabled={props.activeStep === 0} onClick={handleBack}>
+        <Button
+          className={props.classes.marginRight}
+          disabled={props.activeStep === 0}
+          onClick={handleBack}
+        >
           Wróć
         </Button>
-        <Button variant="contained" color="primary" onClick={handleNext}>
+        <Button
+          variant="contained"
+          color={
+            props.activeStep === steps.length - 1 ? "secondary" : "primary"
+          }
+          onClick={handleNext}
+        >
           {props.activeStep === steps.length - 1 ? "Zakończ" : "Następny krok"}
         </Button>
       </Grid>
@@ -39,4 +55,4 @@ const Navigation = props => {
   );
 };
 
-export default Navigation;
+export default withStyles(styles)(Navigation);
