@@ -5,11 +5,13 @@ import {
   Menu as MenuIcon,
   ArrowBack as ArrowBackIcon,
   AccessTime as AccessTimeIcon,
-  LocalOffer as LocalOfferIcon
+  LocalOffer as LocalOfferIcon,
+  Create as CreateIcon
 } from "@material-ui/icons";
 import PropTypes from "prop-types";
+import Router from "next/router";
 
-import { StyledMenuItem } from "./styledComponents";
+import { StyledMenuItem, StyledName } from "./styledComponents";
 import { SIGNOUT_MUTATION } from "../../../../src/Mutations/Login";
 import { CURRENT_USER_QUERY } from "../../../../src/QueryComponents/User";
 
@@ -30,7 +32,21 @@ class HeaderWithUser extends Component {
     });
   };
 
+  handleAddPost = () => {
+    this.handleClose();
+    Router.push("/add");
+  };
+
   render() {
+    const menuOptions = [
+      { label: "Obserwowane oferty", icon: <AccessTimeIcon /> },
+      { label: "Moje ogłoszenia", icon: <LocalOfferIcon /> },
+      {
+        label: "Dodaj ogłoszenie",
+        icon: <CreateIcon />,
+        handleClick: this.handleAddPost
+      }
+    ];
     return (
       <Fade
         in={Boolean(this.props.thisUser)}
@@ -39,9 +55,9 @@ class HeaderWithUser extends Component {
         timeout={{ enter: 1200, exit: 0 }}
       >
         <Grid justify="flex-end" alignItems="center" container direction="row">
-          <Typography variant="h5" color="primary">
+          <StyledName>
             {this.props.thisUser && this.props.thisUser.name}
-          </Typography>
+          </StyledName>
           <IconButton onClick={this.handleClick}>
             <MenuIcon />
           </IconButton>
@@ -58,16 +74,17 @@ class HeaderWithUser extends Component {
               horizontal: "right"
             }}
           >
-            <StyledMenuItem onClick={this.handleClose}>
-              <Grid container justify="space-between">
-                <LocalOfferIcon /> Obserwowane oferty
-              </Grid>
-            </StyledMenuItem>
-            <StyledMenuItem onClick={this.handleClose}>
-              <Grid container justify="space-between">
-                <AccessTimeIcon /> Moje ogłoszenia
-              </Grid>
-            </StyledMenuItem>
+            {menuOptions.map(item => (
+              <StyledMenuItem
+                key={item.label}
+                onClick={item.handleClick ? item.handleClick : this.handleClose}
+              >
+                <Grid container justify="space-between">
+                  {item.icon}
+                  {item.label}
+                </Grid>
+              </StyledMenuItem>
+            ))}
             <SignOut onClick={this.handleClose}>
               <Grid container justify="space-between">
                 <ArrowBackIcon /> Wyloguj się

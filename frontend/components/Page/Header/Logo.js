@@ -11,7 +11,10 @@ const styles = theme => ({
   logo: {
     height: "50px",
     width: "auto",
-    marginTop: theme.spacing.unit
+    marginTop: theme.spacing.unit,
+    background: "#f5f5f5",
+    borderRadius: 15,
+    margin: theme.spacing.unit
   },
   text: {
     fontSize: 32,

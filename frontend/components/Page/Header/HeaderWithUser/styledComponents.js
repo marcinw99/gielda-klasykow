@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles, MenuItem } from "@material-ui/core";
+import { withStyles, MenuItem, Typography } from "@material-ui/core";
 
 // StyledMenuItem
 
@@ -14,3 +14,17 @@ const MenuItemComponent = props => {
 };
 
 export const StyledMenuItem = withStyles(menuItemStyles)(MenuItemComponent);
+
+// StyledName
+
+const nameStyles = theme => ({
+  root: {
+    color: theme.palette.primary.dark
+  }
+});
+
+const Name = props => {
+  return <Typography variant="h5" {...props} />;
+};
+
+export const StyledName = withStyles(nameStyles)(Name);
