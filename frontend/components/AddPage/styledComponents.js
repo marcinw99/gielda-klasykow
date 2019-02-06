@@ -1,5 +1,6 @@
 import React from "react";
-import { withStyles } from "@material-ui/core";
+import { withStyles, Stepper } from "@material-ui/core";
+
 // Content
 
 const contentStyles = theme => ({
@@ -16,3 +17,15 @@ const ContentComponent = props => {
 };
 
 export const Content = withStyles(contentStyles)(ContentComponent);
+
+// StyledStepper
+
+const stepperStyles = theme => ({
+  root: {
+    background: "rgba(0,0,0,0)"
+  }
+});
+
+const StepperComponent = props => <Stepper {...props} />;
+
+export const StyledStepper = withStyles(stepperStyles)(StepperComponent);
