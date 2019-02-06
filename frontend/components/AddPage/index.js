@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Typography, Grid } from "@material-ui/core";
 
-import { Content } from "./styledComponents";
+import { Content, StyledPaper } from "./styledComponents";
 import Steps from "./Steps";
+import Form from "./Form";
 import Navigation from "./Navigation";
 
 const initialState = {
@@ -39,11 +40,16 @@ class AddPage extends Component {
             />
           </Grid>
           <Grid item xs={7}>
-            Formulasz
-            <Navigation
-              activeStep={this.state.activeStep}
-              setValueInMainState={this.setValueInState}
-            />
+            <StyledPaper>
+              <Form
+                activeStep={this.state.activeStep}
+                setValueInMainState={this.setValueInState}
+              />
+              <Navigation
+                activeStep={this.state.activeStep}
+                setValueInMainState={this.setValueInState}
+              />
+            </StyledPaper>
           </Grid>
         </Grid>
       </Content>
