@@ -2,9 +2,9 @@ import React from "react";
 import { Modal, Grid, Fade } from "@material-ui/core";
 
 import { blankFiltersStateEngineAndDrive } from "../../../../config";
-import CheckboxGenerator from "../CheckboxGenerator";
-import BooleanSelect from "../BooleanSelect";
-import DoubleInputs from "../DoubleInputs";
+import CheckboxGenerator from "../../../../../universal/CheckboxGenerator";
+import BooleanSelect from "../../../../../universal/BooleanSelect";
+import DoubleInputs from "../../../../../universal/DoubleInputs";
 import {
   ModalPaper,
   ModalContent,

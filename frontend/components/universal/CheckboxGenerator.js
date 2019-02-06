@@ -1,7 +1,7 @@
 import React from "react";
 import { FormControlLabel, Checkbox, withStyles } from "@material-ui/core";
 
-import displayedText from "../../../../../resources/displayedText";
+import displayedText from "../../resources/displayedText";
 
 const styles = theme => ({
   root: {

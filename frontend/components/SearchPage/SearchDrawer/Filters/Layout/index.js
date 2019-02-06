@@ -13,8 +13,8 @@ import {
   StyledExtendedFab,
   StyledFormControl
 } from "./styledComponents";
-import { Autocomplete } from "./Autocompletes";
-import DoubleInputs from "./DoubleInputs";
+import { Autocomplete } from "../../../../universal/Autocompletes";
+import DoubleInputs from "../../../../universal/DoubleInputs";
 import displayedText from "../../../../../resources/displayedText";
 import { AVAILABLE_MODELS_OF_BRAND } from "../../../../../src/Queries/searchQueries";
 import EngineAndDriveModal from "./modals/EngineAndDriveModal";
