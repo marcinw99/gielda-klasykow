@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Typography } from "@material-ui/core";
 
+import { getTypesFields } from "../../universal/methods";
 import { FormContent } from "../styledComponents";
 import { steps } from "../config";
 import BasicInfo from "./BasicInfo";
@@ -32,7 +33,32 @@ function getFormContent(step) {
   }
 }
 
-class index extends Component {
+class Form extends Component {
+  state = {
+    values: {}
+  };
+
+  componentDidMount() {
+    const typesFields = getTypesFields({
+      Car: this.props.data.Car.fields,
+      Post: this.props.data.Post.fields
+    });
+    this.setState({
+      typesFields
+    });
+  }
+
+  handleChange = ({ name, value }) => {
+    this.setState(prevState => ({
+      values: {
+        ...prevState.values,
+        // reset model if brand is changed
+        model: name === "brand" ? null : prevState.values.model,
+        [name]: value
+      }
+    }));
+  };
+
   render() {
     return (
       <Fragment>
@@ -45,4 +71,4 @@ class index extends Component {
   }
 }
 
-export default index;
+export default Form;
