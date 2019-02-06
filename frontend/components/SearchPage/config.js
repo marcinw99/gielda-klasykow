@@ -1,4 +1,4 @@
-import { getArrayOfNumbers } from "./helpers";
+import { getArrayOfNumbers } from "../universal/methods";
 
 export const initialSearchParameters = {
   filters: {},
@@ -55,14 +55,14 @@ export const blankFiltersStateEngineAndDrive = {
   power_lt: null,
   torque_gt: null,
   torque_lt: null,
-  hasParticulateFilter: "deleteFromFilters",
+  hasParticulateFilter: "deleteFromSubmitData",
   transmission_in: [],
   drive_in: []
 };
 
 export const blankFiltersStateBodyAndAppereance = {
   color_in: [],
-  steeringWheelOnTheRight: "deleteFromFilters",
+  steeringWheelOnTheRight: "deleteFromSubmitData",
   additionalAccessories_Appereance: []
 };
 
@@ -73,13 +73,13 @@ export const blankFiltersStateAdditionalAccessories = {
 };
 
 export const blankFiltersVehicleStatus = {
-  damaged: "deleteFromFilters",
-  accidentFree: "deleteFromFilters",
-  firstOwner: "deleteFromFilters",
-  registeredInPoland: "deleteFromFilters",
-  registeredAsAntiqueCar: "deleteFromFilters",
-  hasVIN: "deleteFromFilters",
-  tuning: "deleteFromFilters"
+  damaged: "deleteFromSubmitData",
+  accidentFree: "deleteFromSubmitData",
+  firstOwner: "deleteFromSubmitData",
+  registeredInPoland: "deleteFromSubmitData",
+  registeredAsAntiqueCar: "deleteFromSubmitData",
+  hasVIN: "deleteFromSubmitData",
+  tuning: "deleteFromSubmitData"
 };
 
 export const blankFiltersState = {

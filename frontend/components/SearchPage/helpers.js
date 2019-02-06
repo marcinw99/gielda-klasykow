@@ -4,22 +4,7 @@ import {
   fetchedFiltersOptions,
   fetchedSubTypes
 } from "./config";
-import { isArray, isObject, isString, isUndefined, isBoolean } from "util";
-
-// standalone functions
-
-export const filterArrayOfObjects = (arr, criteria) =>
-  arr.filter(obj => Object.keys(criteria).every(c => obj[c] === criteria[c]));
-
-export function getArrayOfNumbers(startWith, incrementBy, amountOfValues) {
-  var array = [];
-  var value = startWith;
-  for (let i = 0; i <= amountOfValues; i++) {
-    array.push(value);
-    value += incrementBy;
-  }
-  return array;
-}
+import { isArray, isBoolean } from "util";
 
 ///// prepareOptions functions
 
@@ -66,22 +51,6 @@ export function prepareOptions(input) {
 
 /////
 
-///// getTypesFields functions
-
-function formatTypeFields(fields) {
-  return fields.map(item => item.name);
-}
-
-export function getTypesFields(data) {
-  var result = {};
-  for (const key in data) {
-    result[key] = formatTypeFields(data[key]);
-  }
-  return result;
-}
-
-/////
-
 ///// getFormatedFiltersData functions
 
 const filterOutEmptyValues = data => {
@@ -123,44 +92,5 @@ export const getFormattedFiltersData = pipe(
   normalizeObjectProperties,
   spreadArraysIntoSubTypes
 );
-
-/////
-
-///// assignFiltersToProperQueryObject functions
-
-const valueShouldBeInQueryObject = value => {
-  if (isArray(value)) {
-    return value.length !== 0;
-  } else if (isObject(value)) {
-    return Object.keys(value).length !== 0;
-  } else if (isString(value) && value !== "deleteFromFilters") {
-    return value.length !== 0;
-  } else if (value == null || isUndefined(value)) {
-    return false;
-  }
-  return true;
-};
-
-const typeAcceptsValue = (type, filterName) =>
-  // slice for prefixes like price_gt, price_lt etc.
-  type.indexOf(filterName) !== -1 ||
-  type.indexOf(filterName.slice(0, -3)) !== -1
-    ? true
-    : false;
-
-export const assignFiltersToProperQueryObject = ({ filters, typesFields }) => {
-  var result = { car: {} };
-  for (const filterName in filters) {
-    if (valueShouldBeInQueryObject(filters[filterName])) {
-      if (typeAcceptsValue(typesFields.Post, filterName)) {
-        result[filterName] = filters[filterName];
-      }
-      if (typeAcceptsValue(typesFields.Car, filterName)) {
-        result.car[filterName] = filters[filterName];
-      }
-    }
-  }
-  return result;
-};
 
 /////

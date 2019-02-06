@@ -10,7 +10,7 @@ const BooleanSelect = ({ name, value, handleChange }) => {
         name
       }}
     >
-      <MenuItem value="deleteFromFilters">
+      <MenuItem value="deleteFromSubmitData">
         <em>Nie wybrano</em>
       </MenuItem>
       <MenuItem value={true}>Tak</MenuItem>

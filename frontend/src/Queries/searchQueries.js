@@ -76,6 +76,33 @@ export const FILTERS_QUERIES = gql`
   }
 `;
 
+export const ADD_POST_QUERIES = gql`
+  query ADD_POST_QUERIES {
+    Enums: __schema {
+      types {
+        name
+        kind
+        enumValues {
+          name
+        }
+        fields {
+          name
+        }
+      }
+    }
+    Post: __type(name: "Post") {
+      fields {
+        name
+      }
+    }
+    Car: __type(name: "Car") {
+      fields {
+        name
+      }
+    }
+  }
+`;
+
 export const AVAILABLE_MODELS_OF_BRAND = gql`
   query AVAILABLE_MODELS_OF_BRAND($brand: Brand!) {
     availableModelsOfBrand(brand: $brand) {

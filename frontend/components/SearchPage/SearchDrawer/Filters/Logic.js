@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { blankFiltersState, initialSearchParameters } from "../../config";
+import { prepareOptions, getFormattedFiltersData } from "../../helpers";
 import {
   getTypesFields,
-  prepareOptions,
-  getFormattedFiltersData,
-  assignFiltersToProperQueryObject
-} from "../../helpers";
+  assignValuesToProperDataType
+} from "../../../universal/methods";
 
 const initialState = {
   filters: { ...blankFiltersState, ...initialSearchParameters.filters },
@@ -31,7 +30,7 @@ class Logic extends Component {
     const formattedFiltersData = getFormattedFiltersData({
       ...this.state.filters
     });
-    const queryFilters = assignFiltersToProperQueryObject({
+    const queryFilters = assignValuesToProperDataType({
       filters: formattedFiltersData,
       typesFields: this.state.typesFields
     });
