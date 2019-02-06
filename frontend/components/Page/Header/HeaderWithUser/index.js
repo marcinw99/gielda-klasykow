@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
-import { Typography, Grid, Fade, Menu, IconButton } from "@material-ui/core";
+import { Grid, Fade, Menu, IconButton } from "@material-ui/core";
 import {
   Menu as MenuIcon,
   ArrowBack as ArrowBackIcon,
