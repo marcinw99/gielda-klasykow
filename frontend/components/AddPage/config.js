@@ -59,22 +59,22 @@ export const staticOptions = {
   Torque: getArrayOfNumbers(100, 50, 12)
 };
 
-export const blankStateEngineAndDrive = {
+export const blankEngineAndDrive = {
   engineSize: null,
   power: null,
   torque: null,
   hasParticulateFilter: "deleteFromSubmitData",
-  transmission: [],
-  drive: []
+  transmission: null,
+  drive: null
 };
 
-export const blankStateBodyAndAppereance = {
-  color: [],
+export const blankBodyAndAppereance = {
+  color: null,
   steeringWheelOnTheRight: "deleteFromSubmitData",
   additionalAccessories_Appereance: []
 };
 
-export const blankStateAdditionalAccessories = {
+export const blankAdditionalAccessories = {
   additionalAccessories_Safety: [],
   additionalAccessories_Comfort_Driver: [],
   additionalAccessories_Comfort_Passenger: []
@@ -90,7 +90,7 @@ export const blankVehicleStatus = {
   tuning: "deleteFromSubmitData"
 };
 
-export const blankState = {
+export const blankValuesState = {
   segment: null,
   brand: null,
   model: null,
@@ -100,8 +100,8 @@ export const blankState = {
   mileage: null,
   price: null,
   keywords: null,
-  ...blankStateEngineAndDrive,
-  ...blankStateBodyAndAppereance,
-  ...blankStateAdditionalAccessories,
+  ...blankEngineAndDrive,
+  ...blankBodyAndAppereance,
+  ...blankAdditionalAccessories,
   ...blankVehicleStatus
 };

@@ -29,9 +29,8 @@ const BodyAndAppereanceModal = props => (
             <Grid container justify="flex-start">
               <CheckboxGenerator
                 name="color"
-                valueName="color_in"
                 options={props.options.Color}
-                values={props.values}
+                values={props.values.color_in}
                 handleChange={props.handleMultiCheckboxChange}
               />
             </Grid>
@@ -52,7 +51,7 @@ const BodyAndAppereanceModal = props => (
               <CheckboxGenerator
                 name="additionalAccessories_Appereance"
                 options={props.options.additionalAccessories_Appereance}
-                values={props.values}
+                values={props.values.additionalAccessories_Appereance}
                 handleChange={props.handleMultiCheckboxChange}
               />
             </Grid>

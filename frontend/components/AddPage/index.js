@@ -23,8 +23,8 @@ class AddPage extends Component {
     if (!this.props.thisUser) {
       return (
         <Content>
-          <Typography>
-            Musisz być zalogowany aby muc dodać ogłoszenie
+          <Typography align="center" variant="h5" color="secondary">
+            Musisz być zalogowany aby móc dodać ogłoszenie
           </Typography>
         </Content>
       );
@@ -33,9 +33,9 @@ class AddPage extends Component {
       <Query query={ADD_POST_QUERIES}>
         {({ data, error, loading }) => {
           if (loading) {
-            return <Typography>Ładowanie w tłoku</Typography>;
+            return <Typography>Pobieranie danych...</Typography>;
           }
-          if (error) return <Typography>Błond</Typography>;
+          if (error) return <Typography>Błąd pobierania danych</Typography>;
           if (data)
             return (
               <Content>
@@ -65,7 +65,7 @@ class AddPage extends Component {
                 </Grid>
               </Content>
             );
-          return <Typography>Błond</Typography>;
+          return <Typography>Błąd pobierania danych</Typography>;
         }}
       </Query>
     );

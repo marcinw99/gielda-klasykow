@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { Typography } from "@material-ui/core";
+import { remove } from "lodash";
 
 import { prepareOptions } from "../helpers";
 import { getTypesFields } from "../../../src/globalMethods";
 import { FormContent } from "../styledComponents";
-import { steps } from "../config";
+import { steps, blankValuesState } from "../config";
+
 import BasicInfo from "./BasicInfo";
 import EngineAndDrive from "./EngineAndDrive";
 import BodyAndAppereance from "./BodyAndAppereance";
@@ -30,14 +32,17 @@ function getFormContent(step) {
     case 6:
       return <AfterSubmit />;
     default:
-      return "Błąd, niepoprawny indeks";
+      return <Typography>Błąd, niepoprawny indeks</Typography>;
   }
 }
 
+const initialState = {
+  values: blankValuesState,
+  typesFields: {}
+};
+
 class Form extends Component {
-  state = {
-    values: {}
-  };
+  state = initialState;
 
   componentDidMount() {
     const typesFields = getTypesFields({
@@ -60,6 +65,22 @@ class Form extends Component {
     }));
   };
 
+  handleMultiCheckboxChange = field => event => {
+    var result;
+    const prevValue = [...this.state.values[field]];
+    const { value, checked } = event.target;
+    if (checked && prevValue.indexOf(value) === -1) {
+      result = [...prevValue, value];
+    }
+    if (!checked && prevValue.indexOf(value) !== -1) {
+      result = remove(prevValue, item => item !== value);
+    }
+    this.handleChange({
+      name: field,
+      value: result
+    });
+  };
+
   render() {
     const options = prepareOptions(this.props.data);
     return (
@@ -67,7 +88,14 @@ class Form extends Component {
         <Typography variant="h5">
           {steps[this.props.activeStep].label}
         </Typography>
-        <FormContent>{getFormContent(this.props.activeStep)}</FormContent>
+        <FormContent>
+          {React.cloneElement(getFormContent(this.props.activeStep), {
+            options,
+            handleChange: this.handleChange,
+            handleMultiCheckboxChange: this.handleMultiCheckboxChange,
+            values: this.state.values
+          })}
+        </FormContent>
       </Fragment>
     );
   }

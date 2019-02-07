@@ -1,5 +1,11 @@
 import React from "react";
-import { withStyles, Stepper, Paper } from "@material-ui/core";
+import {
+  withStyles,
+  Stepper,
+  Paper,
+  Typography,
+  FormControl
+} from "@material-ui/core";
 
 // Content
 
@@ -39,7 +45,7 @@ const paperStyles = theme => ({
   }
 });
 
-const PaperComponent = props => <Paper {...props} />;
+const PaperComponent = props => <Paper elevation={4} {...props} />;
 
 export const StyledPaper = withStyles(paperStyles)(PaperComponent);
 
@@ -60,3 +66,38 @@ const FormContentComponent = props => {
 };
 
 export const FormContent = withStyles(formContentStyles)(FormContentComponent);
+
+// StyledValueTitle
+
+const valueTitleStyles = theme => ({
+  root: {
+    color: theme.palette.primary.dark,
+    fontSize: 16,
+    marginTop: theme.spacing.unit * 2
+  }
+});
+
+const ValueTitle = props => {
+  const { classes, ...other } = props;
+  return <Typography align="left" variant="h6" classes={classes} {...other} />;
+};
+
+export const StyledValueTitle = withStyles(valueTitleStyles)(ValueTitle);
+
+// StyledFormControl
+
+const formControlStyles = theme => ({
+  root: {
+    minWidth: 200,
+    margin: theme.spacing.unit
+  }
+});
+
+const FormControlComponent = props => {
+  const { classes, ...other } = props;
+  return <FormControl classes={classes} {...other} />;
+};
+
+export const StyledFormControl = withStyles(formControlStyles)(
+  FormControlComponent
+);
