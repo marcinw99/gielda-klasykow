@@ -136,7 +136,7 @@ const filterOutUnnecessaryValues = data => {
 const normalizeObjectProperties = data => {
   var result = {};
   for (const key in data) {
-    if (isArray(data[key]) || isBoolean(data[key])) {
+    if (isArray(data[key]) || isBoolean(data[key]) || isString(data[key])) {
       result[key] = data[key];
     } else {
       result[key] = data[key].value;
