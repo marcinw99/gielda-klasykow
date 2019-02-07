@@ -6,8 +6,11 @@ import { steps } from "./config";
 
 const Steps = props => (
   <StyledStepper activeStep={props.activeStep} orientation="vertical">
-    {steps.map(item => (
-      <Step key={item.label}>
+    {steps.map((item, index) => (
+      <Step
+        key={item.label}
+        onClick={() => props.setValueInMainState({ activeStep: index })}
+      >
         <StepLabel>{item.label}</StepLabel>
         <StepContent>
           <Typography>{item.content}</Typography>
