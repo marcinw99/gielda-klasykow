@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { blankFiltersState, initialSearchParameters } from "../../config";
-import { prepareOptions, getFormattedFiltersData } from "../../helpers";
+import { prepareOptions, getFormattedPayload } from "../../helpers";
 import {
   getTypesFields,
   assignValuesToProperDataType
@@ -27,11 +27,11 @@ class Logic extends Component {
   }
 
   submitFilters = () => {
-    const formattedFiltersData = getFormattedFiltersData({
+    const formattedPayload = getFormattedPayload({
       ...this.state.filters
     });
     const queryFilters = assignValuesToProperDataType({
-      filters: formattedFiltersData,
+      values: formattedPayload,
       typesFields: this.state.typesFields
     });
     this.props.setValueInMainState({ queryFilters });

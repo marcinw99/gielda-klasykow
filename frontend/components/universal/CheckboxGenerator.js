@@ -15,6 +15,7 @@ const styles = theme => ({
 
 const CheckboxGenerator = ({
   name,
+  valueName,
   options,
   values,
   handleChange,
@@ -29,7 +30,7 @@ const CheckboxGenerator = ({
       control={
         <Checkbox
           checked={values.indexOf(item) !== -1}
-          onChange={handleChange(name)}
+          onChange={handleChange(valueName ? valueName : name)}
           value={item}
         />
       }

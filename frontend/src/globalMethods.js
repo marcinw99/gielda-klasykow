@@ -1,4 +1,12 @@
-import { isArray, isObject, isString, isUndefined } from "util";
+import { pipe } from "lodash/fp";
+import {
+  isArray,
+  isBoolean,
+  isObject,
+  isString,
+  isUndefined,
+  isNull
+} from "util";
 
 // standalone functions
 
@@ -79,37 +87,87 @@ export function getTypesFields(data) {
 
 ///// assignValuesToProperDataType functions
 
-const valueShouldBeInDataType = value => {
-  if (isArray(value)) {
-    return value.length !== 0;
-  } else if (isObject(value)) {
-    return Object.keys(value).length !== 0;
-  } else if (isString(value) && value !== "deleteFromSubmitData") {
-    return value.length !== 0;
-  } else if (value == null || isUndefined(value)) {
-    return false;
-  }
-  return true;
-};
-
 const typeAcceptsValue = (type, valueName) =>
   // slice for prefixes like price_gt, price_lt etc.
   type.indexOf(valueName) !== -1 || type.indexOf(valueName.slice(0, -3)) !== -1
     ? true
     : false;
 
-export const assignValuesToProperDataType = ({ Values, typesFields }) => {
+export const assignValuesToProperDataType = ({ values, typesFields }) => {
   var result = { car: {} };
-  for (const valueName in Values) {
-    if (valueShouldBeInDataType(Values[valueName])) {
-      if (typeAcceptsValue(typesFields.Post, valueName)) {
-        result[valueName] = Values[valueName];
-      }
-      if (typeAcceptsValue(typesFields.Car, valueName)) {
-        result.car[valueName] = Values[valueName];
-      }
+  for (const valueName in values) {
+    if (typeAcceptsValue(typesFields.Post, valueName)) {
+      result[valueName] = values[valueName];
+    }
+    if (typeAcceptsValue(typesFields.Car, valueName)) {
+      result.car[valueName] = values[valueName];
     }
   }
+  return result;
+};
+
+/////
+
+///// partialGetFormatedPayload functions
+
+const valueShouldBeInPayload = value => {
+  if (isArray(value)) {
+    return value.length !== 0;
+  } else if (isObject(value)) {
+    return Object.keys(value).length !== 0;
+  } else if (isString(value)) {
+    if (value === "deleteFromSubmitData" || value.length === 0) {
+      return false;
+    }
+  } else if (isNull(value) || isUndefined(value)) {
+    return false;
+  }
+  return true;
+};
+
+const filterOutUnnecessaryValues = data => {
+  var result = data;
+  for (const key in result) {
+    if (!valueShouldBeInPayload(result[key])) delete result[key];
+  }
+  return result;
+};
+
+const normalizeObjectProperties = data => {
+  var result = {};
+  for (const key in data) {
+    if (isArray(data[key]) || isBoolean(data[key])) {
+      result[key] = data[key];
+    } else {
+      result[key] = data[key].value;
+    }
+  }
+  return result;
+};
+
+const spreadArraysIntoSubTypes = (data, fetchedSubTypes) => {
+  var result = { ...data };
+  for (const key in result) {
+    if (fetchedSubTypes.indexOf(key) !== -1 && isArray(result[key])) {
+      var type = {};
+      result[key].forEach(element => {
+        type[element] = true;
+      });
+      result[key] = type;
+    }
+  }
+  return result;
+};
+
+export const partialGetFormattedPayload = (data, fetchedSubTypes) => {
+  const normalizedObjectProperties = pipe(
+    filterOutUnnecessaryValues,
+    normalizeObjectProperties
+  )(data);
+  const result = spreadArraysIntoSubTypes(
+    normalizedObjectProperties,
+    fetchedSubTypes
+  );
   return result;
 };
 

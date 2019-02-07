@@ -94,6 +94,7 @@ const EngineAndDriveModal = props => (
             <Grid container justify="flex-start">
               <CheckboxGenerator
                 name="transmission"
+                valueName="transmission_in"
                 options={props.options.Transmission}
                 values={props.values.transmission_in}
                 handleChange={props.handleMultiCheckboxChange}
@@ -105,6 +106,7 @@ const EngineAndDriveModal = props => (
             <Grid container justify="flex-start">
               <CheckboxGenerator
                 name="drive"
+                valueName="drive_in"
                 options={props.options.Drive}
                 values={props.values.drive_in}
                 handleChange={props.handleMultiCheckboxChange}
