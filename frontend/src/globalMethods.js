@@ -12,6 +12,55 @@ export function getArrayOfNumbers(startWith, incrementBy, amountOfValues) {
   return array;
 }
 
+/////
+
+///// partialPrepareOptions functions
+
+const getSelectsOptions = (fetchedFields, fetchedOptions) => {
+  const types = fetchedFields.Enums.types;
+  var values = types.filter(
+    item => item.kind === "ENUM" && fetchedOptions.indexOf(item.name) !== -1
+  );
+  var results = {};
+  for (let item in values) {
+    results[values[item].name] = values[item].enumValues.map(item => item.name);
+  }
+  return results;
+};
+
+const getBooleans = (fetchedFields, fetchedSubTypes) => {
+  const types = fetchedFields.Enums.types;
+  var values = types.filter(item => fetchedSubTypes.indexOf(item.name) !== -1);
+  var results = {};
+  for (let item in values) {
+    const normalizedTypeValues = values[item].fields.map(item => item.name);
+    const filteredTypeValues = normalizedTypeValues.filter(
+      item => item !== "id"
+    );
+    const typeName = values[item].name;
+    results[typeName] = filteredTypeValues;
+  }
+  return results;
+};
+
+export function partialPrepareOptions(
+  { staticOptions, fetchedOptions, fetchedSubTypes, getCustomOptions },
+  fetchedFields
+) {
+  const selectsOptions = getSelectsOptions(fetchedFields, fetchedOptions);
+  const booleans = getBooleans(fetchedFields, fetchedSubTypes);
+  const customOptions = getCustomOptions ? getCustomOptions(fetchedFields) : {};
+
+  return {
+    ...selectsOptions,
+    ...staticOptions,
+    ...booleans,
+    ...customOptions
+  };
+}
+
+/////
+
 ///// getTypesFields functions
 
 function formatTypeFields(fields) {

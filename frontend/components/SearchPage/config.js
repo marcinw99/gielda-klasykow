@@ -1,4 +1,4 @@
-import { getArrayOfNumbers } from "../universal/methods";
+import { getArrayOfNumbers } from "../../src/globalMethods";
 
 export const initialSearchParameters = {
   filters: {},
@@ -16,7 +16,7 @@ export const SortOptions = [
 export const itemsLimitOptions = [5, 10, 15, 20];
 
 /* Brand and Model fetched separately */
-export const fetchedFiltersOptions = [
+export const fetchedOptions = [
   "Segment",
   "FuelType",
   "Transmission",
@@ -32,7 +32,7 @@ export const fetchedSubTypes = [
   "additionalAccessories_Appereance"
 ];
 
-export const staticFiltersOptions = {
+export const staticOptions = {
   Localization: ["Dębica", "Rzeszów", "Kraków", "Podlasie", "Warszawa"],
   Price: getArrayOfNumbers(10000, 10000, 10).concat(
     getArrayOfNumbers(125000, 25000, 7)

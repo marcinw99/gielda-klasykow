@@ -6,7 +6,7 @@ import { prepareOptions, getFormattedFiltersData } from "../../helpers";
 import {
   getTypesFields,
   assignValuesToProperDataType
-} from "../../../universal/methods";
+} from "../../../../src/globalMethods";
 
 const initialState = {
   filters: { ...blankFiltersState, ...initialSearchParameters.filters },

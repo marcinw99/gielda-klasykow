@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { Typography } from "@material-ui/core";
 
-import { getTypesFields } from "../../universal/methods";
+import { prepareOptions } from "../helpers";
+import { getTypesFields } from "../../../src/globalMethods";
 import { FormContent } from "../styledComponents";
 import { steps } from "../config";
 import BasicInfo from "./BasicInfo";
@@ -60,6 +61,7 @@ class Form extends Component {
   };
 
   render() {
+    const options = prepareOptions(this.props.data);
     return (
       <Fragment>
         <Typography variant="h5">
