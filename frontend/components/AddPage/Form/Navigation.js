@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Grid, withStyles } from "@material-ui/core";
 
-import { steps } from "./config";
+import { steps } from "../config";
 
 const styles = theme => ({
   marginRight: {
@@ -31,9 +31,7 @@ const Navigation = props => {
   return (
     <Grid container justify="space-between">
       <Grid item>
-        <Button onClick={handleReset}>
-          Zresetuj wszystkie kroki formularza
-        </Button>
+        <Button onClick={handleReset}>Zresetuj formularz</Button>
       </Grid>
       <Grid item>
         <Button
@@ -43,15 +41,15 @@ const Navigation = props => {
         >
           Wróć
         </Button>
-
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleNext}
-          disabled={props.activeStep === steps.length - 1}
-        >
-          Następny krok
-        </Button>
+        {props.activeStep === steps.length - 1 ? (
+          <Button variant="contained" color="secondary" onClick={props.submit}>
+            Zakończ
+          </Button>
+        ) : (
+          <Button variant="contained" color="primary" onClick={handleNext}>
+            Następny krok
+          </Button>
+        )}
       </Grid>
     </Grid>
   );

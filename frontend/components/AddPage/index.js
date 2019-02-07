@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import { Typography, Grid } from "@material-ui/core";
-import { Query } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 
-import { Content, StyledPaper } from "./styledComponents";
+import { Content, StyledPaper, StyledPageTitle } from "./styledComponents";
 import Steps from "./Steps";
 import Form from "./Form";
-import Navigation from "./Navigation";
 import { ADD_POST_QUERIES } from "../../src/Queries/searchQueries";
+import { ADD_POST_MUTATION } from "../../src/Mutations/AddPost";
+import Navigation from "./Navigation";
 
 const initialState = {
-  activeStep: 0
+  activeStep: 0,
+  submitData: {}
 };
 
 class AddPage extends Component {
@@ -17,6 +19,16 @@ class AddPage extends Component {
 
   setValueInState = value => {
     this.setState({ ...value });
+  };
+
+  setValueInStateAsync = value => {
+    // to make sure to set state before calling mutation
+    return new Promise(resolve => {
+      this.setState({ ...value }, () => {
+        console.log(this.state.submitData);
+        resolve();
+      });
+    });
   };
 
   render() {
@@ -39,9 +51,7 @@ class AddPage extends Component {
           if (data)
             return (
               <Content>
-                <Typography variant="h3" color="primary" align="center">
-                  Dodawanie ogłoszenia
-                </Typography>
+                <StyledPageTitle>Dodawanie ogłoszenia</StyledPageTitle>
                 <Grid container justify="flex-start">
                   <Grid item xs={3}>
                     <Steps
@@ -50,16 +60,25 @@ class AddPage extends Component {
                     />
                   </Grid>
                   <Grid item xs={6}>
+                    <Navigation
+                      activeStep={this.state.activeStep}
+                      setValueInMainState={this.setValueInState}
+                    />
                     <StyledPaper>
-                      <Form
-                        data={data}
-                        activeStep={this.state.activeStep}
-                        setValueInMainState={this.setValueInState}
-                      />
-                      <Navigation
-                        activeStep={this.state.activeStep}
-                        setValueInMainState={this.setValueInState}
-                      />
+                      <Mutation
+                        mutation={ADD_POST_MUTATION}
+                        variables={this.state.submitData}
+                      >
+                        {(submit, { error, loading }) => (
+                          <Form
+                            data={data}
+                            activeStep={this.state.activeStep}
+                            setValueInMainState={this.setValueInState}
+                            setValueInMainStateAsync={this.setValueInStateAsync}
+                            submit={submit}
+                          />
+                        )}
+                      </Mutation>
                     </StyledPaper>
                   </Grid>
                 </Grid>

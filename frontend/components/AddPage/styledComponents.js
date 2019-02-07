@@ -56,7 +56,7 @@ const formContentStyles = theme => ({
     marginTop: theme.spacing.unit * 4,
     marginLeft: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 3
+    marginBottom: theme.spacing.unit * 4
   }
 });
 
@@ -101,3 +101,26 @@ const FormControlComponent = props => {
 export const StyledFormControl = withStyles(formControlStyles)(
   FormControlComponent
 );
+
+// StyledPageTitle
+
+const pageTitleStyles = theme => ({
+  root: {
+    marginBottom: theme.spacing.unit * 3
+  }
+});
+
+const PageTitle = props => {
+  const { classes, ...other } = props;
+  return (
+    <Typography
+      align="center"
+      variant="h3"
+      color="primary"
+      classes={classes}
+      {...other}
+    />
+  );
+};
+
+export const StyledPageTitle = withStyles(pageTitleStyles)(PageTitle);

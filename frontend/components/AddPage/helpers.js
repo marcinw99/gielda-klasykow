@@ -1,6 +1,9 @@
 import { staticOptions, fetchedOptions, fetchedSubTypes } from "./config";
 
-import { partialPrepareOptions } from "../../src/globalMethods";
+import {
+  partialPrepareOptions,
+  partialGetFormattedPayload
+} from "../../src/globalMethods";
 
 ///// prepareOptions
 
@@ -13,5 +16,12 @@ export const prepareOptions = fetchedFields =>
     },
     fetchedFields
   );
+
+/////
+
+///// getFormatedPayload
+
+export const getFormattedPayload = data =>
+  partialGetFormattedPayload(data, fetchedSubTypes);
 
 /////

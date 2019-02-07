@@ -2,8 +2,11 @@ import React, { Component, Fragment } from "react";
 import { Typography } from "@material-ui/core";
 import { remove } from "lodash";
 
-import { prepareOptions } from "../helpers";
-import { getTypesFields } from "../../../src/globalMethods";
+import { prepareOptions, getFormattedPayload } from "../helpers";
+import {
+  getTypesFields,
+  assignValuesToProperDataType
+} from "../../../src/globalMethods";
 import { FormContent } from "../styledComponents";
 import { steps, blankValuesState } from "../config";
 
@@ -14,6 +17,7 @@ import AdditionalAccessories from "./AdditionalAccessories";
 import VehicleStatus from "./VehicleStatus";
 import Summary from "./Summary";
 import AfterSubmit from "./AfterSubmit";
+import Navigation from "./Navigation";
 
 function getFormContent(step) {
   switch (step) {
@@ -81,6 +85,18 @@ class Form extends Component {
     });
   };
 
+  submit = async () => {
+    const formattedPayload = getFormattedPayload({
+      ...this.state.values
+    });
+    const submitData = assignValuesToProperDataType({
+      values: formattedPayload,
+      typesFields: this.state.typesFields
+    });
+    await this.props.setValueInMainStateAsync({ submitData });
+    // this.props.submit();
+  };
+
   render() {
     const options = prepareOptions(this.props.data);
     return (
@@ -96,6 +112,11 @@ class Form extends Component {
             values: this.state.values
           })}
         </FormContent>
+        <Navigation
+          activeStep={this.props.activeStep}
+          setValueInMainState={this.props.setValueInMainState}
+          submit={this.submit}
+        />
       </Fragment>
     );
   }
