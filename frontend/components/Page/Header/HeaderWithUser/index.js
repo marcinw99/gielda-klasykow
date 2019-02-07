@@ -28,7 +28,7 @@ class HeaderWithUser extends Component {
 
   handleClose = () => {
     this.setState({
-      anchorEl: false
+      anchorEl: null
     });
   };
 
