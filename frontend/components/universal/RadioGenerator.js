@@ -9,9 +9,9 @@ import {
 import displayedText from "../../resources/displayedText";
 
 const styles = theme => ({
-  root: {
-    width: 250,
-    maxHeight: 32
+  element: {
+    maxHeight: 32,
+    width: 250
   },
   smallLabel: {
     fontSize: 13
@@ -29,7 +29,7 @@ const RadioGenerator = ({
   <RadioGroup name={name} value={value} onChange={handleChange}>
     {options.map(item => (
       <FormControlLabel
-        className={classes.root}
+        className={classes.element}
         classes={smallLabel ? { label: classes.smallLabel } : {}}
         key={item}
         value={item}

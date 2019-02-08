@@ -66,7 +66,7 @@ const BasicInfo = props => (
     </Grid>
     <Grid container className={props.classes.marginTop}>
       <Grid item>
-        <StyledValueTitle>Cena</StyledValueTitle>
+        <StyledValueTitle>Cena (zł)</StyledValueTitle>
         <StyledFormControl>
           <Creatable
             darkLabel
@@ -151,7 +151,7 @@ const BasicInfo = props => (
         </StyledFormControl>
       </Grid>
       <Grid item>
-        <StyledValueTitle>Przebieg pojazdu</StyledValueTitle>
+        <StyledValueTitle>Przebieg pojazdu (km)</StyledValueTitle>
         <StyledFormControl>
           <Creatable
             darkLabel
