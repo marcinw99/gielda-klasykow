@@ -66,7 +66,7 @@ const variants = {
     DIESEL: "Olej napędowy",
     HYBRYDA: "Hybryda",
     ELEKTRYCZNY: "Elektryczny",
-    INNY: "Inny"
+    OTHER: "Inny"
   },
   transmission: {
     MANUAL: "Manualna",

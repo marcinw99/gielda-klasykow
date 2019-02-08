@@ -56,7 +56,8 @@ const formContentStyles = theme => ({
     marginTop: theme.spacing.unit * 4,
     marginLeft: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 4
+    marginBottom: theme.spacing.unit * 4,
+    minHeight: 460
   }
 });
 

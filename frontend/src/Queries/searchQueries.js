@@ -111,3 +111,9 @@ export const AVAILABLE_MODELS_OF_BRAND = gql`
     }
   }
 `;
+
+export const MODELS_OF_BRAND = gql`
+  query MODELS_OF_BRAND($brand: Brand!) {
+    modelsOfBrand(brand: $brand)
+  }
+`;
