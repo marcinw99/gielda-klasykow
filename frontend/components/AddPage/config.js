@@ -105,14 +105,7 @@ export const blankValuesState = {
   price: null,
   keywords: null,
   avatar: null,
-  photos: [
-    {
-      preview:
-        "https://res.cloudinary.com/marcinw/image/upload/v1549738328/gieldaklasykow/whiyw7nejnalvmg054lv.jpg",
-      photo:
-        "https://res.cloudinary.com/marcinw/image/upload/c_scale,q_auto,w_1000/v1549738328/gieldaklasykow/whiyw7nejnalvmg054lv.jpg"
-    }
-  ],
+  photos: [],
   ...blankEngineAndDrive,
   ...blankBodyAndAppereance,
   ...blankAdditionalAccessories,
