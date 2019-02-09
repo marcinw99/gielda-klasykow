@@ -34,6 +34,7 @@ type Post {
   price: Int!
   localization: String
   avatar: String
+  photos: [String]!
   fromCountry: Country
 }
 

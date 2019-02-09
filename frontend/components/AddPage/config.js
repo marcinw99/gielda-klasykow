@@ -6,6 +6,10 @@ export const steps = [
     content: "Najważniejsze informacje o samochodzie, cena, lokalizacja"
   },
   {
+    label: "Galeria zdjęć",
+    content: "Zdjęcia nadwozia, wnętrza, ewentualnych uszkodzeń"
+  },
+  {
     label: "Silnik i napęd",
     content: "Parametry silnika, skrzynia biegów, układ przeniesienia napędu"
   },
@@ -100,6 +104,15 @@ export const blankValuesState = {
   mileage: null,
   price: null,
   keywords: null,
+  avatar: null,
+  photos: [
+    {
+      preview:
+        "https://res.cloudinary.com/marcinw/image/upload/v1549738328/gieldaklasykow/whiyw7nejnalvmg054lv.jpg",
+      photo:
+        "https://res.cloudinary.com/marcinw/image/upload/c_scale,q_auto,w_1000/v1549738328/gieldaklasykow/whiyw7nejnalvmg054lv.jpg"
+    }
+  ],
   ...blankEngineAndDrive,
   ...blankBodyAndAppereance,
   ...blankAdditionalAccessories,

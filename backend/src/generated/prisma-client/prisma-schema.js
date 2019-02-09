@@ -1653,6 +1653,7 @@ type Post {
   price: Int!
   localization: String
   avatar: String
+  photos: [String!]!
   fromCountry: Country
 }
 
@@ -1667,7 +1668,12 @@ input PostCreateInput {
   price: Int!
   localization: String
   avatar: String
+  photos: PostCreatephotosInput
   fromCountry: Country
+}
+
+input PostCreatephotosInput {
+  set: [String!]
 }
 
 type PostEdge {
@@ -1697,6 +1703,7 @@ type PostPreviousValues {
   price: Int!
   localization: String
   avatar: String
+  photos: [String!]!
   fromCountry: Country
 }
 
@@ -1723,6 +1730,7 @@ input PostUpdateInput {
   price: Int
   localization: String
   avatar: String
+  photos: PostUpdatephotosInput
   fromCountry: Country
 }
 
@@ -1730,7 +1738,12 @@ input PostUpdateManyMutationInput {
   price: Int
   localization: String
   avatar: String
+  photos: PostUpdatephotosInput
   fromCountry: Country
+}
+
+input PostUpdatephotosInput {
+  set: [String!]
 }
 
 input PostWhereInput {

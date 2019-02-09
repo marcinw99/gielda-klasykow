@@ -11,6 +11,7 @@ import { FormContent } from "../styledComponents";
 import { steps, blankValuesState } from "../config";
 
 import BasicInfo from "./BasicInfo";
+import Photos from "./Photos";
 import EngineAndDrive from "./EngineAndDrive";
 import BodyAndAppereance from "./BodyAndAppereance";
 import AdditionalAccessories from "./AdditionalAccessories";
@@ -24,16 +25,18 @@ function getFormContent(step) {
     case 0:
       return <BasicInfo />;
     case 1:
-      return <EngineAndDrive />;
+      return <Photos />;
     case 2:
-      return <BodyAndAppereance />;
+      return <EngineAndDrive />;
     case 3:
-      return <AdditionalAccessories />;
+      return <BodyAndAppereance />;
     case 4:
-      return <VehicleStatus />;
+      return <AdditionalAccessories />;
     case 5:
-      return <Summary />;
+      return <VehicleStatus />;
     case 6:
+      return <Summary />;
+    case 7:
       return <AfterSubmit />;
     default:
       return <Typography>Błąd, niepoprawny indeks</Typography>;
@@ -42,6 +45,7 @@ function getFormContent(step) {
 
 const initialState = {
   values: blankValuesState,
+  loadingPhotos: false,
   typesFields: {}
 };
 
@@ -58,6 +62,12 @@ class Form extends Component {
     });
   }
 
+  asyncSetState = state => {
+    return new Promise(resolve => {
+      this.setState(state, resolve);
+    });
+  };
+
   handleChange = ({ name, value }) => {
     this.setState(prevState => ({
       values: {
@@ -67,6 +77,40 @@ class Form extends Component {
         [name]: value
       }
     }));
+  };
+
+  loadSinglePhoto = photo => {
+    const newPhoto = {
+      preview: photo.secure_url,
+      photo: photo.eager[0].secure_url
+    };
+    const prevPhotos = [...this.state.values.photos];
+    this.handleChange({
+      name: "photos",
+      value: [...prevPhotos, newPhoto]
+    });
+  };
+
+  handleNewPhotos = async e => {
+    e.persist();
+    await this.asyncSetState({ loadingPhotos: true });
+    const rawFiles = e.target.files;
+    for (let index = 0; index < rawFiles.length; index++) {
+      const file = rawFiles[index];
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", "gieldaklasykow");
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/marcinw/image/upload/",
+        {
+          method: "POST",
+          body: data
+        }
+      );
+      const photo = await res.json();
+      this.loadSinglePhoto(photo);
+    }
+    await this.asyncSetState({ loadingPhotos: false });
   };
 
   handleMultiCheckboxChange = field => event => {
@@ -108,8 +152,10 @@ class Form extends Component {
           {React.cloneElement(getFormContent(this.props.activeStep), {
             options,
             handleChange: this.handleChange,
+            handleNewPhotos: this.handleNewPhotos,
             handleMultiCheckboxChange: this.handleMultiCheckboxChange,
-            values: this.state.values
+            values: this.state.values,
+            loadingPhotos: this.state.loadingPhotos
           })}
         </FormContent>
         <Navigation
