@@ -46,12 +46,14 @@ const ResultCard = ({ classes, car, price, avatar }) => (
         <CardTitle car={car} />
         <div className={classes.details}>
           <FuelType classes={classes} value={car.fuelType} />
-          <Engine
-            classes={classes}
-            engineSize={car.engineSize}
-            power={car.power}
-          />
-          <Mileage classes={classes} value={car.mileage} />
+          {car.engineSize && car.power && (
+            <Engine
+              classes={classes}
+              engineSize={car.engineSize}
+              power={car.power}
+            />
+          )}
+          {car.mileage && <Mileage classes={classes} value={car.mileage} />}
         </div>
         <Grid container justify="space-between">
           <Location rootCss={classes.bold} location={"Gdańsk"} />

@@ -85,7 +85,7 @@ const BasicInfo = props => (
       <Grid item>
         <StyledValueTitle>Lokalizacja</StyledValueTitle>
         <StyledFormControl>
-          <Autocomplete
+          <Creatable
             darkLabel
             name="localization"
             placeholder="Podlasie, Rzeszów..."

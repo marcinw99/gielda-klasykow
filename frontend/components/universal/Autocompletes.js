@@ -176,7 +176,8 @@ class CreatableComponent extends Component {
     value: Number(input)
   });
 
-  getFormatCreateLabel = label => `${label} ${this.props.unit}`;
+  getFormatCreateLabel = label =>
+    `${label} ${this.props.unit ? this.props.unit : ""}`;
 
   render() {
     return (

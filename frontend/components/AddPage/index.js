@@ -22,10 +22,8 @@ class AddPage extends Component {
   };
 
   setValueInStateAsync = value => {
-    // to make sure to set state before calling mutation
     return new Promise(resolve => {
       this.setState({ ...value }, () => {
-        console.log(this.state.submitData);
         resolve();
       });
     });

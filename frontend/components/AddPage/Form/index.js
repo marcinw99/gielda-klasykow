@@ -137,8 +137,9 @@ class Form extends Component {
       values: formattedPayload,
       typesFields: this.state.typesFields
     });
+    //async to make sure to set state before calling mutation
     await this.props.setValueInMainStateAsync({ submitData });
-    // this.props.submit();
+    this.props.submit();
   };
 
   render() {

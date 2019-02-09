@@ -133,11 +133,15 @@ const filterOutUnnecessaryValues = data => {
   return result;
 };
 
-const normalizeObjectProperties = data => {
+const normalizeProperties = data => {
   var result = {};
   for (const key in data) {
     if (isArray(data[key]) || isBoolean(data[key]) || isString(data[key])) {
-      result[key] = data[key];
+      if (key === "photos") {
+        result[key] = data[key].map(item => item.photo);
+      } else {
+        result[key] = data[key];
+      }
     } else {
       result[key] = data[key].value;
     }
@@ -160,12 +164,12 @@ const spreadArraysIntoSubTypes = (data, fetchedSubTypes) => {
 };
 
 export const partialGetFormattedPayload = (data, fetchedSubTypes) => {
-  const normalizedObjectProperties = pipe(
+  const normalizedProperties = pipe(
     filterOutUnnecessaryValues,
-    normalizeObjectProperties
+    normalizeProperties
   )(data);
   const result = spreadArraysIntoSubTypes(
-    normalizedObjectProperties,
+    normalizedProperties,
     fetchedSubTypes
   );
   return result;
