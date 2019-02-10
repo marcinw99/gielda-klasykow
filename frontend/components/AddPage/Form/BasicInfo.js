@@ -1,11 +1,12 @@
 import React from "react";
 import { Query } from "react-apollo";
-import { Grid, withStyles } from "@material-ui/core";
+import { Grid, withStyles, FormHelperText } from "@material-ui/core";
 
 import { StyledValueTitle, StyledFormControl } from "../styledComponents";
 import { Creatable, Autocomplete } from "../../universal/Autocompletes";
 import displayedText from "../../../resources/displayedText";
 import { MODELS_OF_BRAND } from "../../../src/Queries/searchQueries";
+import FieldRequiredHelperText from "../../universal/FieldRequiredHelperText";
 
 const styles = theme => ({
   marginTop: {
@@ -29,6 +30,7 @@ const BasicInfo = props => (
             value: item
           }))}
         />
+        <FieldRequiredHelperText value={props.values.brand} />
       </StyledFormControl>
       <StyledFormControl>
         {props.values.brand == null ? (
@@ -58,10 +60,20 @@ const BasicInfo = props => (
                     value: item
                   }))}
                 />
-              ) : null;
+              ) : (
+                <Autocomplete
+                  darkLabel
+                  name="model"
+                  placeholder="Model"
+                  value={props.values.model}
+                  handleChange={props.handleChange}
+                  options={[]}
+                />
+              );
             }}
           </Query>
         )}
+        <FieldRequiredHelperText value={props.values.model} />
       </StyledFormControl>
     </Grid>
     <Grid container className={props.classes.marginTop}>
@@ -80,6 +92,7 @@ const BasicInfo = props => (
               value: item
             }))}
           />
+          <FieldRequiredHelperText value={props.values.price} />
         </StyledFormControl>
       </Grid>
       <Grid item>
@@ -114,6 +127,7 @@ const BasicInfo = props => (
               value: item
             }))}
           />
+          <FieldRequiredHelperText value={props.values.fuelType} />
         </StyledFormControl>
       </Grid>
       <Grid item>
