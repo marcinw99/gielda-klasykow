@@ -125,3 +125,5 @@ export const staticOptions = {
   Power: getArrayOfNumbers(50, 25, 8).concat(getArrayOfNumbers(300, 50, 6)),
   Torque: getArrayOfNumbers(100, 50, 12)
 };
+
+export const requiredFields = ["brand", "model", "price", "fuelType"];

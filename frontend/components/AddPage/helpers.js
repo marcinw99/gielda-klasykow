@@ -1,9 +1,15 @@
-import { staticOptions, fetchedOptions, fetchedSubTypes } from "./config";
+import {
+  staticOptions,
+  fetchedOptions,
+  fetchedSubTypes,
+  requiredFields
+} from "./config";
 
 import {
   partialPrepareOptions,
   partialGetFormattedPayload
 } from "../../src/globalMethods";
+import { isNull, isArray } from "util";
 
 ///// prepareOptions
 
@@ -25,6 +31,8 @@ export const getFormattedPayload = data =>
   partialGetFormattedPayload(data, fetchedSubTypes);
 
 /////
+
+///// normalizeDataToMatchPostInput
 
 export const normalizeDataToMatchPostInput = data => {
   const { car, photos, ...otherPostProps } = data;
@@ -59,4 +67,20 @@ export const normalizeDataToMatchPostInput = data => {
     }
   };
   return normalizedData;
+};
+
+///// getArrayOfRequiredFieldsNotFilled
+
+export const getArrayOfRequiredFieldsNotFilled = values => {
+  var notFilled = [];
+  requiredFields.forEach(item => {
+    if (isNull(values[item])) {
+      notFilled.push(item);
+    } else if (isArray(values[item])) {
+      if (values[item].length === 0) {
+        notFilled.push(item);
+      }
+    }
+  });
+  return notFilled;
 };

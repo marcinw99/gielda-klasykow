@@ -165,5 +165,39 @@ const variants = {
     AIR_CONDITIONING_THREE_ZONE: "Klimatyzacja 3-strefowa",
     AIR_CONDITIONING_FOUR_ZONE: "Klimatyzacja 4-strefowa",
     AIR_CONDITIONING_MANUAL: "Klimatyzacja manualna"
+  },
+  attributesNames: {
+    price: "Cena",
+    localization: "Lokalizacja",
+    avatar: "Miniaturka",
+    photos: "Galeria zdjęć",
+    segment: "Segment",
+    brand: "Marka",
+    model: "Model",
+    version: "Wersja",
+    mileage: "Przebieg",
+    productionYear: "Rok produkcji",
+    fuelType: "Rodzaj paliwa",
+    engineSize: "Pojemność skokowa",
+    power: "Moc",
+    torque: "Moment obrotowy",
+    transmission: "Rodzaj skrzyni biegów",
+    drive: "Rodzaj układu napędowego",
+    additionalAccessories_Safety: "Dodatkowe wyposażenie - bezpieczeństwo",
+    additionalAccessories_Comfort_Passenger:
+      "Dodatkowe wyposażenie - komfort pasażerów",
+    additionalAccessories_Comfort_Driver:
+      "Dodatkowe wyposażenie - komfort kierowcy",
+    additionalAccessories_Appereance: "Dodatkowe wyposażenie - wygląd",
+    damaged: "Uszkodzony",
+    accidentFree: "Bezwypadkowy",
+    firstOwner: "Pierwszy właściciel",
+    registeredInPoland: "Zarejestrowany w Polsce",
+    registeredAsAntiqueCar: "Zarejestrowany jako zabytek",
+    hasVIN: "Posiada VIN",
+    tuning: "Tuning",
+    hasParticulateFilter: "Posiada filtr cząstek stałych",
+    steeringWheelOnTheRight: "Kierownica po prawej stronie",
+    color: "Kolor"
   }
 };

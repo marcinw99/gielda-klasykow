@@ -8,6 +8,7 @@ const Steps = props => (
   <StyledStepper activeStep={props.activeStep} orientation="vertical">
     {steps.map((item, index) => (
       <Step
+        completed={false}
         key={item.label}
         onClick={() => props.setValueInMainState({ activeStep: index })}
       >
