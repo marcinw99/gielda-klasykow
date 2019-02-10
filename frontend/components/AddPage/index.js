@@ -7,7 +7,6 @@ import Steps from "./Steps";
 import Form from "./Form";
 import { ADD_POST_QUERIES } from "../../src/Queries/searchQueries";
 import { ADD_POST_MUTATION } from "../../src/Mutations/AddPost";
-import Navigation from "./Navigation";
 
 const initialState = {
   activeStep: 0,
@@ -58,10 +57,6 @@ class AddPage extends Component {
                     />
                   </Grid>
                   <Grid item xs={6}>
-                    <Navigation
-                      activeStep={this.state.activeStep}
-                      setValueInMainState={this.setValueInState}
-                    />
                     <StyledPaper>
                       <Mutation
                         mutation={ADD_POST_MUTATION}

@@ -48,7 +48,7 @@ function getFormContent(step) {
 }
 
 const initialState = {
-  values: blankValuesState,
+  values: { ...blankValuesState },
   loadingPhotos: false,
   typesFields: {}
 };
@@ -80,6 +80,18 @@ class Form extends Component {
         model: name === "brand" ? null : prevState.values.model,
         [name]: value
       }
+    }));
+  };
+
+  handleStepReset = step => {
+    this.setState(prevState => ({
+      values: { ...prevState.values, ...steps[step].blankState }
+    }));
+  };
+
+  handleFullReset = () => {
+    this.setState(prevState => ({
+      values: { ...blankValuesState }
     }));
   };
 
@@ -168,6 +180,8 @@ class Form extends Component {
           activeStep={this.props.activeStep}
           setValueInMainState={this.props.setValueInMainState}
           submit={this.submit}
+          handleStepReset={this.handleStepReset}
+          handleFullReset={this.handleFullReset}
         />
       </Fragment>
     );
