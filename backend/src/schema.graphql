@@ -55,25 +55,7 @@ type Query {
 }
 
 type Mutation {
-  createCar(
-    segment: Segment
-    brand: Brand!
-    model: String!
-    version: String
-    mileage: Int
-    productionYear: Int
-    fuelType: FuelType!
-    engineSize: Int
-    power: Int
-    torque: Int
-    transmission: String
-  ): Car
-  createPost(
-    price: Int!
-    localization: String
-    avatar: String
-    car: CarCreateOneInput
-  ): Post
+  createPost(data: PostCreateInput!): Post!
   signUp(
     email: String!
     password: String!

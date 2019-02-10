@@ -2,7 +2,11 @@ import React, { Component, Fragment } from "react";
 import { Typography } from "@material-ui/core";
 import { remove } from "lodash";
 
-import { prepareOptions, getFormattedPayload } from "../helpers";
+import {
+  prepareOptions,
+  getFormattedPayload,
+  normalizeDataToMatchPostInput
+} from "../helpers";
 import {
   getTypesFields,
   assignValuesToProperDataType
@@ -133,10 +137,11 @@ class Form extends Component {
     const formattedPayload = getFormattedPayload({
       ...this.state.values
     });
-    const submitData = assignValuesToProperDataType({
+    const valuesInDataTypes = assignValuesToProperDataType({
       values: formattedPayload,
       typesFields: this.state.typesFields
     });
+    const submitData = normalizeDataToMatchPostInput(valuesInDataTypes);
     //async to make sure to set state before calling mutation
     await this.props.setValueInMainStateAsync({ submitData });
     this.props.submit();

@@ -65,7 +65,7 @@ class AddPage extends Component {
                     <StyledPaper>
                       <Mutation
                         mutation={ADD_POST_MUTATION}
-                        variables={this.state.submitData}
+                        variables={{ data: this.state.submitData }}
                       >
                         {(submit, { error, loading }) => (
                           <Form
