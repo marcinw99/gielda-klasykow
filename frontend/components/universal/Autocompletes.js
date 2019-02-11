@@ -156,6 +156,10 @@ class CreatableComponent extends Component {
     return !isEqual(nextProps, this.props);
   }
 
+  static getDerivedStateFromProps(nextProps) {
+    return { options: nextProps.options };
+  }
+
   handleChange = value => {
     this.props.handleChange({
       value,
