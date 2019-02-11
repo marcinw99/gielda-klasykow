@@ -1,6 +1,6 @@
 import React from "react";
 import { Query } from "react-apollo";
-import { Grid, withStyles, FormHelperText } from "@material-ui/core";
+import { Grid, withStyles } from "@material-ui/core";
 
 import { StyledValueTitle, StyledFormControl } from "../styledComponents";
 import { Creatable, Autocomplete } from "../../universal/Autocompletes";
@@ -49,7 +49,7 @@ const BasicInfo = props => (
           >
             {({ data, error, loading }) => {
               return data.modelsOfBrand ? (
-                <Autocomplete
+                <Creatable
                   darkLabel
                   name="model"
                   placeholder="Model"
@@ -61,7 +61,7 @@ const BasicInfo = props => (
                   }))}
                 />
               ) : (
-                <Autocomplete
+                <Creatable
                   darkLabel
                   name="model"
                   placeholder="Model"
