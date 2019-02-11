@@ -7,6 +7,7 @@ import { Creatable, Autocomplete } from "../../universal/Autocompletes";
 import displayedText from "../../../resources/displayedText";
 import { MODELS_OF_BRAND } from "../../../src/Queries/searchQueries";
 import FieldRequiredHelperText from "../../universal/FieldRequiredHelperText";
+import { isArray } from "util";
 
 const styles = theme => ({
   marginTop: {
@@ -48,26 +49,28 @@ const BasicInfo = props => (
             }}
           >
             {({ data, error, loading }) => {
-              return data.modelsOfBrand ? (
+              var modelsOfBrand = [];
+              var placeholder = "Model";
+              if (error) {
+                placeholder = "Błąd pobierania danych";
+              } else if (loading) {
+                placeholder = "Pobieranie danych...";
+              } else if (data) {
+                if (isArray(data.modelsOfBrand)) {
+                  modelsOfBrand = data.modelsOfBrand;
+                }
+              }
+              return (
                 <Creatable
                   darkLabel
                   name="model"
-                  placeholder="Model"
+                  placeholder={placeholder}
                   value={props.values.model}
                   handleChange={props.handleChange}
-                  options={data.modelsOfBrand.map(item => ({
+                  options={modelsOfBrand.map(item => ({
                     label: item,
                     value: item
                   }))}
-                />
-              ) : (
-                <Creatable
-                  darkLabel
-                  name="model"
-                  placeholder="Model"
-                  value={props.values.model}
-                  handleChange={props.handleChange}
-                  options={[]}
                 />
               );
             }}
@@ -186,3 +189,23 @@ const BasicInfo = props => (
 );
 
 export default withStyles(styles)(BasicInfo);
+
+/*switch (true) {
+                case loading:
+                  placeholder = "Pobieranie danych...";
+                  break;
+                case error:
+                  placeholder = "Błąd pobierania danych";
+                  break;
+                case data:
+                  console.log(data);
+                  if (data.modelsOfBrand) {
+                    if (data.modelsOfBrand.length > 0) {
+                      modelsOfBrand = data.modelsOfBrand;
+                      placeholder = "Model";
+                    }
+                  }
+                  break;
+                default:
+                  break;
+              } */
