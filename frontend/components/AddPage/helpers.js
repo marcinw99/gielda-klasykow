@@ -74,10 +74,10 @@ export const normalizeDataToMatchPostInput = data => {
 export const getArrayOfRequiredFieldsNotFilled = values => {
   var notFilled = [];
   requiredFields.forEach(item => {
-    if (isNull(values[item])) {
+    if (isNull(values[item.name])) {
       notFilled.push(item);
-    } else if (isArray(values[item])) {
-      if (values[item].length === 0) {
+    } else if (isArray(values[item.name])) {
+      if (values[item.name].length === 0) {
         notFilled.push(item);
       }
     }

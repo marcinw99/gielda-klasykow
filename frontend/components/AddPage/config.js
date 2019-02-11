@@ -126,4 +126,9 @@ export const staticOptions = {
   Torque: getArrayOfNumbers(100, 50, 12)
 };
 
-export const requiredFields = ["brand", "model", "price", "fuelType"];
+export const requiredFields = [
+  { name: "brand", inStep: 0 },
+  { name: "model", inStep: 0 },
+  { name: "price", inStep: 0 },
+  { name: "fuelType", inStep: 0 }
+];

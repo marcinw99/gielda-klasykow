@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, withStyles } from "@material-ui/core";
+import { Typography, withStyles, Button } from "@material-ui/core";
 
 import { getArrayOfRequiredFieldsNotFilled } from "../helpers";
 import displayedText from "../../../resources/displayedText";
@@ -11,6 +11,11 @@ const styles = theme => ({
 });
 
 const Summary = props => {
+  const setStep = step => {
+    props.setValueInMainState({
+      activeStep: step
+    });
+  };
   const fieldsNotFilled = getArrayOfRequiredFieldsNotFilled(props.values);
   return fieldsNotFilled.length === 0 ? (
     <Typography>hehe</Typography>
@@ -27,7 +32,12 @@ const Summary = props => {
         Wymagane pola które są nie uzupełnione:
         <ul>
           {fieldsNotFilled.map(item => (
-            <li>{displayedText("attributesNames", item)}</li>
+            <li key={item.name}>
+              {displayedText("attributesNames", item.name)}{" "}
+              <Button color="primary" onClick={() => setStep(item.inStep)}>
+                Przekieruj
+              </Button>
+            </li>
           ))}
         </ul>
       </Typography>

@@ -173,7 +173,8 @@ class Form extends Component {
             handleNewPhotos: this.handleNewPhotos,
             handleMultiCheckboxChange: this.handleMultiCheckboxChange,
             values: this.state.values,
-            loadingPhotos: this.state.loadingPhotos
+            loadingPhotos: this.state.loadingPhotos,
+            setValueInMainState: this.props.setValueInMainState
           })}
         </FormContent>
         <Navigation
