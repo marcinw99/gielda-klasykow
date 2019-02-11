@@ -5,6 +5,7 @@ import { Query, Mutation } from "react-apollo";
 import { Content, StyledPaper, StyledPageTitle } from "./styledComponents";
 import Steps from "./Steps";
 import Form from "./Form";
+import AfterSubmit from "./AfterSubmit";
 import { ADD_POST_QUERIES } from "../../src/Queries/searchQueries";
 import { ADD_POST_MUTATION } from "../../src/Mutations/AddPost";
 
@@ -62,15 +63,23 @@ class AddPage extends Component {
                         mutation={ADD_POST_MUTATION}
                         variables={{ data: this.state.submitData }}
                       >
-                        {(submit, { error, loading }) => (
-                          <Form
-                            data={data}
-                            activeStep={this.state.activeStep}
-                            setValueInMainState={this.setValueInState}
-                            setValueInMainStateAsync={this.setValueInStateAsync}
-                            submit={submit}
-                          />
-                        )}
+                        {(submit, feedback) => {
+                          if (feedback.data)
+                            return (
+                              <AfterSubmit data={feedback.data.createPost} />
+                            );
+                          return (
+                            <Form
+                              data={data}
+                              activeStep={this.state.activeStep}
+                              setValueInMainState={this.setValueInState}
+                              setValueInMainStateAsync={
+                                this.setValueInStateAsync
+                              }
+                              submit={submit}
+                            />
+                          );
+                        }}
                       </Mutation>
                     </StyledPaper>
                   </Grid>
