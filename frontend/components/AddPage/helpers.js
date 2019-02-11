@@ -1,9 +1,4 @@
-import {
-  staticOptions,
-  fetchedOptions,
-  fetchedSubTypes,
-  requiredFields
-} from "./config";
+import { staticOptions, fetchedOptions, fetchedSubTypes } from "./config";
 
 import {
   partialPrepareOptions,
@@ -69,11 +64,11 @@ export const normalizeDataToMatchPostInput = data => {
   return normalizedData;
 };
 
-///// getArrayOfRequiredFieldsNotFilled
+///// getArrayOfFieldsNotFilled
 
-export const getArrayOfRequiredFieldsNotFilled = values => {
+export const getArrayOfFieldsNotFilled = ({ values, criteria }) => {
   var notFilled = [];
-  requiredFields.forEach(item => {
+  criteria.forEach(item => {
     if (isNull(values[item.name])) {
       notFilled.push(item);
     } else if (isArray(values[item.name])) {

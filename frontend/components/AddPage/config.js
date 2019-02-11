@@ -132,3 +132,15 @@ export const requiredFields = [
   { name: "price", inStep: 0 },
   { name: "fuelType", inStep: 0 }
 ];
+
+export const recommendedFields = [
+  { name: "localization", inStep: 0 },
+  { name: "segment", inStep: 0 },
+  { name: "mileage", inStep: 0 },
+  { name: "productionYear", inStep: 0 },
+  { name: "photos", inStep: 1 },
+  { name: "avatar", inStep: 1 },
+  { name: "transmission", inStep: 2 },
+  { name: "damaged", inStep: 5 },
+  { name: "accidentFree", inStep: 5 }
+];
