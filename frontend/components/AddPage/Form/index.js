@@ -21,7 +21,6 @@ import BodyAndAppereance from "./BodyAndAppereance";
 import AdditionalAccessories from "./AdditionalAccessories";
 import VehicleStatus from "./VehicleStatus";
 import Summary from "./Summary";
-import AfterSubmit from "./AfterSubmit";
 import Navigation from "./Navigation";
 
 function getFormContent(step) {
@@ -40,8 +39,6 @@ function getFormContent(step) {
       return <VehicleStatus />;
     case 6:
       return <Summary />;
-    case 7:
-      return <AfterSubmit />;
     default:
       return <Typography>Błąd, niepoprawny indeks</Typography>;
   }
