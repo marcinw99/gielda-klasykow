@@ -171,15 +171,17 @@ class Form extends Component {
             handleMultiCheckboxChange: this.handleMultiCheckboxChange,
             values: this.state.values,
             loadingPhotos: this.state.loadingPhotos,
-            setValueInMainState: this.props.setValueInMainState
+            setValueInMainState: this.props.setValueInMainState,
+            error: this.props.error
           })}
         </FormContent>
         <Navigation
           activeStep={this.props.activeStep}
           setValueInMainState={this.props.setValueInMainState}
-          submit={this.submit}
           handleStepReset={this.handleStepReset}
           handleFullReset={this.handleFullReset}
+          loading={this.props.loading}
+          submit={this.submit}
         />
       </Fragment>
     );

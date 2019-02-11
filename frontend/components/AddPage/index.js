@@ -90,6 +90,7 @@ class AddPage extends Component {
                             <Steps
                               activeStep={this.state.activeStep}
                               setValueInMainState={this.setValueInState}
+                              loading={feedback.loading}
                             />
                           </Grid>
                           <Grid item xs={6}>
@@ -101,6 +102,8 @@ class AddPage extends Component {
                                 setValueInMainStateAsync={
                                   this.setValueInStateAsync
                                 }
+                                loading={feedback.loading}
+                                error={feedback.error}
                                 submit={submit}
                               />
                             </StyledPaper>

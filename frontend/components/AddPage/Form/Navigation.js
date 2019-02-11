@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Grid, withStyles } from "@material-ui/core";
+import { Button, Grid, withStyles, LinearProgress } from "@material-ui/core";
 
 import { steps } from "../config";
 import ConfirmationDialog from "../../universal/ConfirmationDialog";
@@ -7,6 +7,11 @@ import ConfirmationDialog from "../../universal/ConfirmationDialog";
 const styles = theme => ({
   marginRight: {
     marginRight: theme.spacing.unit * 2
+  },
+  loadingProgressRoot: {
+    display: "inline-block",
+    paddingLeft: theme.spacing.unit * 6,
+    paddingRight: theme.spacing.unit * 6
   }
 });
 
@@ -83,7 +88,9 @@ class Navigation extends Component {
   };
 
   render() {
-    return (
+    return this.props.loading ? (
+      <LinearProgress color="secondary" />
+    ) : (
       <Grid container justify="space-between">
         <Grid item>
           {this.props.activeStep !== steps.length - 1 ? (
