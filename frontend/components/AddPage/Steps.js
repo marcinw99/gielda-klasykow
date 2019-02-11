@@ -18,7 +18,7 @@ const Steps = props => {
         <Step
           completed={false}
           key={item.label}
-          onClick={() => handleForwardingToStep({ step: index })}
+          onClick={() => handleForwardingToStep(index)}
         >
           <StepLabel>{item.label}</StepLabel>
           <StepContent>
