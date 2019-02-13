@@ -90,30 +90,29 @@ export const getArrayOfFieldsNotFilled = ({ values, criteria }) => {
 
 const isValueIncorrect = ({ value, rules }) => {
   for (const attribute in rules) {
-    if (!isBoolean(value) && value !== null && value !== undefined) {
-      if (rules.arrayOfValues === true) {
-        if (attribute === "maxLength") {
-          if (value.length > rules.maxLength)
-            return validationMessages.maxLength;
-        } else if (attribute === "maxItemLength") {
-          value.forEach(item => {
-            if (item.length > rules.maxItemLength) {
-              return validationMessages.maxItemLength;
-            }
-          });
-        }
-      } else {
-        if (attribute === "maxLength") {
-          if (
-            value.value.length > rules.maxLength ||
-            value.label.length > rules.maxLength
-          )
-            return validationMessages.maxLength;
-        } else if (attribute === "maxValue") {
-          if (value.value > rules.maxValue) return validationMessages.maxValue;
-        } else if (attribute === "minValue") {
-          if (value.value < rules.minValue) return validationMessages.minValue;
-        }
+    if (isBoolean(value)) return false;
+    if (value === null || value === undefined) return false;
+    if (rules.arrayOfValues === true) {
+      if (attribute === "maxLength") {
+        if (value.length > rules.maxLength) return validationMessages.maxLength;
+      } else if (attribute === "maxItemLength") {
+        value.forEach(item => {
+          if (item.length > rules.maxItemLength) {
+            return validationMessages.maxItemLength;
+          }
+        });
+      }
+    } else {
+      if (attribute === "maxLength") {
+        if (
+          value.value.length > rules.maxLength ||
+          value.label.length > rules.maxLength
+        )
+          return validationMessages.maxLength;
+      } else if (attribute === "maxValue") {
+        if (value.value > rules.maxValue) return validationMessages.maxValue;
+      } else if (attribute === "minValue") {
+        if (value.value < rules.minValue) return validationMessages.minValue;
       }
     }
   }

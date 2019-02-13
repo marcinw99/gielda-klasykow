@@ -3,7 +3,11 @@ import jwt from "jsonwebtoken";
 import { randomBytes } from "crypto";
 import { promisify } from "util";
 
-import { isPasswordValid, areArgumentsLengthsInRange } from "../dataValidation";
+import {
+  isPasswordValid,
+  areArgumentsLengthsInRange,
+  formValueIsIncorrect
+} from "../dataValidation";
 import messageCodes from "../messageCodes";
 
 function throwError(code, args) {
@@ -36,6 +40,19 @@ const userCookieParameters = {
 
 const Mutation = {
   createPost: async function(parent, { data }, context, info) {
+    // check if User logged in
+    const { car, ...otherPostAttributes } = data;
+    const validationInput = { ...car.create, ...otherPostAttributes };
+    for (const key in validationInput) {
+      const invalid = formValueIsIncorrect({
+        name: key,
+        value: validationInput[key]
+      });
+      if (invalid !== false) {
+        throwError(invalid);
+      }
+    }
+    // connect Post to User
     const item = await context.db.mutation.createPost({ data }, info);
     return item;
   },
