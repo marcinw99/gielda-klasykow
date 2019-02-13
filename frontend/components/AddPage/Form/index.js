@@ -5,14 +5,15 @@ import { remove } from "lodash";
 import {
   prepareOptions,
   getFormattedPayload,
-  normalizeDataToMatchPostInput
+  normalizeDataToMatchPostInput,
+  formValueIsIncorrect
 } from "../helpers";
 import {
   getTypesFields,
   assignValuesToProperDataType
 } from "../../../src/globalMethods";
 import { FormContent } from "../styledComponents";
-import { steps, blankValuesState } from "../config";
+import { steps, blankValuesState, validationRules } from "../config";
 
 import BasicInfo from "./BasicInfo";
 import Photos from "./Photos";
@@ -70,6 +71,10 @@ class Form extends Component {
   };
 
   handleChange = ({ name, value }) => {
+    if (formValueIsIncorrect({ name, value })) {
+      return null;
+      // Display error in snackbar
+    }
     this.setState(prevState => ({
       values: {
         ...prevState.values,
@@ -106,6 +111,8 @@ class Form extends Component {
 
   handleNewPhotos = async e => {
     e.persist();
+    if (e.target.files.length > validationRules.photos.maxLength) return null;
+    // Display error in snackbar
     await this.asyncSetState({ loadingPhotos: true });
     const rawFiles = e.target.files;
     for (let index = 0; index < rawFiles.length; index++) {

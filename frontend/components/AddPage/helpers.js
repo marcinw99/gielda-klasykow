@@ -1,10 +1,16 @@
-import { staticOptions, fetchedOptions, fetchedSubTypes } from "./config";
+import {
+  staticOptions,
+  fetchedOptions,
+  fetchedSubTypes,
+  validationRules,
+  validationMessages
+} from "./config";
 
 import {
   partialPrepareOptions,
   partialGetFormattedPayload
 } from "../../src/globalMethods";
-import { isNull, isArray } from "util";
+import { isNull, isArray, isBoolean } from "util";
 
 ///// prepareOptions
 
@@ -78,4 +84,46 @@ export const getArrayOfFieldsNotFilled = ({ values, criteria }) => {
     }
   });
   return notFilled;
+};
+
+///// formValueIsIncorrect functions
+
+const isValueIncorrect = ({ value, rules }) => {
+  for (const attribute in rules) {
+    if (!isBoolean(value) && value !== null && value !== undefined) {
+      if (rules.arrayOfValues === true) {
+        if (attribute === "maxLength") {
+          if (value.length > rules.maxLength)
+            return validationMessages.maxLength;
+        } else if (attribute === "maxItemLength") {
+          value.forEach(item => {
+            if (item.length > rules.maxItemLength) {
+              return validationMessages.maxItemLength;
+            }
+          });
+        }
+      } else {
+        if (attribute === "maxLength") {
+          if (
+            value.value.length > rules.maxLength ||
+            value.label.length > rules.maxLength
+          )
+            return validationMessages.maxLength;
+        } else if (attribute === "maxValue") {
+          if (value.value > rules.maxValue) return validationMessages.maxValue;
+        } else if (attribute === "minValue") {
+          if (value.value < rules.minValue) return validationMessages.minValue;
+        }
+      }
+    }
+  }
+  return false;
+};
+
+export const formValueIsIncorrect = ({ name, value }) => {
+  if (Object.keys(validationRules).indexOf(name) === -1) {
+    return isValueIncorrect({ value, rules: validationRules.default });
+  } else {
+    return isValueIncorrect({ value, rules: validationRules[name] });
+  }
 };

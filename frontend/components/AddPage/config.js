@@ -144,3 +144,33 @@ export const recommendedFields = [
   { name: "damaged", inStep: 5 },
   { name: "accidentFree", inStep: 5 }
 ];
+
+export const validationRules = {
+  default: {
+    maxLength: 50
+  },
+  // overrides
+  price: {
+    maxLength: 50,
+    minValue: 50,
+    maxValue: 10000000
+  },
+  photos: {
+    maxLength: 50,
+    arrayOfValues: true,
+    maxItemLength: 250
+  },
+  avatar: {
+    maxLength: 250
+  },
+  description: {
+    maxLength: 250
+  }
+};
+
+export const validationMessages = {
+  maxLength: "Podana wartość jest za długa.",
+  minValue: "Podana liczba jest za mała.",
+  maxValue: "Podana liczba jest za duża.",
+  maxItemLength: "Podana wartość jest za długa."
+};
