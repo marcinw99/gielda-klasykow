@@ -6,14 +6,20 @@ import {
   prepareOptions,
   getFormattedPayload,
   normalizeDataToMatchPostInput,
-  formValueIsIncorrect
+  formValueIsIncorrect,
+  getArrayOfFieldsNotFilled
 } from "../helpers";
 import {
   getTypesFields,
   assignValuesToProperDataType
 } from "../../../src/globalMethods";
 import { FormContent } from "../styledComponents";
-import { steps, blankValuesState, validationRules } from "../config";
+import {
+  steps,
+  blankValuesState,
+  validationRules,
+  requiredFields
+} from "../config";
 
 import BasicInfo from "./BasicInfo";
 import Photos from "./Photos";
@@ -48,7 +54,8 @@ function getFormContent(step) {
 const initialState = {
   values: { ...blankValuesState },
   loadingPhotos: false,
-  typesFields: {}
+  typesFields: {},
+  requiredFieldsNotFilled: [...requiredFields]
 };
 
 class Form extends Component {
@@ -75,14 +82,26 @@ class Form extends Component {
       return null;
       // Display error in snackbar
     }
-    this.setState(prevState => ({
-      values: {
-        ...prevState.values,
-        // reset model if brand is changed
-        model: name === "brand" ? null : prevState.values.model,
-        [name]: value
+    this.setState(
+      prevState => ({
+        values: {
+          ...prevState.values,
+          // reset model if brand is changed
+          model: name === "brand" ? null : prevState.values.model,
+          [name]: value
+        }
+      }),
+      () => {
+        // when changed field is marked as required update requiredFieldsNotFilled
+        if (requiredFields.filter(item => item.name === name).length > 0) {
+          const requiredFieldsNotFilled = getArrayOfFieldsNotFilled({
+            values: this.state.values,
+            criteria: requiredFields
+          });
+          this.setState({ requiredFieldsNotFilled });
+        }
       }
-    }));
+    );
   };
 
   handleStepReset = step => {
@@ -150,6 +169,7 @@ class Form extends Component {
   };
 
   submit = async () => {
+    if (this.state.requiredFieldsNotFilled.length > 0) return false;
     const formattedPayload = getFormattedPayload({
       ...this.state.values
     });
@@ -179,6 +199,7 @@ class Form extends Component {
             values: this.state.values,
             loadingPhotos: this.state.loadingPhotos,
             setValueInMainState: this.props.setValueInMainState,
+            requiredFieldsNotFilled: this.state.requiredFieldsNotFilled,
             error: this.props.error
           })}
         </FormContent>

@@ -3,7 +3,7 @@ import { Typography, withStyles, Button } from "@material-ui/core";
 
 import displayedText from "../../../resources/displayedText";
 import { getArrayOfFieldsNotFilled } from "../helpers";
-import { requiredFields, recommendedFields } from "../config";
+import { recommendedFields } from "../config";
 
 const styles = theme => ({
   title: {
@@ -18,16 +18,12 @@ const Summary = props => {
       activeStep: step
     });
   };
-  const requiredFieldsNotFilled = getArrayOfFieldsNotFilled({
-    values: props.values,
-    criteria: requiredFields
-  });
-  return requiredFieldsNotFilled.length === 0 ? (
+  return props.requiredFieldsNotFilled.length === 0 ? (
     <SummaryReadyToSubmit {...props} setStep={setStep} />
   ) : (
     <SummaryCantSubmit
       {...props}
-      requiredFieldsNotFilled={requiredFieldsNotFilled}
+      requiredFieldsNotFilled={props.requiredFieldsNotFilled}
       setStep={setStep}
     />
   );
