@@ -12,8 +12,11 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const styles = theme => ({
+  root: {
+    borderRadius: 0
+  },
   success: {
-    backgroundColor: green[700]
+    backgroundColor: green[800]
   },
   error: {
     backgroundColor: theme.palette.error.dark
@@ -45,12 +48,11 @@ const variantIcon = {
 };
 
 const CustomSnackbarContent = props => {
-  const { classes, className, message, handleClose, variant, ...other } = props;
+  const { classes, message, handleClose, variant, ...other } = props;
   const Icon = variantIcon[variant];
-
   return (
     <SnackbarContent
-      className={classNames(classes[variant], className)}
+      className={classNames(classes[variant], classes.root)}
       aria-describedby="client-snackbar"
       message={
         <span id="client-snackbar" className={classes.message}>

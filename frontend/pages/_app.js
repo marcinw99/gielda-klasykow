@@ -17,6 +17,7 @@ class MyApp extends App {
   constructor(props) {
     super(props);
     this.pageContext = getPageContext();
+    this.snackbarQueue = [];
     this.state = {
       darkTheme: false,
       snackbar: { ...snackbarDefaults }
@@ -46,8 +47,27 @@ class MyApp extends App {
     }));
   };
 
-  manageSnackbar = snackbar => {
-    this.setState({ snackbar });
+  manageSnackbar = snackbarState => {
+    this.snackbarQueue.push({
+      snackbarState,
+      key: new Date().getTime()
+    });
+
+    if (this.state.snackbar.open) {
+      this.setState(prevState => ({
+        snackbar: { ...prevState.snackbar, open: false }
+      }));
+    } else {
+      this.processSnackbarQueue();
+    }
+  };
+
+  processSnackbarQueue = () => {
+    if (this.snackbarQueue.length > 0) {
+      this.setState({
+        snackbar: this.snackbarQueue.shift().snackbarState
+      });
+    }
   };
 
   handleSnackbarClose = (e, reason) => {
@@ -60,6 +80,10 @@ class MyApp extends App {
         open: false
       }
     }));
+  };
+
+  handleSnackbarExited = () => {
+    this.processSnackbarQueue();
   };
 
   render() {
@@ -80,7 +104,10 @@ class MyApp extends App {
                 <Page
                   toggleTheme={this.toggleTheme}
                   darkTheme={this.state.darkTheme}
-                  handleSnackbarClose={this.handleSnackbarClose}
+                  snackbarMethods={{
+                    handleClose: this.handleSnackbarClose,
+                    onExited: this.handleSnackbarExited
+                  }}
                   snackbar={this.state.snackbar}
                 >
                   <Component pageContext={this.pageContext} {...pageProps} />

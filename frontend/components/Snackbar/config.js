@@ -4,7 +4,7 @@ export const defaults = {
     vertical: "bottom"
   },
   open: false,
-  timeout: 6000,
+  timeout: 5000,
   message: "Coś poszło nie tak.",
   variant: "info"
 };

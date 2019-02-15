@@ -15,7 +15,7 @@ const Page = props => (
         {React.cloneElement(props.children, data)}
         <Footer />
         <ThemeToggler darkTheme={props.darkTheme} onClick={props.toggleTheme} />
-        <Snackbar {...props.snackbar} handleClose={props.handleSnackbarClose} />
+        <Snackbar {...props.snackbar} {...props.snackbarMethods} />
       </div>
     )}
   </User>

@@ -12,6 +12,7 @@ const CustomSnackbar = props => {
       anchorOrigin={props.position}
       autoHideDuration={props.timeout}
       onClose={props.handleClose}
+      onExited={props.onExited}
       ContentProps={{
         "aria-describedby": "message-id"
       }}
@@ -31,7 +32,7 @@ CustomSnackbar.propTypes = {
   open: PropTypes.bool.isRequired,
   position: PropTypes.shape({
     vertical: PropTypes.oneOf(["top", "bottom"]),
-    horizontal: PropTypes.oneOf(["left", "right"])
+    horizontal: PropTypes.oneOf(["left", "center", "right"])
   }),
   timeout: PropTypes.number,
   handleClose: PropTypes.func.isRequired,
