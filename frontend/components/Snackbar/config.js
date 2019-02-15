@@ -5,5 +5,6 @@ export const defaults = {
   },
   open: false,
   timeout: 6000,
-  message: "Coś poszło nie tak."
+  message: "Coś poszło nie tak.",
+  variant: "info"
 };

@@ -50,7 +50,10 @@ class MyApp extends App {
     this.setState({ snackbar });
   };
 
-  handleSnackbarClose = () => {
+  handleSnackbarClose = (e, reason) => {
+    if (reason === "clickaway") {
+      return null;
+    }
     this.setState(prevState => ({
       snackbar: {
         ...prevState.snackbar,

@@ -1,8 +1,9 @@
 import React from "react";
-import { Snackbar, IconButton } from "@material-ui/core";
-import { Close as CloseIcon } from "@material-ui/icons";
+import { Snackbar } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 import { defaults } from "./config";
+import CustomSnackbarContent from "./CustomSnackbarContent";
 
 const CustomSnackbar = props => {
   return (
@@ -14,21 +15,28 @@ const CustomSnackbar = props => {
       ContentProps={{
         "aria-describedby": "message-id"
       }}
-      message={<span id="message-id">{props.message}</span>}
-      action={
-        <IconButton
-          key="close"
-          aria-label="Close"
-          color="inherit"
-          onClick={props.handleClose}
-        >
-          <CloseIcon />
-        </IconButton>
-      }
-    />
+    >
+      <CustomSnackbarContent
+        handleClose={props.handleClose}
+        variant={props.variant}
+        message={props.message}
+      />
+    </Snackbar>
   );
 };
 
 CustomSnackbar.defaultProps = { ...defaults };
+
+CustomSnackbar.propTypes = {
+  open: PropTypes.bool.isRequired,
+  position: PropTypes.shape({
+    vertical: PropTypes.oneOf(["top", "bottom"]),
+    horizontal: PropTypes.oneOf(["left", "right"])
+  }),
+  timeout: PropTypes.number,
+  handleClose: PropTypes.func.isRequired,
+  variant: PropTypes.oneOf(["success", "warning", "error", "info"]).isRequired,
+  message: PropTypes.string
+};
 
 export default CustomSnackbar;
