@@ -10,13 +10,16 @@ import withData from "../src/withData";
 import Page from "../components/Page";
 import getPageContext from "../src/getPageContext";
 import { theme, darkTheme } from "../src/customTheme";
+import { SnackbarProvider } from "../components/Snackbar/Context";
+import { defaults as snackbarDefaults } from "../components/Snackbar/config";
 
 class MyApp extends App {
   constructor(props) {
     super(props);
     this.pageContext = getPageContext();
     this.state = {
-      darkTheme: false
+      darkTheme: false,
+      snackbar: { ...snackbarDefaults }
     };
   }
 
@@ -43,6 +46,19 @@ class MyApp extends App {
     }));
   };
 
+  manageSnackbar = snackbar => {
+    this.setState({ snackbar });
+  };
+
+  handleSnackbarClose = () => {
+    this.setState(prevState => ({
+      snackbar: {
+        ...prevState.snackbar,
+        open: false
+      }
+    }));
+  };
+
   render() {
     const { Component, pageProps } = this.props;
     return (
@@ -57,12 +73,16 @@ class MyApp extends App {
           >
             <CssBaseline />
             <ApolloProvider client={this.props.apollo}>
-              <Page
-                toggleTheme={this.toggleTheme}
-                darkTheme={this.state.darkTheme}
-              >
-                <Component pageContext={this.pageContext} {...pageProps} />
-              </Page>
+              <SnackbarProvider manageSnackbar={this.manageSnackbar}>
+                <Page
+                  toggleTheme={this.toggleTheme}
+                  darkTheme={this.state.darkTheme}
+                  handleSnackbarClose={this.handleSnackbarClose}
+                  snackbar={this.state.snackbar}
+                >
+                  <Component pageContext={this.pageContext} {...pageProps} />
+                </Page>
+              </SnackbarProvider>
             </ApolloProvider>
           </MuiThemeProvider>
         </JssProvider>

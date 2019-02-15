@@ -5,6 +5,7 @@ import { ThemeToggler } from "./styledComponents";
 import Header from "./Header";
 import Footer from "./Footer";
 import User from "../../src/QueryComponents/User";
+import Snackbar from "../Snackbar";
 
 const Page = props => (
   <User>
@@ -14,6 +15,7 @@ const Page = props => (
         {React.cloneElement(props.children, data)}
         <Footer />
         <ThemeToggler darkTheme={props.darkTheme} onClick={props.toggleTheme} />
+        <Snackbar {...props.snackbar} handleClose={props.handleSnackbarClose} />
       </div>
     )}
   </User>
