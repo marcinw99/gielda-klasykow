@@ -49,6 +49,12 @@ const postFieldsValidationRules = {
     minValue: 50,
     maxValue: 10000000
   },
+  productionYear: {
+    maxLength: 4,
+    minLength: 4,
+    minValue: 1800,
+    maxValue: 2018
+  },
   photos: {
     maxLength: 50,
     arrayOfValues: true,
