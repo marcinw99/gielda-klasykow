@@ -29,6 +29,8 @@ import AdditionalAccessories from "./AdditionalAccessories";
 import VehicleStatus from "./VehicleStatus";
 import Summary from "./Summary";
 import Navigation from "./Navigation";
+import { withSnackbar } from "../../Snackbar/Context";
+import displayedText from "../../../resources/displayedText";
 
 function getFormContent(step) {
   switch (step) {
@@ -79,8 +81,15 @@ class Form extends Component {
 
   handleChange = ({ name, value }) => {
     if (formValueIsIncorrect({ name, value })) {
+      this.props.manageSnackbar({
+        open: true,
+        message: `Podana wartość w polu ${displayedText(
+          "attributesNames",
+          name
+        )} jest nieprawidłowa.`,
+        variant: "error"
+      });
       return null;
-      // Display error in snackbar
     }
     this.setState(
       prevState => ({
@@ -92,7 +101,7 @@ class Form extends Component {
         }
       }),
       () => {
-        // when changed field is marked as required update requiredFieldsNotFilled
+        // if changed field is marked as required update array of requiredFieldsNotFilled
         if (requiredFields.filter(item => item.name === name).length > 0) {
           const requiredFieldsNotFilled = getArrayOfFieldsNotFilled({
             values: this.state.values,
@@ -130,8 +139,16 @@ class Form extends Component {
 
   handleNewPhotos = async e => {
     e.persist();
-    if (e.target.files.length > validationRules.photos.maxLength) return null;
-    // Display error in snackbar
+    if (e.target.files.length > validationRules.photos.maxLength) {
+      this.props.manageSnackbar({
+        open: true,
+        message: `Można dodać maksymalnie ${
+          validationRules.photos.maxLength
+        } zdjęć.`,
+        variant: "error"
+      });
+      return null;
+    }
     await this.asyncSetState({ loadingPhotos: true });
     const rawFiles = e.target.files;
     for (let index = 0; index < rawFiles.length; index++) {
@@ -169,7 +186,15 @@ class Form extends Component {
   };
 
   submit = async () => {
-    if (this.state.requiredFieldsNotFilled.length > 0) return false;
+    if (this.state.requiredFieldsNotFilled.length > 0) {
+      this.props.manageSnackbar({
+        open: true,
+        message:
+          "Nie wprowadzono wystarczającej ilości danych aby dodać ogłoszenie.",
+        variant: "error"
+      });
+      return null;
+    }
     const formattedPayload = getFormattedPayload({
       ...this.state.values
     });
@@ -216,4 +241,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default withSnackbar(Form);
