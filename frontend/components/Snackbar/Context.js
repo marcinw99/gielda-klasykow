@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 const Context = React.createContext();
 
@@ -15,3 +15,15 @@ export const SnackbarProvider = props => {
 };
 
 export const SnackbarConsumer = Context.Consumer;
+
+export function withSnackbar(WrappedComponent) {
+  return class extends Component {
+    render() {
+      return (
+        <SnackbarConsumer>
+          {value => <WrappedComponent {...value} {...this.props} />}
+        </SnackbarConsumer>
+      );
+    }
+  };
+}

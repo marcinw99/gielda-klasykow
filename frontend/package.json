@@ -31,7 +31,8 @@
     "react-dom": "^16.7.0",
     "react-fast-compare": "^2.0.4",
     "react-jss": "^8.6.1",
-    "react-select": "^2.3.0"
+    "react-select": "^2.3.0",
+    "recompose": "^0.30.0"
   },
   "devDependencies": {
     "postcss": "6.0.14"
