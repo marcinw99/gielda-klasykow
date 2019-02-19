@@ -3,6 +3,7 @@ import {
   fetchedOptions,
   fetchedSubTypes,
   validationRules,
+  additionalValidationRules,
   validationMessages
 } from "./config";
 
@@ -99,6 +100,8 @@ const isValueIncorrect = ({ value, rules }) => {
     if (rules.arrayOfValues === true) {
       if (attribute === "maxLength") {
         if (value.length > rules.maxLength) return validationMessages.maxLength;
+      } else if (attribute === "minLength") {
+        if (value.length < rules.minLength) return validationMessages.minLength;
       } else if (attribute === "maxItemLength") {
         value.forEach(item => {
           if (item.length > rules.maxItemLength) {
@@ -113,6 +116,12 @@ const isValueIncorrect = ({ value, rules }) => {
           value.label.length > rules.maxLength
         )
           return validationMessages.maxLength;
+      } else if (attribute === "minLength") {
+        if (
+          value.value.length < rules.minLength ||
+          value.label.length < rules.minLength
+        )
+          return validationMessages.minLength;
       } else if (attribute === "maxValue") {
         if (value.value > rules.maxValue) return validationMessages.maxValue;
       } else if (attribute === "minValue") {
@@ -129,4 +138,10 @@ export const formValueIsIncorrect = ({ name, value }) => {
   } else {
     return isValueIncorrect({ value, rules: validationRules[name] });
   }
+};
+
+export const formValueMayBeIncorrect = ({ name, value }) => {
+  if (Object.keys(additionalValidationRules).indexOf(name) !== -1) {
+    return isValueIncorrect({ value, rules: additionalValidationRules[name] });
+  } else return false;
 };

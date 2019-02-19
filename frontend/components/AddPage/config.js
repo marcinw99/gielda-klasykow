@@ -155,6 +155,12 @@ export const validationRules = {
     minValue: 50,
     maxValue: 10000000
   },
+  productionYear: {
+    maxLength: 4,
+    minLength: 4,
+    minValue: 1800,
+    maxValue: 2018
+  },
   photos: {
     maxLength: 50,
     arrayOfValues: true,
@@ -168,8 +174,39 @@ export const validationRules = {
   }
 };
 
+// Rules below don't prevent submitting the form
+// They are showed as warnings in snackbar
+export const additionalValidationRules = {
+  model: {
+    minLength: 2,
+    maxLength: 10
+  },
+  price: {
+    maxLength: 6,
+    minValue: 50,
+    maxValue: 500000
+  },
+  mileage: {
+    minValue: 1000,
+    maxValue: 500000
+  },
+  engineSize: {
+    minValue: 40,
+    maxValue: 7000
+  },
+  power: {
+    minValue: 20,
+    maxValue: 500
+  },
+  torque: {
+    minValue: 80,
+    maxValue: 700
+  }
+};
+
 export const validationMessages = {
   maxLength: "Podana wartość jest za długa.",
+  minLength: "Podana wartość jest za krótka.",
   minValue: "Podana liczba jest za mała.",
   maxValue: "Podana liczba jest za duża.",
   maxItemLength: "Podana wartość jest za długa."

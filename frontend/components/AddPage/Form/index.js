@@ -7,7 +7,8 @@ import {
   getFormattedPayload,
   normalizeDataToMatchPostInput,
   formValueIsIncorrect,
-  getArrayOfFieldsNotFilled
+  getArrayOfFieldsNotFilled,
+  formValueMayBeIncorrect
 } from "../helpers";
 import {
   getTypesFields,
@@ -80,16 +81,24 @@ class Form extends Component {
   };
 
   handleChange = ({ name, value }) => {
-    if (formValueIsIncorrect({ name, value })) {
+    const isIncorrect = formValueIsIncorrect({ name, value });
+    if (isIncorrect) {
       this.props.manageSnackbar({
         open: true,
-        message: `Podana wartość w polu ${displayedText(
-          "attributesNames",
-          name
-        )} jest nieprawidłowa.`,
+        message: `${displayedText("attributesNames", name)}: ${isIncorrect}`,
         variant: "error"
       });
       return null;
+    }
+    if (formValueMayBeIncorrect({ name, value })) {
+      this.props.manageSnackbar({
+        open: true,
+        message: `Czy wartość w polu ${displayedText(
+          "attributesNames",
+          name
+        )} jest prawidłowa?`,
+        variant: "warning"
+      });
     }
     this.setState(
       prevState => ({
