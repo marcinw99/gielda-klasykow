@@ -44,31 +44,35 @@ export const normalizeDataToMatchPostInput = data => {
     additionalAccessories_Safety,
     ...otherCarProps
   } = car;
-  const normalizedData = {
+
+  var normalizedData = {
     ...otherPostProps,
-    photos: {
-      set: photos
-    },
     car: {
       create: {
-        ...otherCarProps,
-        additionalAccessories_Appereance: {
-          create: additionalAccessories_Appereance
-        },
-        additionalAccessories_Safety: {
-          create: additionalAccessories_Safety
-        },
-        additionalAccessories_Comfort_Driver: {
-          create: additionalAccessories_Comfort_Driver
-        },
-        additionalAccessories_Comfort_Passenger: {
-          create: additionalAccessories_Comfort_Passenger
-        }
+        ...otherCarProps
       }
     }
   };
+  // create values nested in set or create
+  if (photos) {
+    normalizedData.photos = { set: photos };
+  }
+  [
+    additionalAccessories_Comfort_Driver,
+    additionalAccessories_Comfort_Passenger,
+    additionalAccessories_Appereance,
+    additionalAccessories_Safety
+  ].map(item => {
+    if (item) {
+      normalizedData.car.create[item] = {
+        create: item
+      };
+    }
+  });
   return normalizedData;
 };
+
+/////
 
 ///// getArrayOfFieldsNotFilled
 
