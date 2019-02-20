@@ -134,16 +134,16 @@ const BasicInfo = props => (
         </StyledFormControl>
       </Grid>
       <Grid item>
-        <StyledValueTitle>Segment samochodu</StyledValueTitle>
+        <StyledValueTitle>Rodzaj nadwozia</StyledValueTitle>
         <StyledFormControl>
           <Autocomplete
             darkLabel
-            name="segment"
-            placeholder="A, B, C..."
-            value={props.values.segment}
+            name="type"
+            placeholder="Sedan, Kombi..."
+            value={props.values.type}
             handleChange={props.handleChange}
-            options={props.options.Segment.map(item => ({
-              label: item,
+            options={props.options.Type.map(item => ({
+              label: displayedText("type", item),
               value: item
             }))}
           />

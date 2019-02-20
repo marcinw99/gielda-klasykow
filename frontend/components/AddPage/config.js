@@ -1,7 +1,7 @@
 import { getArrayOfNumbers } from "../../src/globalMethods";
 
 export const blankBasicInfo = {
-  segment: null,
+  type: null,
   brand: null,
   model: null,
   fuelType: null,
@@ -95,7 +95,7 @@ export const steps = [
 /* Model fetched separately */
 export const fetchedOptions = [
   "Brand",
-  "Segment",
+  "Type",
   "FuelType",
   "Transmission",
   "Drive",
@@ -135,7 +135,7 @@ export const requiredFields = [
 
 export const recommendedFields = [
   { name: "localization", inStep: 0 },
-  { name: "segment", inStep: 0 },
+  { name: "type", inStep: 0 },
   { name: "mileage", inStep: 0 },
   { name: "productionYear", inStep: 0 },
   { name: "photos", inStep: 1 },

@@ -59,6 +59,17 @@ const variants = {
     ZUK: "Żuk",
     OTHER: "Inne"
   },
+  type: {
+    SMALL: "Mały",
+    URBAN: "Miejski",
+    COMPACT: "Kompakt",
+    SEDAN: "Sedan",
+    ESTATE: "Kombi",
+    MINIVAN: "Minivan",
+    SUV: "SUV",
+    CABRIO: "Kabriolet",
+    COUPE: "Coupe"
+  },
   fuelType: {
     BENZYNA: "Benzyna",
     BENZYNA_LPG: "Benzyna + LPG",
@@ -171,7 +182,7 @@ const variants = {
     localization: "Lokalizacja",
     avatar: "Miniaturka",
     photos: "Galeria zdjęć",
-    segment: "Segment",
+    type: "Rodzaj nadwozia",
     brand: "Marka",
     model: "Model",
     version: "Wersja",

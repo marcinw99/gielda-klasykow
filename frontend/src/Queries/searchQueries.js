@@ -27,7 +27,7 @@ export const ALL_POSTS_QUERY = gql`
           price
           avatar
           car {
-            segment
+            type
             brand
             model
             version

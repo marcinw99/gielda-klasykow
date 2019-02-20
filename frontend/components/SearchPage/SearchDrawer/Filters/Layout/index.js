@@ -146,14 +146,14 @@ class Layout extends Component {
             <StyledFilterTitle>Cechy pojazdu</StyledFilterTitle>
             <StyledFormControl>
               <Autocomplete
-                value={this.props.values.segment}
-                options={this.props.options.Segment.map(item => ({
-                  label: item,
+                value={this.props.values.type}
+                options={this.props.options.Type.map(item => ({
+                  label: displayedText("type", item),
                   value: item
                 }))}
                 handleChange={this.props.handleChange}
-                name="segment"
-                placeholder="Segment"
+                name="type"
+                placeholder="Rodzaj nadwozia"
               />
             </StyledFormControl>
             <StyledFormControl>

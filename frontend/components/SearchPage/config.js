@@ -17,7 +17,7 @@ export const itemsLimitOptions = [5, 10, 15, 20];
 
 /* Brand and Model fetched separately */
 export const fetchedOptions = [
-  "Segment",
+  "Type",
   "FuelType",
   "Transmission",
   "Drive",
@@ -83,7 +83,7 @@ export const blankFiltersVehicleStatus = {
 };
 
 export const blankFiltersState = {
-  segment: null,
+  type: null,
   brand: null,
   model: null,
   fuelType: null,
