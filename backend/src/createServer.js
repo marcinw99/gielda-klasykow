@@ -1,7 +1,7 @@
 import { GraphQLServer } from "graphql-yoga";
-import { Prisma } from "prisma-binding";
 
 import resolvers from "./resolvers";
+import db from "./database";
 require("dotenv").config({ path: "variables.env" });
 
 const server = new GraphQLServer({
@@ -9,11 +9,7 @@ const server = new GraphQLServer({
   resolvers,
   context: req => ({
     ...req,
-    db: new Prisma({
-      typeDefs: "src/generated/prisma.graphql",
-      endpoint: process.env.PRISMA_ENDPOINT,
-      secret: process.env.PRISMA_SECRET
-    })
+    db
   })
 });
 
