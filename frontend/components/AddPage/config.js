@@ -49,7 +49,7 @@ const blankVehicleStatus = {
 };
 
 const blankDescription = {
-  description: null
+  description: ""
 };
 
 export const blankValuesState = {
@@ -174,15 +174,12 @@ export const validationRules = {
   },
   photos: {
     maxLength: 50,
-    arrayOfValues: true,
     maxItemLength: 250
   },
   avatar: {
-    notNestedValue: true,
     maxLength: 250
   },
   description: {
-    notNestedValue: true,
     maxLength: 2000
   }
 };

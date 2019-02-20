@@ -40,7 +40,7 @@ const userCookieParameters = {
 
 const Mutation = {
   createPost: async function(parent, { data }, context, info) {
-    // check if User logged in
+    if (!context.request.userId) throwError(608);
     const { car, ...otherPostAttributes } = data;
     const validationInput = { ...car.create, ...otherPostAttributes };
     for (const key in validationInput) {
@@ -53,7 +53,17 @@ const Mutation = {
       }
     }
     // connect Post to User
-    const item = await context.db.mutation.createPost({ data }, info);
+    const item = await context.db.mutation.createPost(
+      {
+        data: {
+          ...data,
+          user: {
+            connect: { id: context.request.userId }
+          }
+        }
+      },
+      info
+    );
     return item;
   },
 
