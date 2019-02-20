@@ -28,6 +28,15 @@ const Photos = props => (
         </label>
       </Grid>
       <Grid item>
+        {props.values.avatar ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => props.handleChange("avatar", null)}
+          >
+            Usuń awatar
+          </Button>
+        ) : null}
         {props.values.photos.length > 0 && !props.values.avatar ? (
           <Typography
             color="secondary"
