@@ -1,6 +1,6 @@
 import { getArrayOfNumbers } from "../../src/globalMethods";
 
-export const blankBasicInfo = {
+const blankBasicInfo = {
   type: null,
   brand: null,
   model: null,
@@ -12,12 +12,12 @@ export const blankBasicInfo = {
   keywords: null
 };
 
-export const blankGallery = {
+const blankGallery = {
   avatar: null,
   photos: []
 };
 
-export const blankEngineAndDrive = {
+const blankEngineAndDrive = {
   engineSize: null,
   power: null,
   torque: null,
@@ -26,19 +26,19 @@ export const blankEngineAndDrive = {
   drive: null
 };
 
-export const blankBodyAndAppereance = {
+const blankBodyAndAppereance = {
   color: null,
   steeringWheelOnTheRight: "deleteFromSubmitData",
   additionalAccessories_Appereance: []
 };
 
-export const blankAdditionalAccessories = {
+const blankAdditionalAccessories = {
   additionalAccessories_Safety: [],
   additionalAccessories_Comfort_Driver: [],
   additionalAccessories_Comfort_Passenger: []
 };
 
-export const blankVehicleStatus = {
+const blankVehicleStatus = {
   damaged: "deleteFromSubmitData",
   accidentFree: "deleteFromSubmitData",
   firstOwner: "deleteFromSubmitData",
@@ -48,13 +48,18 @@ export const blankVehicleStatus = {
   tuning: "deleteFromSubmitData"
 };
 
+const blankDescription = {
+  description: null
+};
+
 export const blankValuesState = {
   ...blankBasicInfo,
   ...blankGallery,
   ...blankEngineAndDrive,
   ...blankBodyAndAppereance,
   ...blankAdditionalAccessories,
-  ...blankVehicleStatus
+  ...blankVehicleStatus,
+  ...blankDescription
 };
 
 export const steps = [
@@ -88,6 +93,11 @@ export const steps = [
     label: "Status pojazdu",
     content: "Historia samochodu, informacje prawne",
     blankState: blankVehicleStatus
+  },
+  {
+    label: "Opis ogłoszenia",
+    content: "Szczegółowy opis historii i stanu pojazdu",
+    blankState: blankDescription
   },
   { label: "Podsumowanie", content: "Sprawdź czy podałeś poprawne dane" }
 ];
@@ -142,7 +152,8 @@ export const recommendedFields = [
   { name: "avatar", inStep: 1 },
   { name: "transmission", inStep: 2 },
   { name: "damaged", inStep: 5 },
-  { name: "accidentFree", inStep: 5 }
+  { name: "accidentFree", inStep: 5 },
+  { name: "description", inStep: 6 }
 ];
 
 export const validationRules = {
@@ -167,10 +178,12 @@ export const validationRules = {
     maxItemLength: 250
   },
   avatar: {
+    notNestedValue: true,
     maxLength: 250
   },
   description: {
-    maxLength: 250
+    notNestedValue: true,
+    maxLength: 2000
   }
 };
 

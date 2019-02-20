@@ -109,6 +109,16 @@ const isValueIncorrect = ({ value, rules }) => {
           }
         });
       }
+    } else if (rules.notNestedValue === true) {
+      if (attribute === "maxLength") {
+        if (value.length > rules.maxLength) return validationMessages.maxLength;
+      } else if (attribute === "minLength") {
+        if (value.length < rules.minLength) return validationMessages.minLength;
+      } else if (attribute === "maxValue") {
+        if (value > rules.maxValue) return validationMessages.maxValue;
+      } else if (attribute === "minValue") {
+        if (value < rules.minValue) return validationMessages.minValue;
+      }
     } else {
       if (attribute === "maxLength") {
         if (

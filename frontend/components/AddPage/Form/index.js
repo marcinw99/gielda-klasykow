@@ -29,6 +29,7 @@ import BodyAndAppereance from "./BodyAndAppereance";
 import AdditionalAccessories from "./AdditionalAccessories";
 import VehicleStatus from "./VehicleStatus";
 import Summary from "./Summary";
+import Description from "./Description";
 import Navigation from "./Navigation";
 import { withSnackbar } from "../../Snackbar/Context";
 import displayedText from "../../../resources/displayedText";
@@ -48,6 +49,8 @@ function getFormContent(step) {
     case 5:
       return <VehicleStatus />;
     case 6:
+      return <Description />;
+    case 7:
       return <Summary />;
     default:
       return <Typography>Błąd, niepoprawny indeks</Typography>;
