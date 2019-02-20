@@ -1,8 +1,13 @@
 import React from "react";
-import { TextField } from "@material-ui/core";
+import { TextField, Typography } from "@material-ui/core";
+
+import { validationRules } from "../config";
 
 const Description = props => (
   <div>
+    <Typography gutterBottom variant="body2">{`${
+      props.values.description.length
+    } / ${validationRules.description.maxLength}`}</Typography>
     <TextField
       variant="outlined"
       multiline
