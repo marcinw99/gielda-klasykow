@@ -48,6 +48,7 @@ class MyApp extends App {
   };
 
   manageSnackbar = snackbarState => {
+    if (this.snackbarQueue.length > 2) return null;
     this.snackbarQueue.push({
       snackbarState,
       key: new Date().getTime()
