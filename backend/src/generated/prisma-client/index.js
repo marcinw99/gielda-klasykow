@@ -37,11 +37,11 @@ var models = [
     embedded: false
   },
   {
-    name: "Segment",
+    name: "Transmission",
     embedded: false
   },
   {
-    name: "Transmission",
+    name: "Type",
     embedded: false
   },
   {
@@ -105,11 +105,11 @@ var models = [
     embedded: false
   },
   {
-    name: "Segment",
+    name: "Transmission",
     embedded: false
   },
   {
-    name: "Transmission",
+    name: "Type",
     embedded: false
   },
   {
