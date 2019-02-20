@@ -1,4 +1,4 @@
-import { isBoolean } from "util";
+import { isBoolean, isArray, isString } from "util";
 
 import messageCodes from "./messageCodes";
 
@@ -57,14 +57,13 @@ const postFieldsValidationRules = {
   },
   photos: {
     maxLength: 50,
-    arrayOfValues: true,
     maxItemLength: 250
   },
   avatar: {
     maxLength: 250
   },
   description: {
-    maxLength: 250
+    maxLength: 2000
   }
 };
 
@@ -72,10 +71,10 @@ const postFieldsValidationRules = {
 
 const isValueIncorrect = ({ value, rules }) => {
   for (const attribute in rules) {
+    if (isBoolean(value)) return false;
     if (value === null || value === undefined)
       return messageCodes.argumentsInvalid;
-    if (isBoolean(value)) return false;
-    if (rules.arrayOfValues === true) {
+    if (isArray(value)) {
       if (attribute === "maxLength") {
         if (value.length > rules.maxLength)
           return messageCodes.argumentsLengthsNotInRange;
@@ -85,6 +84,20 @@ const isValueIncorrect = ({ value, rules }) => {
             return messageCodes.argumentsLengthsNotInRange;
           }
         });
+      }
+    } else if (isString(value)) {
+      if (attribute === "maxLength") {
+        if (value.length > rules.maxLength)
+          return messageCodes.argumentsLengthsNotInRange;
+      } else if (attribute === "minLength") {
+        if (value.length < rules.minLength)
+          return messageCodes.argumentsLengthsNotInRange;
+      } else if (attribute === "maxValue") {
+        if (value > rules.maxValue)
+          return messageCodes.argumentsValuesNotInCorrectRange;
+      } else if (attribute === "minValue") {
+        if (value < rules.minValue)
+          return messageCodes.argumentsValuesNotInCorrectRange;
       }
     } else {
       if (attribute === "maxLength") {

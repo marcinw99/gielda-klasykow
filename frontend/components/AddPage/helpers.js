@@ -11,7 +11,7 @@ import {
   partialPrepareOptions,
   partialGetFormattedPayload
 } from "../../src/globalMethods";
-import { isNull, isArray, isBoolean } from "util";
+import { isNull, isArray, isBoolean, isString } from "util";
 
 ///// prepareOptions
 
@@ -38,37 +38,31 @@ export const getFormattedPayload = data =>
 
 export const normalizeDataToMatchPostInput = data => {
   const { car, photos, ...otherPostProps } = data;
-  const {
-    additionalAccessories_Comfort_Driver,
-    additionalAccessories_Comfort_Passenger,
-    additionalAccessories_Appereance,
-    additionalAccessories_Safety,
-    ...otherCarProps
-  } = car;
 
   var normalizedData = {
     ...otherPostProps,
+    user: {
+      connect: { id: "willConnectOnBackend" }
+    },
     car: {
       create: {
-        ...otherCarProps
+        ...car
       }
     }
   };
   // create values nested in set or create
-  if (photos) {
-    normalizedData.photos = { set: photos };
-  }
+  normalizedData.photos = { set: photos ? photos : null };
   [
-    additionalAccessories_Comfort_Driver,
-    additionalAccessories_Comfort_Passenger,
-    additionalAccessories_Appereance,
-    additionalAccessories_Safety
+    "additionalAccessories_Comfort_Driver",
+    "additionalAccessories_Comfort_Passenger",
+    "additionalAccessories_Appereance",
+    "additionalAccessories_Safety"
   ].map(item => {
-    if (item) {
-      normalizedData.car.create[item] = {
-        create: item
-      };
-    }
+    normalizedData.car.create[item] = car[item]
+      ? {
+          create: car[item]
+        }
+      : { create: {} };
   });
   return normalizedData;
 };
@@ -97,7 +91,7 @@ const isValueIncorrect = ({ value, rules }) => {
   for (const attribute in rules) {
     if (isBoolean(value)) return false;
     if (value === null || value === undefined) return false;
-    if (rules.arrayOfValues === true) {
+    if (isArray(value)) {
       if (attribute === "maxLength") {
         if (value.length > rules.maxLength) return validationMessages.maxLength;
       } else if (attribute === "minLength") {
@@ -109,7 +103,7 @@ const isValueIncorrect = ({ value, rules }) => {
           }
         });
       }
-    } else if (rules.notNestedValue === true) {
+    } else if (isString(value)) {
       if (attribute === "maxLength") {
         if (value.length > rules.maxLength) return validationMessages.maxLength;
       } else if (attribute === "minLength") {
@@ -121,16 +115,10 @@ const isValueIncorrect = ({ value, rules }) => {
       }
     } else {
       if (attribute === "maxLength") {
-        if (
-          value.value.length > rules.maxLength ||
-          value.label.length > rules.maxLength
-        )
+        if (value.value.length > rules.maxLength)
           return validationMessages.maxLength;
       } else if (attribute === "minLength") {
-        if (
-          value.value.length < rules.minLength ||
-          value.label.length < rules.minLength
-        )
+        if (value.value.length < rules.minLength)
           return validationMessages.minLength;
       } else if (attribute === "maxValue") {
         if (value.value > rules.maxValue) return validationMessages.maxValue;
