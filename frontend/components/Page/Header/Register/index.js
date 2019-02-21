@@ -135,8 +135,8 @@ class Register extends Component {
                     {item} <br />
                   </span>
                 ))}
-                <Error error={error} />
               </Typography>
+              <Error error={error} />
               <StyledSubmit>Zarejestruj się</StyledSubmit>
             </form>
           )}
