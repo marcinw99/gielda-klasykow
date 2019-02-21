@@ -102,12 +102,10 @@ input additionalAccessories_AppereanceUpdateManyMutationInput {
   PEARL_PAINT: Boolean
 }
 
-input additionalAccessories_AppereanceUpdateOneInput {
+input additionalAccessories_AppereanceUpdateOneRequiredInput {
   create: additionalAccessories_AppereanceCreateInput
   update: additionalAccessories_AppereanceUpdateDataInput
   upsert: additionalAccessories_AppereanceUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
   connect: additionalAccessories_AppereanceWhereUniqueInput
 }
 
@@ -365,12 +363,10 @@ input additionalAccessories_Comfort_DriverUpdateManyMutationInput {
   SPEED_LIMITER: Boolean
 }
 
-input additionalAccessories_Comfort_DriverUpdateOneInput {
+input additionalAccessories_Comfort_DriverUpdateOneRequiredInput {
   create: additionalAccessories_Comfort_DriverCreateInput
   update: additionalAccessories_Comfort_DriverUpdateDataInput
   upsert: additionalAccessories_Comfort_DriverUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
   connect: additionalAccessories_Comfort_DriverWhereUniqueInput
 }
 
@@ -712,12 +708,10 @@ input additionalAccessories_Comfort_PassengerUpdateManyMutationInput {
   AIR_CONDITIONING_MANUAL: Boolean
 }
 
-input additionalAccessories_Comfort_PassengerUpdateOneInput {
+input additionalAccessories_Comfort_PassengerUpdateOneRequiredInput {
   create: additionalAccessories_Comfort_PassengerCreateInput
   update: additionalAccessories_Comfort_PassengerUpdateDataInput
   upsert: additionalAccessories_Comfort_PassengerUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
   connect: additionalAccessories_Comfort_PassengerWhereUniqueInput
 }
 
@@ -945,12 +939,10 @@ input additionalAccessories_SafetyUpdateManyMutationInput {
   SIDE_BACK_AIRBAGS: Boolean
 }
 
-input additionalAccessories_SafetyUpdateOneInput {
+input additionalAccessories_SafetyUpdateOneRequiredInput {
   create: additionalAccessories_SafetyCreateInput
   update: additionalAccessories_SafetyUpdateDataInput
   upsert: additionalAccessories_SafetyUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
   connect: additionalAccessories_SafetyWhereUniqueInput
 }
 
@@ -1096,7 +1088,6 @@ enum Brand {
 
 type Car {
   id: ID!
-  segment: Segment
   brand: Brand!
   model: String!
   version: String
@@ -1108,10 +1099,13 @@ type Car {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: additionalAccessories_Safety
-  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_Passenger
-  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_Driver
-  additionalAccessories_Appereance: additionalAccessories_Appereance
+  additionalAccessories_Safety: additionalAccessories_Safety!
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_Passenger!
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_Driver!
+  additionalAccessories_Appereance: additionalAccessories_Appereance!
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -1120,8 +1114,7 @@ type Car {
   hasVIN: Boolean
   tuning: Boolean
   hasParticulateFilter: Boolean
-  steeringWheelOnTheRight: Boolean
-  color: Color
+  fromCountry: Country
 }
 
 type CarConnection {
@@ -1131,7 +1124,6 @@ type CarConnection {
 }
 
 input CarCreateInput {
-  segment: Segment
   brand: Brand!
   model: String!
   version: String
@@ -1143,10 +1135,13 @@ input CarCreateInput {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneInput
-  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneInput
-  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneInput
-  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneInput
+  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneInput!
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneInput!
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneInput!
+  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneInput!
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -1155,8 +1150,7 @@ input CarCreateInput {
   hasVIN: Boolean
   tuning: Boolean
   hasParticulateFilter: Boolean
-  steeringWheelOnTheRight: Boolean
-  color: Color
+  fromCountry: Country
 }
 
 input CarCreateOneInput {
@@ -1172,8 +1166,6 @@ type CarEdge {
 enum CarOrderByInput {
   id_ASC
   id_DESC
-  segment_ASC
-  segment_DESC
   brand_ASC
   brand_DESC
   model_ASC
@@ -1196,6 +1188,12 @@ enum CarOrderByInput {
   transmission_DESC
   drive_ASC
   drive_DESC
+  type_ASC
+  type_DESC
+  steeringWheelOnTheRight_ASC
+  steeringWheelOnTheRight_DESC
+  color_ASC
+  color_DESC
   damaged_ASC
   damaged_DESC
   accidentFree_ASC
@@ -1212,10 +1210,8 @@ enum CarOrderByInput {
   tuning_DESC
   hasParticulateFilter_ASC
   hasParticulateFilter_DESC
-  steeringWheelOnTheRight_ASC
-  steeringWheelOnTheRight_DESC
-  color_ASC
-  color_DESC
+  fromCountry_ASC
+  fromCountry_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1224,7 +1220,6 @@ enum CarOrderByInput {
 
 type CarPreviousValues {
   id: ID!
-  segment: Segment
   brand: Brand!
   model: String!
   version: String
@@ -1236,6 +1231,9 @@ type CarPreviousValues {
   torque: Int
   transmission: Transmission
   drive: Drive
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -1244,8 +1242,7 @@ type CarPreviousValues {
   hasVIN: Boolean
   tuning: Boolean
   hasParticulateFilter: Boolean
-  steeringWheelOnTheRight: Boolean
-  color: Color
+  fromCountry: Country
 }
 
 type CarSubscriptionPayload {
@@ -1267,7 +1264,6 @@ input CarSubscriptionWhereInput {
 }
 
 input CarUpdateDataInput {
-  segment: Segment
   brand: Brand
   model: String
   version: String
@@ -1279,10 +1275,13 @@ input CarUpdateDataInput {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneInput
-  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneInput
-  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneInput
-  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneInput
+  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneRequiredInput
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneRequiredInput
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneRequiredInput
+  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneRequiredInput
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -1291,12 +1290,10 @@ input CarUpdateDataInput {
   hasVIN: Boolean
   tuning: Boolean
   hasParticulateFilter: Boolean
-  steeringWheelOnTheRight: Boolean
-  color: Color
+  fromCountry: Country
 }
 
 input CarUpdateInput {
-  segment: Segment
   brand: Brand
   model: String
   version: String
@@ -1308,10 +1305,13 @@ input CarUpdateInput {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneInput
-  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneInput
-  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneInput
-  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneInput
+  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneRequiredInput
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneRequiredInput
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneRequiredInput
+  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneRequiredInput
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -1320,12 +1320,10 @@ input CarUpdateInput {
   hasVIN: Boolean
   tuning: Boolean
   hasParticulateFilter: Boolean
-  steeringWheelOnTheRight: Boolean
-  color: Color
+  fromCountry: Country
 }
 
 input CarUpdateManyMutationInput {
-  segment: Segment
   brand: Brand
   model: String
   version: String
@@ -1337,6 +1335,9 @@ input CarUpdateManyMutationInput {
   torque: Int
   transmission: Transmission
   drive: Drive
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -1345,16 +1346,13 @@ input CarUpdateManyMutationInput {
   hasVIN: Boolean
   tuning: Boolean
   hasParticulateFilter: Boolean
-  steeringWheelOnTheRight: Boolean
-  color: Color
+  fromCountry: Country
 }
 
-input CarUpdateOneInput {
+input CarUpdateOneRequiredInput {
   create: CarCreateInput
   update: CarUpdateDataInput
   upsert: CarUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
   connect: CarWhereUniqueInput
 }
 
@@ -1378,10 +1376,6 @@ input CarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  segment: Segment
-  segment_not: Segment
-  segment_in: [Segment!]
-  segment_not_in: [Segment!]
   brand: Brand
   brand_not: Brand
   brand_in: [Brand!]
@@ -1470,6 +1464,16 @@ input CarWhereInput {
   additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerWhereInput
   additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverWhereInput
   additionalAccessories_Appereance: additionalAccessories_AppereanceWhereInput
+  type: Type
+  type_not: Type
+  type_in: [Type!]
+  type_not_in: [Type!]
+  steeringWheelOnTheRight: Boolean
+  steeringWheelOnTheRight_not: Boolean
+  color: Color
+  color_not: Color
+  color_in: [Color!]
+  color_not_in: [Color!]
   damaged: Boolean
   damaged_not: Boolean
   accidentFree: Boolean
@@ -1486,12 +1490,10 @@ input CarWhereInput {
   tuning_not: Boolean
   hasParticulateFilter: Boolean
   hasParticulateFilter_not: Boolean
-  steeringWheelOnTheRight: Boolean
-  steeringWheelOnTheRight_not: Boolean
-  color: Color
-  color_not: Color
-  color_in: [Color!]
-  color_not_in: [Color!]
+  fromCountry: Country
+  fromCountry_not: Country
+  fromCountry_in: [Country!]
+  fromCountry_not_in: [Country!]
   AND: [CarWhereInput!]
   OR: [CarWhereInput!]
   NOT: [CarWhereInput!]
@@ -1649,11 +1651,13 @@ enum Permission {
 
 type Post {
   id: ID!
-  car: Car
+  car: Car!
+  user: User!
   price: Int!
   localization: String
   avatar: String
-  fromCountry: Country
+  photos: [String!]!
+  description: String
 }
 
 type PostConnection {
@@ -1663,11 +1667,31 @@ type PostConnection {
 }
 
 input PostCreateInput {
-  car: CarCreateOneInput
+  car: CarCreateOneInput!
+  user: UserCreateOneWithoutPostsInput!
   price: Int!
   localization: String
   avatar: String
-  fromCountry: Country
+  photos: PostCreatephotosInput
+  description: String
+}
+
+input PostCreateManyWithoutUserInput {
+  create: [PostCreateWithoutUserInput!]
+  connect: [PostWhereUniqueInput!]
+}
+
+input PostCreatephotosInput {
+  set: [String!]
+}
+
+input PostCreateWithoutUserInput {
+  car: CarCreateOneInput!
+  price: Int!
+  localization: String
+  avatar: String
+  photos: PostCreatephotosInput
+  description: String
 }
 
 type PostEdge {
@@ -1684,8 +1708,8 @@ enum PostOrderByInput {
   localization_DESC
   avatar_ASC
   avatar_DESC
-  fromCountry_ASC
-  fromCountry_DESC
+  description_ASC
+  description_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1697,43 +1721,11 @@ type PostPreviousValues {
   price: Int!
   localization: String
   avatar: String
-  fromCountry: Country
+  photos: [String!]!
+  description: String
 }
 
-type PostSubscriptionPayload {
-  mutation: MutationType!
-  node: Post
-  updatedFields: [String!]
-  previousValues: PostPreviousValues
-}
-
-input PostSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: PostWhereInput
-  AND: [PostSubscriptionWhereInput!]
-  OR: [PostSubscriptionWhereInput!]
-  NOT: [PostSubscriptionWhereInput!]
-}
-
-input PostUpdateInput {
-  car: CarUpdateOneInput
-  price: Int
-  localization: String
-  avatar: String
-  fromCountry: Country
-}
-
-input PostUpdateManyMutationInput {
-  price: Int
-  localization: String
-  avatar: String
-  fromCountry: Country
-}
-
-input PostWhereInput {
+input PostScalarWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -1748,7 +1740,6 @@ input PostWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  car: CarWhereInput
   price: Int
   price_not: Int
   price_in: [Int!]
@@ -1785,10 +1776,176 @@ input PostWhereInput {
   avatar_not_starts_with: String
   avatar_ends_with: String
   avatar_not_ends_with: String
-  fromCountry: Country
-  fromCountry_not: Country
-  fromCountry_in: [Country!]
-  fromCountry_not_in: [Country!]
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  AND: [PostScalarWhereInput!]
+  OR: [PostScalarWhereInput!]
+  NOT: [PostScalarWhereInput!]
+}
+
+type PostSubscriptionPayload {
+  mutation: MutationType!
+  node: Post
+  updatedFields: [String!]
+  previousValues: PostPreviousValues
+}
+
+input PostSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PostWhereInput
+  AND: [PostSubscriptionWhereInput!]
+  OR: [PostSubscriptionWhereInput!]
+  NOT: [PostSubscriptionWhereInput!]
+}
+
+input PostUpdateInput {
+  car: CarUpdateOneRequiredInput
+  user: UserUpdateOneRequiredWithoutPostsInput
+  price: Int
+  localization: String
+  avatar: String
+  photos: PostUpdatephotosInput
+  description: String
+}
+
+input PostUpdateManyDataInput {
+  price: Int
+  localization: String
+  avatar: String
+  photos: PostUpdatephotosInput
+  description: String
+}
+
+input PostUpdateManyMutationInput {
+  price: Int
+  localization: String
+  avatar: String
+  photos: PostUpdatephotosInput
+  description: String
+}
+
+input PostUpdateManyWithoutUserInput {
+  create: [PostCreateWithoutUserInput!]
+  delete: [PostWhereUniqueInput!]
+  connect: [PostWhereUniqueInput!]
+  disconnect: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [PostScalarWhereInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+}
+
+input PostUpdateManyWithWhereNestedInput {
+  where: PostScalarWhereInput!
+  data: PostUpdateManyDataInput!
+}
+
+input PostUpdatephotosInput {
+  set: [String!]
+}
+
+input PostUpdateWithoutUserDataInput {
+  car: CarUpdateOneRequiredInput
+  price: Int
+  localization: String
+  avatar: String
+  photos: PostUpdatephotosInput
+  description: String
+}
+
+input PostUpdateWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput!
+  data: PostUpdateWithoutUserDataInput!
+}
+
+input PostUpsertWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput!
+  update: PostUpdateWithoutUserDataInput!
+  create: PostCreateWithoutUserInput!
+}
+
+input PostWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  car: CarWhereInput
+  user: UserWhereInput
+  price: Int
+  price_not: Int
+  price_in: [Int!]
+  price_not_in: [Int!]
+  price_lt: Int
+  price_lte: Int
+  price_gt: Int
+  price_gte: Int
+  localization: String
+  localization_not: String
+  localization_in: [String!]
+  localization_not_in: [String!]
+  localization_lt: String
+  localization_lte: String
+  localization_gt: String
+  localization_gte: String
+  localization_contains: String
+  localization_not_contains: String
+  localization_starts_with: String
+  localization_not_starts_with: String
+  localization_ends_with: String
+  localization_not_ends_with: String
+  avatar: String
+  avatar_not: String
+  avatar_in: [String!]
+  avatar_not_in: [String!]
+  avatar_lt: String
+  avatar_lte: String
+  avatar_gt: String
+  avatar_gte: String
+  avatar_contains: String
+  avatar_not_contains: String
+  avatar_starts_with: String
+  avatar_not_starts_with: String
+  avatar_ends_with: String
+  avatar_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
   AND: [PostWhereInput!]
   OR: [PostWhereInput!]
   NOT: [PostWhereInput!]
@@ -1823,15 +1980,6 @@ type Query {
   node(id: ID!): Node
 }
 
-enum Segment {
-  A
-  B
-  C
-  D
-  E
-  F
-}
-
 type Subscription {
   car(where: CarSubscriptionWhereInput): CarSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
@@ -1850,8 +1998,21 @@ enum Transmission {
   AUTOMATIC_DUAL_CLUTCH
 }
 
+enum Type {
+  SMALL
+  URBAN
+  COMPACT
+  SEDAN
+  ESTATE
+  MINIVAN
+  SUV
+  CABRIO
+  COUPE
+}
+
 type User {
   id: ID!
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
   name: String!
   email: String!
   password: String!
@@ -1867,6 +2028,7 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  posts: PostCreateManyWithoutUserInput
   name: String!
   email: String!
   password: String!
@@ -1875,8 +2037,22 @@ input UserCreateInput {
   permissions: UserCreatepermissionsInput
 }
 
+input UserCreateOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  connect: UserWhereUniqueInput
+}
+
 input UserCreatepermissionsInput {
   set: [Permission!]
+}
+
+input UserCreateWithoutPostsInput {
+  name: String!
+  email: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserCreatepermissionsInput
 }
 
 type UserEdge {
@@ -1932,6 +2108,7 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
+  posts: PostUpdateManyWithoutUserInput
   name: String
   email: String
   password: String
@@ -1949,8 +2126,29 @@ input UserUpdateManyMutationInput {
   permissions: UserUpdatepermissionsInput
 }
 
+input UserUpdateOneRequiredWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  update: UserUpdateWithoutPostsDataInput
+  upsert: UserUpsertWithoutPostsInput
+  connect: UserWhereUniqueInput
+}
+
 input UserUpdatepermissionsInput {
   set: [Permission!]
+}
+
+input UserUpdateWithoutPostsDataInput {
+  name: String
+  email: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsDataInput!
+  create: UserCreateWithoutPostsInput!
 }
 
 input UserWhereInput {
@@ -1968,6 +2166,9 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  posts_every: PostWhereInput
+  posts_some: PostWhereInput
+  posts_none: PostWhereInput
   name: String
   name_not: String
   name_in: [String!]

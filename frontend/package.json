@@ -16,6 +16,7 @@
     "@material-ui/icons": "^3.0.2",
     "apollo-boost": "^0.1.23",
     "autoprefixer": "^9.4.5",
+    "classnames": "^2.2.6",
     "cssnano": "^4.1.8",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
@@ -30,7 +31,8 @@
     "react-dom": "^16.7.0",
     "react-fast-compare": "^2.0.4",
     "react-jss": "^8.6.1",
-    "react-select": "^2.3.0"
+    "react-select": "^2.3.0",
+    "recompose": "^0.30.0"
   },
   "devDependencies": {
     "postcss": "6.0.14"

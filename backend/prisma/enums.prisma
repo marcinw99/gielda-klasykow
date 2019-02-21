@@ -23,13 +23,16 @@ enum Color {
   OTHER
 }
 
-enum Segment {
-  A
-  B
-  C
-  D
-  E
-  F
+enum Type {
+  SMALL
+  URBAN
+  COMPACT
+  SEDAN
+  ESTATE
+  MINIVAN
+  SUV
+  CABRIO
+  COUPE
 }
 
 enum Brand {

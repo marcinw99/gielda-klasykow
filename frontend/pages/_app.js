@@ -10,13 +10,17 @@ import withData from "../src/withData";
 import Page from "../components/Page";
 import getPageContext from "../src/getPageContext";
 import { theme, darkTheme } from "../src/customTheme";
+import { SnackbarProvider } from "../components/Snackbar/Context";
+import { defaults as snackbarDefaults } from "../components/Snackbar/config";
 
 class MyApp extends App {
   constructor(props) {
     super(props);
     this.pageContext = getPageContext();
+    this.snackbarQueue = [];
     this.state = {
-      darkTheme: false
+      darkTheme: false,
+      snackbar: { ...snackbarDefaults }
     };
   }
 
@@ -43,6 +47,46 @@ class MyApp extends App {
     }));
   };
 
+  manageSnackbar = snackbarState => {
+    if (this.snackbarQueue.length > 2) return null;
+    this.snackbarQueue.push({
+      snackbarState,
+      key: new Date().getTime()
+    });
+
+    if (this.state.snackbar.open) {
+      this.setState(prevState => ({
+        snackbar: { ...prevState.snackbar, open: false }
+      }));
+    } else {
+      this.processSnackbarQueue();
+    }
+  };
+
+  processSnackbarQueue = () => {
+    if (this.snackbarQueue.length > 0) {
+      this.setState({
+        snackbar: this.snackbarQueue.shift().snackbarState
+      });
+    }
+  };
+
+  handleSnackbarClose = (e, reason) => {
+    if (reason === "clickaway") {
+      return null;
+    }
+    this.setState(prevState => ({
+      snackbar: {
+        ...prevState.snackbar,
+        open: false
+      }
+    }));
+  };
+
+  handleSnackbarExited = () => {
+    this.processSnackbarQueue();
+  };
+
   render() {
     const { Component, pageProps } = this.props;
     return (
@@ -57,12 +101,19 @@ class MyApp extends App {
           >
             <CssBaseline />
             <ApolloProvider client={this.props.apollo}>
-              <Page
-                toggleTheme={this.toggleTheme}
-                darkTheme={this.state.darkTheme}
-              >
-                <Component pageContext={this.pageContext} {...pageProps} />
-              </Page>
+              <SnackbarProvider manageSnackbar={this.manageSnackbar}>
+                <Page
+                  toggleTheme={this.toggleTheme}
+                  darkTheme={this.state.darkTheme}
+                  snackbarMethods={{
+                    handleClose: this.handleSnackbarClose,
+                    onExited: this.handleSnackbarExited
+                  }}
+                  snackbar={this.state.snackbar}
+                >
+                  <Component pageContext={this.pageContext} {...pageProps} />
+                </Page>
+              </SnackbarProvider>
             </ApolloProvider>
           </MuiThemeProvider>
         </JssProvider>

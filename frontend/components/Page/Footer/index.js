@@ -8,7 +8,8 @@ import SimpleLink from "./SimpleLink";
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 4
+    marginTop: theme.spacing.unit * 4,
+    width: "100%"
   },
   socialMediaGrid: {
     marginTop: theme.spacing.unit

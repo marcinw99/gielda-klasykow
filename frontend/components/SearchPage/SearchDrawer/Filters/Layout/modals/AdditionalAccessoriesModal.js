@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Grid, Fade } from "@material-ui/core";
 
 import { blankFiltersStateAdditionalAccessories } from "../../../../config";
-import CheckboxGenerator from "../CheckboxGenerator";
+import CheckboxGenerator from "../../../../../universal/CheckboxGenerator";
 import {
   ModalPaper,
   ModalContent,
@@ -29,7 +29,7 @@ const AdditionalAccessoriesModal = props => (
               <CheckboxGenerator
                 name="additionalAccessories_Safety"
                 options={props.options.additionalAccessories_Safety}
-                values={props.values}
+                values={props.values.additionalAccessories_Safety}
                 handleChange={props.handleMultiCheckboxChange}
                 smallLabel
               />
@@ -41,7 +41,7 @@ const AdditionalAccessoriesModal = props => (
               <CheckboxGenerator
                 name="additionalAccessories_Comfort_Driver"
                 options={props.options.additionalAccessories_Comfort_Driver}
-                values={props.values}
+                values={props.values.additionalAccessories_Comfort_Driver}
                 handleChange={props.handleMultiCheckboxChange}
                 smallLabel
               />
@@ -53,7 +53,7 @@ const AdditionalAccessoriesModal = props => (
               <CheckboxGenerator
                 name="additionalAccessories_Comfort_Passenger"
                 options={props.options.additionalAccessories_Comfort_Passenger}
-                values={props.values}
+                values={props.values.additionalAccessories_Comfort_Passenger}
                 handleChange={props.handleMultiCheckboxChange}
                 smallLabel
               />

@@ -1,6 +1,5 @@
 type Car {
   id: ID! @unique
-  segment: Segment
   brand: Brand!
   model: String!
   version: String
@@ -12,10 +11,13 @@ type Car {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: additionalAccessories_Safety
-  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_Passenger
-  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_Driver
-  additionalAccessories_Appereance: additionalAccessories_Appereance
+  additionalAccessories_Safety: additionalAccessories_Safety!
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_Passenger!
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_Driver!
+  additionalAccessories_Appereance: additionalAccessories_Appereance!
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
   damaged: Boolean
   accidentFree: Boolean
   firstOwner: Boolean
@@ -24,27 +26,29 @@ type Car {
   hasVIN: Boolean
   tuning: Boolean
   hasParticulateFilter: Boolean
-  steeringWheelOnTheRight: Boolean
-  color: Color
+  fromCountry: Country
 }
 
 type Post {
   id: ID! @unique
-  car: Car
+  car: Car!
+  user: User!
   price: Int!
   localization: String
   avatar: String
-  fromCountry: Country
+  photos: [String]!
+  description: String
 }
 
 type User {
   id: ID! @unique
+  posts: [Post!]!
   name: String!
   email: String! @unique
   password: String!
   resetToken: String
   resetTokenExpiry: Float
-  permissions: [Permission]
+  permissions: [Permission!]!
 }
 
 type additionalAccessories_Safety {

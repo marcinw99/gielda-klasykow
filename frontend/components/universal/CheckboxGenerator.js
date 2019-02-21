@@ -1,7 +1,7 @@
 import React from "react";
 import { FormControlLabel, Checkbox, withStyles } from "@material-ui/core";
 
-import displayedText from "../../../../../resources/displayedText";
+import displayedText from "../../resources/displayedText";
 
 const styles = theme => ({
   root: {
@@ -15,29 +15,27 @@ const styles = theme => ({
 
 const CheckboxGenerator = ({
   name,
+  valueName,
   options,
   values,
-  valueName,
   handleChange,
   classes,
   smallLabel
-}) => {
-  const value = valueName ? valueName : name;
-  return options.map(item => (
+}) =>
+  options.map(item => (
     <FormControlLabel
       className={classes.root}
       classes={smallLabel ? { label: classes.smallLabel } : {}}
       key={item}
       control={
         <Checkbox
-          checked={values[value].indexOf(item) !== -1}
-          onChange={handleChange(value)}
+          checked={values.indexOf(item) !== -1}
+          onChange={handleChange(valueName ? valueName : name)}
           value={item}
         />
       }
       label={displayedText(name, item)}
     />
   ));
-};
 
 export default withStyles(styles)(CheckboxGenerator);

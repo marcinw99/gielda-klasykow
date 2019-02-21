@@ -2,9 +2,9 @@ import React from "react";
 import { Modal, Grid, Fade } from "@material-ui/core";
 
 import { blankFiltersStateEngineAndDrive } from "../../../../config";
-import CheckboxGenerator from "../CheckboxGenerator";
-import BooleanSelect from "../BooleanSelect";
-import DoubleInputs from "../DoubleInputs";
+import CheckboxGenerator from "../../../../../universal/CheckboxGenerator";
+import BooleanSelect from "../../../../../universal/BooleanSelect";
+import DoubleInputs from "../../../../../universal/DoubleInputs";
 import {
   ModalPaper,
   ModalContent,
@@ -96,7 +96,7 @@ const EngineAndDriveModal = props => (
                 name="transmission"
                 valueName="transmission_in"
                 options={props.options.Transmission}
-                values={props.values}
+                values={props.values.transmission_in}
                 handleChange={props.handleMultiCheckboxChange}
               />
             </Grid>
@@ -108,7 +108,7 @@ const EngineAndDriveModal = props => (
                 name="drive"
                 valueName="drive_in"
                 options={props.options.Drive}
-                values={props.values}
+                values={props.values.drive_in}
                 handleChange={props.handleMultiCheckboxChange}
               />
             </Grid>

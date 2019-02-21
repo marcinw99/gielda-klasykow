@@ -1,4 +1,4 @@
-import { getArrayOfNumbers } from "./helpers";
+import { getArrayOfNumbers } from "../../src/globalMethods";
 
 export const initialSearchParameters = {
   filters: {},
@@ -16,8 +16,8 @@ export const SortOptions = [
 export const itemsLimitOptions = [5, 10, 15, 20];
 
 /* Brand and Model fetched separately */
-export const fetchedFiltersOptions = [
-  "Segment",
+export const fetchedOptions = [
+  "Type",
   "FuelType",
   "Transmission",
   "Drive",
@@ -32,7 +32,7 @@ export const fetchedSubTypes = [
   "additionalAccessories_Appereance"
 ];
 
-export const staticFiltersOptions = {
+export const staticOptions = {
   Localization: ["Dębica", "Rzeszów", "Kraków", "Podlasie", "Warszawa"],
   Price: getArrayOfNumbers(10000, 10000, 10).concat(
     getArrayOfNumbers(125000, 25000, 7)
@@ -55,14 +55,14 @@ export const blankFiltersStateEngineAndDrive = {
   power_lt: null,
   torque_gt: null,
   torque_lt: null,
-  hasParticulateFilter: "deleteFromFilters",
+  hasParticulateFilter: "deleteFromSubmitData",
   transmission_in: [],
   drive_in: []
 };
 
 export const blankFiltersStateBodyAndAppereance = {
   color_in: [],
-  steeringWheelOnTheRight: "deleteFromFilters",
+  steeringWheelOnTheRight: "deleteFromSubmitData",
   additionalAccessories_Appereance: []
 };
 
@@ -73,17 +73,17 @@ export const blankFiltersStateAdditionalAccessories = {
 };
 
 export const blankFiltersVehicleStatus = {
-  damaged: "deleteFromFilters",
-  accidentFree: "deleteFromFilters",
-  firstOwner: "deleteFromFilters",
-  registeredInPoland: "deleteFromFilters",
-  registeredAsAntiqueCar: "deleteFromFilters",
-  hasVIN: "deleteFromFilters",
-  tuning: "deleteFromFilters"
+  damaged: "deleteFromSubmitData",
+  accidentFree: "deleteFromSubmitData",
+  firstOwner: "deleteFromSubmitData",
+  registeredInPoland: "deleteFromSubmitData",
+  registeredAsAntiqueCar: "deleteFromSubmitData",
+  hasVIN: "deleteFromSubmitData",
+  tuning: "deleteFromSubmitData"
 };
 
 export const blankFiltersState = {
-  segment: null,
+  type: null,
   brand: null,
   model: null,
   fuelType: null,

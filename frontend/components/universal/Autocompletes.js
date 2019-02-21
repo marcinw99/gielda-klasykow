@@ -156,6 +156,10 @@ class CreatableComponent extends Component {
     return !isEqual(nextProps, this.props);
   }
 
+  static getDerivedStateFromProps(nextProps) {
+    return { options: nextProps.options };
+  }
+
   handleChange = value => {
     this.props.handleChange({
       value,
@@ -176,7 +180,8 @@ class CreatableComponent extends Component {
     value: Number(input)
   });
 
-  getFormatCreateLabel = label => `${label} ${this.props.unit}`;
+  getFormatCreateLabel = label =>
+    this.props.unit ? `${label} ${this.props.unit}` : label;
 
   render() {
     return (
