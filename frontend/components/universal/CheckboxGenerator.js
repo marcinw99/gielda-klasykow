@@ -29,7 +29,7 @@ const CheckboxGenerator = ({
       key={item}
       control={
         <Checkbox
-          checked={values.indexOf(item) !== -1}
+          checked={values.includes(item)}
           onChange={handleChange(valueName ? valueName : name)}
           value={item}
         />
