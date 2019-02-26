@@ -1,32 +1,19 @@
 import { isBoolean, isArray, isString } from "util";
 
 import messageCodes from "./messageCodes";
-
-const minimumRequirementsRegExpressions = [
-  {
-    regexp: new RegExp(".{6,}")
-    // message: "Hasło nie zawiera minimum 6 znaków."
-  },
-  {
-    regexp: new RegExp("\\d")
-    // message: "Hasło nie zawiera minimum jednej cyfry."
-  },
-  {
-    regexp: new RegExp("[a-z]", "i")
-    // message: "Hasło nie zawiera minimum jednej litery."
-  }
-];
+const passwordStrengthLevels = require("../../config/passwordStrengthLevels");
 
 export function isPasswordValid(password) {
-  for (const index in minimumRequirementsRegExpressions) {
-    if (
-      minimumRequirementsRegExpressions[index].regexp.test(password) === false
-    ) {
+  // password is valid when meets average strength level rules
+  for (const index in passwordStrengthLevels.average) {
+    if (passwordStrengthLevels.average[index].regexp.test(password) === false) {
       return false;
     }
   }
   return true;
 }
+
+// areArgumentsLengthsInRange
 
 export function areArgumentsLengthsInRange(args) {
   for (const index in args) {
