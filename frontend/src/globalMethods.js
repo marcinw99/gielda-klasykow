@@ -43,7 +43,7 @@ const getBooleans = (fetchedFields, fetchedSubTypes) => {
   for (let item in values) {
     const normalizedTypeValues = values[item].fields.map(item => item.name);
     const filteredTypeValues = normalizedTypeValues.filter(
-      item => item !== "id"
+      item => item !== "id" && item !== "car"
     );
     const typeName = values[item].name;
     results[typeName] = filteredTypeValues;
