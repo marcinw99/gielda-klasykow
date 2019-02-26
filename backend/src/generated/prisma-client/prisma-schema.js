@@ -1,6 +1,7 @@
 module.exports = {
         typeDefs: /* GraphQL */ `type additionalAccessories_Appereance {
   id: ID!
+  car: Car!
   ALLOY_WHEELS: Boolean
   TINTED_WINDOWS: Boolean
   METALLIC_PAINT: Boolean
@@ -15,6 +16,7 @@ type additionalAccessories_AppereanceConnection {
 }
 
 input additionalAccessories_AppereanceCreateInput {
+  car: CarCreateOneWithoutAdditionalAccessories_AppereanceInput!
   ALLOY_WHEELS: Boolean
   TINTED_WINDOWS: Boolean
   METALLIC_PAINT: Boolean
@@ -22,9 +24,17 @@ input additionalAccessories_AppereanceCreateInput {
   PEARL_PAINT: Boolean
 }
 
-input additionalAccessories_AppereanceCreateOneInput {
-  create: additionalAccessories_AppereanceCreateInput
+input additionalAccessories_AppereanceCreateOneWithoutCarInput {
+  create: additionalAccessories_AppereanceCreateWithoutCarInput
   connect: additionalAccessories_AppereanceWhereUniqueInput
+}
+
+input additionalAccessories_AppereanceCreateWithoutCarInput {
+  ALLOY_WHEELS: Boolean
+  TINTED_WINDOWS: Boolean
+  METALLIC_PAINT: Boolean
+  MATTE_PAINT: Boolean
+  PEARL_PAINT: Boolean
 }
 
 type additionalAccessories_AppereanceEdge {
@@ -78,15 +88,8 @@ input additionalAccessories_AppereanceSubscriptionWhereInput {
   NOT: [additionalAccessories_AppereanceSubscriptionWhereInput!]
 }
 
-input additionalAccessories_AppereanceUpdateDataInput {
-  ALLOY_WHEELS: Boolean
-  TINTED_WINDOWS: Boolean
-  METALLIC_PAINT: Boolean
-  MATTE_PAINT: Boolean
-  PEARL_PAINT: Boolean
-}
-
 input additionalAccessories_AppereanceUpdateInput {
+  car: CarUpdateOneRequiredWithoutAdditionalAccessories_AppereanceInput
   ALLOY_WHEELS: Boolean
   TINTED_WINDOWS: Boolean
   METALLIC_PAINT: Boolean
@@ -102,16 +105,24 @@ input additionalAccessories_AppereanceUpdateManyMutationInput {
   PEARL_PAINT: Boolean
 }
 
-input additionalAccessories_AppereanceUpdateOneRequiredInput {
-  create: additionalAccessories_AppereanceCreateInput
-  update: additionalAccessories_AppereanceUpdateDataInput
-  upsert: additionalAccessories_AppereanceUpsertNestedInput
+input additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput {
+  create: additionalAccessories_AppereanceCreateWithoutCarInput
+  update: additionalAccessories_AppereanceUpdateWithoutCarDataInput
+  upsert: additionalAccessories_AppereanceUpsertWithoutCarInput
   connect: additionalAccessories_AppereanceWhereUniqueInput
 }
 
-input additionalAccessories_AppereanceUpsertNestedInput {
-  update: additionalAccessories_AppereanceUpdateDataInput!
-  create: additionalAccessories_AppereanceCreateInput!
+input additionalAccessories_AppereanceUpdateWithoutCarDataInput {
+  ALLOY_WHEELS: Boolean
+  TINTED_WINDOWS: Boolean
+  METALLIC_PAINT: Boolean
+  MATTE_PAINT: Boolean
+  PEARL_PAINT: Boolean
+}
+
+input additionalAccessories_AppereanceUpsertWithoutCarInput {
+  update: additionalAccessories_AppereanceUpdateWithoutCarDataInput!
+  create: additionalAccessories_AppereanceCreateWithoutCarInput!
 }
 
 input additionalAccessories_AppereanceWhereInput {
@@ -129,6 +140,7 @@ input additionalAccessories_AppereanceWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  car: CarWhereInput
   ALLOY_WHEELS: Boolean
   ALLOY_WHEELS_not: Boolean
   TINTED_WINDOWS: Boolean
@@ -150,6 +162,7 @@ input additionalAccessories_AppereanceWhereUniqueInput {
 
 type additionalAccessories_Comfort_Driver {
   id: ID!
+  car: Car!
   POWER_STEERING: Boolean
   HEATED_STEERING_WHEEL: Boolean
   MULTIFUNCTION_STEERING_WHEEL: Boolean
@@ -178,6 +191,7 @@ type additionalAccessories_Comfort_DriverConnection {
 }
 
 input additionalAccessories_Comfort_DriverCreateInput {
+  car: CarCreateOneWithoutAdditionalAccessories_Comfort_DriverInput!
   POWER_STEERING: Boolean
   HEATED_STEERING_WHEEL: Boolean
   MULTIFUNCTION_STEERING_WHEEL: Boolean
@@ -199,9 +213,31 @@ input additionalAccessories_Comfort_DriverCreateInput {
   SPEED_LIMITER: Boolean
 }
 
-input additionalAccessories_Comfort_DriverCreateOneInput {
-  create: additionalAccessories_Comfort_DriverCreateInput
+input additionalAccessories_Comfort_DriverCreateOneWithoutCarInput {
+  create: additionalAccessories_Comfort_DriverCreateWithoutCarInput
   connect: additionalAccessories_Comfort_DriverWhereUniqueInput
+}
+
+input additionalAccessories_Comfort_DriverCreateWithoutCarInput {
+  POWER_STEERING: Boolean
+  HEATED_STEERING_WHEEL: Boolean
+  MULTIFUNCTION_STEERING_WHEEL: Boolean
+  PADDLE_SHIFTERS: Boolean
+  ACTIVE_SUSPENSION: Boolean
+  REGULATED_SUSPENSION: Boolean
+  ELECTRIC_MIRRORS: Boolean
+  HEATED_MIRRORS: Boolean
+  ON_BOARD_COMPUTER: Boolean
+  PARKING_SENSOR_FRONT: Boolean
+  PARKING_SENSOR_BACK: Boolean
+  REVERSE_CAMERA: Boolean
+  RAIN_SENSOR: Boolean
+  CRUISE_CONTROL: Boolean
+  FOG_LIGHTS: Boolean
+  LED_LIGHTS: Boolean
+  XENON_LIGHTS: Boolean
+  GPS_NAVIGATION: Boolean
+  SPEED_LIMITER: Boolean
 }
 
 type additionalAccessories_Comfort_DriverEdge {
@@ -297,29 +333,8 @@ input additionalAccessories_Comfort_DriverSubscriptionWhereInput {
   NOT: [additionalAccessories_Comfort_DriverSubscriptionWhereInput!]
 }
 
-input additionalAccessories_Comfort_DriverUpdateDataInput {
-  POWER_STEERING: Boolean
-  HEATED_STEERING_WHEEL: Boolean
-  MULTIFUNCTION_STEERING_WHEEL: Boolean
-  PADDLE_SHIFTERS: Boolean
-  ACTIVE_SUSPENSION: Boolean
-  REGULATED_SUSPENSION: Boolean
-  ELECTRIC_MIRRORS: Boolean
-  HEATED_MIRRORS: Boolean
-  ON_BOARD_COMPUTER: Boolean
-  PARKING_SENSOR_FRONT: Boolean
-  PARKING_SENSOR_BACK: Boolean
-  REVERSE_CAMERA: Boolean
-  RAIN_SENSOR: Boolean
-  CRUISE_CONTROL: Boolean
-  FOG_LIGHTS: Boolean
-  LED_LIGHTS: Boolean
-  XENON_LIGHTS: Boolean
-  GPS_NAVIGATION: Boolean
-  SPEED_LIMITER: Boolean
-}
-
 input additionalAccessories_Comfort_DriverUpdateInput {
+  car: CarUpdateOneRequiredWithoutAdditionalAccessories_Comfort_DriverInput
   POWER_STEERING: Boolean
   HEATED_STEERING_WHEEL: Boolean
   MULTIFUNCTION_STEERING_WHEEL: Boolean
@@ -363,16 +378,38 @@ input additionalAccessories_Comfort_DriverUpdateManyMutationInput {
   SPEED_LIMITER: Boolean
 }
 
-input additionalAccessories_Comfort_DriverUpdateOneRequiredInput {
-  create: additionalAccessories_Comfort_DriverCreateInput
-  update: additionalAccessories_Comfort_DriverUpdateDataInput
-  upsert: additionalAccessories_Comfort_DriverUpsertNestedInput
+input additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput {
+  create: additionalAccessories_Comfort_DriverCreateWithoutCarInput
+  update: additionalAccessories_Comfort_DriverUpdateWithoutCarDataInput
+  upsert: additionalAccessories_Comfort_DriverUpsertWithoutCarInput
   connect: additionalAccessories_Comfort_DriverWhereUniqueInput
 }
 
-input additionalAccessories_Comfort_DriverUpsertNestedInput {
-  update: additionalAccessories_Comfort_DriverUpdateDataInput!
-  create: additionalAccessories_Comfort_DriverCreateInput!
+input additionalAccessories_Comfort_DriverUpdateWithoutCarDataInput {
+  POWER_STEERING: Boolean
+  HEATED_STEERING_WHEEL: Boolean
+  MULTIFUNCTION_STEERING_WHEEL: Boolean
+  PADDLE_SHIFTERS: Boolean
+  ACTIVE_SUSPENSION: Boolean
+  REGULATED_SUSPENSION: Boolean
+  ELECTRIC_MIRRORS: Boolean
+  HEATED_MIRRORS: Boolean
+  ON_BOARD_COMPUTER: Boolean
+  PARKING_SENSOR_FRONT: Boolean
+  PARKING_SENSOR_BACK: Boolean
+  REVERSE_CAMERA: Boolean
+  RAIN_SENSOR: Boolean
+  CRUISE_CONTROL: Boolean
+  FOG_LIGHTS: Boolean
+  LED_LIGHTS: Boolean
+  XENON_LIGHTS: Boolean
+  GPS_NAVIGATION: Boolean
+  SPEED_LIMITER: Boolean
+}
+
+input additionalAccessories_Comfort_DriverUpsertWithoutCarInput {
+  update: additionalAccessories_Comfort_DriverUpdateWithoutCarDataInput!
+  create: additionalAccessories_Comfort_DriverCreateWithoutCarInput!
 }
 
 input additionalAccessories_Comfort_DriverWhereInput {
@@ -390,6 +427,7 @@ input additionalAccessories_Comfort_DriverWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  car: CarWhereInput
   POWER_STEERING: Boolean
   POWER_STEERING_not: Boolean
   HEATED_STEERING_WHEEL: Boolean
@@ -439,6 +477,7 @@ input additionalAccessories_Comfort_DriverWhereUniqueInput {
 
 type additionalAccessories_Comfort_Passenger {
   id: ID!
+  car: Car!
   ELECTRIC_FRONT_WINDOWS: Boolean
   ELECTRIC_BACK_WINDOWS: Boolean
   FACTORY_RADIO: Boolean
@@ -474,6 +513,7 @@ type additionalAccessories_Comfort_PassengerConnection {
 }
 
 input additionalAccessories_Comfort_PassengerCreateInput {
+  car: CarCreateOneWithoutAdditionalAccessories_Comfort_PassengerInput!
   ELECTRIC_FRONT_WINDOWS: Boolean
   ELECTRIC_BACK_WINDOWS: Boolean
   FACTORY_RADIO: Boolean
@@ -502,9 +542,38 @@ input additionalAccessories_Comfort_PassengerCreateInput {
   AIR_CONDITIONING_MANUAL: Boolean
 }
 
-input additionalAccessories_Comfort_PassengerCreateOneInput {
-  create: additionalAccessories_Comfort_PassengerCreateInput
+input additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput {
+  create: additionalAccessories_Comfort_PassengerCreateWithoutCarInput
   connect: additionalAccessories_Comfort_PassengerWhereUniqueInput
+}
+
+input additionalAccessories_Comfort_PassengerCreateWithoutCarInput {
+  ELECTRIC_FRONT_WINDOWS: Boolean
+  ELECTRIC_BACK_WINDOWS: Boolean
+  FACTORY_RADIO: Boolean
+  NON_STANDARD_RADIO: Boolean
+  AUX: Boolean
+  MP3: Boolean
+  CD: Boolean
+  CD_CHANGER: Boolean
+  DVD_PLAYER: Boolean
+  TV_TUNER: Boolean
+  LEATHER_UPHOLSTERY: Boolean
+  VELOR_UPHOLSTERY: Boolean
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS: Boolean
+  ELECTRIC_ADJUSTABLE_BACK_SEATS: Boolean
+  HEATED_FRONT_SEATS: Boolean
+  HEATED_BACK_SEATS: Boolean
+  PANORAMIC_ROOF: Boolean
+  SUNROOF: Boolean
+  ROOF_RACK: Boolean
+  PARKING_HEATER: Boolean
+  HEATED_FRONT_WINDSCREEN: Boolean
+  AIR_CONDITIONING_AUTOMATIC: Boolean
+  AIR_CONDITIONING_DUAL_ZONE: Boolean
+  AIR_CONDITIONING_THREE_ZONE: Boolean
+  AIR_CONDITIONING_FOUR_ZONE: Boolean
+  AIR_CONDITIONING_MANUAL: Boolean
 }
 
 type additionalAccessories_Comfort_PassengerEdge {
@@ -621,36 +690,8 @@ input additionalAccessories_Comfort_PassengerSubscriptionWhereInput {
   NOT: [additionalAccessories_Comfort_PassengerSubscriptionWhereInput!]
 }
 
-input additionalAccessories_Comfort_PassengerUpdateDataInput {
-  ELECTRIC_FRONT_WINDOWS: Boolean
-  ELECTRIC_BACK_WINDOWS: Boolean
-  FACTORY_RADIO: Boolean
-  NON_STANDARD_RADIO: Boolean
-  AUX: Boolean
-  MP3: Boolean
-  CD: Boolean
-  CD_CHANGER: Boolean
-  DVD_PLAYER: Boolean
-  TV_TUNER: Boolean
-  LEATHER_UPHOLSTERY: Boolean
-  VELOR_UPHOLSTERY: Boolean
-  ELECTRIC_ADJUSTABLE_FRONT_SEATS: Boolean
-  ELECTRIC_ADJUSTABLE_BACK_SEATS: Boolean
-  HEATED_FRONT_SEATS: Boolean
-  HEATED_BACK_SEATS: Boolean
-  PANORAMIC_ROOF: Boolean
-  SUNROOF: Boolean
-  ROOF_RACK: Boolean
-  PARKING_HEATER: Boolean
-  HEATED_FRONT_WINDSCREEN: Boolean
-  AIR_CONDITIONING_AUTOMATIC: Boolean
-  AIR_CONDITIONING_DUAL_ZONE: Boolean
-  AIR_CONDITIONING_THREE_ZONE: Boolean
-  AIR_CONDITIONING_FOUR_ZONE: Boolean
-  AIR_CONDITIONING_MANUAL: Boolean
-}
-
 input additionalAccessories_Comfort_PassengerUpdateInput {
+  car: CarUpdateOneRequiredWithoutAdditionalAccessories_Comfort_PassengerInput
   ELECTRIC_FRONT_WINDOWS: Boolean
   ELECTRIC_BACK_WINDOWS: Boolean
   FACTORY_RADIO: Boolean
@@ -708,16 +749,45 @@ input additionalAccessories_Comfort_PassengerUpdateManyMutationInput {
   AIR_CONDITIONING_MANUAL: Boolean
 }
 
-input additionalAccessories_Comfort_PassengerUpdateOneRequiredInput {
-  create: additionalAccessories_Comfort_PassengerCreateInput
-  update: additionalAccessories_Comfort_PassengerUpdateDataInput
-  upsert: additionalAccessories_Comfort_PassengerUpsertNestedInput
+input additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput {
+  create: additionalAccessories_Comfort_PassengerCreateWithoutCarInput
+  update: additionalAccessories_Comfort_PassengerUpdateWithoutCarDataInput
+  upsert: additionalAccessories_Comfort_PassengerUpsertWithoutCarInput
   connect: additionalAccessories_Comfort_PassengerWhereUniqueInput
 }
 
-input additionalAccessories_Comfort_PassengerUpsertNestedInput {
-  update: additionalAccessories_Comfort_PassengerUpdateDataInput!
-  create: additionalAccessories_Comfort_PassengerCreateInput!
+input additionalAccessories_Comfort_PassengerUpdateWithoutCarDataInput {
+  ELECTRIC_FRONT_WINDOWS: Boolean
+  ELECTRIC_BACK_WINDOWS: Boolean
+  FACTORY_RADIO: Boolean
+  NON_STANDARD_RADIO: Boolean
+  AUX: Boolean
+  MP3: Boolean
+  CD: Boolean
+  CD_CHANGER: Boolean
+  DVD_PLAYER: Boolean
+  TV_TUNER: Boolean
+  LEATHER_UPHOLSTERY: Boolean
+  VELOR_UPHOLSTERY: Boolean
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS: Boolean
+  ELECTRIC_ADJUSTABLE_BACK_SEATS: Boolean
+  HEATED_FRONT_SEATS: Boolean
+  HEATED_BACK_SEATS: Boolean
+  PANORAMIC_ROOF: Boolean
+  SUNROOF: Boolean
+  ROOF_RACK: Boolean
+  PARKING_HEATER: Boolean
+  HEATED_FRONT_WINDSCREEN: Boolean
+  AIR_CONDITIONING_AUTOMATIC: Boolean
+  AIR_CONDITIONING_DUAL_ZONE: Boolean
+  AIR_CONDITIONING_THREE_ZONE: Boolean
+  AIR_CONDITIONING_FOUR_ZONE: Boolean
+  AIR_CONDITIONING_MANUAL: Boolean
+}
+
+input additionalAccessories_Comfort_PassengerUpsertWithoutCarInput {
+  update: additionalAccessories_Comfort_PassengerUpdateWithoutCarDataInput!
+  create: additionalAccessories_Comfort_PassengerCreateWithoutCarInput!
 }
 
 input additionalAccessories_Comfort_PassengerWhereInput {
@@ -735,6 +805,7 @@ input additionalAccessories_Comfort_PassengerWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  car: CarWhereInput
   ELECTRIC_FRONT_WINDOWS: Boolean
   ELECTRIC_FRONT_WINDOWS_not: Boolean
   ELECTRIC_BACK_WINDOWS: Boolean
@@ -798,6 +869,7 @@ input additionalAccessories_Comfort_PassengerWhereUniqueInput {
 
 type additionalAccessories_Safety {
   id: ID!
+  car: Car!
   ABS: Boolean
   ESP: Boolean
   ASR: Boolean
@@ -817,6 +889,7 @@ type additionalAccessories_SafetyConnection {
 }
 
 input additionalAccessories_SafetyCreateInput {
+  car: CarCreateOneWithoutAdditionalAccessories_SafetyInput!
   ABS: Boolean
   ESP: Boolean
   ASR: Boolean
@@ -829,9 +902,22 @@ input additionalAccessories_SafetyCreateInput {
   SIDE_BACK_AIRBAGS: Boolean
 }
 
-input additionalAccessories_SafetyCreateOneInput {
-  create: additionalAccessories_SafetyCreateInput
+input additionalAccessories_SafetyCreateOneWithoutCarInput {
+  create: additionalAccessories_SafetyCreateWithoutCarInput
   connect: additionalAccessories_SafetyWhereUniqueInput
+}
+
+input additionalAccessories_SafetyCreateWithoutCarInput {
+  ABS: Boolean
+  ESP: Boolean
+  ASR: Boolean
+  CENTRAL_LOCKING: Boolean
+  IMMOBILIZER: Boolean
+  ALARM: Boolean
+  DRIVER_AIRBAG: Boolean
+  PASSENGER_AIRBAG: Boolean
+  SIDE_FRONT_AIRBAGS: Boolean
+  SIDE_BACK_AIRBAGS: Boolean
 }
 
 type additionalAccessories_SafetyEdge {
@@ -900,20 +986,8 @@ input additionalAccessories_SafetySubscriptionWhereInput {
   NOT: [additionalAccessories_SafetySubscriptionWhereInput!]
 }
 
-input additionalAccessories_SafetyUpdateDataInput {
-  ABS: Boolean
-  ESP: Boolean
-  ASR: Boolean
-  CENTRAL_LOCKING: Boolean
-  IMMOBILIZER: Boolean
-  ALARM: Boolean
-  DRIVER_AIRBAG: Boolean
-  PASSENGER_AIRBAG: Boolean
-  SIDE_FRONT_AIRBAGS: Boolean
-  SIDE_BACK_AIRBAGS: Boolean
-}
-
 input additionalAccessories_SafetyUpdateInput {
+  car: CarUpdateOneRequiredWithoutAdditionalAccessories_SafetyInput
   ABS: Boolean
   ESP: Boolean
   ASR: Boolean
@@ -939,16 +1013,29 @@ input additionalAccessories_SafetyUpdateManyMutationInput {
   SIDE_BACK_AIRBAGS: Boolean
 }
 
-input additionalAccessories_SafetyUpdateOneRequiredInput {
-  create: additionalAccessories_SafetyCreateInput
-  update: additionalAccessories_SafetyUpdateDataInput
-  upsert: additionalAccessories_SafetyUpsertNestedInput
+input additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput {
+  create: additionalAccessories_SafetyCreateWithoutCarInput
+  update: additionalAccessories_SafetyUpdateWithoutCarDataInput
+  upsert: additionalAccessories_SafetyUpsertWithoutCarInput
   connect: additionalAccessories_SafetyWhereUniqueInput
 }
 
-input additionalAccessories_SafetyUpsertNestedInput {
-  update: additionalAccessories_SafetyUpdateDataInput!
-  create: additionalAccessories_SafetyCreateInput!
+input additionalAccessories_SafetyUpdateWithoutCarDataInput {
+  ABS: Boolean
+  ESP: Boolean
+  ASR: Boolean
+  CENTRAL_LOCKING: Boolean
+  IMMOBILIZER: Boolean
+  ALARM: Boolean
+  DRIVER_AIRBAG: Boolean
+  PASSENGER_AIRBAG: Boolean
+  SIDE_FRONT_AIRBAGS: Boolean
+  SIDE_BACK_AIRBAGS: Boolean
+}
+
+input additionalAccessories_SafetyUpsertWithoutCarInput {
+  update: additionalAccessories_SafetyUpdateWithoutCarDataInput!
+  create: additionalAccessories_SafetyCreateWithoutCarInput!
 }
 
 input additionalAccessories_SafetyWhereInput {
@@ -966,6 +1053,7 @@ input additionalAccessories_SafetyWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  car: CarWhereInput
   ABS: Boolean
   ABS_not: Boolean
   ESP: Boolean
@@ -1135,10 +1223,10 @@ input CarCreateInput {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneInput!
-  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneInput!
-  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneInput!
-  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneInput!
+  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneWithoutCarInput!
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput!
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput!
+  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput!
   type: Type
   steeringWheelOnTheRight: Boolean
   color: Color
@@ -1156,6 +1244,142 @@ input CarCreateInput {
 input CarCreateOneInput {
   create: CarCreateInput
   connect: CarWhereUniqueInput
+}
+
+input CarCreateOneWithoutAdditionalAccessories_AppereanceInput {
+  create: CarCreateWithoutAdditionalAccessories_AppereanceInput
+  connect: CarWhereUniqueInput
+}
+
+input CarCreateOneWithoutAdditionalAccessories_Comfort_DriverInput {
+  create: CarCreateWithoutAdditionalAccessories_Comfort_DriverInput
+  connect: CarWhereUniqueInput
+}
+
+input CarCreateOneWithoutAdditionalAccessories_Comfort_PassengerInput {
+  create: CarCreateWithoutAdditionalAccessories_Comfort_PassengerInput
+  connect: CarWhereUniqueInput
+}
+
+input CarCreateOneWithoutAdditionalAccessories_SafetyInput {
+  create: CarCreateWithoutAdditionalAccessories_SafetyInput
+  connect: CarWhereUniqueInput
+}
+
+input CarCreateWithoutAdditionalAccessories_AppereanceInput {
+  brand: Brand!
+  model: String!
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType!
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: Transmission
+  drive: Drive
+  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneWithoutCarInput!
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput!
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput!
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
+  damaged: Boolean
+  accidentFree: Boolean
+  firstOwner: Boolean
+  registeredInPoland: Boolean
+  registeredAsAntiqueCar: Boolean
+  hasVIN: Boolean
+  tuning: Boolean
+  hasParticulateFilter: Boolean
+  fromCountry: Country
+}
+
+input CarCreateWithoutAdditionalAccessories_Comfort_DriverInput {
+  brand: Brand!
+  model: String!
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType!
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: Transmission
+  drive: Drive
+  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneWithoutCarInput!
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput!
+  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput!
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
+  damaged: Boolean
+  accidentFree: Boolean
+  firstOwner: Boolean
+  registeredInPoland: Boolean
+  registeredAsAntiqueCar: Boolean
+  hasVIN: Boolean
+  tuning: Boolean
+  hasParticulateFilter: Boolean
+  fromCountry: Country
+}
+
+input CarCreateWithoutAdditionalAccessories_Comfort_PassengerInput {
+  brand: Brand!
+  model: String!
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType!
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: Transmission
+  drive: Drive
+  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneWithoutCarInput!
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput!
+  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput!
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
+  damaged: Boolean
+  accidentFree: Boolean
+  firstOwner: Boolean
+  registeredInPoland: Boolean
+  registeredAsAntiqueCar: Boolean
+  hasVIN: Boolean
+  tuning: Boolean
+  hasParticulateFilter: Boolean
+  fromCountry: Country
+}
+
+input CarCreateWithoutAdditionalAccessories_SafetyInput {
+  brand: Brand!
+  model: String!
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType!
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: Transmission
+  drive: Drive
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput!
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput!
+  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput!
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
+  damaged: Boolean
+  accidentFree: Boolean
+  firstOwner: Boolean
+  registeredInPoland: Boolean
+  registeredAsAntiqueCar: Boolean
+  hasVIN: Boolean
+  tuning: Boolean
+  hasParticulateFilter: Boolean
+  fromCountry: Country
 }
 
 type CarEdge {
@@ -1275,10 +1499,10 @@ input CarUpdateDataInput {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneRequiredInput
-  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneRequiredInput
-  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneRequiredInput
-  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneRequiredInput
+  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput
   type: Type
   steeringWheelOnTheRight: Boolean
   color: Color
@@ -1305,10 +1529,10 @@ input CarUpdateInput {
   torque: Int
   transmission: Transmission
   drive: Drive
-  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneRequiredInput
-  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneRequiredInput
-  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneRequiredInput
-  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneRequiredInput
+  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput
   type: Type
   steeringWheelOnTheRight: Boolean
   color: Color
@@ -1356,9 +1580,173 @@ input CarUpdateOneRequiredInput {
   connect: CarWhereUniqueInput
 }
 
+input CarUpdateOneRequiredWithoutAdditionalAccessories_AppereanceInput {
+  create: CarCreateWithoutAdditionalAccessories_AppereanceInput
+  update: CarUpdateWithoutAdditionalAccessories_AppereanceDataInput
+  upsert: CarUpsertWithoutAdditionalAccessories_AppereanceInput
+  connect: CarWhereUniqueInput
+}
+
+input CarUpdateOneRequiredWithoutAdditionalAccessories_Comfort_DriverInput {
+  create: CarCreateWithoutAdditionalAccessories_Comfort_DriverInput
+  update: CarUpdateWithoutAdditionalAccessories_Comfort_DriverDataInput
+  upsert: CarUpsertWithoutAdditionalAccessories_Comfort_DriverInput
+  connect: CarWhereUniqueInput
+}
+
+input CarUpdateOneRequiredWithoutAdditionalAccessories_Comfort_PassengerInput {
+  create: CarCreateWithoutAdditionalAccessories_Comfort_PassengerInput
+  update: CarUpdateWithoutAdditionalAccessories_Comfort_PassengerDataInput
+  upsert: CarUpsertWithoutAdditionalAccessories_Comfort_PassengerInput
+  connect: CarWhereUniqueInput
+}
+
+input CarUpdateOneRequiredWithoutAdditionalAccessories_SafetyInput {
+  create: CarCreateWithoutAdditionalAccessories_SafetyInput
+  update: CarUpdateWithoutAdditionalAccessories_SafetyDataInput
+  upsert: CarUpsertWithoutAdditionalAccessories_SafetyInput
+  connect: CarWhereUniqueInput
+}
+
+input CarUpdateWithoutAdditionalAccessories_AppereanceDataInput {
+  brand: Brand
+  model: String
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: Transmission
+  drive: Drive
+  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
+  damaged: Boolean
+  accidentFree: Boolean
+  firstOwner: Boolean
+  registeredInPoland: Boolean
+  registeredAsAntiqueCar: Boolean
+  hasVIN: Boolean
+  tuning: Boolean
+  hasParticulateFilter: Boolean
+  fromCountry: Country
+}
+
+input CarUpdateWithoutAdditionalAccessories_Comfort_DriverDataInput {
+  brand: Brand
+  model: String
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: Transmission
+  drive: Drive
+  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
+  damaged: Boolean
+  accidentFree: Boolean
+  firstOwner: Boolean
+  registeredInPoland: Boolean
+  registeredAsAntiqueCar: Boolean
+  hasVIN: Boolean
+  tuning: Boolean
+  hasParticulateFilter: Boolean
+  fromCountry: Country
+}
+
+input CarUpdateWithoutAdditionalAccessories_Comfort_PassengerDataInput {
+  brand: Brand
+  model: String
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: Transmission
+  drive: Drive
+  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
+  damaged: Boolean
+  accidentFree: Boolean
+  firstOwner: Boolean
+  registeredInPoland: Boolean
+  registeredAsAntiqueCar: Boolean
+  hasVIN: Boolean
+  tuning: Boolean
+  hasParticulateFilter: Boolean
+  fromCountry: Country
+}
+
+input CarUpdateWithoutAdditionalAccessories_SafetyDataInput {
+  brand: Brand
+  model: String
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: Transmission
+  drive: Drive
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
+  damaged: Boolean
+  accidentFree: Boolean
+  firstOwner: Boolean
+  registeredInPoland: Boolean
+  registeredAsAntiqueCar: Boolean
+  hasVIN: Boolean
+  tuning: Boolean
+  hasParticulateFilter: Boolean
+  fromCountry: Country
+}
+
 input CarUpsertNestedInput {
   update: CarUpdateDataInput!
   create: CarCreateInput!
+}
+
+input CarUpsertWithoutAdditionalAccessories_AppereanceInput {
+  update: CarUpdateWithoutAdditionalAccessories_AppereanceDataInput!
+  create: CarCreateWithoutAdditionalAccessories_AppereanceInput!
+}
+
+input CarUpsertWithoutAdditionalAccessories_Comfort_DriverInput {
+  update: CarUpdateWithoutAdditionalAccessories_Comfort_DriverDataInput!
+  create: CarCreateWithoutAdditionalAccessories_Comfort_DriverInput!
+}
+
+input CarUpsertWithoutAdditionalAccessories_Comfort_PassengerInput {
+  update: CarUpdateWithoutAdditionalAccessories_Comfort_PassengerDataInput!
+  create: CarCreateWithoutAdditionalAccessories_Comfort_PassengerInput!
+}
+
+input CarUpsertWithoutAdditionalAccessories_SafetyInput {
+  update: CarUpdateWithoutAdditionalAccessories_SafetyDataInput!
+  create: CarCreateWithoutAdditionalAccessories_SafetyInput!
 }
 
 input CarWhereInput {
@@ -1654,7 +2042,7 @@ type Post {
   car: Car!
   user: User!
   price: Int!
-  localization: String
+  location: String!
   avatar: String
   photos: [String!]!
   description: String
@@ -1670,7 +2058,7 @@ input PostCreateInput {
   car: CarCreateOneInput!
   user: UserCreateOneWithoutPostsInput!
   price: Int!
-  localization: String
+  location: String!
   avatar: String
   photos: PostCreatephotosInput
   description: String
@@ -1688,7 +2076,7 @@ input PostCreatephotosInput {
 input PostCreateWithoutUserInput {
   car: CarCreateOneInput!
   price: Int!
-  localization: String
+  location: String!
   avatar: String
   photos: PostCreatephotosInput
   description: String
@@ -1704,8 +2092,8 @@ enum PostOrderByInput {
   id_DESC
   price_ASC
   price_DESC
-  localization_ASC
-  localization_DESC
+  location_ASC
+  location_DESC
   avatar_ASC
   avatar_DESC
   description_ASC
@@ -1719,7 +2107,7 @@ enum PostOrderByInput {
 type PostPreviousValues {
   id: ID!
   price: Int!
-  localization: String
+  location: String!
   avatar: String
   photos: [String!]!
   description: String
@@ -1748,20 +2136,20 @@ input PostScalarWhereInput {
   price_lte: Int
   price_gt: Int
   price_gte: Int
-  localization: String
-  localization_not: String
-  localization_in: [String!]
-  localization_not_in: [String!]
-  localization_lt: String
-  localization_lte: String
-  localization_gt: String
-  localization_gte: String
-  localization_contains: String
-  localization_not_contains: String
-  localization_starts_with: String
-  localization_not_starts_with: String
-  localization_ends_with: String
-  localization_not_ends_with: String
+  location: String
+  location_not: String
+  location_in: [String!]
+  location_not_in: [String!]
+  location_lt: String
+  location_lte: String
+  location_gt: String
+  location_gte: String
+  location_contains: String
+  location_not_contains: String
+  location_starts_with: String
+  location_not_starts_with: String
+  location_ends_with: String
+  location_not_ends_with: String
   avatar: String
   avatar_not: String
   avatar_in: [String!]
@@ -1817,7 +2205,7 @@ input PostUpdateInput {
   car: CarUpdateOneRequiredInput
   user: UserUpdateOneRequiredWithoutPostsInput
   price: Int
-  localization: String
+  location: String
   avatar: String
   photos: PostUpdatephotosInput
   description: String
@@ -1825,7 +2213,7 @@ input PostUpdateInput {
 
 input PostUpdateManyDataInput {
   price: Int
-  localization: String
+  location: String
   avatar: String
   photos: PostUpdatephotosInput
   description: String
@@ -1833,7 +2221,7 @@ input PostUpdateManyDataInput {
 
 input PostUpdateManyMutationInput {
   price: Int
-  localization: String
+  location: String
   avatar: String
   photos: PostUpdatephotosInput
   description: String
@@ -1862,7 +2250,7 @@ input PostUpdatephotosInput {
 input PostUpdateWithoutUserDataInput {
   car: CarUpdateOneRequiredInput
   price: Int
-  localization: String
+  location: String
   avatar: String
   photos: PostUpdatephotosInput
   description: String
@@ -1904,20 +2292,20 @@ input PostWhereInput {
   price_lte: Int
   price_gt: Int
   price_gte: Int
-  localization: String
-  localization_not: String
-  localization_in: [String!]
-  localization_not_in: [String!]
-  localization_lt: String
-  localization_lte: String
-  localization_gt: String
-  localization_gte: String
-  localization_contains: String
-  localization_not_contains: String
-  localization_starts_with: String
-  localization_not_starts_with: String
-  localization_ends_with: String
-  localization_not_ends_with: String
+  location: String
+  location_not: String
+  location_in: [String!]
+  location_not_in: [String!]
+  location_lt: String
+  location_lte: String
+  location_gt: String
+  location_gte: String
+  location_contains: String
+  location_not_contains: String
+  location_starts_with: String
+  location_not_starts_with: String
+  location_ends_with: String
+  location_not_ends_with: String
   avatar: String
   avatar_not: String
   avatar_in: [String!]
