@@ -99,19 +99,20 @@ const BasicInfo = props => (
         </StyledFormControl>
       </Grid>
       <Grid item>
-        <StyledValueTitle>Lokalizacja</StyledValueTitle>
+        <StyledValueTitle>Lokacja</StyledValueTitle>
         <StyledFormControl>
           <Creatable
             darkLabel
-            name="localization"
+            name="location"
             placeholder="Podlasie, Rzeszów..."
-            value={props.values.localization}
+            value={props.values.location}
             handleChange={props.handleChange}
-            options={props.options.Localization.map(item => ({
+            options={props.options.Location.map(item => ({
               label: item,
               value: item
             }))}
           />
+          <FieldRequiredHelperText value={props.values.location} />
         </StyledFormControl>
       </Grid>
     </Grid>
@@ -189,23 +190,3 @@ const BasicInfo = props => (
 );
 
 export default withStyles(styles)(BasicInfo);
-
-/*switch (true) {
-                case loading:
-                  placeholder = "Pobieranie danych...";
-                  break;
-                case error:
-                  placeholder = "Błąd pobierania danych";
-                  break;
-                case data:
-                  console.log(data);
-                  if (data.modelsOfBrand) {
-                    if (data.modelsOfBrand.length > 0) {
-                      modelsOfBrand = data.modelsOfBrand;
-                      placeholder = "Model";
-                    }
-                  }
-                  break;
-                default:
-                  break;
-              } */

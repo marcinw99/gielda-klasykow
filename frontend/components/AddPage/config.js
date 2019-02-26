@@ -5,7 +5,7 @@ const blankBasicInfo = {
   brand: null,
   model: null,
   fuelType: null,
-  localization: null,
+  location: null,
   productionYear: null,
   mileage: null,
   price: null,
@@ -121,7 +121,7 @@ export const fetchedSubTypes = [
 ];
 
 export const staticOptions = {
-  Localization: ["Dębica", "Rzeszów", "Kraków", "Podlasie", "Warszawa"],
+  Location: ["Dębica", "Rzeszów", "Kraków", "Podlasie", "Warszawa"],
   Price: getArrayOfNumbers(10000, 10000, 10).concat(
     getArrayOfNumbers(125000, 25000, 7)
   ),
@@ -140,11 +140,11 @@ export const requiredFields = [
   { name: "brand", inStep: 0 },
   { name: "model", inStep: 0 },
   { name: "price", inStep: 0 },
+  { name: "location", inStep: 0 },
   { name: "fuelType", inStep: 0 }
 ];
 
 export const recommendedFields = [
-  { name: "localization", inStep: 0 },
   { name: "type", inStep: 0 },
   { name: "mileage", inStep: 0 },
   { name: "productionYear", inStep: 0 },
