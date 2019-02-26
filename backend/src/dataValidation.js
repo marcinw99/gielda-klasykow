@@ -2,6 +2,7 @@ import { isBoolean, isArray, isString } from "util";
 
 import messageCodes from "./messageCodes";
 const passwordStrengthLevels = require("../../config/passwordStrengthLevels");
+const postFieldsValidationRules = require("../../config/passwordStrengthLevels");
 
 export function isPasswordValid(password) {
   // password is valid when meets average strength level rules
@@ -23,36 +24,6 @@ export function areArgumentsLengthsInRange(args) {
   }
   return true;
 }
-
-// Post
-
-const postFieldsValidationRules = {
-  default: {
-    maxLength: 50
-  },
-  // overrides
-  price: {
-    maxLength: 50,
-    minValue: 50,
-    maxValue: 10000000
-  },
-  productionYear: {
-    maxLength: 4,
-    minLength: 4,
-    minValue: 1800,
-    maxValue: 2018
-  },
-  photos: {
-    maxLength: 50,
-    maxItemLength: 250
-  },
-  avatar: {
-    maxLength: 250
-  },
-  description: {
-    maxLength: 2000
-  }
-};
 
 ///// formValueIsIncorrect functions
 
