@@ -33,7 +33,7 @@ export const fetchedSubTypes = [
 ];
 
 export const staticOptions = {
-  Localization: ["Dębica", "Rzeszów", "Kraków", "Podlasie", "Warszawa"],
+  Location: ["Dębica", "Rzeszów", "Kraków", "Podlasie", "Warszawa"],
   Price: getArrayOfNumbers(10000, 10000, 10).concat(
     getArrayOfNumbers(125000, 25000, 7)
   ),
@@ -87,7 +87,7 @@ export const blankFiltersState = {
   brand: null,
   model: null,
   fuelType: null,
-  localization: null,
+  location: null,
   productionYear_gt: null,
   productionYear_lt: null,
   mileage_gt: null,
@@ -99,4 +99,30 @@ export const blankFiltersState = {
   ...blankFiltersStateBodyAndAppereance,
   ...blankFiltersStateAdditionalAccessories,
   ...blankFiltersVehicleStatus
+};
+
+const standardRules = {
+  number: {
+    type: "number",
+    maxValue: 10000000
+  },
+  string: {
+    type: "string",
+    maxLength: "30"
+  }
+};
+
+export const filtersValidationRules = {
+  price: standardRules.number,
+  model: standardRules.string,
+  location: standardRules.string,
+  productionYear: {
+    type: "number",
+    minValue: 1800,
+    maxValue: new Date().getFullYear()
+  },
+  mileage: standardRules.number,
+  engineSize: standardRules.number,
+  power: standardRules.number,
+  torque: standardRules.number
 };

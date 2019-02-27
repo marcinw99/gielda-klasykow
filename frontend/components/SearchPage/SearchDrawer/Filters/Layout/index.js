@@ -126,26 +126,26 @@ class Layout extends Component {
             <StyledFormControl>
               <Autocomplete
                 className={this.props.classes.textField}
-                options={this.props.options.Localization.map(item => ({
+                options={this.props.options.Location.map(item => ({
                   label: item,
                   value: item
                 }))}
-                value={this.props.values.localization}
+                value={this.props.values.location}
                 handleChange={this.props.handleChange}
-                name="localization"
+                name="location"
                 placeholder="Miejscowość"
               />
             </StyledFormControl>
             <StyledFormControl>
               <Autocomplete
                 className={this.props.classes.textField}
-                options={this.props.options.Localization.map(item => ({
+                options={this.props.options.Location.map(item => ({
                   label: item,
                   value: item
                 }))}
-                value={this.props.values.localization}
+                value={this.props.values.location}
                 handleChange={this.props.handleChange}
-                name="localization"
+                name="location"
                 placeholder="Zasięg"
               />
             </StyledFormControl>
