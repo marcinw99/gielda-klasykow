@@ -112,6 +112,7 @@ function Control(props) {
     <TextField
       fullWidth
       color="primary"
+      className={props.selectProps.classes.className}
       InputProps={{
         inputComponent,
         inputProps: {
@@ -186,6 +187,7 @@ class CreatableComponent extends Component {
   render() {
     return (
       <CreatableSelect
+        className={this.props.className || null}
         darkLabel={this.props.darkLabel}
         classes={this.props.classes}
         components={components}
@@ -215,6 +217,7 @@ class AutocompleteComponent extends Component {
   render() {
     return (
       <Select
+        className={this.props.className || null}
         darkLabel={this.props.darkLabel}
         classes={this.props.classes}
         components={components}

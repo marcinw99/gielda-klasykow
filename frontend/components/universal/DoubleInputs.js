@@ -10,6 +10,7 @@ const DoubleInputs = props =>
     <Grid container justify={props.justify ? props.justify : "center"}>
       <StyledFormControl>
         <Creatable
+          className={props.className}
           darkLabel={props.darkLabel}
           unit={props.unit}
           value={props.valueLeft}
@@ -21,6 +22,7 @@ const DoubleInputs = props =>
       </StyledFormControl>
       <StyledFormControl>
         <Creatable
+          className={props.className}
           darkLabel={props.darkLabel}
           unit={props.unit}
           value={props.valueRight}
@@ -35,6 +37,7 @@ const DoubleInputs = props =>
     <Grid container justify="center">
       <StyledFormControl>
         <Autocomplete
+          className={props.className}
           darkLabel={props.darkLabel}
           value={props.valueLeft}
           options={props.options}
@@ -45,6 +48,7 @@ const DoubleInputs = props =>
       </StyledFormControl>
       <StyledFormControl>
         <Autocomplete
+          className={props.className}
           darkLabel={props.darkLabel}
           value={props.valueRight}
           options={props.options}

@@ -38,6 +38,9 @@ const styles = theme => ({
   },
   switchLabel: {
     color: theme.palette.primary.contrastText
+  },
+  textField: {
+    width: 160
   }
 });
 
@@ -104,6 +107,7 @@ class Layout extends Component {
           <div className={this.props.classes.basicFiltersRoot}>
             <StyledFilterTitle>Cena (zł)</StyledFilterTitle>
             <DoubleInputs
+              className={this.props.classes.textField}
               canCreateOption
               unit="PLN"
               nameLeft="price_gt"
@@ -121,6 +125,7 @@ class Layout extends Component {
             <StyledFilterTitle>Lokalizacja</StyledFilterTitle>
             <StyledFormControl>
               <Autocomplete
+                className={this.props.classes.textField}
                 options={this.props.options.Localization.map(item => ({
                   label: item,
                   value: item
@@ -133,6 +138,7 @@ class Layout extends Component {
             </StyledFormControl>
             <StyledFormControl>
               <Autocomplete
+                className={this.props.classes.textField}
                 options={this.props.options.Localization.map(item => ({
                   label: item,
                   value: item
@@ -146,6 +152,7 @@ class Layout extends Component {
             <StyledFilterTitle>Cechy pojazdu</StyledFilterTitle>
             <StyledFormControl>
               <Autocomplete
+                className={this.props.classes.textField}
                 value={this.props.values.type}
                 options={this.props.options.Type.map(item => ({
                   label: displayedText("type", item),
@@ -158,6 +165,7 @@ class Layout extends Component {
             </StyledFormControl>
             <StyledFormControl>
               <Autocomplete
+                className={this.props.classes.textField}
                 value={this.props.values.fuelType}
                 options={this.props.options.FuelType.map(item => ({
                   label: displayedText("fuelType", item),
@@ -170,6 +178,7 @@ class Layout extends Component {
             </StyledFormControl>
             <StyledFormControl>
               <Autocomplete
+                className={this.props.classes.textField}
                 value={this.props.values.brand}
                 options={
                   this.props.options.Brand
@@ -189,6 +198,7 @@ class Layout extends Component {
             {this.props.values.brand == null ? (
               <StyledFormControl>
                 <Autocomplete
+                  className={this.props.classes.textField}
                   options={[]}
                   handleChange={() => null}
                   placeholder="Model pojazdu"
@@ -206,6 +216,7 @@ class Layout extends Component {
                   return data ? (
                     <StyledFormControl>
                       <Autocomplete
+                        className={this.props.classes.textField}
                         value={this.props.values.model}
                         options={
                           data.availableModelsOfBrand
@@ -225,6 +236,7 @@ class Layout extends Component {
               </Query>
             )}
             <DoubleInputs
+              className={this.props.classes.textField}
               canCreateOption
               unit=""
               nameLeft="productionYear_gt"
@@ -240,6 +252,7 @@ class Layout extends Component {
               }))}
             />
             <DoubleInputs
+              className={this.props.classes.textField}
               canCreateOption
               unit="km"
               nameLeft="mileage_gt"
