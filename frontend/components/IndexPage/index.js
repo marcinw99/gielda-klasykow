@@ -11,7 +11,7 @@ const styles = theme => ({
 
 const Index = ({ classes }) => {
   return (
-    <Link href="/search">
+    <Link prefetch href="/gielda">
       <Button variant="contained" className={classes.linkBtn}>
         Wyszukiwarka
       </Button>

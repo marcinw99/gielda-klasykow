@@ -28,7 +28,7 @@ const AfterSubmit = props => {
           </Link>
         </Grid>
         <Grid item>
-          <Link href="/search">
+          <Link href="/gielda">
             <Button size="large" color="primary" variant="contained">
               Przeglądaj giełdę
             </Button>

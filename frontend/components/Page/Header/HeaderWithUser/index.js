@@ -34,7 +34,7 @@ class HeaderWithUser extends Component {
 
   handleAddPost = () => {
     this.handleClose();
-    Router.push("/add");
+    Router.push("/dodajklasyka");
   };
 
   render() {
