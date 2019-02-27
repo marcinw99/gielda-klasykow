@@ -9,16 +9,16 @@ import PropTypes from "prop-types";
 
 const styles = theme => ({
   singleValue: {
-    fontSize: 16,
+    fontSize: 15,
     color: theme.palette.primary.contrastText
   },
   singleValueDark: {
-    fontSize: 16,
+    fontSize: 15,
     color: theme.palette.primary.dark
   },
   valueContainer: {
     display: "flex",
-    flexWrap: "wrap",
+    flexWrap: "nowrap",
     flex: 1,
     alignItems: "center",
     overflow: "hidden"
@@ -44,6 +44,12 @@ const styles = theme => ({
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`
   }
 });
+
+const customStyles = {
+  input: () => ({
+    color: grey[100]
+  })
+};
 
 function Option(props) {
   return (
@@ -187,6 +193,7 @@ class CreatableComponent extends Component {
   render() {
     return (
       <CreatableSelect
+        styles={customStyles}
         className={this.props.className || null}
         darkLabel={this.props.darkLabel}
         classes={this.props.classes}
@@ -217,6 +224,7 @@ class AutocompleteComponent extends Component {
   render() {
     return (
       <Select
+        styles={customStyles}
         className={this.props.className || null}
         darkLabel={this.props.darkLabel}
         classes={this.props.classes}
