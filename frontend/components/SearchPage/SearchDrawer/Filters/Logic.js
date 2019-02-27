@@ -2,11 +2,17 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { blankFiltersState, initialSearchParameters } from "../../config";
-import { prepareOptions, getFormattedPayload } from "../../helpers";
+import {
+  prepareOptions,
+  getFormattedPayload,
+  filterValueIsInvalid
+} from "../../helpers";
 import {
   getTypesFields,
   assignValuesToProperDataType
 } from "../../../../src/globalMethods";
+import { withSnackbar } from "../../../Snackbar/Context";
+import displayedText from "../../../../resources/displayedText";
 
 const initialState = {
   filters: { ...blankFiltersState, ...initialSearchParameters.filters },
@@ -38,6 +44,33 @@ class Logic extends Component {
   };
 
   handleChange = ({ name, value }) => {
+    this.setFilterInState({
+      name,
+      value,
+      callback: () => {
+        if (this.state.automaticFiltering) {
+          this.submitFilters();
+        }
+      }
+    });
+  };
+
+  handleChangeWithoutFiltering = ({ name, value }) => {
+    this.setFilterInState({ name, value });
+  };
+
+  setFilterInState = ({ name, value, callback }) => {
+    if (filterValueIsInvalid({ name, value })) {
+      this.props.manageSnackbar({
+        open: true,
+        message: `Nie można filtrować takiej wartości w polu: ${displayedText(
+          "attributesNames",
+          name
+        )}`,
+        variant: "error"
+      });
+      return null;
+    }
     this.setState(
       prevState => ({
         filters: {
@@ -47,23 +80,8 @@ class Logic extends Component {
           [name]: value
         }
       }),
-      () => {
-        if (this.state.automaticFiltering) {
-          this.submitFilters();
-        }
-      }
+      callback
     );
-  };
-
-  handleChangeWithoutFiltering = ({ name, value }) => {
-    this.setState(prevState => ({
-      filters: {
-        ...prevState.filters,
-        // reset model if brand is changed
-        model: name === "brand" ? null : prevState.filters.model,
-        [name]: value
-      }
-    }));
   };
 
   resetFilters = () => {
@@ -107,4 +125,4 @@ Logic.propTypes = {
   setValueInMainState: PropTypes.func.isRequired
 };
 
-export default Logic;
+export default withSnackbar(Logic);

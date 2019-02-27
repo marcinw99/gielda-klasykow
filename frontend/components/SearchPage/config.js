@@ -33,7 +33,7 @@ export const fetchedSubTypes = [
 ];
 
 export const staticOptions = {
-  Localization: ["Dębica", "Rzeszów", "Kraków", "Podlasie", "Warszawa"],
+  Location: ["Dębica", "Rzeszów", "Kraków", "Podlasie", "Warszawa"],
   Price: getArrayOfNumbers(10000, 10000, 10).concat(
     getArrayOfNumbers(125000, 25000, 7)
   ),
@@ -49,12 +49,12 @@ export const staticOptions = {
 };
 
 export const blankFiltersStateEngineAndDrive = {
-  engineSize_gt: null,
-  engineSize_lt: null,
-  power_gt: null,
-  power_lt: null,
-  torque_gt: null,
-  torque_lt: null,
+  engineSize_gte: null,
+  engineSize_lte: null,
+  power_gte: null,
+  power_lte: null,
+  torque_gte: null,
+  torque_lte: null,
   hasParticulateFilter: "deleteFromSubmitData",
   transmission_in: [],
   drive_in: []
@@ -87,16 +87,45 @@ export const blankFiltersState = {
   brand: null,
   model: null,
   fuelType: null,
-  localization: null,
-  productionYear_gt: null,
-  productionYear_lt: null,
-  mileage_gt: null,
-  mileage_lt: null,
-  price_lt: null,
-  price_gt: null,
+  location: null,
+  productionYear_gte: null,
+  productionYear_lte: null,
+  mileage_gte: null,
+  mileage_lte: null,
+  price_lte: null,
+  price_gte: null,
   keywords: null,
   ...blankFiltersStateEngineAndDrive,
   ...blankFiltersStateBodyAndAppereance,
   ...blankFiltersStateAdditionalAccessories,
   ...blankFiltersVehicleStatus
+};
+
+const standardRules = {
+  number: {
+    type: "number",
+    valueNestedInObj: true,
+    maxValue: 10000000
+  },
+  string: {
+    type: "string",
+    valueNestedInObj: true,
+    maxLength: "30"
+  }
+};
+
+export const filtersValidationRules = {
+  price: standardRules.number,
+  model: standardRules.string,
+  location: standardRules.string,
+  productionYear: {
+    type: "number",
+    valueNestedInObj: true,
+    minValue: 1800,
+    maxValue: new Date().getFullYear()
+  },
+  mileage: standardRules.number,
+  engineSize: standardRules.number,
+  power: standardRules.number,
+  torque: standardRules.number
 };

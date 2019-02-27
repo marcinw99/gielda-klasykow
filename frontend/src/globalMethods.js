@@ -43,7 +43,7 @@ const getBooleans = (fetchedFields, fetchedSubTypes) => {
   for (let item in values) {
     const normalizedTypeValues = values[item].fields.map(item => item.name);
     const filteredTypeValues = normalizedTypeValues.filter(
-      item => item !== "id"
+      item => item !== "id" && item !== "car"
     );
     const typeName = values[item].name;
     results[typeName] = filteredTypeValues;
@@ -88,8 +88,8 @@ export function getTypesFields(data) {
 ///// assignValuesToProperDataType functions
 
 const typeAcceptsValue = (type, valueName) =>
-  // slice for prefixes like price_gt, price_lt etc.
-  type.indexOf(valueName) !== -1 || type.indexOf(valueName.slice(0, -3)) !== -1
+  type.indexOf(valueName) !== -1 ||
+  type.indexOf(removePrefixFromValueName(valueName)) !== -1
     ? true
     : false;
 
@@ -174,5 +174,12 @@ export const partialGetFormattedPayload = (data, fetchedSubTypes) => {
   );
   return result;
 };
+
+/////
+
+///// removePrefixFromValueName
+
+export const removePrefixFromValueName = name =>
+  name.slice(0, name.indexOf("_") === -1 ? name.length : name.indexOf("_"));
 
 /////

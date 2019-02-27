@@ -1,46 +1,4 @@
-// Password strength level
-
-// weak - can't submit
-// average - 6 chars, min 1 number, min 1 letter
-// strong - average with 8 chars and min 1 special character
-// veryStrong - 16 chars
-
-const regExpressions = {
-  min6Chars: {
-    regexp: new RegExp(".{6,}"),
-    message: "Hasło nie zawiera minimum 6 znaków."
-  },
-  min1Number: {
-    regexp: new RegExp("\\d"),
-    message: "Hasło nie zawiera minimum jednej cyfry."
-  },
-  min1Letter: {
-    regexp: new RegExp("[a-z]", "i"),
-    message: "Hasło nie zawiera minimum jednej litery."
-  },
-  min8Chars: {
-    regexp: new RegExp(".{8,}")
-  },
-  min1SpecialChar: {
-    regexp: /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/
-  },
-  min16Chars: {
-    regexp: new RegExp(".{16,}")
-  }
-};
-
-const averageRegExpressions = [
-  regExpressions.min6Chars,
-  regExpressions.min1Number,
-  regExpressions.min1Letter
-];
-
-const strongRegExpressions = [
-  regExpressions.min8Chars,
-  regExpressions.min1SpecialChar
-];
-
-const veryStrongRegExpressions = [regExpressions.min16Chars];
+const passwordStrengthLevels = require("../../config/passwordStrengthLevels");
 
 function meetsRegexp({ value, regExps }) {
   for (const index in regExps) {
@@ -53,9 +11,9 @@ function meetsRegexp({ value, regExps }) {
 
 function getStrengthLevel(value) {
   switch (true) {
-    case meetsRegexp({ value, regExps: veryStrongRegExpressions }):
+    case meetsRegexp({ value, regExps: passwordStrengthLevels.veryStrong }):
       return "veryStrong";
-    case meetsRegexp({ value, regExps: strongRegExpressions }):
+    case meetsRegexp({ value, regExps: passwordStrengthLevels.strong }):
       return "strong";
     default:
       return "average";
@@ -66,7 +24,7 @@ export function updatePasswordStrength({ password, repeatedPassword }) {
   let passwordErrors = [];
   let passwordStrengthLevel = "weak";
 
-  averageRegExpressions.map(item => {
+  passwordStrengthLevels.average.map(item => {
     if (!item.regexp.test(password)) {
       passwordErrors.push(item.message);
     }

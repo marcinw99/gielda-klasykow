@@ -3,22 +3,22 @@ import isEqual from "react-fast-compare";
 import Select from "react-select";
 import CreatableSelect from "react-select/lib/Creatable";
 import { MenuItem, Typography, Paper, TextField } from "@material-ui/core/";
-import { grey } from "@material-ui/core/colors";
+import { grey, brown } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
 const styles = theme => ({
   singleValue: {
-    fontSize: 16,
+    fontSize: 15,
     color: theme.palette.primary.contrastText
   },
   singleValueDark: {
-    fontSize: 16,
+    fontSize: 15,
     color: theme.palette.primary.dark
   },
   valueContainer: {
     display: "flex",
-    flexWrap: "wrap",
+    flexWrap: "nowrap",
     flex: 1,
     alignItems: "center",
     overflow: "hidden"
@@ -44,6 +44,12 @@ const styles = theme => ({
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`
   }
 });
+
+const customStyles = {
+  input: () => ({
+    color: brown[400]
+  })
+};
 
 function Option(props) {
   return (
@@ -112,6 +118,7 @@ function Control(props) {
     <TextField
       fullWidth
       color="primary"
+      className={props.selectProps.classes.className}
       InputProps={{
         inputComponent,
         inputProps: {
@@ -186,6 +193,8 @@ class CreatableComponent extends Component {
   render() {
     return (
       <CreatableSelect
+        styles={customStyles}
+        className={this.props.className || null}
         darkLabel={this.props.darkLabel}
         classes={this.props.classes}
         components={components}
@@ -215,6 +224,8 @@ class AutocompleteComponent extends Component {
   render() {
     return (
       <Select
+        styles={customStyles}
+        className={this.props.className || null}
         darkLabel={this.props.darkLabel}
         classes={this.props.classes}
         components={components}

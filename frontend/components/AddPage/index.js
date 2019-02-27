@@ -8,6 +8,7 @@ import Form from "./Form";
 import AfterSubmit from "./AfterSubmit";
 import { ADD_POST_QUERIES } from "../../src/Queries/searchQueries";
 import { ADD_POST_MUTATION } from "../../src/Mutations/AddPost";
+import MustBeLoggedIn from "../universal/MustBeLoggedIn";
 
 const initialState = {
   activeStep: 0,
@@ -49,76 +50,69 @@ class AddPage extends Component {
   };
 
   render() {
-    if (!this.props.thisUser) {
-      return (
-        <Content>
-          <Typography align="center" variant="h5" color="secondary">
-            Musisz być zalogowany aby móc dodać ogłoszenie
-          </Typography>
-        </Content>
-      );
-    }
     return (
-      <Query query={ADD_POST_QUERIES}>
-        {({ data, error, loading }) => {
-          if (loading) {
-            return <Typography>Pobieranie danych...</Typography>;
-          }
-          if (error) return <Typography>Błąd pobierania danych</Typography>;
-          if (data)
-            return (
-              <Content>
-                <StyledPageTitle>Dodawanie ogłoszenia</StyledPageTitle>
-                <Grid container justify="center">
-                  <Mutation
-                    mutation={ADD_POST_MUTATION}
-                    variables={{ data: this.state.submitData }}
-                  >
-                    {(submit, feedback) => {
-                      if (feedback.data) {
+      <MustBeLoggedIn thisUser={this.props.thisUser}>
+        <Query query={ADD_POST_QUERIES}>
+          {({ data, error, loading }) => {
+            if (loading) {
+              return <Typography>Pobieranie danych...</Typography>;
+            }
+            if (error) return <Typography>Błąd pobierania danych</Typography>;
+            if (data)
+              return (
+                <Content>
+                  <StyledPageTitle>Dodawanie ogłoszenia</StyledPageTitle>
+                  <Grid container justify="center">
+                    <Mutation
+                      mutation={ADD_POST_MUTATION}
+                      variables={{ data: this.state.submitData }}
+                    >
+                      {(submit, feedback) => {
+                        if (feedback.data) {
+                          return (
+                            <Grid item xs={6}>
+                              <StyledPaper>
+                                <AfterSubmit data={feedback.data.createPost} />
+                              </StyledPaper>
+                            </Grid>
+                          );
+                        }
                         return (
-                          <Grid item xs={6}>
-                            <StyledPaper>
-                              <AfterSubmit data={feedback.data.createPost} />
-                            </StyledPaper>
-                          </Grid>
-                        );
-                      }
-                      return (
-                        <Fragment>
-                          <Grid item xs={3}>
-                            <Steps
-                              activeStep={this.state.activeStep}
-                              setValueInMainState={this.setValueInState}
-                              loading={feedback.loading}
-                            />
-                          </Grid>
-                          <Grid item xs={6}>
-                            <StyledPaper>
-                              <Form
-                                data={data}
+                          <Fragment>
+                            <Grid item xs={3}>
+                              <Steps
                                 activeStep={this.state.activeStep}
                                 setValueInMainState={this.setValueInState}
-                                setValueInMainStateAsync={
-                                  this.setValueInStateAsync
-                                }
                                 loading={feedback.loading}
-                                error={feedback.error}
-                                submit={submit}
                               />
-                            </StyledPaper>
-                          </Grid>
-                          <Grid item xs={3} />
-                        </Fragment>
-                      );
-                    }}
-                  </Mutation>
-                </Grid>
-              </Content>
-            );
-          return <Typography>Błąd pobierania danych</Typography>;
-        }}
-      </Query>
+                            </Grid>
+                            <Grid item xs={6}>
+                              <StyledPaper>
+                                <Form
+                                  data={data}
+                                  activeStep={this.state.activeStep}
+                                  setValueInMainState={this.setValueInState}
+                                  setValueInMainStateAsync={
+                                    this.setValueInStateAsync
+                                  }
+                                  loading={feedback.loading}
+                                  error={feedback.error}
+                                  submit={submit}
+                                />
+                              </StyledPaper>
+                            </Grid>
+                            <Grid item xs={3} />
+                          </Fragment>
+                        );
+                      }}
+                    </Mutation>
+                  </Grid>
+                </Content>
+              );
+            return <Typography>Błąd pobierania danych</Typography>;
+          }}
+        </Query>
+      </MustBeLoggedIn>
     );
   }
 }

@@ -6,3 +6,4 @@ package-lock.json
 .build/
 layout.md
 variables.env
+.history/

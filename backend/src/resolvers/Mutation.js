@@ -71,16 +71,14 @@ const Mutation = {
     argsValidation(args);
     newPasswordValidation(args.password, args.repeatedPassword);
     const encryptedPassword = await getEncryptedPassword(args.password);
-    const user = await context.db.mutation.createUser(
-      {
-        data: {
-          ...args,
-          password: encryptedPassword,
-          permissions: { set: ["USER"] }
-        }
-      },
-      info
-    );
+    // exclude repeated password from submit data
+    const { repeatedPassword, ...otherArgs } = args;
+    const data = {
+      ...otherArgs,
+      password: encryptedPassword,
+      permissions: { set: ["USER"] }
+    };
+    const user = await context.db.mutation.createUser({ data }, info);
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     context.response.cookie("token", token, userCookieParameters);
     return user;

@@ -33,12 +33,12 @@ const EngineAndDriveModal = props => (
             justify="flex-start"
             canCreateOption
             unit="cm3"
-            nameLeft="engineSize_gt"
-            nameRight="engineSize_lt"
+            nameLeft="engineSize_gte"
+            nameRight="engineSize_lte"
             labelLeft="Od"
             labelRight="Do"
-            valueLeft={props.values.engineSize_gt}
-            valueRight={props.values.engineSize_lt}
+            valueLeft={props.values.engineSize_gte}
+            valueRight={props.values.engineSize_lte}
             handleChange={props.handleChangeWithoutFiltering}
             options={props.options.EngineSize.map(item => ({
               label: `${item} cm3`,
@@ -51,12 +51,12 @@ const EngineAndDriveModal = props => (
             justify="flex-start"
             canCreateOption
             unit="km"
-            nameLeft="power_gt"
-            nameRight="power_lt"
+            nameLeft="power_gte"
+            nameRight="power_lte"
             labelLeft="Od"
             labelRight="Do"
-            valueLeft={props.values.power_gt}
-            valueRight={props.values.power_lt}
+            valueLeft={props.values.power_gte}
+            valueRight={props.values.power_lte}
             handleChange={props.handleChangeWithoutFiltering}
             options={props.options.Power.map(item => ({
               label: `${item} km`,
@@ -69,12 +69,12 @@ const EngineAndDriveModal = props => (
             justify="flex-start"
             canCreateOption
             unit="nm"
-            nameLeft="torque_gt"
-            nameRight="torque_lt"
+            nameLeft="torque_gte"
+            nameRight="torque_lte"
             labelLeft="Od"
             labelRight="Do"
-            valueLeft={props.values.torque_gt}
-            valueRight={props.values.torque_lt}
+            valueLeft={props.values.torque_gte}
+            valueRight={props.values.torque_lte}
             handleChange={props.handleChangeWithoutFiltering}
             options={props.options.Torque.map(item => ({
               label: `${item} nm`,

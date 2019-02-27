@@ -38,6 +38,9 @@ const styles = theme => ({
   },
   switchLabel: {
     color: theme.palette.primary.contrastText
+  },
+  textField: {
+    width: 160
   }
 });
 
@@ -104,14 +107,15 @@ class Layout extends Component {
           <div className={this.props.classes.basicFiltersRoot}>
             <StyledFilterTitle>Cena (zł)</StyledFilterTitle>
             <DoubleInputs
+              className={this.props.classes.textField}
               canCreateOption
               unit="PLN"
-              nameLeft="price_gt"
-              nameRight="price_lt"
+              nameLeft="price_gte"
+              nameRight="price_lte"
               labelLeft="Cena od"
               labelRight="Cena do"
-              valueLeft={this.props.values.price_gt}
-              valueRight={this.props.values.price_lt}
+              valueLeft={this.props.values.price_gte}
+              valueRight={this.props.values.price_lte}
               handleChange={this.props.handleChange}
               options={this.props.options.Price.map(item => ({
                 label: `${item} PLN`,
@@ -121,31 +125,34 @@ class Layout extends Component {
             <StyledFilterTitle>Lokalizacja</StyledFilterTitle>
             <StyledFormControl>
               <Autocomplete
-                options={this.props.options.Localization.map(item => ({
+                className={this.props.classes.textField}
+                options={this.props.options.Location.map(item => ({
                   label: item,
                   value: item
                 }))}
-                value={this.props.values.localization}
+                value={this.props.values.location}
                 handleChange={this.props.handleChange}
-                name="localization"
+                name="location"
                 placeholder="Miejscowość"
               />
             </StyledFormControl>
             <StyledFormControl>
               <Autocomplete
-                options={this.props.options.Localization.map(item => ({
+                className={this.props.classes.textField}
+                options={this.props.options.Location.map(item => ({
                   label: item,
                   value: item
                 }))}
-                value={this.props.values.localization}
+                value={this.props.values.location}
                 handleChange={this.props.handleChange}
-                name="localization"
+                name="location"
                 placeholder="Zasięg"
               />
             </StyledFormControl>
             <StyledFilterTitle>Cechy pojazdu</StyledFilterTitle>
             <StyledFormControl>
               <Autocomplete
+                className={this.props.classes.textField}
                 value={this.props.values.type}
                 options={this.props.options.Type.map(item => ({
                   label: displayedText("type", item),
@@ -158,6 +165,7 @@ class Layout extends Component {
             </StyledFormControl>
             <StyledFormControl>
               <Autocomplete
+                className={this.props.classes.textField}
                 value={this.props.values.fuelType}
                 options={this.props.options.FuelType.map(item => ({
                   label: displayedText("fuelType", item),
@@ -170,6 +178,7 @@ class Layout extends Component {
             </StyledFormControl>
             <StyledFormControl>
               <Autocomplete
+                className={this.props.classes.textField}
                 value={this.props.values.brand}
                 options={
                   this.props.options.Brand
@@ -189,6 +198,7 @@ class Layout extends Component {
             {this.props.values.brand == null ? (
               <StyledFormControl>
                 <Autocomplete
+                  className={this.props.classes.textField}
                   options={[]}
                   handleChange={() => null}
                   placeholder="Model pojazdu"
@@ -206,6 +216,7 @@ class Layout extends Component {
                   return data ? (
                     <StyledFormControl>
                       <Autocomplete
+                        className={this.props.classes.textField}
                         value={this.props.values.model}
                         options={
                           data.availableModelsOfBrand
@@ -225,14 +236,15 @@ class Layout extends Component {
               </Query>
             )}
             <DoubleInputs
+              className={this.props.classes.textField}
               canCreateOption
               unit=""
-              nameLeft="productionYear_gt"
-              nameRight="productionYear_lt"
+              nameLeft="productionYear_gte"
+              nameRight="productionYear_lte"
               labelLeft="Rok produkcji od"
               labelRight="Rok produkcji do"
-              valueLeft={this.props.values.productionYear_gt}
-              valueRight={this.props.values.productionYear_lt}
+              valueLeft={this.props.values.productionYear_gte}
+              valueRight={this.props.values.productionYear_lte}
               handleChange={this.props.handleChange}
               options={this.props.options.ProductionYear.map(item => ({
                 label: item,
@@ -240,14 +252,15 @@ class Layout extends Component {
               }))}
             />
             <DoubleInputs
+              className={this.props.classes.textField}
               canCreateOption
               unit="km"
-              nameLeft="mileage_gt"
-              nameRight="mileage_lt"
+              nameLeft="mileage_gte"
+              nameRight="mileage_lte"
               labelLeft="Przebieg od"
               labelRight="Przebieg do"
-              valueLeft={this.props.values.mileage_gt}
-              valueRight={this.props.values.mileage_lt}
+              valueLeft={this.props.values.mileage_gte}
+              valueRight={this.props.values.mileage_lte}
               handleChange={this.props.handleChange}
               options={this.props.options.Mileage.map(item => ({
                 label: `${item} km`,

@@ -1,4 +1,7 @@
-export default (name, key) => variants[name][key];
+import { removePrefixFromValueName } from "../src/globalMethods";
+
+export default (name, key) =>
+  variants[name][key] || variants[name][removePrefixFromValueName(key)];
 
 const variants = {
   brand: {
@@ -179,7 +182,7 @@ const variants = {
   },
   attributesNames: {
     price: "Cena",
-    localization: "Lokalizacja",
+    location: "Lokacja",
     avatar: "Miniaturka",
     photos: "Galeria zdjęć",
     type: "Rodzaj nadwozia",
@@ -209,6 +212,7 @@ const variants = {
     tuning: "Tuning",
     hasParticulateFilter: "Posiada filtr cząstek stałych",
     steeringWheelOnTheRight: "Kierownica po prawej stronie",
-    color: "Kolor"
+    color: "Kolor",
+    description: "Opis ogłoszenia"
   }
 };

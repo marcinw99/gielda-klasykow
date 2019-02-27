@@ -34,7 +34,7 @@ type Post {
   car: Car!
   user: User!
   price: Int!
-  localization: String
+  location: String!
   avatar: String
   photos: [String]!
   description: String
@@ -53,6 +53,7 @@ type User {
 
 type additionalAccessories_Safety {
   id: ID! @unique
+  car: Car!
   ABS: Boolean
   ESP: Boolean
   ASR: Boolean
@@ -67,6 +68,7 @@ type additionalAccessories_Safety {
 
 type additionalAccessories_Comfort_Passenger {
   id: ID! @unique
+  car: Car!
   ELECTRIC_FRONT_WINDOWS: Boolean
   ELECTRIC_BACK_WINDOWS: Boolean
   FACTORY_RADIO: Boolean
@@ -97,6 +99,7 @@ type additionalAccessories_Comfort_Passenger {
 
 type additionalAccessories_Comfort_Driver {
   id: ID! @unique
+  car: Car!
   POWER_STEERING: Boolean
   HEATED_STEERING_WHEEL: Boolean
   MULTIFUNCTION_STEERING_WHEEL: Boolean
@@ -120,6 +123,7 @@ type additionalAccessories_Comfort_Driver {
 
 type additionalAccessories_Appereance {
   id: ID! @unique
+  car: Car!
   ALLOY_WHEELS: Boolean
   TINTED_WINDOWS: Boolean
   METALLIC_PAINT: Boolean
