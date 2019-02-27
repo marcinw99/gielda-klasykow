@@ -1,4 +1,7 @@
-export default (name, key) => variants[name][key];
+import { removePrefixFromValueName } from "../src/globalMethods";
+
+export default (name, key) =>
+  variants[name][key] || variants[name][removePrefixFromValueName(key)];
 
 const variants = {
   brand: {

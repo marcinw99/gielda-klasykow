@@ -89,7 +89,8 @@ export function getTypesFields(data) {
 
 const typeAcceptsValue = (type, valueName) =>
   // slice for prefixes like price_gt, price_lt etc.
-  type.indexOf(valueName) !== -1 || type.indexOf(valueName.slice(0, -3)) !== -1
+  type.indexOf(valueName) !== -1 ||
+  type.indexOf(removePrefixFromValueName(valueName)) !== -1
     ? true
     : false;
 
@@ -174,5 +175,12 @@ export const partialGetFormattedPayload = (data, fetchedSubTypes) => {
   );
   return result;
 };
+
+/////
+
+///// removePrefixFromValueName
+
+export const removePrefixFromValueName = name =>
+  name.slice(0, name.indexOf("_") === -1 ? name.length : name.indexOf("_"));
 
 /////
