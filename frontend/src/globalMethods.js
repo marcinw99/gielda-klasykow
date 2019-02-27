@@ -88,7 +88,6 @@ export function getTypesFields(data) {
 ///// assignValuesToProperDataType functions
 
 const typeAcceptsValue = (type, valueName) =>
-  // slice for prefixes like price_gt, price_lt etc.
   type.indexOf(valueName) !== -1 ||
   type.indexOf(removePrefixFromValueName(valueName)) !== -1
     ? true

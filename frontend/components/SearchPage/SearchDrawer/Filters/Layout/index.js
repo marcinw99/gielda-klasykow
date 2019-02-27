@@ -110,12 +110,12 @@ class Layout extends Component {
               className={this.props.classes.textField}
               canCreateOption
               unit="PLN"
-              nameLeft="price_gt"
-              nameRight="price_lt"
+              nameLeft="price_gte"
+              nameRight="price_lte"
               labelLeft="Cena od"
               labelRight="Cena do"
-              valueLeft={this.props.values.price_gt}
-              valueRight={this.props.values.price_lt}
+              valueLeft={this.props.values.price_gte}
+              valueRight={this.props.values.price_lte}
               handleChange={this.props.handleChange}
               options={this.props.options.Price.map(item => ({
                 label: `${item} PLN`,
@@ -239,12 +239,12 @@ class Layout extends Component {
               className={this.props.classes.textField}
               canCreateOption
               unit=""
-              nameLeft="productionYear_gt"
-              nameRight="productionYear_lt"
+              nameLeft="productionYear_gte"
+              nameRight="productionYear_lte"
               labelLeft="Rok produkcji od"
               labelRight="Rok produkcji do"
-              valueLeft={this.props.values.productionYear_gt}
-              valueRight={this.props.values.productionYear_lt}
+              valueLeft={this.props.values.productionYear_gte}
+              valueRight={this.props.values.productionYear_lte}
               handleChange={this.props.handleChange}
               options={this.props.options.ProductionYear.map(item => ({
                 label: item,
@@ -255,12 +255,12 @@ class Layout extends Component {
               className={this.props.classes.textField}
               canCreateOption
               unit="km"
-              nameLeft="mileage_gt"
-              nameRight="mileage_lt"
+              nameLeft="mileage_gte"
+              nameRight="mileage_lte"
               labelLeft="Przebieg od"
               labelRight="Przebieg do"
-              valueLeft={this.props.values.mileage_gt}
-              valueRight={this.props.values.mileage_lt}
+              valueLeft={this.props.values.mileage_gte}
+              valueRight={this.props.values.mileage_lte}
               handleChange={this.props.handleChange}
               options={this.props.options.Mileage.map(item => ({
                 label: `${item} km`,
