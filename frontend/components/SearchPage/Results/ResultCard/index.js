@@ -41,7 +41,10 @@ const styles = theme => ({
 const ResultCard = ({ classes, car, price, avatar }) => (
   <Card className={classes.root}>
     <CardActionArea>
-      <CardMedia className={classes.media} image={avatar} />
+      <CardMedia
+        className={classes.media}
+        image={avatar || "/static/noImageAvailable.jpg"}
+      />
       <CardContent>
         <CardTitle car={car} />
         <div className={classes.details}>
@@ -68,10 +71,6 @@ ResultCard.propTypes = {
   car: PropTypes.object.isRequired,
   price: PropTypes.number.isRequired,
   avatar: PropTypes.string
-};
-
-ResultCard.defaultProps = {
-  avatar: "/static/noImageAvailable.jpg"
 };
 
 export default withStyles(styles)(ResultCard);
