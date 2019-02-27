@@ -104,10 +104,12 @@ export const blankFiltersState = {
 const standardRules = {
   number: {
     type: "number",
+    valueNestedInObj: true,
     maxValue: 10000000
   },
   string: {
     type: "string",
+    valueNestedInObj: true,
     maxLength: "30"
   }
 };
@@ -118,6 +120,7 @@ export const filtersValidationRules = {
   location: standardRules.string,
   productionYear: {
     type: "number",
+    valueNestedInObj: true,
     minValue: 1800,
     maxValue: new Date().getFullYear()
   },
