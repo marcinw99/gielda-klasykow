@@ -1,5 +1,4 @@
-#endpoint: ${env:PRISMA_ENDPOINT}
-endpoint: https://gielda-klasykow-79a92736cd.herokuapp.com/gielda-klasykow-prod/prod
+endpoint: ${env:PRISMA_ENDPOINT}
 datamodel:
   - enums.prisma
   - datamodel.prisma
