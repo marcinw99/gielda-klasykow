@@ -1,7 +1,9 @@
-endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: ${env:PRISMA_ENDPOINT}
+endpoint: https://gielda-klasykow-79a92736cd.herokuapp.com/gielda-klasykow-prod/prod
 datamodel:
   - enums.prisma
   - datamodel.prisma
+secret: ${env:PRISMA_SECRET}
 hooks:
   post-deploy:
     - graphql get-schema -p prisma
