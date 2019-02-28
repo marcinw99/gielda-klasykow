@@ -48,4 +48,4 @@ const passwordStrengthLevels = {
   veryStrong: veryStrongRegExpressions
 };
 
-module.exports = passwordStrengthLevels;
+export default passwordStrengthLevels;

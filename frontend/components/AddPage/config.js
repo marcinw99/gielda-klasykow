@@ -1,4 +1,5 @@
 import { getArrayOfNumbers } from "../../src/globalMethods";
+import postsFieldsValidationRules from "../../globalConfig/postsFieldsValidationRules";
 
 const blankBasicInfo = {
   type: null,
@@ -156,7 +157,7 @@ export const recommendedFields = [
   { name: "description", inStep: 6 }
 ];
 
-export const validationRules = require("../../../config/postsFieldsValidationRules");
+export const validationRules = postsFieldsValidationRules;
 
 // Rules below don't prevent submitting the form
 // They are showed as warnings in snackbar

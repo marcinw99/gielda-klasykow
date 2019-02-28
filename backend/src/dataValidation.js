@@ -1,8 +1,8 @@
 import { isBoolean, isArray, isString } from "util";
 
 import messageCodes from "./messageCodes";
-const passwordStrengthLevels = require("../../config/passwordStrengthLevels");
-const postFieldsValidationRules = require("../../config/passwordStrengthLevels");
+import passwordStrengthLevels from "../globalConfig/passwordStrengthLevels";
+import postsFieldsValidationRules from "../globalConfig/postsFieldsValidationRules";
 
 export function isPasswordValid(password) {
   // password is valid when meets average strength level rules
@@ -76,12 +76,12 @@ const isValueIncorrect = ({ value, rules }) => {
 };
 
 export const formValueIsIncorrect = ({ name, value }) => {
-  if (Object.keys(postFieldsValidationRules).indexOf(name) === -1) {
+  if (Object.keys(postsFieldsValidationRules).indexOf(name) === -1) {
     return isValueIncorrect({
       value,
-      rules: postFieldsValidationRules.default
+      rules: postsFieldsValidationRules.default
     });
   } else {
-    return isValueIncorrect({ value, rules: postFieldsValidationRules[name] });
+    return isValueIncorrect({ value, rules: postsFieldsValidationRules[name] });
   }
 };
