@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import Head from "next/head";
 import { Typography, Grid } from "@material-ui/core";
 import { Query, Mutation } from "react-apollo";
 
@@ -51,68 +52,75 @@ class AddPage extends Component {
 
   render() {
     return (
-      <MustBeLoggedIn thisUser={this.props.thisUser}>
-        <Query query={ADD_POST_QUERIES}>
-          {({ data, error, loading }) => {
-            if (loading) {
-              return <Typography>Pobieranie danych...</Typography>;
-            }
-            if (error) return <Typography>Błąd pobierania danych</Typography>;
-            if (data)
-              return (
-                <Content>
-                  <StyledPageTitle>Dodawanie ogłoszenia</StyledPageTitle>
-                  <Grid container justify="center">
-                    <Mutation
-                      mutation={ADD_POST_MUTATION}
-                      variables={{ data: this.state.submitData }}
-                    >
-                      {(submit, feedback) => {
-                        if (feedback.data) {
+      <Fragment>
+        <Head>
+          <title>Dodaj klasyka - Giełda klasyków</title>
+        </Head>
+        <MustBeLoggedIn thisUser={this.props.thisUser}>
+          <Query query={ADD_POST_QUERIES}>
+            {({ data, error, loading }) => {
+              if (loading) {
+                return <Typography>Pobieranie danych...</Typography>;
+              }
+              if (error) return <Typography>Błąd pobierania danych</Typography>;
+              if (data)
+                return (
+                  <Content>
+                    <StyledPageTitle>Dodawanie ogłoszenia</StyledPageTitle>
+                    <Grid container justify="center">
+                      <Mutation
+                        mutation={ADD_POST_MUTATION}
+                        variables={{ data: this.state.submitData }}
+                      >
+                        {(submit, feedback) => {
+                          if (feedback.data) {
+                            return (
+                              <Grid item xs={6}>
+                                <StyledPaper>
+                                  <AfterSubmit
+                                    data={feedback.data.createPost}
+                                  />
+                                </StyledPaper>
+                              </Grid>
+                            );
+                          }
                           return (
-                            <Grid item xs={6}>
-                              <StyledPaper>
-                                <AfterSubmit data={feedback.data.createPost} />
-                              </StyledPaper>
-                            </Grid>
-                          );
-                        }
-                        return (
-                          <Fragment>
-                            <Grid item xs={3}>
-                              <Steps
-                                activeStep={this.state.activeStep}
-                                setValueInMainState={this.setValueInState}
-                                loading={feedback.loading}
-                              />
-                            </Grid>
-                            <Grid item xs={6}>
-                              <StyledPaper>
-                                <Form
-                                  data={data}
+                            <Fragment>
+                              <Grid item xs={3}>
+                                <Steps
                                   activeStep={this.state.activeStep}
                                   setValueInMainState={this.setValueInState}
-                                  setValueInMainStateAsync={
-                                    this.setValueInStateAsync
-                                  }
                                   loading={feedback.loading}
-                                  error={feedback.error}
-                                  submit={submit}
                                 />
-                              </StyledPaper>
-                            </Grid>
-                            <Grid item xs={3} />
-                          </Fragment>
-                        );
-                      }}
-                    </Mutation>
-                  </Grid>
-                </Content>
-              );
-            return <Typography>Błąd pobierania danych</Typography>;
-          }}
-        </Query>
-      </MustBeLoggedIn>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <StyledPaper>
+                                  <Form
+                                    data={data}
+                                    activeStep={this.state.activeStep}
+                                    setValueInMainState={this.setValueInState}
+                                    setValueInMainStateAsync={
+                                      this.setValueInStateAsync
+                                    }
+                                    loading={feedback.loading}
+                                    error={feedback.error}
+                                    submit={submit}
+                                  />
+                                </StyledPaper>
+                              </Grid>
+                              <Grid item xs={3} />
+                            </Fragment>
+                          );
+                        }}
+                      </Mutation>
+                    </Grid>
+                  </Content>
+                );
+              return <Typography>Błąd pobierania danych</Typography>;
+            }}
+          </Query>
+        </MustBeLoggedIn>
+      </Fragment>
     );
   }
 }
