@@ -21,8 +21,12 @@ export const SIGNUP_MUTATION = gql`
 `;
 
 export const SIGNIN_MUTATION = gql`
-  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
-    signIn(email: $email, password: $password) {
+  mutation SIGNIN_MUTATION(
+    $email: String!
+    $password: String!
+    $rememberMe: Boolean
+  ) {
+    signIn(email: $email, password: $password, rememberMe: $rememberMe) {
       id
       email
       name

@@ -33,10 +33,10 @@ async function getEncryptedPassword(password) {
   return await bcrypt.hash(password, 10);
 }
 
-const userCookieParameters = {
-  httpOnly: true,
-  maxAge: 1000 * 60 * 60 * 24 * 365
-};
+const getUserCookieParameters = ({ longTimeCookies }) =>
+  longTimeCookies
+    ? { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 }
+    : { httpOnly: true, expires: new Date(Date.now() + 1000) };
 
 const Mutation = {
   createPost: async function(parent, { data }, context, info) {
@@ -80,11 +80,16 @@ const Mutation = {
     };
     const user = await context.db.mutation.createUser({ data }, info);
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
-    context.response.cookie("token", token, userCookieParameters);
+    context.response.cookie(
+      "token",
+      token,
+      getUserCookieParameters({ longTimeCookies: true })
+    );
     return user;
   },
 
   async signIn(parent, args, context, info) {
+    console.log(args);
     argsValidation(args);
     const user = await context.db.query.user({ where: { email: args.email } });
     if (!user) {
@@ -95,7 +100,11 @@ const Mutation = {
       throwError(messageCodes.passwordNotCorrect);
     }
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
-    context.response.cookie("token", token, userCookieParameters);
+    context.response.cookie(
+      "token",
+      token,
+      getUserCookieParameters({ longTimeCookies: args.rememberMe })
+    );
     return user;
   },
 
@@ -146,7 +155,11 @@ const Mutation = {
       }
     });
     const token = jwt.sign({ userId: updatedUser.id }, process.env.APP_SECRET);
-    context.response.cookie("token", token, userCookieParameters);
+    context.response.cookie(
+      "token",
+      token,
+      getUserCookieParameters({ longTimeCookies: true })
+    );
     return updatedUser;
   }
 };

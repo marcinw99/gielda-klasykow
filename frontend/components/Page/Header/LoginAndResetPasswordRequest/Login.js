@@ -15,7 +15,8 @@ import { CURRENT_USER_QUERY } from "../../../../src/QueryComponents/User";
 
 const initialState = {
   email: "",
-  password: ""
+  password: "",
+  rememberMe: false
 };
 
 class Login extends Component {
@@ -31,16 +32,19 @@ class Login extends Component {
     });
   };
 
+  handleCheckboxChange = name => event => {
+    this.setState({
+      [name]: event.target.checked
+    });
+  };
+
   render() {
     return (
       <Fragment>
         <StyledTitle>Zaloguj się</StyledTitle>
         <Mutation
           mutation={SIGNIN_MUTATION}
-          variables={{
-            email: this.state.email,
-            password: this.state.password
-          }}
+          variables={{ ...this.state }}
           refetchQueries={[
             {
               query: CURRENT_USER_QUERY
@@ -75,7 +79,14 @@ class Login extends Component {
               <Error error={error} />
               <Grid container justify="space-between">
                 <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
+                  control={
+                    <Checkbox
+                      checked={this.state.rememberMe}
+                      onChange={this.handleCheckboxChange("rememberMe")}
+                      value="rememberMe"
+                      color="primary"
+                    />
+                  }
                   label="Zapamiętaj mnie"
                 />{" "}
                 <StyledSwitchView onClick={this.props.switchView}>
