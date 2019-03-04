@@ -79,6 +79,7 @@ class Search extends Component {
                         setValueInMainState={this.setValueInState}
                         pageInfo={data.postsConnection.pageInfo}
                         activePage={this.state.activePage}
+                        resultsAmount={data.postsConnection.aggregate.count}
                       />
                     </Grid>
                   </Fragment>

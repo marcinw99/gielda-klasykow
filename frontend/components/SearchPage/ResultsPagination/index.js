@@ -15,7 +15,7 @@ const Pagination = props => {
   const handleChange = activePage => {
     props.setValueInMainState({ activePage });
   };
-  return (
+  return props.resultsAmount === 0 ? null : (
     <div className={props.classes.root}>
       <Grid container spacing={8}>
         {props.activePage > 2 ? (

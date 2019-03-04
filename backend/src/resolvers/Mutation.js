@@ -89,7 +89,6 @@ const Mutation = {
   },
 
   async signIn(parent, args, context, info) {
-    console.log(args);
     argsValidation(args);
     const user = await context.db.query.user({ where: { email: args.email } });
     if (!user) {
