@@ -53,8 +53,3 @@ const getEmailTemplate = ({ variant, data }) => {
       return " ";
   }
 };
-
-/* transporter.sendMail(message, (error, info) => {
-  if (error) console.log(error);
-  console.log(info);
-}); */
