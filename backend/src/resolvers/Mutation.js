@@ -141,26 +141,47 @@ const Mutation = {
       where: { email: args.email },
       data: { resetToken, resetTokenExpiry }
     });
+    smtpClient.sendMail(
+      getMessage({
+        to: args.email,
+        variant: "resetPassword",
+        data: {
+          name: args.name,
+          resetPasswordLink: `https://gieldaklasykow.now.sh/nowehaslo?token=${resetToken}`
+        }
+      }),
+      (error, info) => {
+        if (error)
+          return {
+            code: messageCodes.couldNotSendEmail
+          };
+        return {
+          code: messageCodes.emailWithResetLinkSent
+        };
+      }
+    );
     return {
       code: messageCodes.emailWithResetLinkSent
     };
   },
 
-  async resetPassword(
-    parent,
-    args = { password, repeatedPassword, resetToken },
-    context,
-    info
-  ) {
+  async resetPassword(parent, args, context, info) {
     argsValidation(args);
-    newPasswordValidation({ password, repeatedPassword });
+    newPasswordValidation({
+      password: args.password,
+      repeatedPassword: args.repeatedPassword
+    });
     const [user] = await context.db.query.users({
-      where: { resetToken, resetTokenExpiry_gte: Date.now() - 3600000 }
+      where: {
+        resetToken: args.resetToken,
+        resetTokenExpiry_gte: Date.now() - 3600000
+      }
     });
     if (!user) {
       throwError(messageCodes.resetLinkExpiredOrInvalid);
     }
-    const encryptedPassword = await getEncryptedPassword(password);
+
+    const encryptedPassword = await getEncryptedPassword(args.password);
     const updatedUser = await context.db.mutation.updateUser({
       where: { id: user.id },
       data: {

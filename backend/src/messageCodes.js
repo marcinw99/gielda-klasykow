@@ -8,6 +8,7 @@ const messageCodes = {
   argumentsValuesNotInCorrectRange: 606,
   argumentsInvalid: 607,
   userNotLoggedIn: 608,
+  couldNotSendEmail: 609,
 
   successfulSignOut: 700,
   emailWithResetLinkSent: 701,
