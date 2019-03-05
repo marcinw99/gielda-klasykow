@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import { randomBytes } from "crypto";
 import { promisify } from "util";
 
+import smtpClient, { getMessage } from "../smtpClient";
 import {
   isPasswordValid,
   areArgumentsLengthsInRange,
@@ -84,6 +85,21 @@ const Mutation = {
       "token",
       token,
       getUserCookieParameters({ longTimeCookies: true })
+    );
+    smtpClient.sendMail(
+      getMessage({
+        to: args.email,
+        variant: "newUser",
+        data: {
+          name: args.name,
+          confirmationLink:
+            "https://gieldaklasykow.now.sh/potwierdzenie?token=asdje2h13kjh12jg321g3h2g3jg21kh3"
+        }
+      }),
+      (error, info) => {
+        if (error) console.log(error);
+        console.log(info);
+      }
     );
     return user;
   },
