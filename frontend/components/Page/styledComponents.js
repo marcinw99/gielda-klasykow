@@ -1,5 +1,5 @@
 import React from "react";
-import { Fab } from "@material-ui/core";
+import { Fab, Grid } from "@material-ui/core";
 import { Brightness3, Brightness7 } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -22,4 +22,26 @@ const ThemeTogglerComponent = props => {
 
 export const ThemeToggler = withStyles(themeTogglerStyles)(
   ThemeTogglerComponent
+);
+
+// ContentContainer
+
+const contentContainerStyles = theme => ({
+  root: {
+    minHeight: `calc(100vh - ${theme.custom.headerHeight}px)`
+  }
+});
+
+const ContentContainer = ({ classes, ...other }) => (
+  <Grid
+    container
+    direction="column"
+    justify="space-between"
+    className={classes.root}
+    {...other}
+  />
+);
+
+export const StyledContentContainer = withStyles(contentContainerStyles)(
+  ContentContainer
 );
