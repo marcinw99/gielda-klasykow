@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { blankFiltersState, initialSearchParameters } from "../../config";
 import {
   prepareOptions,
+  addLabelsForOptions,
   getFormattedPayload,
   filterValueIsInvalid
 } from "../../helpers";
@@ -20,7 +21,11 @@ const initialState = {
 };
 
 class Logic extends Component {
-  state = initialState;
+  constructor(props) {
+    super(props);
+    this.state = initialState;
+    this.options = addLabelsForOptions(prepareOptions(this.props.data));
+  }
 
   componentDidMount() {
     const typesFields = getTypesFields({
@@ -103,7 +108,6 @@ class Logic extends Component {
   };
 
   render() {
-    const options = prepareOptions(this.props.data);
     return React.cloneElement(this.props.children, {
       values: this.state.filters,
       handleChange: this.handleChange,
@@ -111,7 +115,7 @@ class Logic extends Component {
       resetFilters: this.resetFilters,
       resetSpecificFiltersWithoutFiltering: this
         .resetSpecificFiltersWithoutFiltering,
-      options,
+      options: this.options,
       automaticFiltering: this.state.automaticFiltering,
       toggleAutomaticFiltering: this.toggleAutomaticFiltering,
       manualResultsRefetch: this.submitFilters

@@ -117,19 +117,13 @@ class Layout extends Component {
               valueLeft={this.props.values.price_gte}
               valueRight={this.props.values.price_lte}
               handleChange={this.props.handleChange}
-              options={this.props.options.Price.map(item => ({
-                label: `${item} PLN`,
-                value: item
-              }))}
+              options={this.props.options.Price}
             />
             <StyledFilterTitle>Lokalizacja</StyledFilterTitle>
             <StyledFormControl>
               <Autocomplete
                 className={this.props.classes.textField}
-                options={this.props.options.Location.map(item => ({
-                  label: item,
-                  value: item
-                }))}
+                options={this.props.options.Location}
                 value={this.props.values.location}
                 handleChange={this.props.handleChange}
                 name="location"
@@ -139,10 +133,7 @@ class Layout extends Component {
             <StyledFormControl>
               <Autocomplete
                 className={this.props.classes.textField}
-                options={this.props.options.Location.map(item => ({
-                  label: item,
-                  value: item
-                }))}
+                options={this.props.options.Location}
                 value={this.props.values.location}
                 handleChange={this.props.handleChange}
                 name="location"
@@ -154,10 +145,7 @@ class Layout extends Component {
               <Autocomplete
                 className={this.props.classes.textField}
                 value={this.props.values.type}
-                options={this.props.options.Type.map(item => ({
-                  label: displayedText("type", item),
-                  value: item
-                }))}
+                options={this.props.options.Type}
                 handleChange={this.props.handleChange}
                 name="type"
                 placeholder="Rodzaj nadwozia"
@@ -167,10 +155,7 @@ class Layout extends Component {
               <Autocomplete
                 className={this.props.classes.textField}
                 value={this.props.values.fuelType}
-                options={this.props.options.FuelType.map(item => ({
-                  label: displayedText("fuelType", item),
-                  value: item
-                }))}
+                options={this.props.options.FuelType}
                 handleChange={this.props.handleChange}
                 name="fuelType"
                 placeholder="Rodzaj paliwa"
@@ -180,16 +165,7 @@ class Layout extends Component {
               <Autocomplete
                 className={this.props.classes.textField}
                 value={this.props.values.brand}
-                options={
-                  this.props.options.Brand
-                    ? this.props.options.Brand.map(item => ({
-                        label: `${displayedText("brand", item.value)} (${
-                          item.count
-                        })`,
-                        value: item.value
-                      }))
-                    : []
-                }
+                options={this.props.options.Brand}
                 handleChange={this.props.handleChange}
                 name="brand"
                 placeholder="Marka pojazdu"
@@ -246,10 +222,7 @@ class Layout extends Component {
               valueLeft={this.props.values.productionYear_gte}
               valueRight={this.props.values.productionYear_lte}
               handleChange={this.props.handleChange}
-              options={this.props.options.ProductionYear.map(item => ({
-                label: item,
-                value: item
-              }))}
+              options={this.props.options.ProductionYear}
             />
             <DoubleInputs
               className={this.props.classes.textField}
@@ -262,10 +235,7 @@ class Layout extends Component {
               valueLeft={this.props.values.mileage_gte}
               valueRight={this.props.values.mileage_lte}
               handleChange={this.props.handleChange}
-              options={this.props.options.Mileage.map(item => ({
-                label: `${item} km`,
-                value: item
-              }))}
+              options={this.props.options.Mileage}
             />
           </div>
           <StyledFilterTitle>Zaawansowane filtrowanie</StyledFilterTitle>
