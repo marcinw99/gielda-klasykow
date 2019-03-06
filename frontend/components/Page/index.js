@@ -6,7 +6,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import User from "../../src/QueryComponents/User";
 import Snackbar from "../Snackbar";
-import { Grid } from "@material-ui/core";
 import CookiesConsentBanner from "./CookiesConsentBanner";
 
 const Page = props => (
