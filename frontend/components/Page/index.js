@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import User from "../../src/QueryComponents/User";
 import Snackbar from "../Snackbar";
 import CookiesConsentBanner from "./CookiesConsentBanner";
+import AfterLoginActions from "./AfterLoginActions";
 
 const Page = props => (
   <User>
@@ -18,6 +19,7 @@ const Page = props => (
           <Footer />
         </StyledContentContainer>
         <ThemeToggler darkTheme={props.darkTheme} onClick={props.toggleTheme} />
+        {data.thisUser ? <AfterLoginActions data={data} /> : null}
         <CookiesConsentBanner />
         <Snackbar {...props.snackbar} {...props.snackbarMethods} />
       </div>

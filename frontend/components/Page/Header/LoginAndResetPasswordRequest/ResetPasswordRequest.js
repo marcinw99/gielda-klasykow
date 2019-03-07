@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
+import { Typography } from "@material-ui/core";
 
 import {
   StyledSubmit,
