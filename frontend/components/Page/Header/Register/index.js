@@ -10,6 +10,7 @@ import { StyledPopover, StyledSubmit, StyledTitle } from "../styledComponents";
 import { updatePasswordStrength } from "../../../../src/dataValidation";
 import { SIGNUP_MUTATION } from "../../../../src/Mutations/Login";
 import { CURRENT_USER_QUERY } from "../../../../src/QueryComponents/User";
+import { withSnackbar } from "../../../Snackbar/Context";
 
 const initialState = {
   name: "",
@@ -92,6 +93,12 @@ class Register extends Component {
                 e.preventDefault();
                 if (this.state.canSubmit) {
                   await send();
+                  this.props.manageSnackbar({
+                    open: true,
+                    message:
+                      "Witaj, wysłaliśmy e-mail, sprawdź skrzynkę pocztową.",
+                    variant: "success"
+                  });
                   this.setState(initialState);
                   this.props.handleClose();
                 }
@@ -154,4 +161,4 @@ Register.propTypes = {
   handleClose: PropTypes.func.isRequired
 };
 
-export default Register;
+export default withSnackbar(Register);
