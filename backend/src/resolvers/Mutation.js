@@ -34,6 +34,26 @@ async function getEncryptedPassword(password) {
   return await bcrypt.hash(password, 10);
 }
 
+function sendEmailWithConfirmationToken({
+  email,
+  name,
+  emailConfirmationToken
+}) {
+  smtpClient.sendMail(
+    getMessage({
+      to: email,
+      variant: "newUser",
+      data: {
+        name,
+        confirmationLink: `https://gieldaklasykow.now.sh/potwierdzenie?token=${emailConfirmationToken}`
+      }
+    }),
+    (error, info) => {
+      return { error, info };
+    }
+  );
+}
+
 const getUserCookieParameters = ({ longTimeCookies }) =>
   longTimeCookies
     ? { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 }
@@ -72,11 +92,17 @@ const Mutation = {
     argsValidation(args);
     newPasswordValidation(args.password, args.repeatedPassword);
     const encryptedPassword = await getEncryptedPassword(args.password);
+    const randomBytesPromiseified = promisify(randomBytes);
+    const emailConfirmationToken = (await randomBytesPromiseified(20)).toString(
+      "hex"
+    );
     // exclude repeated password from submit data
     const { repeatedPassword, ...otherArgs } = args;
     const data = {
       ...otherArgs,
       password: encryptedPassword,
+      emailConfirmed: false,
+      emailConfirmationToken,
       permissions: { set: ["USER"] }
     };
     const user = await context.db.mutation.createUser({ data }, info);
@@ -86,22 +112,46 @@ const Mutation = {
       token,
       getUserCookieParameters({ longTimeCookies: true })
     );
-    smtpClient.sendMail(
-      getMessage({
-        to: args.email,
-        variant: "newUser",
-        data: {
-          name: args.name,
-          confirmationLink:
-            "https://gieldaklasykow.now.sh/potwierdzenie?token=asdje2h13kjh12jg321g3h2g3jg21kh3"
-        }
-      }),
-      (error, info) => {
-        if (error) console.log(error);
-        console.log(info);
-      }
-    );
+    sendEmailWithConfirmationToken({
+      email: args.email,
+      name: args.name,
+      emailConfirmationToken
+    });
     return user;
+  },
+
+  async repeatEmailWithConfirmationToken(parent, args, context) {
+    const user = await context.db.query({ where: { email: args.email } });
+    if (user.emailConfirmed === true) {
+      return messageCodes.emailAlreadyConfirmed;
+    }
+    const { error, info } = sendEmailWithConfirmationToken({
+      email: args.email,
+      name: user.name,
+      emailConfirmationToken: user.emailConfirmationToken
+    });
+    if (error) {
+      return { code: messageCodes.couldNotSendEmail };
+    }
+    return { code: messageCodes.emailWithResetLinkSent };
+  },
+
+  async confirmEmail(parent, args, context) {
+    argsValidation(args);
+    const [user] = await context.db.query.users({
+      where: { emailConfirmationToken: args.emailConfirmationToken }
+    });
+    if (!user) {
+      throwError(messageCodes.linkExpiredOrInvalidOrEmailAlreadyConfirmed);
+    }
+    if (user.emailConfirmed === true) {
+      throwError(messageCodes.emailAlreadyConfirmed);
+    }
+    await context.db.mutation.updateUser({
+      where: { email: user.email },
+      data: { emailConfirmed: true, emailConfirmationToken: null }
+    });
+    return { code: messageCodes.emailConfirmedSuccessfully };
   },
 
   async signIn(parent, args, context, info) {
@@ -178,7 +228,7 @@ const Mutation = {
       }
     });
     if (!user) {
-      throwError(messageCodes.resetLinkExpiredOrInvalid);
+      throwError(messageCodes.linkExpiredOrInvalid);
     }
 
     const encryptedPassword = await getEncryptedPassword(args.password);
