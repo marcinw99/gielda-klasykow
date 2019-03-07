@@ -74,6 +74,25 @@ const getEmailTemplate = ({ variant, data }) => {
             <p>Jeśli powyższy przycisk nie działa, skopiuj poniższy link i wklej w adres strony.</p>
             <p>${data.resetPasswordLink}</p> </body> </html>`
       };
+    case "emailConfirmed":
+      return {
+        subject: "E-mail został potwierdzony - Giełda klasyków",
+        text: `Witaj ${data.name},
+        Twoje konto jest teraz aktywne, witamy na Giełdzie klasyków.`,
+        html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <title>E-mail został potwierdzony - Giełda klasyków</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        </head>
+
+        <body style="margin: 0; padding: 0;">
+            <h4>Witaj ${data.name},</h4>
+            <p>Twoje konto jest teraz aktywne, witamy na Giełdzie klasyków.</p>
+        </body> </html>`
+      };
     default:
       return " ";
   }

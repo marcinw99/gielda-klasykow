@@ -151,6 +151,18 @@ const Mutation = {
       where: { email: user.email },
       data: { emailConfirmed: true, emailConfirmationToken: null }
     });
+    smtpClient.sendMail(
+      getMessage({
+        to: user.email,
+        variant: "emailConfirmed",
+        data: {
+          name: user.name
+        }
+      }),
+      (error, info) => {
+        if (error) console.log(error);
+      }
+    );
     return { code: messageCodes.emailConfirmedSuccessfully };
   },
 
