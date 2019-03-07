@@ -3,7 +3,7 @@ import { Typography } from "@material-ui/core";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
-import Error from "../../../universal/Error";
+import getErrorMessage from "../../../universal/getErrorMessage";
 import FormField from "../../../universal/FormField";
 import StrengthLevelLabel from "../../../universal/StrengthLevelLabel";
 import { StyledPopover, StyledSubmit, StyledTitle } from "../styledComponents";
@@ -136,7 +136,9 @@ class Register extends Component {
                   </span>
                 ))}
               </Typography>
-              <Error error={error} />
+              <Typography color="secondary" gutterBottom>
+                {getErrorMessage(error)}
+              </Typography>
               <StyledSubmit>Zarejestruj się</StyledSubmit>
             </form>
           )}

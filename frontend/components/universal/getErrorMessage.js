@@ -1,7 +1,3 @@
-import React from "react";
-import { Typography } from "@material-ui/core";
-import PropTypes from "prop-types";
-
 import messageTexts from "../../resources/messageTexts";
 
 function getMessageParameters(payload) {
@@ -15,40 +11,23 @@ function getMessageParameters(payload) {
   return messageCode;
 }
 
-function ErrorLayout(props) {
-  return (
-    <div>
-      <Typography variant="h6" color="error">
-        Błąd
-      </Typography>
-      <Typography gutterBottom color="error">
-        {props.errorText}
-      </Typography>
-    </div>
-  );
-}
-
-const ErrorMessage = ({ error }) => {
+const getErrorMessage = error => {
   if (!error || !error.message) return null;
   if (
     error.networkError &&
     error.networkError.result &&
     error.networkError.result.errors.length
   ) {
-    return <ErrorLayout errorText="Wystąpił problem z połączeniem." />;
+    return "Wystąpił problem z połączeniem.";
   }
   var messageParameters = getMessageParameters(error);
   if (messageParameters) {
     const message = messageTexts[messageParameters.code](
       messageParameters.args
     );
-    return <ErrorLayout errorText={message} />;
+    return message;
   }
-  return <ErrorLayout errorText="Wystąpił nieoczekiwany błąd." />;
+  return "Wystąpił nieoczekiwany błąd.";
 };
 
-ErrorMessage.propTypes = {
-  error: PropTypes.object
-};
-
-export default ErrorMessage;
+export default getErrorMessage;

@@ -7,7 +7,7 @@ import {
   StyledTitle,
   StyledSwitchView
 } from "../styledComponents";
-import Error from "../../../universal/Error";
+import getErrorMessage from "../../../universal/getErrorMessage";
 import FormField from "../../../universal/FormField";
 import { REQUESTPASSWORDRESET_MUTATION } from "../../../../src/Mutations/PasswordReset";
 
@@ -59,7 +59,9 @@ class ResetPasswordRequest extends Component {
               <StyledSwitchView onClick={this.props.switchView}>
                 Dobra przypomniałem sobie
               </StyledSwitchView>
-              <Error error={error} />
+              <Typography color="secondary" gutterBottom>
+                {getErrorMessage(error)}
+              </Typography>
               <StyledSubmit>Zresetuj hasło</StyledSubmit>
             </form>
           )}

@@ -8,7 +8,7 @@ import {
   StyledTitle,
   StyledSwitchView
 } from "../styledComponents";
-import Error from "../../../universal/Error";
+import getErrorMessage from "../../../universal/getErrorMessage";
 import FormField from "../../../universal/FormField";
 import { SIGNIN_MUTATION } from "../../../../src/Mutations/Login";
 import { CURRENT_USER_QUERY } from "../../../../src/QueryComponents/User";
@@ -76,7 +76,9 @@ class Login extends Component {
                 value={this.state.password}
                 onChange={this.handleChange}
               />
-              <Error error={error} />
+              <Typography color="secondary" gutterBottom>
+                {getErrorMessage(error)}
+              </Typography>
               <Grid container justify="space-between">
                 <FormControlLabel
                   control={
