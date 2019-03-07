@@ -1947,6 +1947,8 @@ enum Country {
   ITALY
 }
 
+scalar DateTime
+
 enum Drive {
   FRONT_WHEEL_DRIVE
   REAR_WHEEL_DRIVE
@@ -2403,10 +2405,13 @@ type User {
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
   name: String!
   email: String!
+  emailConfirmed: Boolean
+  emailConfirmationToken: String
   password: String!
   resetToken: String
   resetTokenExpiry: Float
   permissions: [Permission!]!
+  createdAt: DateTime!
 }
 
 type UserConnection {
@@ -2419,6 +2424,8 @@ input UserCreateInput {
   posts: PostCreateManyWithoutUserInput
   name: String!
   email: String!
+  emailConfirmed: Boolean
+  emailConfirmationToken: String
   password: String!
   resetToken: String
   resetTokenExpiry: Float
@@ -2437,6 +2444,8 @@ input UserCreatepermissionsInput {
 input UserCreateWithoutPostsInput {
   name: String!
   email: String!
+  emailConfirmed: Boolean
+  emailConfirmationToken: String
   password: String!
   resetToken: String
   resetTokenExpiry: Float
@@ -2455,6 +2464,10 @@ enum UserOrderByInput {
   name_DESC
   email_ASC
   email_DESC
+  emailConfirmed_ASC
+  emailConfirmed_DESC
+  emailConfirmationToken_ASC
+  emailConfirmationToken_DESC
   password_ASC
   password_DESC
   resetToken_ASC
@@ -2471,10 +2484,13 @@ type UserPreviousValues {
   id: ID!
   name: String!
   email: String!
+  emailConfirmed: Boolean
+  emailConfirmationToken: String
   password: String!
   resetToken: String
   resetTokenExpiry: Float
   permissions: [Permission!]!
+  createdAt: DateTime!
 }
 
 type UserSubscriptionPayload {
@@ -2499,6 +2515,8 @@ input UserUpdateInput {
   posts: PostUpdateManyWithoutUserInput
   name: String
   email: String
+  emailConfirmed: Boolean
+  emailConfirmationToken: String
   password: String
   resetToken: String
   resetTokenExpiry: Float
@@ -2508,6 +2526,8 @@ input UserUpdateInput {
 input UserUpdateManyMutationInput {
   name: String
   email: String
+  emailConfirmed: Boolean
+  emailConfirmationToken: String
   password: String
   resetToken: String
   resetTokenExpiry: Float
@@ -2528,6 +2548,8 @@ input UserUpdatepermissionsInput {
 input UserUpdateWithoutPostsDataInput {
   name: String
   email: String
+  emailConfirmed: Boolean
+  emailConfirmationToken: String
   password: String
   resetToken: String
   resetTokenExpiry: Float
@@ -2585,6 +2607,22 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
+  emailConfirmed: Boolean
+  emailConfirmed_not: Boolean
+  emailConfirmationToken: String
+  emailConfirmationToken_not: String
+  emailConfirmationToken_in: [String!]
+  emailConfirmationToken_not_in: [String!]
+  emailConfirmationToken_lt: String
+  emailConfirmationToken_lte: String
+  emailConfirmationToken_gt: String
+  emailConfirmationToken_gte: String
+  emailConfirmationToken_contains: String
+  emailConfirmationToken_not_contains: String
+  emailConfirmationToken_starts_with: String
+  emailConfirmationToken_not_starts_with: String
+  emailConfirmationToken_ends_with: String
+  emailConfirmationToken_not_ends_with: String
   password: String
   password_not: String
   password_in: [String!]
@@ -2621,6 +2659,14 @@ input UserWhereInput {
   resetTokenExpiry_lte: Float
   resetTokenExpiry_gt: Float
   resetTokenExpiry_gte: Float
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

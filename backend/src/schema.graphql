@@ -62,7 +62,9 @@ type Mutation {
     repeatedPassword: String!
     name: String!
   ): User!
+  repeatEmailWithConfirmationToken(email: String!): MessageCode
   signIn(email: String!, password: String!, rememberMe: Boolean): User!
+  confirmEmail(emailConfirmationToken: String!): MessageCode
   signOut: MessageCode
   requestPasswordReset(email: String!): MessageCode
   resetPassword(
