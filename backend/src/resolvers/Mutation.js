@@ -47,10 +47,7 @@ function sendEmailWithConfirmationToken({
         name,
         confirmationLink: `https://gieldaklasykow.now.sh/potwierdzenie?token=${emailConfirmationToken}`
       }
-    }),
-    (error, info) => {
-      return { error, info };
-    }
+    })
   );
 }
 
@@ -121,18 +118,15 @@ const Mutation = {
   },
 
   async repeatEmailWithConfirmationToken(parent, args, context) {
-    const user = await context.db.query({ where: { email: args.email } });
+    const user = await context.db.query.user({ where: { email: args.email } });
     if (user.emailConfirmed === true) {
-      return messageCodes.emailAlreadyConfirmed;
+      throwError(messageCodes.emailAlreadyConfirmed);
     }
-    const { error, info } = sendEmailWithConfirmationToken({
+    sendEmailWithConfirmationToken({
       email: args.email,
       name: user.name,
       emailConfirmationToken: user.emailConfirmationToken
     });
-    if (error) {
-      return { code: messageCodes.couldNotSendEmail };
-    }
     return { code: messageCodes.emailWithResetLinkSent };
   },
 
