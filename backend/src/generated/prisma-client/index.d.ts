@@ -682,7 +682,7 @@ export type additionalAccessories_Comfort_PassengerOrderByInput =
 export type Permission =
   | "ADMIN"
   | "USER"
-  | "ITEMCREATE"
+  | "ADD_POSTS"
   | "ITEMUPDATE"
   | "ITEMDELETE";
 

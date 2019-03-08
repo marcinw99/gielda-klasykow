@@ -2034,7 +2034,7 @@ type PageInfo {
 enum Permission {
   ADMIN
   USER
-  ITEMCREATE
+  ADD_POSTS
   ITEMUPDATE
   ITEMDELETE
 }
