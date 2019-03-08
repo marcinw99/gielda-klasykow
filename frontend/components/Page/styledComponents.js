@@ -28,7 +28,8 @@ export const ThemeToggler = withStyles(themeTogglerStyles)(
 
 const contentContainerStyles = theme => ({
   root: {
-    minHeight: `calc(100vh - ${theme.custom.headerHeight}px)`
+    minHeight: `calc(100vh - ${theme.custom.headerHeight}px)`,
+    paddingBottom: theme.spacing.unit * 1.5
   }
 });
 
