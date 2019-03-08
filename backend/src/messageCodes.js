@@ -11,6 +11,8 @@ const messageCodes = {
   couldNotSendEmail: 609,
   emailAlreadyConfirmed: 610,
   linkExpiredOrInvalidOrEmailAlreadyConfirmed: 611,
+  accountEmailWasNotConfirmed: 612,
+  notEnoughPermissions: 613,
 
   successfulSignOut: 700,
   emailWithResetLinkSent: 701,

@@ -214,5 +214,8 @@ const variants = {
     steeringWheelOnTheRight: "Kierownica po prawej stronie",
     color: "Kolor",
     description: "Opis ogłoszenia"
+  },
+  permissions: {
+    ADD_POSTS: "Dodawanie ogłoszeń"
   }
 };

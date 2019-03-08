@@ -12,6 +12,13 @@ const messageTexts = {
   610: () => "Ten e-mail został już potwierdzony.",
   611: () =>
     "Token potwierdzenia e-mail jest nieprawidłowy, lub e-mail został już potwierdzony.",
+  612: () =>
+    "Konto zostało usunięte ponieważ użytkownik nie potwierdził adresu e-mail.",
+  613: args =>
+    `Konto nie posiada uprawnień aby wykonać akcję: ${displayedText(
+      "permissions",
+      args.permission
+    )}`,
 
   700: () => "User signed out successfully.",
   701: () => "Link do resetowania hasła został wysłany na podany adres email.",

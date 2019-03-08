@@ -53,12 +53,20 @@ function sendEmailWithConfirmationToken({
 
 const getUserCookieParameters = ({ longTimeCookies }) =>
   longTimeCookies
-    ? { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 }
-    : { httpOnly: true, expires: new Date(Date.now() + 1000) };
+    ? {
+        httpOnly: true,
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)
+      }
+    : { httpOnly: true, expires: new Date(Date.now() + 1000 * 60) };
 
 const Mutation = {
   createPost: async function(parent, { data }, context, info) {
     if (!context.request.userId) throwError(608);
+    if (!context.request.user.permissions.includes("ADD_POSTS")) {
+      throwError(messageCodes.notEnoughPermissions, {
+        permission: "ADD_POSTS"
+      });
+    }
     const { car, ...otherPostAttributes } = data;
     const validationInput = { ...car.create, ...otherPostAttributes };
     for (const key in validationInput) {
@@ -143,7 +151,11 @@ const Mutation = {
     }
     await context.db.mutation.updateUser({
       where: { email: user.email },
-      data: { emailConfirmed: true, emailConfirmationToken: null }
+      data: {
+        emailConfirmed: true,
+        emailConfirmationToken: null,
+        permissions: [...user.permissions, "ADD_POSTS"]
+      }
     });
     smtpClient.sendMail(
       getMessage({
@@ -165,6 +177,16 @@ const Mutation = {
     const user = await context.db.query.user({ where: { email: args.email } });
     if (!user) {
       throwError(messageCodes.userWithGivenEmailNotFound, [args.email]);
+    }
+    if (user.emailConfirmed !== true) {
+      const createdAt = Date.parse(new Date(user.createdAt));
+      const now = Date.parse(new Date());
+      const dayInMiliseconds = 1000 * 60 * 60 * 24;
+      const timeFromRegistration = now - createdAt;
+      if (timeFromRegistration > dayInMiliseconds) {
+        await context.db.mutation.deleteUser({ where: { email: args.email } });
+        throwError(messageCodes.accountEmailWasNotConfirmed);
+      }
     }
     const valid = await bcrypt.compare(args.password, user.password);
     if (!valid) {
