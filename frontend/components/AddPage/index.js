@@ -78,7 +78,10 @@ class AddPage extends Component {
         <Head>
           <title>Dodaj klasyka - Giełda klasyków</title>
         </Head>
-        <MustBeLoggedIn thisUser={this.props.thisUser}>
+        <MustBeLoggedIn
+          thisUser={this.props.thisUser}
+          errorMessage="Musisz być zalogowany aby móć dodawać ogłoszenia."
+        >
           <Query query={ADD_POST_QUERIES}>
             {({ data, error, loading }) => {
               if (loading) {

@@ -6,7 +6,8 @@ import {
   ArrowBack as ArrowBackIcon,
   AccessTime as AccessTimeIcon,
   LocalOffer as LocalOfferIcon,
-  Create as CreateIcon
+  Create as CreateIcon,
+  LocalGroceryStore as LocalGroceryStoreIcon
 } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import Router from "next/router";
@@ -43,9 +44,9 @@ class HeaderWithUser extends Component {
     });
   };
 
-  handleAddPost = () => {
+  handleRedirect = url => {
     this.handleClose();
-    Router.push("/dodajklasyka");
+    Router.push(url);
   };
 
   handleConfirmationEmailResult = ({ error, data }) => {
@@ -67,12 +68,21 @@ class HeaderWithUser extends Component {
 
   render() {
     const menuOptions = [
+      {
+        label: "Wyszukiwarka ogłoszeń",
+        icon: <LocalGroceryStoreIcon />,
+        handleClick: () => this.handleRedirect("/gielda")
+      },
       { label: "Obserwowane oferty", icon: <AccessTimeIcon /> },
-      { label: "Moje ogłoszenia", icon: <LocalOfferIcon /> },
+      {
+        label: "Moje ogłoszenia",
+        icon: <LocalOfferIcon />,
+        handleClick: () => this.handleRedirect("/mojeogloszenia")
+      },
       {
         label: "Dodaj ogłoszenie",
         icon: <CreateIcon />,
-        handleClick: this.handleAddPost
+        handleClick: () => this.handleRedirect("/dodajklasyka")
       }
     ];
     return (
