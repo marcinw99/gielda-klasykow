@@ -13,11 +13,7 @@ function getMessageParameters(payload) {
 
 const getErrorMessage = error => {
   if (!error || !error.message) return null;
-  if (
-    error.networkError &&
-    error.networkError.result &&
-    error.networkError.result.errors.length
-  ) {
+  if (error.networkError) {
     return "Wystąpił problem z połączeniem.";
   }
   var messageParameters = getMessageParameters(error);
