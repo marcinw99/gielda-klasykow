@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import Head from "next/head";
 import { Typography, Grid } from "@material-ui/core";
 import { Query, Mutation } from "react-apollo";
+import isEqual from "react-fast-compare";
 
 import { Content, StyledPaper, StyledPageTitle } from "./styledComponents";
 import Steps from "./Steps";
@@ -10,6 +11,7 @@ import AfterSubmit from "./AfterSubmit";
 import { ADD_POST_QUERIES } from "../../src/Queries/searchQueries";
 import { ADD_POST_MUTATION } from "../../src/Mutations/AddPost";
 import MustBeLoggedIn from "../universal/MustBeLoggedIn";
+import { withSnackbar } from "../Snackbar/Context";
 
 const initialState = {
   activeStep: 0,
@@ -19,6 +21,26 @@ const initialState = {
 
 class AddPage extends Component {
   state = initialState;
+
+  componentDidMount() {
+    this.displayWarningIfNotEnoughPermissionsToAddPost();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!isEqual(prevProps.thisUser, this.props.thisUser)) {
+      this.displayWarningIfNotEnoughPermissionsToAddPost();
+    }
+  }
+
+  displayWarningIfNotEnoughPermissionsToAddPost = () => {
+    if (this.props.thisUser && this.props.thisUser.emailConfirmed !== true) {
+      this.props.manageSnackbar({
+        open: true,
+        message: "Musisz potwierdzić adres e-mail aby móć dodawać ogłoszenia.",
+        variant: "warning"
+      });
+    }
+  };
 
   setValueInState = value => {
     if (
@@ -125,4 +147,4 @@ class AddPage extends Component {
   }
 }
 
-export default AddPage;
+export default withSnackbar(AddPage);
