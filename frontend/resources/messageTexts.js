@@ -1,3 +1,5 @@
+import displayedText from "./displayedText";
+
 const messageTexts = {
   600: () => "Ilość znaków w argumentach jest nieprawidłowa",
   601: () => "Podane hasło nie spełnia minimalnych wymagań złożoności.",
