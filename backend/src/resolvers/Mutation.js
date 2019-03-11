@@ -61,7 +61,7 @@ const getUserCookieParameters = ({ longTimeCookies }) =>
 
 const Mutation = {
   createPost: async function(parent, { data }, context, info) {
-    if (!context.request.userId) throwError(608);
+    if (!context.request.userId) throwError(messageCodes.userNotLoggedIn);
     if (!context.request.user.permissions.includes("ADD_POSTS")) {
       throwError(messageCodes.notEnoughPermissions, {
         permission: "ADD_POSTS"
@@ -91,6 +91,21 @@ const Mutation = {
       info
     );
     return item;
+  },
+
+  deletePost: async function(parent, args, context, info) {
+    if (!context.request.userId) throwError(messageCodes.userNotLoggedIn);
+    const post = await context.db.query.post(
+      { where: { id: args.id } },
+      "{ car { brand model } user { id } }"
+    );
+    if (post && post.user.id !== context.request.userId)
+      throwError(messageCodes.idMismatch);
+    // remove sub types
+    const deletedPost = await context.db.mutation.deletePost({
+      where: { id: args.id }
+    });
+    return { ...deletedPost, ...post };
   },
 
   async signUp(parent, args, context, info) {
