@@ -6,21 +6,7 @@ import gql from "graphql-tag";
 import MustBeLoggedIn from "../universal/MustBeLoggedIn";
 import Layout, { LoadingLayout, ErrorLayout } from "./Layout";
 import { DELETE_POST_MUTATION } from "../../src/Mutations/deletePost";
-
-const USER_POSTS_QUERY = gql`
-  query USER_POSTS_QUERY($userId: ID!) {
-    posts(where: { user: { id: $userId } }) {
-      id
-      price
-      avatar
-      car {
-        brand
-        model
-        version
-      }
-    }
-  }
-`;
+import { USER_POSTS_QUERY } from "../../src/Queries/searchQueries";
 
 const MyPostsPage = props => (
   <Fragment>

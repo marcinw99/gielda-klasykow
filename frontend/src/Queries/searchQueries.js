@@ -117,3 +117,18 @@ export const MODELS_OF_BRAND = gql`
     modelsOfBrand(brand: $brand)
   }
 `;
+
+export const USER_POSTS_QUERY = gql`
+  query USER_POSTS_QUERY($userId: ID!) {
+    posts(where: { user: { id: $userId } }) {
+      id
+      price
+      avatar
+      car {
+        brand
+        model
+        version
+      }
+    }
+  }
+`;
