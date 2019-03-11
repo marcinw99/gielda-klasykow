@@ -8,7 +8,11 @@ import { Content, StyledPaper, StyledPageTitle } from "./styledComponents";
 import Steps from "./Steps";
 import Form from "./Form";
 import AfterSubmit from "./AfterSubmit";
-import { ADD_POST_QUERIES } from "../../src/Queries/searchQueries";
+import {
+  ADD_POST_QUERIES,
+  ALL_POSTS_QUERY,
+  USER_POSTS_QUERY
+} from "../../src/Queries/searchQueries";
 import { ADD_POST_MUTATION } from "../../src/Mutations/AddPost";
 import MustBeLoggedIn from "../universal/MustBeLoggedIn";
 import { withSnackbar } from "../Snackbar/Context";
@@ -73,6 +77,7 @@ class AddPage extends Component {
   };
 
   render() {
+    const userId = this.props.thisUser.id;
     return (
       <Fragment>
         <Head>
@@ -95,6 +100,15 @@ class AddPage extends Component {
                     <Grid container justify="center">
                       <Mutation
                         mutation={ADD_POST_MUTATION}
+                        refetchQueries={[
+                          {
+                            query: ALL_POSTS_QUERY
+                          },
+                          {
+                            query: USER_POSTS_QUERY,
+                            variables: { userId }
+                          }
+                        ]}
                         variables={{ data: this.state.submitData }}
                       >
                         {(submit, feedback) => {
