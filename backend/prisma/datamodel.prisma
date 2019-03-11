@@ -1,5 +1,6 @@
 type Car {
   id: ID! @unique
+  post: Post! @relation(name: "PostCar", onDelete: CASCADE)
   brand: Brand!
   model: String!
   version: String
@@ -12,9 +13,13 @@ type Car {
   transmission: Transmission
   drive: Drive
   additionalAccessories_Safety: additionalAccessories_Safety!
+    @relation(name: "Car_aA_Safety", onDelete: CASCADE)
   additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_Passenger!
+    @relation(name: "Car_aA_Comfort_Passenger", onDelete: CASCADE)
   additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_Driver!
+    @relation(name: "Car_aA_Comfort_Driver", onDelete: CASCADE)
   additionalAccessories_Appereance: additionalAccessories_Appereance!
+    @relation(name: "Car_aA_Appereance", onDelete: CASCADE)
   type: Type
   steeringWheelOnTheRight: Boolean
   color: Color
@@ -31,7 +36,7 @@ type Car {
 
 type Post {
   id: ID! @unique
-  car: Car!
+  car: Car! @relation(name: "PostCar", onDelete: CASCADE)
   user: User!
   price: Int!
   location: String!
@@ -56,7 +61,7 @@ type User {
 
 type additionalAccessories_Safety {
   id: ID! @unique
-  car: Car!
+  car: Car! @relation(name: "Car_aA_Safety", onDelete: SET_NULL)
   ABS: Boolean
   ESP: Boolean
   ASR: Boolean
@@ -71,7 +76,7 @@ type additionalAccessories_Safety {
 
 type additionalAccessories_Comfort_Passenger {
   id: ID! @unique
-  car: Car!
+  car: Car! @relation(name: "Car_aA_Comfort_Passenger", onDelete: SET_NULL)
   ELECTRIC_FRONT_WINDOWS: Boolean
   ELECTRIC_BACK_WINDOWS: Boolean
   FACTORY_RADIO: Boolean
@@ -102,7 +107,7 @@ type additionalAccessories_Comfort_Passenger {
 
 type additionalAccessories_Comfort_Driver {
   id: ID! @unique
-  car: Car!
+  car: Car! @relation(name: "Car_aA_Comfort_Driver", onDelete: SET_NULL)
   POWER_STEERING: Boolean
   HEATED_STEERING_WHEEL: Boolean
   MULTIFUNCTION_STEERING_WHEEL: Boolean
@@ -126,7 +131,7 @@ type additionalAccessories_Comfort_Driver {
 
 type additionalAccessories_Appereance {
   id: ID! @unique
-  car: Car!
+  car: Car! @relation(name: "Car_aA_Appereance", onDelete: SET_NULL)
   ALLOY_WHEELS: Boolean
   TINTED_WINDOWS: Boolean
   METALLIC_PAINT: Boolean

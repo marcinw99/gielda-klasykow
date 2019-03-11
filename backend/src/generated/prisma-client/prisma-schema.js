@@ -1176,6 +1176,7 @@ enum Brand {
 
 type Car {
   id: ID!
+  post: Post!
   brand: Brand!
   model: String!
   version: String
@@ -1212,6 +1213,7 @@ type CarConnection {
 }
 
 input CarCreateInput {
+  post: PostCreateOneWithoutCarInput!
   brand: Brand!
   model: String!
   version: String
@@ -1241,11 +1243,6 @@ input CarCreateInput {
   fromCountry: Country
 }
 
-input CarCreateOneInput {
-  create: CarCreateInput
-  connect: CarWhereUniqueInput
-}
-
 input CarCreateOneWithoutAdditionalAccessories_AppereanceInput {
   create: CarCreateWithoutAdditionalAccessories_AppereanceInput
   connect: CarWhereUniqueInput
@@ -1266,7 +1263,13 @@ input CarCreateOneWithoutAdditionalAccessories_SafetyInput {
   connect: CarWhereUniqueInput
 }
 
+input CarCreateOneWithoutPostInput {
+  create: CarCreateWithoutPostInput
+  connect: CarWhereUniqueInput
+}
+
 input CarCreateWithoutAdditionalAccessories_AppereanceInput {
+  post: PostCreateOneWithoutCarInput!
   brand: Brand!
   model: String!
   version: String
@@ -1296,6 +1299,7 @@ input CarCreateWithoutAdditionalAccessories_AppereanceInput {
 }
 
 input CarCreateWithoutAdditionalAccessories_Comfort_DriverInput {
+  post: PostCreateOneWithoutCarInput!
   brand: Brand!
   model: String!
   version: String
@@ -1325,6 +1329,7 @@ input CarCreateWithoutAdditionalAccessories_Comfort_DriverInput {
 }
 
 input CarCreateWithoutAdditionalAccessories_Comfort_PassengerInput {
+  post: PostCreateOneWithoutCarInput!
   brand: Brand!
   model: String!
   version: String
@@ -1354,6 +1359,7 @@ input CarCreateWithoutAdditionalAccessories_Comfort_PassengerInput {
 }
 
 input CarCreateWithoutAdditionalAccessories_SafetyInput {
+  post: PostCreateOneWithoutCarInput!
   brand: Brand!
   model: String!
   version: String
@@ -1365,6 +1371,36 @@ input CarCreateWithoutAdditionalAccessories_SafetyInput {
   torque: Int
   transmission: Transmission
   drive: Drive
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput!
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput!
+  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput!
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
+  damaged: Boolean
+  accidentFree: Boolean
+  firstOwner: Boolean
+  registeredInPoland: Boolean
+  registeredAsAntiqueCar: Boolean
+  hasVIN: Boolean
+  tuning: Boolean
+  hasParticulateFilter: Boolean
+  fromCountry: Country
+}
+
+input CarCreateWithoutPostInput {
+  brand: Brand!
+  model: String!
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType!
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: Transmission
+  drive: Drive
+  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneWithoutCarInput!
   additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput!
   additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput!
   additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput!
@@ -1487,37 +1523,8 @@ input CarSubscriptionWhereInput {
   NOT: [CarSubscriptionWhereInput!]
 }
 
-input CarUpdateDataInput {
-  brand: Brand
-  model: String
-  version: String
-  mileage: Int
-  productionYear: Int
-  fuelType: FuelType
-  engineSize: Int
-  power: Int
-  torque: Int
-  transmission: Transmission
-  drive: Drive
-  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput
-  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput
-  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput
-  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput
-  type: Type
-  steeringWheelOnTheRight: Boolean
-  color: Color
-  damaged: Boolean
-  accidentFree: Boolean
-  firstOwner: Boolean
-  registeredInPoland: Boolean
-  registeredAsAntiqueCar: Boolean
-  hasVIN: Boolean
-  tuning: Boolean
-  hasParticulateFilter: Boolean
-  fromCountry: Country
-}
-
 input CarUpdateInput {
+  post: PostUpdateOneRequiredWithoutCarInput
   brand: Brand
   model: String
   version: String
@@ -1573,13 +1580,6 @@ input CarUpdateManyMutationInput {
   fromCountry: Country
 }
 
-input CarUpdateOneRequiredInput {
-  create: CarCreateInput
-  update: CarUpdateDataInput
-  upsert: CarUpsertNestedInput
-  connect: CarWhereUniqueInput
-}
-
 input CarUpdateOneRequiredWithoutAdditionalAccessories_AppereanceInput {
   create: CarCreateWithoutAdditionalAccessories_AppereanceInput
   update: CarUpdateWithoutAdditionalAccessories_AppereanceDataInput
@@ -1608,7 +1608,15 @@ input CarUpdateOneRequiredWithoutAdditionalAccessories_SafetyInput {
   connect: CarWhereUniqueInput
 }
 
+input CarUpdateOneRequiredWithoutPostInput {
+  create: CarCreateWithoutPostInput
+  update: CarUpdateWithoutPostDataInput
+  upsert: CarUpsertWithoutPostInput
+  connect: CarWhereUniqueInput
+}
+
 input CarUpdateWithoutAdditionalAccessories_AppereanceDataInput {
+  post: PostUpdateOneRequiredWithoutCarInput
   brand: Brand
   model: String
   version: String
@@ -1638,6 +1646,7 @@ input CarUpdateWithoutAdditionalAccessories_AppereanceDataInput {
 }
 
 input CarUpdateWithoutAdditionalAccessories_Comfort_DriverDataInput {
+  post: PostUpdateOneRequiredWithoutCarInput
   brand: Brand
   model: String
   version: String
@@ -1667,6 +1676,7 @@ input CarUpdateWithoutAdditionalAccessories_Comfort_DriverDataInput {
 }
 
 input CarUpdateWithoutAdditionalAccessories_Comfort_PassengerDataInput {
+  post: PostUpdateOneRequiredWithoutCarInput
   brand: Brand
   model: String
   version: String
@@ -1696,6 +1706,7 @@ input CarUpdateWithoutAdditionalAccessories_Comfort_PassengerDataInput {
 }
 
 input CarUpdateWithoutAdditionalAccessories_SafetyDataInput {
+  post: PostUpdateOneRequiredWithoutCarInput
   brand: Brand
   model: String
   version: String
@@ -1724,9 +1735,34 @@ input CarUpdateWithoutAdditionalAccessories_SafetyDataInput {
   fromCountry: Country
 }
 
-input CarUpsertNestedInput {
-  update: CarUpdateDataInput!
-  create: CarCreateInput!
+input CarUpdateWithoutPostDataInput {
+  brand: Brand
+  model: String
+  version: String
+  mileage: Int
+  productionYear: Int
+  fuelType: FuelType
+  engineSize: Int
+  power: Int
+  torque: Int
+  transmission: Transmission
+  drive: Drive
+  additionalAccessories_Safety: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput
+  additionalAccessories_Appereance: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput
+  type: Type
+  steeringWheelOnTheRight: Boolean
+  color: Color
+  damaged: Boolean
+  accidentFree: Boolean
+  firstOwner: Boolean
+  registeredInPoland: Boolean
+  registeredAsAntiqueCar: Boolean
+  hasVIN: Boolean
+  tuning: Boolean
+  hasParticulateFilter: Boolean
+  fromCountry: Country
 }
 
 input CarUpsertWithoutAdditionalAccessories_AppereanceInput {
@@ -1749,6 +1785,11 @@ input CarUpsertWithoutAdditionalAccessories_SafetyInput {
   create: CarCreateWithoutAdditionalAccessories_SafetyInput!
 }
 
+input CarUpsertWithoutPostInput {
+  update: CarUpdateWithoutPostDataInput!
+  create: CarCreateWithoutPostInput!
+}
+
 input CarWhereInput {
   id: ID
   id_not: ID
@@ -1764,6 +1805,7 @@ input CarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  post: PostWhereInput
   brand: Brand
   brand_not: Brand
   brand_in: [Brand!]
@@ -2057,7 +2099,7 @@ type PostConnection {
 }
 
 input PostCreateInput {
-  car: CarCreateOneInput!
+  car: CarCreateOneWithoutPostInput!
   user: UserCreateOneWithoutPostsInput!
   price: Int!
   location: String!
@@ -2071,12 +2113,26 @@ input PostCreateManyWithoutUserInput {
   connect: [PostWhereUniqueInput!]
 }
 
+input PostCreateOneWithoutCarInput {
+  create: PostCreateWithoutCarInput
+  connect: PostWhereUniqueInput
+}
+
 input PostCreatephotosInput {
   set: [String!]
 }
 
+input PostCreateWithoutCarInput {
+  user: UserCreateOneWithoutPostsInput!
+  price: Int!
+  location: String!
+  avatar: String
+  photos: PostCreatephotosInput
+  description: String
+}
+
 input PostCreateWithoutUserInput {
-  car: CarCreateOneInput!
+  car: CarCreateOneWithoutPostInput!
   price: Int!
   location: String!
   avatar: String
@@ -2204,7 +2260,7 @@ input PostSubscriptionWhereInput {
 }
 
 input PostUpdateInput {
-  car: CarUpdateOneRequiredInput
+  car: CarUpdateOneRequiredWithoutPostInput
   user: UserUpdateOneRequiredWithoutPostsInput
   price: Int
   location: String
@@ -2245,12 +2301,28 @@ input PostUpdateManyWithWhereNestedInput {
   data: PostUpdateManyDataInput!
 }
 
+input PostUpdateOneRequiredWithoutCarInput {
+  create: PostCreateWithoutCarInput
+  update: PostUpdateWithoutCarDataInput
+  upsert: PostUpsertWithoutCarInput
+  connect: PostWhereUniqueInput
+}
+
 input PostUpdatephotosInput {
   set: [String!]
 }
 
+input PostUpdateWithoutCarDataInput {
+  user: UserUpdateOneRequiredWithoutPostsInput
+  price: Int
+  location: String
+  avatar: String
+  photos: PostUpdatephotosInput
+  description: String
+}
+
 input PostUpdateWithoutUserDataInput {
-  car: CarUpdateOneRequiredInput
+  car: CarUpdateOneRequiredWithoutPostInput
   price: Int
   location: String
   avatar: String
@@ -2261,6 +2333,11 @@ input PostUpdateWithoutUserDataInput {
 input PostUpdateWithWhereUniqueWithoutUserInput {
   where: PostWhereUniqueInput!
   data: PostUpdateWithoutUserDataInput!
+}
+
+input PostUpsertWithoutCarInput {
+  update: PostUpdateWithoutCarDataInput!
+  create: PostCreateWithoutCarInput!
 }
 
 input PostUpsertWithWhereUniqueWithoutUserInput {

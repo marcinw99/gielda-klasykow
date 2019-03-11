@@ -421,52 +421,6 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type additionalAccessories_Comfort_DriverOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "POWER_STEERING_ASC"
-  | "POWER_STEERING_DESC"
-  | "HEATED_STEERING_WHEEL_ASC"
-  | "HEATED_STEERING_WHEEL_DESC"
-  | "MULTIFUNCTION_STEERING_WHEEL_ASC"
-  | "MULTIFUNCTION_STEERING_WHEEL_DESC"
-  | "PADDLE_SHIFTERS_ASC"
-  | "PADDLE_SHIFTERS_DESC"
-  | "ACTIVE_SUSPENSION_ASC"
-  | "ACTIVE_SUSPENSION_DESC"
-  | "REGULATED_SUSPENSION_ASC"
-  | "REGULATED_SUSPENSION_DESC"
-  | "ELECTRIC_MIRRORS_ASC"
-  | "ELECTRIC_MIRRORS_DESC"
-  | "HEATED_MIRRORS_ASC"
-  | "HEATED_MIRRORS_DESC"
-  | "ON_BOARD_COMPUTER_ASC"
-  | "ON_BOARD_COMPUTER_DESC"
-  | "PARKING_SENSOR_FRONT_ASC"
-  | "PARKING_SENSOR_FRONT_DESC"
-  | "PARKING_SENSOR_BACK_ASC"
-  | "PARKING_SENSOR_BACK_DESC"
-  | "REVERSE_CAMERA_ASC"
-  | "REVERSE_CAMERA_DESC"
-  | "RAIN_SENSOR_ASC"
-  | "RAIN_SENSOR_DESC"
-  | "CRUISE_CONTROL_ASC"
-  | "CRUISE_CONTROL_DESC"
-  | "FOG_LIGHTS_ASC"
-  | "FOG_LIGHTS_DESC"
-  | "LED_LIGHTS_ASC"
-  | "LED_LIGHTS_DESC"
-  | "XENON_LIGHTS_ASC"
-  | "XENON_LIGHTS_DESC"
-  | "GPS_NAVIGATION_ASC"
-  | "GPS_NAVIGATION_DESC"
-  | "SPEED_LIMITER_ASC"
-  | "SPEED_LIMITER_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
 export type CarOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -521,23 +475,113 @@ export type CarOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type additionalAccessories_AppereanceOrderByInput =
+export type Type =
+  | "SMALL"
+  | "URBAN"
+  | "COMPACT"
+  | "SEDAN"
+  | "ESTATE"
+  | "MINIVAN"
+  | "SUV"
+  | "CABRIO"
+  | "COUPE";
+
+export type FuelType =
+  | "BENZYNA"
+  | "BENZYNA_LPG"
+  | "BENZYNA_CNG"
+  | "DIESEL"
+  | "HYBRYDA"
+  | "ELEKTRYCZNY"
+  | "OTHER";
+
+export type additionalAccessories_SafetyOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "ALLOY_WHEELS_ASC"
-  | "ALLOY_WHEELS_DESC"
-  | "TINTED_WINDOWS_ASC"
-  | "TINTED_WINDOWS_DESC"
-  | "METALLIC_PAINT_ASC"
-  | "METALLIC_PAINT_DESC"
-  | "MATTE_PAINT_ASC"
-  | "MATTE_PAINT_DESC"
-  | "PEARL_PAINT_ASC"
-  | "PEARL_PAINT_DESC"
+  | "ABS_ASC"
+  | "ABS_DESC"
+  | "ESP_ASC"
+  | "ESP_DESC"
+  | "ASR_ASC"
+  | "ASR_DESC"
+  | "CENTRAL_LOCKING_ASC"
+  | "CENTRAL_LOCKING_DESC"
+  | "IMMOBILIZER_ASC"
+  | "IMMOBILIZER_DESC"
+  | "ALARM_ASC"
+  | "ALARM_DESC"
+  | "DRIVER_AIRBAG_ASC"
+  | "DRIVER_AIRBAG_DESC"
+  | "PASSENGER_AIRBAG_ASC"
+  | "PASSENGER_AIRBAG_DESC"
+  | "SIDE_FRONT_AIRBAGS_ASC"
+  | "SIDE_FRONT_AIRBAGS_DESC"
+  | "SIDE_BACK_AIRBAGS_ASC"
+  | "SIDE_BACK_AIRBAGS_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
+
+export type Transmission =
+  | "MANUAL"
+  | "AUTOMATIC_CLASSIC"
+  | "AUTOMATIC_SHIFTLESS"
+  | "AUTOMATIC_SEMI"
+  | "AUTOMATIC_DUAL_CLUTCH";
+
+export type additionalAccessories_Comfort_DriverOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "POWER_STEERING_ASC"
+  | "POWER_STEERING_DESC"
+  | "HEATED_STEERING_WHEEL_ASC"
+  | "HEATED_STEERING_WHEEL_DESC"
+  | "MULTIFUNCTION_STEERING_WHEEL_ASC"
+  | "MULTIFUNCTION_STEERING_WHEEL_DESC"
+  | "PADDLE_SHIFTERS_ASC"
+  | "PADDLE_SHIFTERS_DESC"
+  | "ACTIVE_SUSPENSION_ASC"
+  | "ACTIVE_SUSPENSION_DESC"
+  | "REGULATED_SUSPENSION_ASC"
+  | "REGULATED_SUSPENSION_DESC"
+  | "ELECTRIC_MIRRORS_ASC"
+  | "ELECTRIC_MIRRORS_DESC"
+  | "HEATED_MIRRORS_ASC"
+  | "HEATED_MIRRORS_DESC"
+  | "ON_BOARD_COMPUTER_ASC"
+  | "ON_BOARD_COMPUTER_DESC"
+  | "PARKING_SENSOR_FRONT_ASC"
+  | "PARKING_SENSOR_FRONT_DESC"
+  | "PARKING_SENSOR_BACK_ASC"
+  | "PARKING_SENSOR_BACK_DESC"
+  | "REVERSE_CAMERA_ASC"
+  | "REVERSE_CAMERA_DESC"
+  | "RAIN_SENSOR_ASC"
+  | "RAIN_SENSOR_DESC"
+  | "CRUISE_CONTROL_ASC"
+  | "CRUISE_CONTROL_DESC"
+  | "FOG_LIGHTS_ASC"
+  | "FOG_LIGHTS_DESC"
+  | "LED_LIGHTS_ASC"
+  | "LED_LIGHTS_DESC"
+  | "XENON_LIGHTS_ASC"
+  | "XENON_LIGHTS_DESC"
+  | "GPS_NAVIGATION_ASC"
+  | "GPS_NAVIGATION_DESC"
+  | "SPEED_LIMITER_ASC"
+  | "SPEED_LIMITER_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type Drive =
+  | "FRONT_WHEEL_DRIVE"
+  | "REAR_WHEEL_DRIVE"
+  | "FOUR_WHEEL_DRIVE_AUTOMATIC"
+  | "FOUR_WHEEL_DRIVE_MANUAL"
+  | "FOUR_WHEEL_DRIVE_FIXED";
 
 export type Brand =
   | "ABARTH"
@@ -597,6 +641,83 @@ export type Brand =
   | "ZUK"
   | "OTHER";
 
+export type Color =
+  | "WHITE"
+  | "BEIGE"
+  | "MAROON"
+  | "BROWN"
+  | "BLACK"
+  | "RED"
+  | "VIOLET"
+  | "BLUE"
+  | "SILVER"
+  | "GRAY"
+  | "GREEN"
+  | "GOLD"
+  | "YELLOW"
+  | "OTHER";
+
+export type Country =
+  | "AUSTRIA"
+  | "BELGIUM"
+  | "BELARUS"
+  | "BULGARIA"
+  | "CROATIA"
+  | "CZECH_REPUBLIC"
+  | "DENMARK"
+  | "ESTONIA"
+  | "FINLAND"
+  | "FRANCE"
+  | "GREECE"
+  | "SPAIN"
+  | "NETHERLANDS"
+  | "IRELAND"
+  | "ICELAND"
+  | "CANADA"
+  | "LIECHTENSTEIN"
+  | "LITHUANIA"
+  | "LUXEMBOURG"
+  | "LATVIA"
+  | "MONACO"
+  | "GERMANY"
+  | "NORWAY"
+  | "POLAND"
+  | "RUSSIA"
+  | "ROMANIA"
+  | "SLOVAKIA"
+  | "SLOVENIA"
+  | "USA"
+  | "SWITZERLAND"
+  | "SWEDEN"
+  | "TURKEY"
+  | "UKRAINE"
+  | "HUNGARY"
+  | "UK"
+  | "ITALY";
+
+export type PostOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "price_ASC"
+  | "price_DESC"
+  | "location_ASC"
+  | "location_DESC"
+  | "avatar_ASC"
+  | "avatar_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type Permission =
+  | "ADMIN"
+  | "USER"
+  | "ADD_POSTS"
+  | "ITEMUPDATE"
+  | "ITEMDELETE";
+
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -614,6 +735,24 @@ export type UserOrderByInput =
   | "resetToken_DESC"
   | "resetTokenExpiry_ASC"
   | "resetTokenExpiry_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type additionalAccessories_AppereanceOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "ALLOY_WHEELS_ASC"
+  | "ALLOY_WHEELS_DESC"
+  | "TINTED_WINDOWS_ASC"
+  | "TINTED_WINDOWS_DESC"
+  | "METALLIC_PAINT_ASC"
+  | "METALLIC_PAINT_DESC"
+  | "MATTE_PAINT_ASC"
+  | "MATTE_PAINT_DESC"
+  | "PEARL_PAINT_ASC"
+  | "PEARL_PAINT_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -679,158 +818,218 @@ export type additionalAccessories_Comfort_PassengerOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type Permission =
-  | "ADMIN"
-  | "USER"
-  | "ADD_POSTS"
-  | "ITEMUPDATE"
-  | "ITEMDELETE";
-
-export type Transmission =
-  | "MANUAL"
-  | "AUTOMATIC_CLASSIC"
-  | "AUTOMATIC_SHIFTLESS"
-  | "AUTOMATIC_SEMI"
-  | "AUTOMATIC_DUAL_CLUTCH";
-
-export type Country =
-  | "AUSTRIA"
-  | "BELGIUM"
-  | "BELARUS"
-  | "BULGARIA"
-  | "CROATIA"
-  | "CZECH_REPUBLIC"
-  | "DENMARK"
-  | "ESTONIA"
-  | "FINLAND"
-  | "FRANCE"
-  | "GREECE"
-  | "SPAIN"
-  | "NETHERLANDS"
-  | "IRELAND"
-  | "ICELAND"
-  | "CANADA"
-  | "LIECHTENSTEIN"
-  | "LITHUANIA"
-  | "LUXEMBOURG"
-  | "LATVIA"
-  | "MONACO"
-  | "GERMANY"
-  | "NORWAY"
-  | "POLAND"
-  | "RUSSIA"
-  | "ROMANIA"
-  | "SLOVAKIA"
-  | "SLOVENIA"
-  | "USA"
-  | "SWITZERLAND"
-  | "SWEDEN"
-  | "TURKEY"
-  | "UKRAINE"
-  | "HUNGARY"
-  | "UK"
-  | "ITALY";
-
-export type Color =
-  | "WHITE"
-  | "BEIGE"
-  | "MAROON"
-  | "BROWN"
-  | "BLACK"
-  | "RED"
-  | "VIOLET"
-  | "BLUE"
-  | "SILVER"
-  | "GRAY"
-  | "GREEN"
-  | "GOLD"
-  | "YELLOW"
-  | "OTHER";
-
-export type Type =
-  | "SMALL"
-  | "URBAN"
-  | "COMPACT"
-  | "SEDAN"
-  | "ESTATE"
-  | "MINIVAN"
-  | "SUV"
-  | "CABRIO"
-  | "COUPE";
-
-export type PostOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "price_ASC"
-  | "price_DESC"
-  | "location_ASC"
-  | "location_DESC"
-  | "avatar_ASC"
-  | "avatar_DESC"
-  | "description_ASC"
-  | "description_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type Drive =
-  | "FRONT_WHEEL_DRIVE"
-  | "REAR_WHEEL_DRIVE"
-  | "FOUR_WHEEL_DRIVE_AUTOMATIC"
-  | "FOUR_WHEEL_DRIVE_MANUAL"
-  | "FOUR_WHEEL_DRIVE_FIXED";
-
-export type FuelType =
-  | "BENZYNA"
-  | "BENZYNA_LPG"
-  | "BENZYNA_CNG"
-  | "DIESEL"
-  | "HYBRYDA"
-  | "ELEKTRYCZNY"
-  | "OTHER";
-
-export type additionalAccessories_SafetyOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "ABS_ASC"
-  | "ABS_DESC"
-  | "ESP_ASC"
-  | "ESP_DESC"
-  | "ASR_ASC"
-  | "ASR_DESC"
-  | "CENTRAL_LOCKING_ASC"
-  | "CENTRAL_LOCKING_DESC"
-  | "IMMOBILIZER_ASC"
-  | "IMMOBILIZER_DESC"
-  | "ALARM_ASC"
-  | "ALARM_DESC"
-  | "DRIVER_AIRBAG_ASC"
-  | "DRIVER_AIRBAG_DESC"
-  | "PASSENGER_AIRBAG_ASC"
-  | "PASSENGER_AIRBAG_DESC"
-  | "SIDE_FRONT_AIRBAGS_ASC"
-  | "SIDE_FRONT_AIRBAGS_DESC"
-  | "SIDE_BACK_AIRBAGS_ASC"
-  | "SIDE_BACK_AIRBAGS_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface additionalAccessories_AppereanceUpsertWithoutCarInput {
-  update: additionalAccessories_AppereanceUpdateWithoutCarDataInput;
-  create: additionalAccessories_AppereanceCreateWithoutCarInput;
+export interface additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput {
+  create?: additionalAccessories_SafetyCreateWithoutCarInput;
+  update?: additionalAccessories_SafetyUpdateWithoutCarDataInput;
+  upsert?: additionalAccessories_SafetyUpsertWithoutCarInput;
+  connect?: additionalAccessories_SafetyWhereUniqueInput;
 }
 
 export type CarWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface PostCreatephotosInput {
-  set?: String[] | String;
+export interface additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput {
+  create?: additionalAccessories_AppereanceCreateWithoutCarInput;
+  update?: additionalAccessories_AppereanceUpdateWithoutCarDataInput;
+  upsert?: additionalAccessories_AppereanceUpsertWithoutCarInput;
+  connect?: additionalAccessories_AppereanceWhereUniqueInput;
+}
+
+export interface additionalAccessories_AppereanceWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  car?: CarWhereInput;
+  ALLOY_WHEELS?: Boolean;
+  ALLOY_WHEELS_not?: Boolean;
+  TINTED_WINDOWS?: Boolean;
+  TINTED_WINDOWS_not?: Boolean;
+  METALLIC_PAINT?: Boolean;
+  METALLIC_PAINT_not?: Boolean;
+  MATTE_PAINT?: Boolean;
+  MATTE_PAINT_not?: Boolean;
+  PEARL_PAINT?: Boolean;
+  PEARL_PAINT_not?: Boolean;
+  AND?:
+    | additionalAccessories_AppereanceWhereInput[]
+    | additionalAccessories_AppereanceWhereInput;
+  OR?:
+    | additionalAccessories_AppereanceWhereInput[]
+    | additionalAccessories_AppereanceWhereInput;
+  NOT?:
+    | additionalAccessories_AppereanceWhereInput[]
+    | additionalAccessories_AppereanceWhereInput;
+}
+
+export interface additionalAccessories_AppereanceUpdateWithoutCarDataInput {
+  ALLOY_WHEELS?: Boolean;
+  TINTED_WINDOWS?: Boolean;
+  METALLIC_PAINT?: Boolean;
+  MATTE_PAINT?: Boolean;
+  PEARL_PAINT?: Boolean;
+}
+
+export interface additionalAccessories_Comfort_PassengerWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  car?: CarWhereInput;
+  ELECTRIC_FRONT_WINDOWS?: Boolean;
+  ELECTRIC_FRONT_WINDOWS_not?: Boolean;
+  ELECTRIC_BACK_WINDOWS?: Boolean;
+  ELECTRIC_BACK_WINDOWS_not?: Boolean;
+  FACTORY_RADIO?: Boolean;
+  FACTORY_RADIO_not?: Boolean;
+  NON_STANDARD_RADIO?: Boolean;
+  NON_STANDARD_RADIO_not?: Boolean;
+  AUX?: Boolean;
+  AUX_not?: Boolean;
+  MP3?: Boolean;
+  MP3_not?: Boolean;
+  CD?: Boolean;
+  CD_not?: Boolean;
+  CD_CHANGER?: Boolean;
+  CD_CHANGER_not?: Boolean;
+  DVD_PLAYER?: Boolean;
+  DVD_PLAYER_not?: Boolean;
+  TV_TUNER?: Boolean;
+  TV_TUNER_not?: Boolean;
+  LEATHER_UPHOLSTERY?: Boolean;
+  LEATHER_UPHOLSTERY_not?: Boolean;
+  VELOR_UPHOLSTERY?: Boolean;
+  VELOR_UPHOLSTERY_not?: Boolean;
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS?: Boolean;
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS_not?: Boolean;
+  ELECTRIC_ADJUSTABLE_BACK_SEATS?: Boolean;
+  ELECTRIC_ADJUSTABLE_BACK_SEATS_not?: Boolean;
+  HEATED_FRONT_SEATS?: Boolean;
+  HEATED_FRONT_SEATS_not?: Boolean;
+  HEATED_BACK_SEATS?: Boolean;
+  HEATED_BACK_SEATS_not?: Boolean;
+  PANORAMIC_ROOF?: Boolean;
+  PANORAMIC_ROOF_not?: Boolean;
+  SUNROOF?: Boolean;
+  SUNROOF_not?: Boolean;
+  ROOF_RACK?: Boolean;
+  ROOF_RACK_not?: Boolean;
+  PARKING_HEATER?: Boolean;
+  PARKING_HEATER_not?: Boolean;
+  HEATED_FRONT_WINDSCREEN?: Boolean;
+  HEATED_FRONT_WINDSCREEN_not?: Boolean;
+  AIR_CONDITIONING_AUTOMATIC?: Boolean;
+  AIR_CONDITIONING_AUTOMATIC_not?: Boolean;
+  AIR_CONDITIONING_DUAL_ZONE?: Boolean;
+  AIR_CONDITIONING_DUAL_ZONE_not?: Boolean;
+  AIR_CONDITIONING_THREE_ZONE?: Boolean;
+  AIR_CONDITIONING_THREE_ZONE_not?: Boolean;
+  AIR_CONDITIONING_FOUR_ZONE?: Boolean;
+  AIR_CONDITIONING_FOUR_ZONE_not?: Boolean;
+  AIR_CONDITIONING_MANUAL?: Boolean;
+  AIR_CONDITIONING_MANUAL_not?: Boolean;
+  AND?:
+    | additionalAccessories_Comfort_PassengerWhereInput[]
+    | additionalAccessories_Comfort_PassengerWhereInput;
+  OR?:
+    | additionalAccessories_Comfort_PassengerWhereInput[]
+    | additionalAccessories_Comfort_PassengerWhereInput;
+  NOT?:
+    | additionalAccessories_Comfort_PassengerWhereInput[]
+    | additionalAccessories_Comfort_PassengerWhereInput;
+}
+
+export interface additionalAccessories_Comfort_PassengerCreateWithoutCarInput {
+  ELECTRIC_FRONT_WINDOWS?: Boolean;
+  ELECTRIC_BACK_WINDOWS?: Boolean;
+  FACTORY_RADIO?: Boolean;
+  NON_STANDARD_RADIO?: Boolean;
+  AUX?: Boolean;
+  MP3?: Boolean;
+  CD?: Boolean;
+  CD_CHANGER?: Boolean;
+  DVD_PLAYER?: Boolean;
+  TV_TUNER?: Boolean;
+  LEATHER_UPHOLSTERY?: Boolean;
+  VELOR_UPHOLSTERY?: Boolean;
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS?: Boolean;
+  ELECTRIC_ADJUSTABLE_BACK_SEATS?: Boolean;
+  HEATED_FRONT_SEATS?: Boolean;
+  HEATED_BACK_SEATS?: Boolean;
+  PANORAMIC_ROOF?: Boolean;
+  SUNROOF?: Boolean;
+  ROOF_RACK?: Boolean;
+  PARKING_HEATER?: Boolean;
+  HEATED_FRONT_WINDSCREEN?: Boolean;
+  AIR_CONDITIONING_AUTOMATIC?: Boolean;
+  AIR_CONDITIONING_DUAL_ZONE?: Boolean;
+  AIR_CONDITIONING_THREE_ZONE?: Boolean;
+  AIR_CONDITIONING_FOUR_ZONE?: Boolean;
+  AIR_CONDITIONING_MANUAL?: Boolean;
+}
+
+export interface additionalAccessories_AppereanceUpdateInput {
+  car?: CarUpdateOneRequiredWithoutAdditionalAccessories_AppereanceInput;
+  ALLOY_WHEELS?: Boolean;
+  TINTED_WINDOWS?: Boolean;
+  METALLIC_PAINT?: Boolean;
+  MATTE_PAINT?: Boolean;
+  PEARL_PAINT?: Boolean;
+}
+
+export interface additionalAccessories_Comfort_DriverCreateOneWithoutCarInput {
+  create?: additionalAccessories_Comfort_DriverCreateWithoutCarInput;
+  connect?: additionalAccessories_Comfort_DriverWhereUniqueInput;
+}
+
+export interface additionalAccessories_AppereanceUpsertWithoutCarInput {
+  update: additionalAccessories_AppereanceUpdateWithoutCarDataInput;
+  create: additionalAccessories_AppereanceCreateWithoutCarInput;
+}
+
+export interface additionalAccessories_Comfort_DriverCreateWithoutCarInput {
+  POWER_STEERING?: Boolean;
+  HEATED_STEERING_WHEEL?: Boolean;
+  MULTIFUNCTION_STEERING_WHEEL?: Boolean;
+  PADDLE_SHIFTERS?: Boolean;
+  ACTIVE_SUSPENSION?: Boolean;
+  REGULATED_SUSPENSION?: Boolean;
+  ELECTRIC_MIRRORS?: Boolean;
+  HEATED_MIRRORS?: Boolean;
+  ON_BOARD_COMPUTER?: Boolean;
+  PARKING_SENSOR_FRONT?: Boolean;
+  PARKING_SENSOR_BACK?: Boolean;
+  REVERSE_CAMERA?: Boolean;
+  RAIN_SENSOR?: Boolean;
+  CRUISE_CONTROL?: Boolean;
+  FOG_LIGHTS?: Boolean;
+  LED_LIGHTS?: Boolean;
+  XENON_LIGHTS?: Boolean;
+  GPS_NAVIGATION?: Boolean;
+  SPEED_LIMITER?: Boolean;
 }
 
 export interface additionalAccessories_SafetyWhereInput {
@@ -880,8 +1079,102 @@ export interface additionalAccessories_SafetyWhereInput {
     | additionalAccessories_SafetyWhereInput;
 }
 
-export interface PostUpdateInput {
-  car?: CarUpdateOneRequiredInput;
+export interface additionalAccessories_AppereanceCreateOneWithoutCarInput {
+  create?: additionalAccessories_AppereanceCreateWithoutCarInput;
+  connect?: additionalAccessories_AppereanceWhereUniqueInput;
+}
+
+export interface additionalAccessories_Comfort_DriverSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: additionalAccessories_Comfort_DriverWhereInput;
+  AND?:
+    | additionalAccessories_Comfort_DriverSubscriptionWhereInput[]
+    | additionalAccessories_Comfort_DriverSubscriptionWhereInput;
+  OR?:
+    | additionalAccessories_Comfort_DriverSubscriptionWhereInput[]
+    | additionalAccessories_Comfort_DriverSubscriptionWhereInput;
+  NOT?:
+    | additionalAccessories_Comfort_DriverSubscriptionWhereInput[]
+    | additionalAccessories_Comfort_DriverSubscriptionWhereInput;
+}
+
+export interface additionalAccessories_AppereanceCreateWithoutCarInput {
+  ALLOY_WHEELS?: Boolean;
+  TINTED_WINDOWS?: Boolean;
+  METALLIC_PAINT?: Boolean;
+  MATTE_PAINT?: Boolean;
+  PEARL_PAINT?: Boolean;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+}
+
+export interface CarUpdateInput {
+  post?: PostUpdateOneRequiredWithoutCarInput;
+  brand?: Brand;
+  model?: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType?: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety?: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Comfort_Passenger?: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Comfort_Driver?: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Appereance?: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput;
+  type?: Type;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  fromCountry?: Country;
+}
+
+export interface CarSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: CarWhereInput;
+  AND?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
+  OR?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
+  NOT?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
+}
+
+export interface PostUpdateOneRequiredWithoutCarInput {
+  create?: PostCreateWithoutCarInput;
+  update?: PostUpdateWithoutCarDataInput;
+  upsert?: PostUpsertWithoutCarInput;
+  connect?: PostWhereUniqueInput;
+}
+
+export interface CarUpsertWithoutAdditionalAccessories_SafetyInput {
+  update: CarUpdateWithoutAdditionalAccessories_SafetyDataInput;
+  create: CarCreateWithoutAdditionalAccessories_SafetyInput;
+}
+
+export interface PostUpdateWithoutCarDataInput {
   user?: UserUpdateOneRequiredWithoutPostsInput;
   price?: Int;
   location?: String;
@@ -890,76 +1183,77 @@ export interface PostUpdateInput {
   description?: String;
 }
 
-export interface additionalAccessories_Comfort_DriverWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  car?: CarWhereInput;
-  POWER_STEERING?: Boolean;
-  POWER_STEERING_not?: Boolean;
-  HEATED_STEERING_WHEEL?: Boolean;
-  HEATED_STEERING_WHEEL_not?: Boolean;
-  MULTIFUNCTION_STEERING_WHEEL?: Boolean;
-  MULTIFUNCTION_STEERING_WHEEL_not?: Boolean;
-  PADDLE_SHIFTERS?: Boolean;
-  PADDLE_SHIFTERS_not?: Boolean;
-  ACTIVE_SUSPENSION?: Boolean;
-  ACTIVE_SUSPENSION_not?: Boolean;
-  REGULATED_SUSPENSION?: Boolean;
-  REGULATED_SUSPENSION_not?: Boolean;
-  ELECTRIC_MIRRORS?: Boolean;
-  ELECTRIC_MIRRORS_not?: Boolean;
-  HEATED_MIRRORS?: Boolean;
-  HEATED_MIRRORS_not?: Boolean;
-  ON_BOARD_COMPUTER?: Boolean;
-  ON_BOARD_COMPUTER_not?: Boolean;
-  PARKING_SENSOR_FRONT?: Boolean;
-  PARKING_SENSOR_FRONT_not?: Boolean;
-  PARKING_SENSOR_BACK?: Boolean;
-  PARKING_SENSOR_BACK_not?: Boolean;
-  REVERSE_CAMERA?: Boolean;
-  REVERSE_CAMERA_not?: Boolean;
-  RAIN_SENSOR?: Boolean;
-  RAIN_SENSOR_not?: Boolean;
-  CRUISE_CONTROL?: Boolean;
-  CRUISE_CONTROL_not?: Boolean;
-  FOG_LIGHTS?: Boolean;
-  FOG_LIGHTS_not?: Boolean;
-  LED_LIGHTS?: Boolean;
-  LED_LIGHTS_not?: Boolean;
-  XENON_LIGHTS?: Boolean;
-  XENON_LIGHTS_not?: Boolean;
-  GPS_NAVIGATION?: Boolean;
-  GPS_NAVIGATION_not?: Boolean;
-  SPEED_LIMITER?: Boolean;
-  SPEED_LIMITER_not?: Boolean;
-  AND?:
-    | additionalAccessories_Comfort_DriverWhereInput[]
-    | additionalAccessories_Comfort_DriverWhereInput;
-  OR?:
-    | additionalAccessories_Comfort_DriverWhereInput[]
-    | additionalAccessories_Comfort_DriverWhereInput;
-  NOT?:
-    | additionalAccessories_Comfort_DriverWhereInput[]
-    | additionalAccessories_Comfort_DriverWhereInput;
+export type PostWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpdateOneRequiredWithoutPostsInput {
+  create?: UserCreateWithoutPostsInput;
+  update?: UserUpdateWithoutPostsDataInput;
+  upsert?: UserUpsertWithoutPostsInput;
+  connect?: UserWhereUniqueInput;
 }
 
-export interface CarUpdateOneRequiredInput {
-  create?: CarCreateInput;
-  update?: CarUpdateDataInput;
-  upsert?: CarUpsertNestedInput;
-  connect?: CarWhereUniqueInput;
+export interface additionalAccessories_SafetyUpdateInput {
+  car?: CarUpdateOneRequiredWithoutAdditionalAccessories_SafetyInput;
+  ABS?: Boolean;
+  ESP?: Boolean;
+  ASR?: Boolean;
+  CENTRAL_LOCKING?: Boolean;
+  IMMOBILIZER?: Boolean;
+  ALARM?: Boolean;
+  DRIVER_AIRBAG?: Boolean;
+  PASSENGER_AIRBAG?: Boolean;
+  SIDE_FRONT_AIRBAGS?: Boolean;
+  SIDE_BACK_AIRBAGS?: Boolean;
+}
+
+export interface UserUpdateWithoutPostsDataInput {
+  name?: String;
+  email?: String;
+  emailConfirmed?: Boolean;
+  emailConfirmationToken?: String;
+  password?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions?: UserUpdatepermissionsInput;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  email?: String;
+}>;
+
+export interface UserUpdatepermissionsInput {
+  set?: Permission[] | Permission;
+}
+
+export interface additionalAccessories_SafetyCreateInput {
+  car: CarCreateOneWithoutAdditionalAccessories_SafetyInput;
+  ABS?: Boolean;
+  ESP?: Boolean;
+  ASR?: Boolean;
+  CENTRAL_LOCKING?: Boolean;
+  IMMOBILIZER?: Boolean;
+  ALARM?: Boolean;
+  DRIVER_AIRBAG?: Boolean;
+  PASSENGER_AIRBAG?: Boolean;
+  SIDE_FRONT_AIRBAGS?: Boolean;
+  SIDE_BACK_AIRBAGS?: Boolean;
+}
+
+export interface UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsDataInput;
+  create: UserCreateWithoutPostsInput;
+}
+
+export interface CarUpsertWithoutAdditionalAccessories_Comfort_PassengerInput {
+  update: CarUpdateWithoutAdditionalAccessories_Comfort_PassengerDataInput;
+  create: CarCreateWithoutAdditionalAccessories_Comfort_PassengerInput;
+}
+
+export interface PostUpdatephotosInput {
+  set?: String[] | String;
 }
 
 export interface CarWhereInput {
@@ -977,6 +1271,7 @@ export interface CarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  post?: PostWhereInput;
   brand?: Brand;
   brand_not?: Brand;
   brand_in?: Brand[] | Brand;
@@ -1100,7 +1395,19 @@ export interface CarWhereInput {
   NOT?: CarWhereInput[] | CarWhereInput;
 }
 
-export interface additionalAccessories_AppereanceCreateWithoutCarInput {
+export interface PostUpsertWithoutCarInput {
+  update: PostUpdateWithoutCarDataInput;
+  create: PostCreateWithoutCarInput;
+}
+
+export interface CarUpdateOneRequiredWithoutAdditionalAccessories_Comfort_PassengerInput {
+  create?: CarCreateWithoutAdditionalAccessories_Comfort_PassengerInput;
+  update?: CarUpdateWithoutAdditionalAccessories_Comfort_PassengerDataInput;
+  upsert?: CarUpsertWithoutAdditionalAccessories_Comfort_PassengerInput;
+  connect?: CarWhereUniqueInput;
+}
+
+export interface additionalAccessories_AppereanceUpdateManyMutationInput {
   ALLOY_WHEELS?: Boolean;
   TINTED_WINDOWS?: Boolean;
   METALLIC_PAINT?: Boolean;
@@ -1108,83 +1415,7 @@ export interface additionalAccessories_AppereanceCreateWithoutCarInput {
   PEARL_PAINT?: Boolean;
 }
 
-export interface additionalAccessories_AppereanceUpdateInput {
-  car?: CarUpdateOneRequiredWithoutAdditionalAccessories_AppereanceInput;
-  ALLOY_WHEELS?: Boolean;
-  TINTED_WINDOWS?: Boolean;
-  METALLIC_PAINT?: Boolean;
-  MATTE_PAINT?: Boolean;
-  PEARL_PAINT?: Boolean;
-}
-
-export interface CarUpdateInput {
-  brand?: Brand;
-  model?: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType?: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: Transmission;
-  drive?: Drive;
-  additionalAccessories_Safety?: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput;
-  additionalAccessories_Comfort_Passenger?: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput;
-  additionalAccessories_Comfort_Driver?: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput;
-  additionalAccessories_Appereance?: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput;
-  type?: Type;
-  steeringWheelOnTheRight?: Boolean;
-  color?: Color;
-  damaged?: Boolean;
-  accidentFree?: Boolean;
-  firstOwner?: Boolean;
-  registeredInPoland?: Boolean;
-  registeredAsAntiqueCar?: Boolean;
-  hasVIN?: Boolean;
-  tuning?: Boolean;
-  hasParticulateFilter?: Boolean;
-  fromCountry?: Country;
-}
-
-export interface CarUpdateDataInput {
-  brand?: Brand;
-  model?: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType?: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: Transmission;
-  drive?: Drive;
-  additionalAccessories_Safety?: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput;
-  additionalAccessories_Comfort_Passenger?: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput;
-  additionalAccessories_Comfort_Driver?: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput;
-  additionalAccessories_Appereance?: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput;
-  type?: Type;
-  steeringWheelOnTheRight?: Boolean;
-  color?: Color;
-  damaged?: Boolean;
-  accidentFree?: Boolean;
-  firstOwner?: Boolean;
-  registeredInPoland?: Boolean;
-  registeredAsAntiqueCar?: Boolean;
-  hasVIN?: Boolean;
-  tuning?: Boolean;
-  hasParticulateFilter?: Boolean;
-  fromCountry?: Country;
-}
-
-export interface additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput {
-  create?: additionalAccessories_SafetyCreateWithoutCarInput;
-  update?: additionalAccessories_SafetyUpdateWithoutCarDataInput;
-  upsert?: additionalAccessories_SafetyUpsertWithoutCarInput;
-  connect?: additionalAccessories_SafetyWhereUniqueInput;
-}
-
-export type PostWhereUniqueInput = AtLeastOne<{
+export type additionalAccessories_Comfort_DriverWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
@@ -1201,26 +1432,358 @@ export interface additionalAccessories_SafetyUpdateWithoutCarDataInput {
   SIDE_BACK_AIRBAGS?: Boolean;
 }
 
-export interface additionalAccessories_Comfort_DriverSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: additionalAccessories_Comfort_DriverWhereInput;
-  AND?:
-    | additionalAccessories_Comfort_DriverSubscriptionWhereInput[]
-    | additionalAccessories_Comfort_DriverSubscriptionWhereInput;
-  OR?:
-    | additionalAccessories_Comfort_DriverSubscriptionWhereInput[]
-    | additionalAccessories_Comfort_DriverSubscriptionWhereInput;
-  NOT?:
-    | additionalAccessories_Comfort_DriverSubscriptionWhereInput[]
-    | additionalAccessories_Comfort_DriverSubscriptionWhereInput;
+export interface CarCreateWithoutAdditionalAccessories_Comfort_PassengerInput {
+  post: PostCreateOneWithoutCarInput;
+  brand: Brand;
+  model: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneWithoutCarInput;
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput;
+  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput;
+  type?: Type;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  fromCountry?: Country;
 }
 
 export interface additionalAccessories_SafetyUpsertWithoutCarInput {
   update: additionalAccessories_SafetyUpdateWithoutCarDataInput;
   create: additionalAccessories_SafetyCreateWithoutCarInput;
+}
+
+export interface additionalAccessories_Comfort_PassengerCreateInput {
+  car: CarCreateOneWithoutAdditionalAccessories_Comfort_PassengerInput;
+  ELECTRIC_FRONT_WINDOWS?: Boolean;
+  ELECTRIC_BACK_WINDOWS?: Boolean;
+  FACTORY_RADIO?: Boolean;
+  NON_STANDARD_RADIO?: Boolean;
+  AUX?: Boolean;
+  MP3?: Boolean;
+  CD?: Boolean;
+  CD_CHANGER?: Boolean;
+  DVD_PLAYER?: Boolean;
+  TV_TUNER?: Boolean;
+  LEATHER_UPHOLSTERY?: Boolean;
+  VELOR_UPHOLSTERY?: Boolean;
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS?: Boolean;
+  ELECTRIC_ADJUSTABLE_BACK_SEATS?: Boolean;
+  HEATED_FRONT_SEATS?: Boolean;
+  HEATED_BACK_SEATS?: Boolean;
+  PANORAMIC_ROOF?: Boolean;
+  SUNROOF?: Boolean;
+  ROOF_RACK?: Boolean;
+  PARKING_HEATER?: Boolean;
+  HEATED_FRONT_WINDSCREEN?: Boolean;
+  AIR_CONDITIONING_AUTOMATIC?: Boolean;
+  AIR_CONDITIONING_DUAL_ZONE?: Boolean;
+  AIR_CONDITIONING_THREE_ZONE?: Boolean;
+  AIR_CONDITIONING_FOUR_ZONE?: Boolean;
+  AIR_CONDITIONING_MANUAL?: Boolean;
+}
+
+export interface additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput {
+  create?: additionalAccessories_Comfort_PassengerCreateWithoutCarInput;
+  update?: additionalAccessories_Comfort_PassengerUpdateWithoutCarDataInput;
+  upsert?: additionalAccessories_Comfort_PassengerUpsertWithoutCarInput;
+  connect?: additionalAccessories_Comfort_PassengerWhereUniqueInput;
+}
+
+export interface additionalAccessories_Comfort_DriverUpdateManyMutationInput {
+  POWER_STEERING?: Boolean;
+  HEATED_STEERING_WHEEL?: Boolean;
+  MULTIFUNCTION_STEERING_WHEEL?: Boolean;
+  PADDLE_SHIFTERS?: Boolean;
+  ACTIVE_SUSPENSION?: Boolean;
+  REGULATED_SUSPENSION?: Boolean;
+  ELECTRIC_MIRRORS?: Boolean;
+  HEATED_MIRRORS?: Boolean;
+  ON_BOARD_COMPUTER?: Boolean;
+  PARKING_SENSOR_FRONT?: Boolean;
+  PARKING_SENSOR_BACK?: Boolean;
+  REVERSE_CAMERA?: Boolean;
+  RAIN_SENSOR?: Boolean;
+  CRUISE_CONTROL?: Boolean;
+  FOG_LIGHTS?: Boolean;
+  LED_LIGHTS?: Boolean;
+  XENON_LIGHTS?: Boolean;
+  GPS_NAVIGATION?: Boolean;
+  SPEED_LIMITER?: Boolean;
+}
+
+export interface additionalAccessories_Comfort_PassengerUpdateWithoutCarDataInput {
+  ELECTRIC_FRONT_WINDOWS?: Boolean;
+  ELECTRIC_BACK_WINDOWS?: Boolean;
+  FACTORY_RADIO?: Boolean;
+  NON_STANDARD_RADIO?: Boolean;
+  AUX?: Boolean;
+  MP3?: Boolean;
+  CD?: Boolean;
+  CD_CHANGER?: Boolean;
+  DVD_PLAYER?: Boolean;
+  TV_TUNER?: Boolean;
+  LEATHER_UPHOLSTERY?: Boolean;
+  VELOR_UPHOLSTERY?: Boolean;
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS?: Boolean;
+  ELECTRIC_ADJUSTABLE_BACK_SEATS?: Boolean;
+  HEATED_FRONT_SEATS?: Boolean;
+  HEATED_BACK_SEATS?: Boolean;
+  PANORAMIC_ROOF?: Boolean;
+  SUNROOF?: Boolean;
+  ROOF_RACK?: Boolean;
+  PARKING_HEATER?: Boolean;
+  HEATED_FRONT_WINDSCREEN?: Boolean;
+  AIR_CONDITIONING_AUTOMATIC?: Boolean;
+  AIR_CONDITIONING_DUAL_ZONE?: Boolean;
+  AIR_CONDITIONING_THREE_ZONE?: Boolean;
+  AIR_CONDITIONING_FOUR_ZONE?: Boolean;
+  AIR_CONDITIONING_MANUAL?: Boolean;
+}
+
+export interface CarUpdateWithoutAdditionalAccessories_Comfort_DriverDataInput {
+  post?: PostUpdateOneRequiredWithoutCarInput;
+  brand?: Brand;
+  model?: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType?: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety?: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Comfort_Passenger?: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Appereance?: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput;
+  type?: Type;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  fromCountry?: Country;
+}
+
+export interface additionalAccessories_Comfort_PassengerUpsertWithoutCarInput {
+  update: additionalAccessories_Comfort_PassengerUpdateWithoutCarDataInput;
+  create: additionalAccessories_Comfort_PassengerCreateWithoutCarInput;
+}
+
+export type additionalAccessories_SafetyWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput {
+  create?: additionalAccessories_Comfort_DriverCreateWithoutCarInput;
+  update?: additionalAccessories_Comfort_DriverUpdateWithoutCarDataInput;
+  upsert?: additionalAccessories_Comfort_DriverUpsertWithoutCarInput;
+  connect?: additionalAccessories_Comfort_DriverWhereUniqueInput;
+}
+
+export interface CarCreateWithoutAdditionalAccessories_Comfort_DriverInput {
+  post: PostCreateOneWithoutCarInput;
+  brand: Brand;
+  model: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneWithoutCarInput;
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput;
+  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput;
+  type?: Type;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  fromCountry?: Country;
+}
+
+export interface additionalAccessories_Comfort_DriverUpdateWithoutCarDataInput {
+  POWER_STEERING?: Boolean;
+  HEATED_STEERING_WHEEL?: Boolean;
+  MULTIFUNCTION_STEERING_WHEEL?: Boolean;
+  PADDLE_SHIFTERS?: Boolean;
+  ACTIVE_SUSPENSION?: Boolean;
+  REGULATED_SUSPENSION?: Boolean;
+  ELECTRIC_MIRRORS?: Boolean;
+  HEATED_MIRRORS?: Boolean;
+  ON_BOARD_COMPUTER?: Boolean;
+  PARKING_SENSOR_FRONT?: Boolean;
+  PARKING_SENSOR_BACK?: Boolean;
+  REVERSE_CAMERA?: Boolean;
+  RAIN_SENSOR?: Boolean;
+  CRUISE_CONTROL?: Boolean;
+  FOG_LIGHTS?: Boolean;
+  LED_LIGHTS?: Boolean;
+  XENON_LIGHTS?: Boolean;
+  GPS_NAVIGATION?: Boolean;
+  SPEED_LIMITER?: Boolean;
+}
+
+export interface additionalAccessories_Comfort_DriverCreateInput {
+  car: CarCreateOneWithoutAdditionalAccessories_Comfort_DriverInput;
+  POWER_STEERING?: Boolean;
+  HEATED_STEERING_WHEEL?: Boolean;
+  MULTIFUNCTION_STEERING_WHEEL?: Boolean;
+  PADDLE_SHIFTERS?: Boolean;
+  ACTIVE_SUSPENSION?: Boolean;
+  REGULATED_SUSPENSION?: Boolean;
+  ELECTRIC_MIRRORS?: Boolean;
+  HEATED_MIRRORS?: Boolean;
+  ON_BOARD_COMPUTER?: Boolean;
+  PARKING_SENSOR_FRONT?: Boolean;
+  PARKING_SENSOR_BACK?: Boolean;
+  REVERSE_CAMERA?: Boolean;
+  RAIN_SENSOR?: Boolean;
+  CRUISE_CONTROL?: Boolean;
+  FOG_LIGHTS?: Boolean;
+  LED_LIGHTS?: Boolean;
+  XENON_LIGHTS?: Boolean;
+  GPS_NAVIGATION?: Boolean;
+  SPEED_LIMITER?: Boolean;
+}
+
+export interface additionalAccessories_Comfort_DriverUpsertWithoutCarInput {
+  update: additionalAccessories_Comfort_DriverUpdateWithoutCarDataInput;
+  create: additionalAccessories_Comfort_DriverCreateWithoutCarInput;
+}
+
+export interface CarCreateInput {
+  post: PostCreateOneWithoutCarInput;
+  brand: Brand;
+  model: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneWithoutCarInput;
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput;
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput;
+  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput;
+  type?: Type;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  fromCountry?: Country;
+}
+
+export interface additionalAccessories_Comfort_DriverWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  car?: CarWhereInput;
+  POWER_STEERING?: Boolean;
+  POWER_STEERING_not?: Boolean;
+  HEATED_STEERING_WHEEL?: Boolean;
+  HEATED_STEERING_WHEEL_not?: Boolean;
+  MULTIFUNCTION_STEERING_WHEEL?: Boolean;
+  MULTIFUNCTION_STEERING_WHEEL_not?: Boolean;
+  PADDLE_SHIFTERS?: Boolean;
+  PADDLE_SHIFTERS_not?: Boolean;
+  ACTIVE_SUSPENSION?: Boolean;
+  ACTIVE_SUSPENSION_not?: Boolean;
+  REGULATED_SUSPENSION?: Boolean;
+  REGULATED_SUSPENSION_not?: Boolean;
+  ELECTRIC_MIRRORS?: Boolean;
+  ELECTRIC_MIRRORS_not?: Boolean;
+  HEATED_MIRRORS?: Boolean;
+  HEATED_MIRRORS_not?: Boolean;
+  ON_BOARD_COMPUTER?: Boolean;
+  ON_BOARD_COMPUTER_not?: Boolean;
+  PARKING_SENSOR_FRONT?: Boolean;
+  PARKING_SENSOR_FRONT_not?: Boolean;
+  PARKING_SENSOR_BACK?: Boolean;
+  PARKING_SENSOR_BACK_not?: Boolean;
+  REVERSE_CAMERA?: Boolean;
+  REVERSE_CAMERA_not?: Boolean;
+  RAIN_SENSOR?: Boolean;
+  RAIN_SENSOR_not?: Boolean;
+  CRUISE_CONTROL?: Boolean;
+  CRUISE_CONTROL_not?: Boolean;
+  FOG_LIGHTS?: Boolean;
+  FOG_LIGHTS_not?: Boolean;
+  LED_LIGHTS?: Boolean;
+  LED_LIGHTS_not?: Boolean;
+  XENON_LIGHTS?: Boolean;
+  XENON_LIGHTS_not?: Boolean;
+  GPS_NAVIGATION?: Boolean;
+  GPS_NAVIGATION_not?: Boolean;
+  SPEED_LIMITER?: Boolean;
+  SPEED_LIMITER_not?: Boolean;
+  AND?:
+    | additionalAccessories_Comfort_DriverWhereInput[]
+    | additionalAccessories_Comfort_DriverWhereInput;
+  OR?:
+    | additionalAccessories_Comfort_DriverWhereInput[]
+    | additionalAccessories_Comfort_DriverWhereInput;
+  NOT?:
+    | additionalAccessories_Comfort_DriverWhereInput[]
+    | additionalAccessories_Comfort_DriverWhereInput;
+}
+
+export interface PostCreateWithoutCarInput {
+  user: UserCreateOneWithoutPostsInput;
+  price: Int;
+  location: String;
+  avatar?: String;
+  photos?: PostCreatephotosInput;
+  description?: String;
 }
 
 export interface UserWhereInput {
@@ -1334,192 +1897,25 @@ export interface UserWhereInput {
   NOT?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput {
-  create?: additionalAccessories_Comfort_PassengerCreateWithoutCarInput;
-  update?: additionalAccessories_Comfort_PassengerUpdateWithoutCarDataInput;
-  upsert?: additionalAccessories_Comfort_PassengerUpsertWithoutCarInput;
-  connect?: additionalAccessories_Comfort_PassengerWhereUniqueInput;
+export interface UserCreateWithoutPostsInput {
+  name: String;
+  email: String;
+  emailConfirmed?: Boolean;
+  emailConfirmationToken?: String;
+  password: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions?: UserCreatepermissionsInput;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+export interface CarUpsertWithoutAdditionalAccessories_AppereanceInput {
+  update: CarUpdateWithoutAdditionalAccessories_AppereanceDataInput;
+  create: CarCreateWithoutAdditionalAccessories_AppereanceInput;
 }
 
-export interface additionalAccessories_Comfort_PassengerUpdateWithoutCarDataInput {
-  ELECTRIC_FRONT_WINDOWS?: Boolean;
-  ELECTRIC_BACK_WINDOWS?: Boolean;
-  FACTORY_RADIO?: Boolean;
-  NON_STANDARD_RADIO?: Boolean;
-  AUX?: Boolean;
-  MP3?: Boolean;
-  CD?: Boolean;
-  CD_CHANGER?: Boolean;
-  DVD_PLAYER?: Boolean;
-  TV_TUNER?: Boolean;
-  LEATHER_UPHOLSTERY?: Boolean;
-  VELOR_UPHOLSTERY?: Boolean;
-  ELECTRIC_ADJUSTABLE_FRONT_SEATS?: Boolean;
-  ELECTRIC_ADJUSTABLE_BACK_SEATS?: Boolean;
-  HEATED_FRONT_SEATS?: Boolean;
-  HEATED_BACK_SEATS?: Boolean;
-  PANORAMIC_ROOF?: Boolean;
-  SUNROOF?: Boolean;
-  ROOF_RACK?: Boolean;
-  PARKING_HEATER?: Boolean;
-  HEATED_FRONT_WINDSCREEN?: Boolean;
-  AIR_CONDITIONING_AUTOMATIC?: Boolean;
-  AIR_CONDITIONING_DUAL_ZONE?: Boolean;
-  AIR_CONDITIONING_THREE_ZONE?: Boolean;
-  AIR_CONDITIONING_FOUR_ZONE?: Boolean;
-  AIR_CONDITIONING_MANUAL?: Boolean;
+export interface PostCreatephotosInput {
+  set?: String[] | String;
 }
-
-export interface CarSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: CarWhereInput;
-  AND?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
-  OR?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
-  NOT?: CarSubscriptionWhereInput[] | CarSubscriptionWhereInput;
-}
-
-export interface additionalAccessories_Comfort_PassengerUpsertWithoutCarInput {
-  update: additionalAccessories_Comfort_PassengerUpdateWithoutCarDataInput;
-  create: additionalAccessories_Comfort_PassengerCreateWithoutCarInput;
-}
-
-export interface CarUpsertWithoutAdditionalAccessories_SafetyInput {
-  update: CarUpdateWithoutAdditionalAccessories_SafetyDataInput;
-  create: CarCreateWithoutAdditionalAccessories_SafetyInput;
-}
-
-export interface additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput {
-  create?: additionalAccessories_Comfort_DriverCreateWithoutCarInput;
-  update?: additionalAccessories_Comfort_DriverUpdateWithoutCarDataInput;
-  upsert?: additionalAccessories_Comfort_DriverUpsertWithoutCarInput;
-  connect?: additionalAccessories_Comfort_DriverWhereUniqueInput;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  email?: String;
-}>;
-
-export interface additionalAccessories_Comfort_DriverUpdateWithoutCarDataInput {
-  POWER_STEERING?: Boolean;
-  HEATED_STEERING_WHEEL?: Boolean;
-  MULTIFUNCTION_STEERING_WHEEL?: Boolean;
-  PADDLE_SHIFTERS?: Boolean;
-  ACTIVE_SUSPENSION?: Boolean;
-  REGULATED_SUSPENSION?: Boolean;
-  ELECTRIC_MIRRORS?: Boolean;
-  HEATED_MIRRORS?: Boolean;
-  ON_BOARD_COMPUTER?: Boolean;
-  PARKING_SENSOR_FRONT?: Boolean;
-  PARKING_SENSOR_BACK?: Boolean;
-  REVERSE_CAMERA?: Boolean;
-  RAIN_SENSOR?: Boolean;
-  CRUISE_CONTROL?: Boolean;
-  FOG_LIGHTS?: Boolean;
-  LED_LIGHTS?: Boolean;
-  XENON_LIGHTS?: Boolean;
-  GPS_NAVIGATION?: Boolean;
-  SPEED_LIMITER?: Boolean;
-}
-
-export interface additionalAccessories_SafetyUpdateInput {
-  car?: CarUpdateOneRequiredWithoutAdditionalAccessories_SafetyInput;
-  ABS?: Boolean;
-  ESP?: Boolean;
-  ASR?: Boolean;
-  CENTRAL_LOCKING?: Boolean;
-  IMMOBILIZER?: Boolean;
-  ALARM?: Boolean;
-  DRIVER_AIRBAG?: Boolean;
-  PASSENGER_AIRBAG?: Boolean;
-  SIDE_FRONT_AIRBAGS?: Boolean;
-  SIDE_BACK_AIRBAGS?: Boolean;
-}
-
-export interface additionalAccessories_Comfort_DriverUpsertWithoutCarInput {
-  update: additionalAccessories_Comfort_DriverUpdateWithoutCarDataInput;
-  create: additionalAccessories_Comfort_DriverCreateWithoutCarInput;
-}
-
-export interface CarCreateOneWithoutAdditionalAccessories_SafetyInput {
-  create?: CarCreateWithoutAdditionalAccessories_SafetyInput;
-  connect?: CarWhereUniqueInput;
-}
-
-export interface additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput {
-  create?: additionalAccessories_AppereanceCreateWithoutCarInput;
-  update?: additionalAccessories_AppereanceUpdateWithoutCarDataInput;
-  upsert?: additionalAccessories_AppereanceUpsertWithoutCarInput;
-  connect?: additionalAccessories_AppereanceWhereUniqueInput;
-}
-
-export interface additionalAccessories_SafetyCreateInput {
-  car: CarCreateOneWithoutAdditionalAccessories_SafetyInput;
-  ABS?: Boolean;
-  ESP?: Boolean;
-  ASR?: Boolean;
-  CENTRAL_LOCKING?: Boolean;
-  IMMOBILIZER?: Boolean;
-  ALARM?: Boolean;
-  DRIVER_AIRBAG?: Boolean;
-  PASSENGER_AIRBAG?: Boolean;
-  SIDE_FRONT_AIRBAGS?: Boolean;
-  SIDE_BACK_AIRBAGS?: Boolean;
-}
-
-export interface additionalAccessories_AppereanceUpdateWithoutCarDataInput {
-  ALLOY_WHEELS?: Boolean;
-  TINTED_WINDOWS?: Boolean;
-  METALLIC_PAINT?: Boolean;
-  MATTE_PAINT?: Boolean;
-  PEARL_PAINT?: Boolean;
-}
-
-export interface CarUpsertWithoutAdditionalAccessories_Comfort_PassengerInput {
-  update: CarUpdateWithoutAdditionalAccessories_Comfort_PassengerDataInput;
-  create: CarCreateWithoutAdditionalAccessories_Comfort_PassengerInput;
-}
-
-export interface additionalAccessories_Comfort_DriverCreateInput {
-  car: CarCreateOneWithoutAdditionalAccessories_Comfort_DriverInput;
-  POWER_STEERING?: Boolean;
-  HEATED_STEERING_WHEEL?: Boolean;
-  MULTIFUNCTION_STEERING_WHEEL?: Boolean;
-  PADDLE_SHIFTERS?: Boolean;
-  ACTIVE_SUSPENSION?: Boolean;
-  REGULATED_SUSPENSION?: Boolean;
-  ELECTRIC_MIRRORS?: Boolean;
-  HEATED_MIRRORS?: Boolean;
-  ON_BOARD_COMPUTER?: Boolean;
-  PARKING_SENSOR_FRONT?: Boolean;
-  PARKING_SENSOR_BACK?: Boolean;
-  REVERSE_CAMERA?: Boolean;
-  RAIN_SENSOR?: Boolean;
-  CRUISE_CONTROL?: Boolean;
-  FOG_LIGHTS?: Boolean;
-  LED_LIGHTS?: Boolean;
-  XENON_LIGHTS?: Boolean;
-  GPS_NAVIGATION?: Boolean;
-  SPEED_LIMITER?: Boolean;
-}
-
-export type additionalAccessories_Comfort_DriverWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
 
 export interface CarUpdateManyMutationInput {
   brand?: Brand;
@@ -1545,6 +1941,181 @@ export interface CarUpdateManyMutationInput {
   tuning?: Boolean;
   hasParticulateFilter?: Boolean;
   fromCountry?: Country;
+}
+
+export interface additionalAccessories_SafetyCreateWithoutCarInput {
+  ABS?: Boolean;
+  ESP?: Boolean;
+  ASR?: Boolean;
+  CENTRAL_LOCKING?: Boolean;
+  IMMOBILIZER?: Boolean;
+  ALARM?: Boolean;
+  DRIVER_AIRBAG?: Boolean;
+  PASSENGER_AIRBAG?: Boolean;
+  SIDE_FRONT_AIRBAGS?: Boolean;
+  SIDE_BACK_AIRBAGS?: Boolean;
+}
+
+export interface CarUpdateWithoutAdditionalAccessories_AppereanceDataInput {
+  post?: PostUpdateOneRequiredWithoutCarInput;
+  brand?: Brand;
+  model?: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType?: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety?: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Comfort_Passenger?: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Comfort_Driver?: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput;
+  type?: Type;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  fromCountry?: Country;
+}
+
+export interface additionalAccessories_SafetySubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: additionalAccessories_SafetyWhereInput;
+  AND?:
+    | additionalAccessories_SafetySubscriptionWhereInput[]
+    | additionalAccessories_SafetySubscriptionWhereInput;
+  OR?:
+    | additionalAccessories_SafetySubscriptionWhereInput[]
+    | additionalAccessories_SafetySubscriptionWhereInput;
+  NOT?:
+    | additionalAccessories_SafetySubscriptionWhereInput[]
+    | additionalAccessories_SafetySubscriptionWhereInput;
+}
+
+export interface CarUpdateOneRequiredWithoutAdditionalAccessories_AppereanceInput {
+  create?: CarCreateWithoutAdditionalAccessories_AppereanceInput;
+  update?: CarUpdateWithoutAdditionalAccessories_AppereanceDataInput;
+  upsert?: CarUpsertWithoutAdditionalAccessories_AppereanceInput;
+  connect?: CarWhereUniqueInput;
+}
+
+export interface additionalAccessories_AppereanceSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: additionalAccessories_AppereanceWhereInput;
+  AND?:
+    | additionalAccessories_AppereanceSubscriptionWhereInput[]
+    | additionalAccessories_AppereanceSubscriptionWhereInput;
+  OR?:
+    | additionalAccessories_AppereanceSubscriptionWhereInput[]
+    | additionalAccessories_AppereanceSubscriptionWhereInput;
+  NOT?:
+    | additionalAccessories_AppereanceSubscriptionWhereInput[]
+    | additionalAccessories_AppereanceSubscriptionWhereInput;
+}
+
+export interface PostCreateInput {
+  car: CarCreateOneWithoutPostInput;
+  user: UserCreateOneWithoutPostsInput;
+  price: Int;
+  location: String;
+  avatar?: String;
+  photos?: PostCreatephotosInput;
+  description?: String;
+}
+
+export interface additionalAccessories_SafetyUpdateManyMutationInput {
+  ABS?: Boolean;
+  ESP?: Boolean;
+  ASR?: Boolean;
+  CENTRAL_LOCKING?: Boolean;
+  IMMOBILIZER?: Boolean;
+  ALARM?: Boolean;
+  DRIVER_AIRBAG?: Boolean;
+  PASSENGER_AIRBAG?: Boolean;
+  SIDE_FRONT_AIRBAGS?: Boolean;
+  SIDE_BACK_AIRBAGS?: Boolean;
+}
+
+export interface CarCreateOneWithoutPostInput {
+  create?: CarCreateWithoutPostInput;
+  connect?: CarWhereUniqueInput;
+}
+
+export interface CarUpdateOneRequiredWithoutAdditionalAccessories_SafetyInput {
+  create?: CarCreateWithoutAdditionalAccessories_SafetyInput;
+  update?: CarUpdateWithoutAdditionalAccessories_SafetyDataInput;
+  upsert?: CarUpsertWithoutAdditionalAccessories_SafetyInput;
+  connect?: CarWhereUniqueInput;
+}
+
+export interface CarCreateWithoutPostInput {
+  brand: Brand;
+  model: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneWithoutCarInput;
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput;
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput;
+  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput;
+  type?: Type;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  fromCountry?: Country;
+}
+
+export interface CarCreateOneWithoutAdditionalAccessories_SafetyInput {
+  create?: CarCreateWithoutAdditionalAccessories_SafetyInput;
+  connect?: CarWhereUniqueInput;
+}
+
+export interface PostUpdateInput {
+  car?: CarUpdateOneRequiredWithoutPostInput;
+  user?: UserUpdateOneRequiredWithoutPostsInput;
+  price?: Int;
+  location?: String;
+  avatar?: String;
+  photos?: PostUpdatephotosInput;
+  description?: String;
+}
+
+export type additionalAccessories_AppereanceWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface CarUpdateOneRequiredWithoutPostInput {
+  create?: CarCreateWithoutPostInput;
+  update?: CarUpdateWithoutPostDataInput;
+  upsert?: CarUpsertWithoutPostInput;
+  connect?: CarWhereUniqueInput;
 }
 
 export interface additionalAccessories_Comfort_PassengerUpdateInput {
@@ -1577,12 +2148,34 @@ export interface additionalAccessories_Comfort_PassengerUpdateInput {
   AIR_CONDITIONING_MANUAL?: Boolean;
 }
 
-export interface additionalAccessories_AppereanceUpdateManyMutationInput {
-  ALLOY_WHEELS?: Boolean;
-  TINTED_WINDOWS?: Boolean;
-  METALLIC_PAINT?: Boolean;
-  MATTE_PAINT?: Boolean;
-  PEARL_PAINT?: Boolean;
+export interface CarUpdateWithoutPostDataInput {
+  brand?: Brand;
+  model?: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType?: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety?: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Comfort_Passenger?: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Comfort_Driver?: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Appereance?: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput;
+  type?: Type;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  fromCountry?: Country;
 }
 
 export interface CarCreateOneWithoutAdditionalAccessories_Comfort_PassengerInput {
@@ -1590,49 +2183,9 @@ export interface CarCreateOneWithoutAdditionalAccessories_Comfort_PassengerInput
   connect?: CarWhereUniqueInput;
 }
 
-export interface CarUpsertWithoutAdditionalAccessories_AppereanceInput {
-  update: CarUpdateWithoutAdditionalAccessories_AppereanceDataInput;
-  create: CarCreateWithoutAdditionalAccessories_AppereanceInput;
-}
-
-export interface additionalAccessories_Comfort_PassengerCreateInput {
-  car: CarCreateOneWithoutAdditionalAccessories_Comfort_PassengerInput;
-  ELECTRIC_FRONT_WINDOWS?: Boolean;
-  ELECTRIC_BACK_WINDOWS?: Boolean;
-  FACTORY_RADIO?: Boolean;
-  NON_STANDARD_RADIO?: Boolean;
-  AUX?: Boolean;
-  MP3?: Boolean;
-  CD?: Boolean;
-  CD_CHANGER?: Boolean;
-  DVD_PLAYER?: Boolean;
-  TV_TUNER?: Boolean;
-  LEATHER_UPHOLSTERY?: Boolean;
-  VELOR_UPHOLSTERY?: Boolean;
-  ELECTRIC_ADJUSTABLE_FRONT_SEATS?: Boolean;
-  ELECTRIC_ADJUSTABLE_BACK_SEATS?: Boolean;
-  HEATED_FRONT_SEATS?: Boolean;
-  HEATED_BACK_SEATS?: Boolean;
-  PANORAMIC_ROOF?: Boolean;
-  SUNROOF?: Boolean;
-  ROOF_RACK?: Boolean;
-  PARKING_HEATER?: Boolean;
-  HEATED_FRONT_WINDSCREEN?: Boolean;
-  AIR_CONDITIONING_AUTOMATIC?: Boolean;
-  AIR_CONDITIONING_DUAL_ZONE?: Boolean;
-  AIR_CONDITIONING_THREE_ZONE?: Boolean;
-  AIR_CONDITIONING_FOUR_ZONE?: Boolean;
-  AIR_CONDITIONING_MANUAL?: Boolean;
-}
-
-export interface PostCreateInput {
-  car: CarCreateOneInput;
-  user: UserCreateOneWithoutPostsInput;
-  price: Int;
-  location: String;
-  avatar?: String;
-  photos?: PostCreatephotosInput;
-  description?: String;
+export interface CarUpsertWithoutPostInput {
+  update: CarUpdateWithoutPostDataInput;
+  create: CarCreateWithoutPostInput;
 }
 
 export interface CarUpsertWithoutAdditionalAccessories_Comfort_DriverInput {
@@ -1640,18 +2193,12 @@ export interface CarUpsertWithoutAdditionalAccessories_Comfort_DriverInput {
   create: CarCreateWithoutAdditionalAccessories_Comfort_DriverInput;
 }
 
-export interface CarCreateOneInput {
-  create?: CarCreateInput;
-  connect?: CarWhereUniqueInput;
-}
-
-export type additionalAccessories_SafetyWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface UserCreateOneWithoutPostsInput {
-  create?: UserCreateWithoutPostsInput;
-  connect?: UserWhereUniqueInput;
+export interface PostUpdateManyMutationInput {
+  price?: Int;
+  location?: String;
+  avatar?: String;
+  photos?: PostUpdatephotosInput;
+  description?: String;
 }
 
 export interface additionalAccessories_Comfort_DriverUpdateInput {
@@ -1677,7 +2224,8 @@ export interface additionalAccessories_Comfort_DriverUpdateInput {
   SPEED_LIMITER?: Boolean;
 }
 
-export interface UserCreateWithoutPostsInput {
+export interface UserCreateInput {
+  posts?: PostCreateManyWithoutUserInput;
   name: String;
   email: String;
   emailConfirmed?: Boolean;
@@ -1688,204 +2236,61 @@ export interface UserCreateWithoutPostsInput {
   permissions?: UserCreatepermissionsInput;
 }
 
-export interface CarCreateOneWithoutAdditionalAccessories_Comfort_DriverInput {
-  create?: CarCreateWithoutAdditionalAccessories_Comfort_DriverInput;
-  connect?: CarWhereUniqueInput;
+export interface UserCreateOneWithoutPostsInput {
+  create?: UserCreateWithoutPostsInput;
+  connect?: UserWhereUniqueInput;
 }
 
-export interface UserCreatepermissionsInput {
-  set?: Permission[] | Permission;
+export interface PostCreateManyWithoutUserInput {
+  create?: PostCreateWithoutUserInput[] | PostCreateWithoutUserInput;
+  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
 }
 
-export interface CarCreateInput {
-  brand: Brand;
-  model: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: Transmission;
-  drive?: Drive;
-  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneWithoutCarInput;
-  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput;
-  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput;
-  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput;
-  type?: Type;
-  steeringWheelOnTheRight?: Boolean;
-  color?: Color;
-  damaged?: Boolean;
-  accidentFree?: Boolean;
-  firstOwner?: Boolean;
-  registeredInPoland?: Boolean;
-  registeredAsAntiqueCar?: Boolean;
-  hasVIN?: Boolean;
-  tuning?: Boolean;
-  hasParticulateFilter?: Boolean;
-  fromCountry?: Country;
+export interface additionalAccessories_SafetyCreateOneWithoutCarInput {
+  create?: additionalAccessories_SafetyCreateWithoutCarInput;
+  connect?: additionalAccessories_SafetyWhereUniqueInput;
 }
 
-export interface additionalAccessories_Comfort_PassengerWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  car?: CarWhereInput;
-  ELECTRIC_FRONT_WINDOWS?: Boolean;
-  ELECTRIC_FRONT_WINDOWS_not?: Boolean;
-  ELECTRIC_BACK_WINDOWS?: Boolean;
-  ELECTRIC_BACK_WINDOWS_not?: Boolean;
-  FACTORY_RADIO?: Boolean;
-  FACTORY_RADIO_not?: Boolean;
-  NON_STANDARD_RADIO?: Boolean;
-  NON_STANDARD_RADIO_not?: Boolean;
-  AUX?: Boolean;
-  AUX_not?: Boolean;
-  MP3?: Boolean;
-  MP3_not?: Boolean;
-  CD?: Boolean;
-  CD_not?: Boolean;
-  CD_CHANGER?: Boolean;
-  CD_CHANGER_not?: Boolean;
-  DVD_PLAYER?: Boolean;
-  DVD_PLAYER_not?: Boolean;
-  TV_TUNER?: Boolean;
-  TV_TUNER_not?: Boolean;
-  LEATHER_UPHOLSTERY?: Boolean;
-  LEATHER_UPHOLSTERY_not?: Boolean;
-  VELOR_UPHOLSTERY?: Boolean;
-  VELOR_UPHOLSTERY_not?: Boolean;
-  ELECTRIC_ADJUSTABLE_FRONT_SEATS?: Boolean;
-  ELECTRIC_ADJUSTABLE_FRONT_SEATS_not?: Boolean;
-  ELECTRIC_ADJUSTABLE_BACK_SEATS?: Boolean;
-  ELECTRIC_ADJUSTABLE_BACK_SEATS_not?: Boolean;
-  HEATED_FRONT_SEATS?: Boolean;
-  HEATED_FRONT_SEATS_not?: Boolean;
-  HEATED_BACK_SEATS?: Boolean;
-  HEATED_BACK_SEATS_not?: Boolean;
-  PANORAMIC_ROOF?: Boolean;
-  PANORAMIC_ROOF_not?: Boolean;
-  SUNROOF?: Boolean;
-  SUNROOF_not?: Boolean;
-  ROOF_RACK?: Boolean;
-  ROOF_RACK_not?: Boolean;
-  PARKING_HEATER?: Boolean;
-  PARKING_HEATER_not?: Boolean;
-  HEATED_FRONT_WINDSCREEN?: Boolean;
-  HEATED_FRONT_WINDSCREEN_not?: Boolean;
-  AIR_CONDITIONING_AUTOMATIC?: Boolean;
-  AIR_CONDITIONING_AUTOMATIC_not?: Boolean;
-  AIR_CONDITIONING_DUAL_ZONE?: Boolean;
-  AIR_CONDITIONING_DUAL_ZONE_not?: Boolean;
-  AIR_CONDITIONING_THREE_ZONE?: Boolean;
-  AIR_CONDITIONING_THREE_ZONE_not?: Boolean;
-  AIR_CONDITIONING_FOUR_ZONE?: Boolean;
-  AIR_CONDITIONING_FOUR_ZONE_not?: Boolean;
-  AIR_CONDITIONING_MANUAL?: Boolean;
-  AIR_CONDITIONING_MANUAL_not?: Boolean;
+export interface PostCreateWithoutUserInput {
+  car: CarCreateOneWithoutPostInput;
+  price: Int;
+  location: String;
+  avatar?: String;
+  photos?: PostCreatephotosInput;
+  description?: String;
+}
+
+export interface additionalAccessories_Comfort_PassengerSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: additionalAccessories_Comfort_PassengerWhereInput;
   AND?:
-    | additionalAccessories_Comfort_PassengerWhereInput[]
-    | additionalAccessories_Comfort_PassengerWhereInput;
+    | additionalAccessories_Comfort_PassengerSubscriptionWhereInput[]
+    | additionalAccessories_Comfort_PassengerSubscriptionWhereInput;
   OR?:
-    | additionalAccessories_Comfort_PassengerWhereInput[]
-    | additionalAccessories_Comfort_PassengerWhereInput;
+    | additionalAccessories_Comfort_PassengerSubscriptionWhereInput[]
+    | additionalAccessories_Comfort_PassengerSubscriptionWhereInput;
   NOT?:
-    | additionalAccessories_Comfort_PassengerWhereInput[]
-    | additionalAccessories_Comfort_PassengerWhereInput;
+    | additionalAccessories_Comfort_PassengerSubscriptionWhereInput[]
+    | additionalAccessories_Comfort_PassengerSubscriptionWhereInput;
 }
 
-export interface additionalAccessories_SafetyCreateWithoutCarInput {
-  ABS?: Boolean;
-  ESP?: Boolean;
-  ASR?: Boolean;
-  CENTRAL_LOCKING?: Boolean;
-  IMMOBILIZER?: Boolean;
-  ALARM?: Boolean;
-  DRIVER_AIRBAG?: Boolean;
-  PASSENGER_AIRBAG?: Boolean;
-  SIDE_FRONT_AIRBAGS?: Boolean;
-  SIDE_BACK_AIRBAGS?: Boolean;
+export interface UserUpdateInput {
+  posts?: PostUpdateManyWithoutUserInput;
+  name?: String;
+  email?: String;
+  emailConfirmed?: Boolean;
+  emailConfirmationToken?: String;
+  password?: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions?: UserUpdatepermissionsInput;
 }
 
-export interface additionalAccessories_AppereanceWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  car?: CarWhereInput;
-  ALLOY_WHEELS?: Boolean;
-  ALLOY_WHEELS_not?: Boolean;
-  TINTED_WINDOWS?: Boolean;
-  TINTED_WINDOWS_not?: Boolean;
-  METALLIC_PAINT?: Boolean;
-  METALLIC_PAINT_not?: Boolean;
-  MATTE_PAINT?: Boolean;
-  MATTE_PAINT_not?: Boolean;
-  PEARL_PAINT?: Boolean;
-  PEARL_PAINT_not?: Boolean;
-  AND?:
-    | additionalAccessories_AppereanceWhereInput[]
-    | additionalAccessories_AppereanceWhereInput;
-  OR?:
-    | additionalAccessories_AppereanceWhereInput[]
-    | additionalAccessories_AppereanceWhereInput;
-  NOT?:
-    | additionalAccessories_AppereanceWhereInput[]
-    | additionalAccessories_AppereanceWhereInput;
-}
-
-export interface additionalAccessories_Comfort_PassengerCreateWithoutCarInput {
-  ELECTRIC_FRONT_WINDOWS?: Boolean;
-  ELECTRIC_BACK_WINDOWS?: Boolean;
-  FACTORY_RADIO?: Boolean;
-  NON_STANDARD_RADIO?: Boolean;
-  AUX?: Boolean;
-  MP3?: Boolean;
-  CD?: Boolean;
-  CD_CHANGER?: Boolean;
-  DVD_PLAYER?: Boolean;
-  TV_TUNER?: Boolean;
-  LEATHER_UPHOLSTERY?: Boolean;
-  VELOR_UPHOLSTERY?: Boolean;
-  ELECTRIC_ADJUSTABLE_FRONT_SEATS?: Boolean;
-  ELECTRIC_ADJUSTABLE_BACK_SEATS?: Boolean;
-  HEATED_FRONT_SEATS?: Boolean;
-  HEATED_BACK_SEATS?: Boolean;
-  PANORAMIC_ROOF?: Boolean;
-  SUNROOF?: Boolean;
-  ROOF_RACK?: Boolean;
-  PARKING_HEATER?: Boolean;
-  HEATED_FRONT_WINDSCREEN?: Boolean;
-  AIR_CONDITIONING_AUTOMATIC?: Boolean;
-  AIR_CONDITIONING_DUAL_ZONE?: Boolean;
-  AIR_CONDITIONING_THREE_ZONE?: Boolean;
-  AIR_CONDITIONING_FOUR_ZONE?: Boolean;
-  AIR_CONDITIONING_MANUAL?: Boolean;
-}
-
-export interface CarUpdateWithoutAdditionalAccessories_AppereanceDataInput {
+export interface CarUpdateWithoutAdditionalAccessories_SafetyDataInput {
+  post?: PostUpdateOneRequiredWithoutCarInput;
   brand?: Brand;
   model?: String;
   version?: String;
@@ -1897,9 +2302,9 @@ export interface CarUpdateWithoutAdditionalAccessories_AppereanceDataInput {
   torque?: Int;
   transmission?: Transmission;
   drive?: Drive;
-  additionalAccessories_Safety?: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput;
   additionalAccessories_Comfort_Passenger?: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput;
   additionalAccessories_Comfort_Driver?: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Appereance?: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput;
   type?: Type;
   steeringWheelOnTheRight?: Boolean;
   color?: Color;
@@ -1914,55 +2319,55 @@ export interface CarUpdateWithoutAdditionalAccessories_AppereanceDataInput {
   fromCountry?: Country;
 }
 
-export interface additionalAccessories_Comfort_DriverCreateWithoutCarInput {
-  POWER_STEERING?: Boolean;
-  HEATED_STEERING_WHEEL?: Boolean;
-  MULTIFUNCTION_STEERING_WHEEL?: Boolean;
-  PADDLE_SHIFTERS?: Boolean;
-  ACTIVE_SUSPENSION?: Boolean;
-  REGULATED_SUSPENSION?: Boolean;
-  ELECTRIC_MIRRORS?: Boolean;
-  HEATED_MIRRORS?: Boolean;
-  ON_BOARD_COMPUTER?: Boolean;
-  PARKING_SENSOR_FRONT?: Boolean;
-  PARKING_SENSOR_BACK?: Boolean;
-  REVERSE_CAMERA?: Boolean;
-  RAIN_SENSOR?: Boolean;
-  CRUISE_CONTROL?: Boolean;
-  FOG_LIGHTS?: Boolean;
-  LED_LIGHTS?: Boolean;
-  XENON_LIGHTS?: Boolean;
-  GPS_NAVIGATION?: Boolean;
-  SPEED_LIMITER?: Boolean;
+export interface PostUpdateManyWithoutUserInput {
+  create?: PostCreateWithoutUserInput[] | PostCreateWithoutUserInput;
+  delete?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+  disconnect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+  update?:
+    | PostUpdateWithWhereUniqueWithoutUserInput[]
+    | PostUpdateWithWhereUniqueWithoutUserInput;
+  upsert?:
+    | PostUpsertWithWhereUniqueWithoutUserInput[]
+    | PostUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: PostScalarWhereInput[] | PostScalarWhereInput;
+  updateMany?:
+    | PostUpdateManyWithWhereNestedInput[]
+    | PostUpdateManyWithWhereNestedInput;
 }
 
-export interface CarUpdateOneRequiredWithoutAdditionalAccessories_AppereanceInput {
-  create?: CarCreateWithoutAdditionalAccessories_AppereanceInput;
-  update?: CarUpdateWithoutAdditionalAccessories_AppereanceDataInput;
-  upsert?: CarUpsertWithoutAdditionalAccessories_AppereanceInput;
-  connect?: CarWhereUniqueInput;
+export interface additionalAccessories_Comfort_PassengerUpdateManyMutationInput {
+  ELECTRIC_FRONT_WINDOWS?: Boolean;
+  ELECTRIC_BACK_WINDOWS?: Boolean;
+  FACTORY_RADIO?: Boolean;
+  NON_STANDARD_RADIO?: Boolean;
+  AUX?: Boolean;
+  MP3?: Boolean;
+  CD?: Boolean;
+  CD_CHANGER?: Boolean;
+  DVD_PLAYER?: Boolean;
+  TV_TUNER?: Boolean;
+  LEATHER_UPHOLSTERY?: Boolean;
+  VELOR_UPHOLSTERY?: Boolean;
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS?: Boolean;
+  ELECTRIC_ADJUSTABLE_BACK_SEATS?: Boolean;
+  HEATED_FRONT_SEATS?: Boolean;
+  HEATED_BACK_SEATS?: Boolean;
+  PANORAMIC_ROOF?: Boolean;
+  SUNROOF?: Boolean;
+  ROOF_RACK?: Boolean;
+  PARKING_HEATER?: Boolean;
+  HEATED_FRONT_WINDSCREEN?: Boolean;
+  AIR_CONDITIONING_AUTOMATIC?: Boolean;
+  AIR_CONDITIONING_DUAL_ZONE?: Boolean;
+  AIR_CONDITIONING_THREE_ZONE?: Boolean;
+  AIR_CONDITIONING_FOUR_ZONE?: Boolean;
+  AIR_CONDITIONING_MANUAL?: Boolean;
 }
 
-export interface additionalAccessories_SafetySubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: additionalAccessories_SafetyWhereInput;
-  AND?:
-    | additionalAccessories_SafetySubscriptionWhereInput[]
-    | additionalAccessories_SafetySubscriptionWhereInput;
-  OR?:
-    | additionalAccessories_SafetySubscriptionWhereInput[]
-    | additionalAccessories_SafetySubscriptionWhereInput;
-  NOT?:
-    | additionalAccessories_SafetySubscriptionWhereInput[]
-    | additionalAccessories_SafetySubscriptionWhereInput;
-}
-
-export interface CarUpsertNestedInput {
-  update: CarUpdateDataInput;
-  create: CarCreateInput;
+export interface PostUpdateWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput;
+  data: PostUpdateWithoutUserDataInput;
 }
 
 export interface PostWhereInput {
@@ -2037,324 +2442,21 @@ export interface PostWhereInput {
   NOT?: PostWhereInput[] | PostWhereInput;
 }
 
-export interface UserUpdateOneRequiredWithoutPostsInput {
-  create?: UserCreateWithoutPostsInput;
-  update?: UserUpdateWithoutPostsDataInput;
-  upsert?: UserUpsertWithoutPostsInput;
-  connect?: UserWhereUniqueInput;
+export interface PostUpdateWithoutUserDataInput {
+  car?: CarUpdateOneRequiredWithoutPostInput;
+  price?: Int;
+  location?: String;
+  avatar?: String;
+  photos?: PostUpdatephotosInput;
+  description?: String;
 }
 
-export interface PostSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: PostWhereInput;
-  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
-}
-
-export interface UserUpdateWithoutPostsDataInput {
-  name?: String;
-  email?: String;
-  emailConfirmed?: Boolean;
-  emailConfirmationToken?: String;
-  password?: String;
-  resetToken?: String;
-  resetTokenExpiry?: Float;
-  permissions?: UserUpdatepermissionsInput;
-}
-
-export interface CarUpdateWithoutAdditionalAccessories_SafetyDataInput {
-  brand?: Brand;
-  model?: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType?: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: Transmission;
-  drive?: Drive;
-  additionalAccessories_Comfort_Passenger?: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput;
-  additionalAccessories_Comfort_Driver?: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput;
-  additionalAccessories_Appereance?: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput;
-  type?: Type;
-  steeringWheelOnTheRight?: Boolean;
-  color?: Color;
-  damaged?: Boolean;
-  accidentFree?: Boolean;
-  firstOwner?: Boolean;
-  registeredInPoland?: Boolean;
-  registeredAsAntiqueCar?: Boolean;
-  hasVIN?: Boolean;
-  tuning?: Boolean;
-  hasParticulateFilter?: Boolean;
-  fromCountry?: Country;
-}
-
-export interface UserUpdatepermissionsInput {
-  set?: Permission[] | Permission;
-}
-
-export interface CarCreateWithoutAdditionalAccessories_SafetyInput {
-  brand: Brand;
-  model: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: Transmission;
-  drive?: Drive;
-  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput;
-  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput;
-  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput;
-  type?: Type;
-  steeringWheelOnTheRight?: Boolean;
-  color?: Color;
-  damaged?: Boolean;
-  accidentFree?: Boolean;
-  firstOwner?: Boolean;
-  registeredInPoland?: Boolean;
-  registeredAsAntiqueCar?: Boolean;
-  hasVIN?: Boolean;
-  tuning?: Boolean;
-  hasParticulateFilter?: Boolean;
-  fromCountry?: Country;
-}
-
-export interface UserUpsertWithoutPostsInput {
-  update: UserUpdateWithoutPostsDataInput;
-  create: UserCreateWithoutPostsInput;
-}
-
-export interface additionalAccessories_Comfort_PassengerUpdateManyMutationInput {
-  ELECTRIC_FRONT_WINDOWS?: Boolean;
-  ELECTRIC_BACK_WINDOWS?: Boolean;
-  FACTORY_RADIO?: Boolean;
-  NON_STANDARD_RADIO?: Boolean;
-  AUX?: Boolean;
-  MP3?: Boolean;
-  CD?: Boolean;
-  CD_CHANGER?: Boolean;
-  DVD_PLAYER?: Boolean;
-  TV_TUNER?: Boolean;
-  LEATHER_UPHOLSTERY?: Boolean;
-  VELOR_UPHOLSTERY?: Boolean;
-  ELECTRIC_ADJUSTABLE_FRONT_SEATS?: Boolean;
-  ELECTRIC_ADJUSTABLE_BACK_SEATS?: Boolean;
-  HEATED_FRONT_SEATS?: Boolean;
-  HEATED_BACK_SEATS?: Boolean;
-  PANORAMIC_ROOF?: Boolean;
-  SUNROOF?: Boolean;
-  ROOF_RACK?: Boolean;
-  PARKING_HEATER?: Boolean;
-  HEATED_FRONT_WINDSCREEN?: Boolean;
-  AIR_CONDITIONING_AUTOMATIC?: Boolean;
-  AIR_CONDITIONING_DUAL_ZONE?: Boolean;
-  AIR_CONDITIONING_THREE_ZONE?: Boolean;
-  AIR_CONDITIONING_FOUR_ZONE?: Boolean;
-  AIR_CONDITIONING_MANUAL?: Boolean;
-}
-
-export interface PostUpdatephotosInput {
-  set?: String[] | String;
-}
-
-export interface CarUpdateOneRequiredWithoutAdditionalAccessories_Comfort_PassengerInput {
-  create?: CarCreateWithoutAdditionalAccessories_Comfort_PassengerInput;
-  update?: CarUpdateWithoutAdditionalAccessories_Comfort_PassengerDataInput;
-  upsert?: CarUpsertWithoutAdditionalAccessories_Comfort_PassengerInput;
+export interface CarUpdateOneRequiredWithoutAdditionalAccessories_Comfort_DriverInput {
+  create?: CarCreateWithoutAdditionalAccessories_Comfort_DriverInput;
+  update?: CarUpdateWithoutAdditionalAccessories_Comfort_DriverDataInput;
+  upsert?: CarUpsertWithoutAdditionalAccessories_Comfort_DriverInput;
   connect?: CarWhereUniqueInput;
 }
-
-export interface PostUpdateManyMutationInput {
-  price?: Int;
-  location?: String;
-  avatar?: String;
-  photos?: PostUpdatephotosInput;
-  description?: String;
-}
-
-export type additionalAccessories_Comfort_PassengerWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface UserCreateInput {
-  posts?: PostCreateManyWithoutUserInput;
-  name: String;
-  email: String;
-  emailConfirmed?: Boolean;
-  emailConfirmationToken?: String;
-  password: String;
-  resetToken?: String;
-  resetTokenExpiry?: Float;
-  permissions?: UserCreatepermissionsInput;
-}
-
-export interface CarUpdateWithoutAdditionalAccessories_Comfort_DriverDataInput {
-  brand?: Brand;
-  model?: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType?: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: Transmission;
-  drive?: Drive;
-  additionalAccessories_Safety?: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput;
-  additionalAccessories_Comfort_Passenger?: additionalAccessories_Comfort_PassengerUpdateOneRequiredWithoutCarInput;
-  additionalAccessories_Appereance?: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput;
-  type?: Type;
-  steeringWheelOnTheRight?: Boolean;
-  color?: Color;
-  damaged?: Boolean;
-  accidentFree?: Boolean;
-  firstOwner?: Boolean;
-  registeredInPoland?: Boolean;
-  registeredAsAntiqueCar?: Boolean;
-  hasVIN?: Boolean;
-  tuning?: Boolean;
-  hasParticulateFilter?: Boolean;
-  fromCountry?: Country;
-}
-
-export interface PostCreateManyWithoutUserInput {
-  create?: PostCreateWithoutUserInput[] | PostCreateWithoutUserInput;
-  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-}
-
-export interface CarCreateWithoutAdditionalAccessories_Comfort_DriverInput {
-  brand: Brand;
-  model: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: Transmission;
-  drive?: Drive;
-  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneWithoutCarInput;
-  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput;
-  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput;
-  type?: Type;
-  steeringWheelOnTheRight?: Boolean;
-  color?: Color;
-  damaged?: Boolean;
-  accidentFree?: Boolean;
-  firstOwner?: Boolean;
-  registeredInPoland?: Boolean;
-  registeredAsAntiqueCar?: Boolean;
-  hasVIN?: Boolean;
-  tuning?: Boolean;
-  hasParticulateFilter?: Boolean;
-  fromCountry?: Country;
-}
-
-export interface PostCreateWithoutUserInput {
-  car: CarCreateOneInput;
-  price: Int;
-  location: String;
-  avatar?: String;
-  photos?: PostCreatephotosInput;
-  description?: String;
-}
-
-export interface additionalAccessories_SafetyCreateOneWithoutCarInput {
-  create?: additionalAccessories_SafetyCreateWithoutCarInput;
-  connect?: additionalAccessories_SafetyWhereUniqueInput;
-}
-
-export interface UserUpdateInput {
-  posts?: PostUpdateManyWithoutUserInput;
-  name?: String;
-  email?: String;
-  emailConfirmed?: Boolean;
-  emailConfirmationToken?: String;
-  password?: String;
-  resetToken?: String;
-  resetTokenExpiry?: Float;
-  permissions?: UserUpdatepermissionsInput;
-}
-
-export interface additionalAccessories_Comfort_DriverCreateOneWithoutCarInput {
-  create?: additionalAccessories_Comfort_DriverCreateWithoutCarInput;
-  connect?: additionalAccessories_Comfort_DriverWhereUniqueInput;
-}
-
-export interface PostUpdateManyWithoutUserInput {
-  create?: PostCreateWithoutUserInput[] | PostCreateWithoutUserInput;
-  delete?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  disconnect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  update?:
-    | PostUpdateWithWhereUniqueWithoutUserInput[]
-    | PostUpdateWithWhereUniqueWithoutUserInput;
-  upsert?:
-    | PostUpsertWithWhereUniqueWithoutUserInput[]
-    | PostUpsertWithWhereUniqueWithoutUserInput;
-  deleteMany?: PostScalarWhereInput[] | PostScalarWhereInput;
-  updateMany?:
-    | PostUpdateManyWithWhereNestedInput[]
-    | PostUpdateManyWithWhereNestedInput;
-}
-
-export interface additionalAccessories_Comfort_PassengerSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: additionalAccessories_Comfort_PassengerWhereInput;
-  AND?:
-    | additionalAccessories_Comfort_PassengerSubscriptionWhereInput[]
-    | additionalAccessories_Comfort_PassengerSubscriptionWhereInput;
-  OR?:
-    | additionalAccessories_Comfort_PassengerSubscriptionWhereInput[]
-    | additionalAccessories_Comfort_PassengerSubscriptionWhereInput;
-  NOT?:
-    | additionalAccessories_Comfort_PassengerSubscriptionWhereInput[]
-    | additionalAccessories_Comfort_PassengerSubscriptionWhereInput;
-}
-
-export interface PostUpdateWithWhereUniqueWithoutUserInput {
-  where: PostWhereUniqueInput;
-  data: PostUpdateWithoutUserDataInput;
-}
-
-export interface additionalAccessories_SafetyUpdateManyMutationInput {
-  ABS?: Boolean;
-  ESP?: Boolean;
-  ASR?: Boolean;
-  CENTRAL_LOCKING?: Boolean;
-  IMMOBILIZER?: Boolean;
-  ALARM?: Boolean;
-  DRIVER_AIRBAG?: Boolean;
-  PASSENGER_AIRBAG?: Boolean;
-  SIDE_FRONT_AIRBAGS?: Boolean;
-  SIDE_BACK_AIRBAGS?: Boolean;
-}
-
-export interface PostUpdateWithoutUserDataInput {
-  car?: CarUpdateOneRequiredInput;
-  price?: Int;
-  location?: String;
-  avatar?: String;
-  photos?: PostUpdatephotosInput;
-  description?: String;
-}
-
-export type additionalAccessories_AppereanceWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
 
 export interface PostUpsertWithWhereUniqueWithoutUserInput {
   where: PostWhereUniqueInput;
@@ -2362,33 +2464,9 @@ export interface PostUpsertWithWhereUniqueWithoutUserInput {
   create: PostCreateWithoutUserInput;
 }
 
-export interface CarCreateWithoutAdditionalAccessories_Comfort_PassengerInput {
-  brand: Brand;
-  model: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: Transmission;
-  drive?: Drive;
-  additionalAccessories_Safety: additionalAccessories_SafetyCreateOneWithoutCarInput;
-  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput;
-  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput;
-  type?: Type;
-  steeringWheelOnTheRight?: Boolean;
-  color?: Color;
-  damaged?: Boolean;
-  accidentFree?: Boolean;
-  firstOwner?: Boolean;
-  registeredInPoland?: Boolean;
-  registeredAsAntiqueCar?: Boolean;
-  hasVIN?: Boolean;
-  tuning?: Boolean;
-  hasParticulateFilter?: Boolean;
-  fromCountry?: Country;
+export interface PostCreateOneWithoutCarInput {
+  create?: PostCreateWithoutCarInput;
+  connect?: PostWhereUniqueInput;
 }
 
 export interface PostScalarWhereInput {
@@ -2461,11 +2539,9 @@ export interface PostScalarWhereInput {
   NOT?: PostScalarWhereInput[] | PostScalarWhereInput;
 }
 
-export interface CarUpdateOneRequiredWithoutAdditionalAccessories_Comfort_DriverInput {
-  create?: CarCreateWithoutAdditionalAccessories_Comfort_DriverInput;
-  update?: CarUpdateWithoutAdditionalAccessories_Comfort_DriverDataInput;
-  upsert?: CarUpsertWithoutAdditionalAccessories_Comfort_DriverInput;
-  connect?: CarWhereUniqueInput;
+export interface additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput {
+  create?: additionalAccessories_Comfort_PassengerCreateWithoutCarInput;
+  connect?: additionalAccessories_Comfort_PassengerWhereUniqueInput;
 }
 
 export interface PostUpdateManyWithWhereNestedInput {
@@ -2473,51 +2549,22 @@ export interface PostUpdateManyWithWhereNestedInput {
   data: PostUpdateManyDataInput;
 }
 
-export interface additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput {
-  create?: additionalAccessories_Comfort_PassengerCreateWithoutCarInput;
-  connect?: additionalAccessories_Comfort_PassengerWhereUniqueInput;
-}
-
-export interface PostUpdateManyDataInput {
-  price?: Int;
-  location?: String;
-  avatar?: String;
-  photos?: PostUpdatephotosInput;
-  description?: String;
-}
-
-export interface additionalAccessories_AppereanceSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: additionalAccessories_AppereanceWhereInput;
-  AND?:
-    | additionalAccessories_AppereanceSubscriptionWhereInput[]
-    | additionalAccessories_AppereanceSubscriptionWhereInput;
-  OR?:
-    | additionalAccessories_AppereanceSubscriptionWhereInput[]
-    | additionalAccessories_AppereanceSubscriptionWhereInput;
-  NOT?:
-    | additionalAccessories_AppereanceSubscriptionWhereInput[]
-    | additionalAccessories_AppereanceSubscriptionWhereInput;
-}
-
-export interface CarUpdateWithoutAdditionalAccessories_Comfort_PassengerDataInput {
-  brand?: Brand;
-  model?: String;
+export interface CarCreateWithoutAdditionalAccessories_SafetyInput {
+  post: PostCreateOneWithoutCarInput;
+  brand: Brand;
+  model: String;
   version?: String;
   mileage?: Int;
   productionYear?: Int;
-  fuelType?: FuelType;
+  fuelType: FuelType;
   engineSize?: Int;
   power?: Int;
   torque?: Int;
   transmission?: Transmission;
   drive?: Drive;
-  additionalAccessories_Safety?: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput;
-  additionalAccessories_Comfort_Driver?: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput;
-  additionalAccessories_Appereance?: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Comfort_Passenger: additionalAccessories_Comfort_PassengerCreateOneWithoutCarInput;
+  additionalAccessories_Comfort_Driver: additionalAccessories_Comfort_DriverCreateOneWithoutCarInput;
+  additionalAccessories_Appereance: additionalAccessories_AppereanceCreateOneWithoutCarInput;
   type?: Type;
   steeringWheelOnTheRight?: Boolean;
   color?: Color;
@@ -2532,7 +2579,20 @@ export interface CarUpdateWithoutAdditionalAccessories_Comfort_PassengerDataInpu
   fromCountry?: Country;
 }
 
+export interface PostUpdateManyDataInput {
+  price?: Int;
+  location?: String;
+  avatar?: String;
+  photos?: PostUpdatephotosInput;
+  description?: String;
+}
+
+export type additionalAccessories_Comfort_PassengerWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
 export interface CarCreateWithoutAdditionalAccessories_AppereanceInput {
+  post: PostCreateOneWithoutCarInput;
   brand: Brand;
   model: String;
   version?: String;
@@ -2586,38 +2646,54 @@ export interface UserUpdateManyMutationInput {
   permissions?: UserUpdatepermissionsInput;
 }
 
-export interface additionalAccessories_Comfort_DriverUpdateManyMutationInput {
-  POWER_STEERING?: Boolean;
-  HEATED_STEERING_WHEEL?: Boolean;
-  MULTIFUNCTION_STEERING_WHEEL?: Boolean;
-  PADDLE_SHIFTERS?: Boolean;
-  ACTIVE_SUSPENSION?: Boolean;
-  REGULATED_SUSPENSION?: Boolean;
-  ELECTRIC_MIRRORS?: Boolean;
-  HEATED_MIRRORS?: Boolean;
-  ON_BOARD_COMPUTER?: Boolean;
-  PARKING_SENSOR_FRONT?: Boolean;
-  PARKING_SENSOR_BACK?: Boolean;
-  REVERSE_CAMERA?: Boolean;
-  RAIN_SENSOR?: Boolean;
-  CRUISE_CONTROL?: Boolean;
-  FOG_LIGHTS?: Boolean;
-  LED_LIGHTS?: Boolean;
-  XENON_LIGHTS?: Boolean;
-  GPS_NAVIGATION?: Boolean;
-  SPEED_LIMITER?: Boolean;
-}
-
-export interface CarUpdateOneRequiredWithoutAdditionalAccessories_SafetyInput {
-  create?: CarCreateWithoutAdditionalAccessories_SafetyInput;
-  update?: CarUpdateWithoutAdditionalAccessories_SafetyDataInput;
-  upsert?: CarUpsertWithoutAdditionalAccessories_SafetyInput;
+export interface CarCreateOneWithoutAdditionalAccessories_Comfort_DriverInput {
+  create?: CarCreateWithoutAdditionalAccessories_Comfort_DriverInput;
   connect?: CarWhereUniqueInput;
 }
 
-export interface additionalAccessories_AppereanceCreateOneWithoutCarInput {
-  create?: additionalAccessories_AppereanceCreateWithoutCarInput;
-  connect?: additionalAccessories_AppereanceWhereUniqueInput;
+export interface CarUpdateWithoutAdditionalAccessories_Comfort_PassengerDataInput {
+  post?: PostUpdateOneRequiredWithoutCarInput;
+  brand?: Brand;
+  model?: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType?: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  additionalAccessories_Safety?: additionalAccessories_SafetyUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Comfort_Driver?: additionalAccessories_Comfort_DriverUpdateOneRequiredWithoutCarInput;
+  additionalAccessories_Appereance?: additionalAccessories_AppereanceUpdateOneRequiredWithoutCarInput;
+  type?: Type;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  fromCountry?: Country;
+}
+
+export interface PostSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: PostWhereInput;
+  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+}
+
+export interface UserCreatepermissionsInput {
+  set?: Permission[] | Permission;
 }
 
 export interface NodeNode {
@@ -2684,157 +2760,6 @@ export interface AggregatePostSubscription
   extends Promise<AsyncIterator<AggregatePost>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PostEdge {
-  cursor: String;
-}
-
-export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
-  node: <T = PostPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PostEdgeSubscription
-  extends Promise<AsyncIterator<PostEdge>>,
-    Fragmentable {
-  node: <T = PostSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface CarEdge {
-  cursor: String;
-}
-
-export interface CarEdgePromise extends Promise<CarEdge>, Fragmentable {
-  node: <T = CarPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface CarEdgeSubscription
-  extends Promise<AsyncIterator<CarEdge>>,
-    Fragmentable {
-  node: <T = CarSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface additionalAccessories_Comfort_Passenger {
-  id: ID_Output;
-  ELECTRIC_FRONT_WINDOWS?: Boolean;
-  ELECTRIC_BACK_WINDOWS?: Boolean;
-  FACTORY_RADIO?: Boolean;
-  NON_STANDARD_RADIO?: Boolean;
-  AUX?: Boolean;
-  MP3?: Boolean;
-  CD?: Boolean;
-  CD_CHANGER?: Boolean;
-  DVD_PLAYER?: Boolean;
-  TV_TUNER?: Boolean;
-  LEATHER_UPHOLSTERY?: Boolean;
-  VELOR_UPHOLSTERY?: Boolean;
-  ELECTRIC_ADJUSTABLE_FRONT_SEATS?: Boolean;
-  ELECTRIC_ADJUSTABLE_BACK_SEATS?: Boolean;
-  HEATED_FRONT_SEATS?: Boolean;
-  HEATED_BACK_SEATS?: Boolean;
-  PANORAMIC_ROOF?: Boolean;
-  SUNROOF?: Boolean;
-  ROOF_RACK?: Boolean;
-  PARKING_HEATER?: Boolean;
-  HEATED_FRONT_WINDSCREEN?: Boolean;
-  AIR_CONDITIONING_AUTOMATIC?: Boolean;
-  AIR_CONDITIONING_DUAL_ZONE?: Boolean;
-  AIR_CONDITIONING_THREE_ZONE?: Boolean;
-  AIR_CONDITIONING_FOUR_ZONE?: Boolean;
-  AIR_CONDITIONING_MANUAL?: Boolean;
-}
-
-export interface additionalAccessories_Comfort_PassengerPromise
-  extends Promise<additionalAccessories_Comfort_Passenger>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  car: <T = CarPromise>() => T;
-  ELECTRIC_FRONT_WINDOWS: () => Promise<Boolean>;
-  ELECTRIC_BACK_WINDOWS: () => Promise<Boolean>;
-  FACTORY_RADIO: () => Promise<Boolean>;
-  NON_STANDARD_RADIO: () => Promise<Boolean>;
-  AUX: () => Promise<Boolean>;
-  MP3: () => Promise<Boolean>;
-  CD: () => Promise<Boolean>;
-  CD_CHANGER: () => Promise<Boolean>;
-  DVD_PLAYER: () => Promise<Boolean>;
-  TV_TUNER: () => Promise<Boolean>;
-  LEATHER_UPHOLSTERY: () => Promise<Boolean>;
-  VELOR_UPHOLSTERY: () => Promise<Boolean>;
-  ELECTRIC_ADJUSTABLE_FRONT_SEATS: () => Promise<Boolean>;
-  ELECTRIC_ADJUSTABLE_BACK_SEATS: () => Promise<Boolean>;
-  HEATED_FRONT_SEATS: () => Promise<Boolean>;
-  HEATED_BACK_SEATS: () => Promise<Boolean>;
-  PANORAMIC_ROOF: () => Promise<Boolean>;
-  SUNROOF: () => Promise<Boolean>;
-  ROOF_RACK: () => Promise<Boolean>;
-  PARKING_HEATER: () => Promise<Boolean>;
-  HEATED_FRONT_WINDSCREEN: () => Promise<Boolean>;
-  AIR_CONDITIONING_AUTOMATIC: () => Promise<Boolean>;
-  AIR_CONDITIONING_DUAL_ZONE: () => Promise<Boolean>;
-  AIR_CONDITIONING_THREE_ZONE: () => Promise<Boolean>;
-  AIR_CONDITIONING_FOUR_ZONE: () => Promise<Boolean>;
-  AIR_CONDITIONING_MANUAL: () => Promise<Boolean>;
-}
-
-export interface additionalAccessories_Comfort_PassengerSubscription
-  extends Promise<AsyncIterator<additionalAccessories_Comfort_Passenger>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  car: <T = CarSubscription>() => T;
-  ELECTRIC_FRONT_WINDOWS: () => Promise<AsyncIterator<Boolean>>;
-  ELECTRIC_BACK_WINDOWS: () => Promise<AsyncIterator<Boolean>>;
-  FACTORY_RADIO: () => Promise<AsyncIterator<Boolean>>;
-  NON_STANDARD_RADIO: () => Promise<AsyncIterator<Boolean>>;
-  AUX: () => Promise<AsyncIterator<Boolean>>;
-  MP3: () => Promise<AsyncIterator<Boolean>>;
-  CD: () => Promise<AsyncIterator<Boolean>>;
-  CD_CHANGER: () => Promise<AsyncIterator<Boolean>>;
-  DVD_PLAYER: () => Promise<AsyncIterator<Boolean>>;
-  TV_TUNER: () => Promise<AsyncIterator<Boolean>>;
-  LEATHER_UPHOLSTERY: () => Promise<AsyncIterator<Boolean>>;
-  VELOR_UPHOLSTERY: () => Promise<AsyncIterator<Boolean>>;
-  ELECTRIC_ADJUSTABLE_FRONT_SEATS: () => Promise<AsyncIterator<Boolean>>;
-  ELECTRIC_ADJUSTABLE_BACK_SEATS: () => Promise<AsyncIterator<Boolean>>;
-  HEATED_FRONT_SEATS: () => Promise<AsyncIterator<Boolean>>;
-  HEATED_BACK_SEATS: () => Promise<AsyncIterator<Boolean>>;
-  PANORAMIC_ROOF: () => Promise<AsyncIterator<Boolean>>;
-  SUNROOF: () => Promise<AsyncIterator<Boolean>>;
-  ROOF_RACK: () => Promise<AsyncIterator<Boolean>>;
-  PARKING_HEATER: () => Promise<AsyncIterator<Boolean>>;
-  HEATED_FRONT_WINDSCREEN: () => Promise<AsyncIterator<Boolean>>;
-  AIR_CONDITIONING_AUTOMATIC: () => Promise<AsyncIterator<Boolean>>;
-  AIR_CONDITIONING_DUAL_ZONE: () => Promise<AsyncIterator<Boolean>>;
-  AIR_CONDITIONING_THREE_ZONE: () => Promise<AsyncIterator<Boolean>>;
-  AIR_CONDITIONING_FOUR_ZONE: () => Promise<AsyncIterator<Boolean>>;
-  AIR_CONDITIONING_MANUAL: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface additionalAccessories_Comfort_DriverPreviousValues {
@@ -2912,712 +2837,20 @@ export interface additionalAccessories_Comfort_DriverPreviousValuesSubscription
   SPEED_LIMITER: () => Promise<AsyncIterator<Boolean>>;
 }
 
-export interface CarConnection {}
-
-export interface CarConnectionPromise
-  extends Promise<CarConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CarEdge>>() => T;
-  aggregate: <T = AggregateCarPromise>() => T;
+export interface PostEdge {
+  cursor: String;
 }
 
-export interface CarConnectionSubscription
-  extends Promise<AsyncIterator<CarConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CarEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCarSubscription>() => T;
-}
-
-export interface PostConnection {}
-
-export interface PostConnectionPromise
-  extends Promise<PostConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PostEdge>>() => T;
-  aggregate: <T = AggregatePostPromise>() => T;
-}
-
-export interface PostConnectionSubscription
-  extends Promise<AsyncIterator<PostConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePostSubscription>() => T;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface additionalAccessories_SafetyConnection {}
-
-export interface additionalAccessories_SafetyConnectionPromise
-  extends Promise<additionalAccessories_SafetyConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<additionalAccessories_SafetyEdge>>() => T;
-  aggregate: <T = AggregateadditionalAccessories_SafetyPromise>() => T;
-}
-
-export interface additionalAccessories_SafetyConnectionSubscription
-  extends Promise<AsyncIterator<additionalAccessories_SafetyConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <
-    T = Promise<AsyncIterator<additionalAccessories_SafetyEdgeSubscription>>
-  >() => T;
-  aggregate: <T = AggregateadditionalAccessories_SafetySubscription>() => T;
-}
-
-export interface AggregateadditionalAccessories_Safety {
-  count: Int;
-}
-
-export interface AggregateadditionalAccessories_SafetyPromise
-  extends Promise<AggregateadditionalAccessories_Safety>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateadditionalAccessories_SafetySubscription
-  extends Promise<AsyncIterator<AggregateadditionalAccessories_Safety>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AggregateadditionalAccessories_Comfort_Passenger {
-  count: Int;
-}
-
-export interface AggregateadditionalAccessories_Comfort_PassengerPromise
-  extends Promise<AggregateadditionalAccessories_Comfort_Passenger>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateadditionalAccessories_Comfort_PassengerSubscription
-  extends Promise<
-      AsyncIterator<AggregateadditionalAccessories_Comfort_Passenger>
-    >,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface additionalAccessories_Comfort_Driver {
-  id: ID_Output;
-  POWER_STEERING?: Boolean;
-  HEATED_STEERING_WHEEL?: Boolean;
-  MULTIFUNCTION_STEERING_WHEEL?: Boolean;
-  PADDLE_SHIFTERS?: Boolean;
-  ACTIVE_SUSPENSION?: Boolean;
-  REGULATED_SUSPENSION?: Boolean;
-  ELECTRIC_MIRRORS?: Boolean;
-  HEATED_MIRRORS?: Boolean;
-  ON_BOARD_COMPUTER?: Boolean;
-  PARKING_SENSOR_FRONT?: Boolean;
-  PARKING_SENSOR_BACK?: Boolean;
-  REVERSE_CAMERA?: Boolean;
-  RAIN_SENSOR?: Boolean;
-  CRUISE_CONTROL?: Boolean;
-  FOG_LIGHTS?: Boolean;
-  LED_LIGHTS?: Boolean;
-  XENON_LIGHTS?: Boolean;
-  GPS_NAVIGATION?: Boolean;
-  SPEED_LIMITER?: Boolean;
-}
-
-export interface additionalAccessories_Comfort_DriverPromise
-  extends Promise<additionalAccessories_Comfort_Driver>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  car: <T = CarPromise>() => T;
-  POWER_STEERING: () => Promise<Boolean>;
-  HEATED_STEERING_WHEEL: () => Promise<Boolean>;
-  MULTIFUNCTION_STEERING_WHEEL: () => Promise<Boolean>;
-  PADDLE_SHIFTERS: () => Promise<Boolean>;
-  ACTIVE_SUSPENSION: () => Promise<Boolean>;
-  REGULATED_SUSPENSION: () => Promise<Boolean>;
-  ELECTRIC_MIRRORS: () => Promise<Boolean>;
-  HEATED_MIRRORS: () => Promise<Boolean>;
-  ON_BOARD_COMPUTER: () => Promise<Boolean>;
-  PARKING_SENSOR_FRONT: () => Promise<Boolean>;
-  PARKING_SENSOR_BACK: () => Promise<Boolean>;
-  REVERSE_CAMERA: () => Promise<Boolean>;
-  RAIN_SENSOR: () => Promise<Boolean>;
-  CRUISE_CONTROL: () => Promise<Boolean>;
-  FOG_LIGHTS: () => Promise<Boolean>;
-  LED_LIGHTS: () => Promise<Boolean>;
-  XENON_LIGHTS: () => Promise<Boolean>;
-  GPS_NAVIGATION: () => Promise<Boolean>;
-  SPEED_LIMITER: () => Promise<Boolean>;
-}
-
-export interface additionalAccessories_Comfort_DriverSubscription
-  extends Promise<AsyncIterator<additionalAccessories_Comfort_Driver>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  car: <T = CarSubscription>() => T;
-  POWER_STEERING: () => Promise<AsyncIterator<Boolean>>;
-  HEATED_STEERING_WHEEL: () => Promise<AsyncIterator<Boolean>>;
-  MULTIFUNCTION_STEERING_WHEEL: () => Promise<AsyncIterator<Boolean>>;
-  PADDLE_SHIFTERS: () => Promise<AsyncIterator<Boolean>>;
-  ACTIVE_SUSPENSION: () => Promise<AsyncIterator<Boolean>>;
-  REGULATED_SUSPENSION: () => Promise<AsyncIterator<Boolean>>;
-  ELECTRIC_MIRRORS: () => Promise<AsyncIterator<Boolean>>;
-  HEATED_MIRRORS: () => Promise<AsyncIterator<Boolean>>;
-  ON_BOARD_COMPUTER: () => Promise<AsyncIterator<Boolean>>;
-  PARKING_SENSOR_FRONT: () => Promise<AsyncIterator<Boolean>>;
-  PARKING_SENSOR_BACK: () => Promise<AsyncIterator<Boolean>>;
-  REVERSE_CAMERA: () => Promise<AsyncIterator<Boolean>>;
-  RAIN_SENSOR: () => Promise<AsyncIterator<Boolean>>;
-  CRUISE_CONTROL: () => Promise<AsyncIterator<Boolean>>;
-  FOG_LIGHTS: () => Promise<AsyncIterator<Boolean>>;
-  LED_LIGHTS: () => Promise<AsyncIterator<Boolean>>;
-  XENON_LIGHTS: () => Promise<AsyncIterator<Boolean>>;
-  GPS_NAVIGATION: () => Promise<AsyncIterator<Boolean>>;
-  SPEED_LIMITER: () => Promise<AsyncIterator<Boolean>>;
-}
-
-export interface additionalAccessories_Comfort_PassengerConnection {}
-
-export interface additionalAccessories_Comfort_PassengerConnectionPromise
-  extends Promise<additionalAccessories_Comfort_PassengerConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <
-    T = FragmentableArray<additionalAccessories_Comfort_PassengerEdge>
-  >() => T;
-  aggregate: <
-    T = AggregateadditionalAccessories_Comfort_PassengerPromise
-  >() => T;
-}
-
-export interface additionalAccessories_Comfort_PassengerConnectionSubscription
-  extends Promise<
-      AsyncIterator<additionalAccessories_Comfort_PassengerConnection>
-    >,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <
-    T = Promise<
-      AsyncIterator<additionalAccessories_Comfort_PassengerEdgeSubscription>
-    >
-  >() => T;
-  aggregate: <
-    T = AggregateadditionalAccessories_Comfort_PassengerSubscription
-  >() => T;
-}
-
-export interface Car {
-  id: ID_Output;
-  brand: Brand;
-  model: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: Transmission;
-  drive?: Drive;
-  type?: Type;
-  steeringWheelOnTheRight?: Boolean;
-  color?: Color;
-  damaged?: Boolean;
-  accidentFree?: Boolean;
-  firstOwner?: Boolean;
-  registeredInPoland?: Boolean;
-  registeredAsAntiqueCar?: Boolean;
-  hasVIN?: Boolean;
-  tuning?: Boolean;
-  hasParticulateFilter?: Boolean;
-  fromCountry?: Country;
-}
-
-export interface CarPromise extends Promise<Car>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  brand: () => Promise<Brand>;
-  model: () => Promise<String>;
-  version: () => Promise<String>;
-  mileage: () => Promise<Int>;
-  productionYear: () => Promise<Int>;
-  fuelType: () => Promise<FuelType>;
-  engineSize: () => Promise<Int>;
-  power: () => Promise<Int>;
-  torque: () => Promise<Int>;
-  transmission: () => Promise<Transmission>;
-  drive: () => Promise<Drive>;
-  additionalAccessories_Safety: <
-    T = additionalAccessories_SafetyPromise
-  >() => T;
-  additionalAccessories_Comfort_Passenger: <
-    T = additionalAccessories_Comfort_PassengerPromise
-  >() => T;
-  additionalAccessories_Comfort_Driver: <
-    T = additionalAccessories_Comfort_DriverPromise
-  >() => T;
-  additionalAccessories_Appereance: <
-    T = additionalAccessories_AppereancePromise
-  >() => T;
-  type: () => Promise<Type>;
-  steeringWheelOnTheRight: () => Promise<Boolean>;
-  color: () => Promise<Color>;
-  damaged: () => Promise<Boolean>;
-  accidentFree: () => Promise<Boolean>;
-  firstOwner: () => Promise<Boolean>;
-  registeredInPoland: () => Promise<Boolean>;
-  registeredAsAntiqueCar: () => Promise<Boolean>;
-  hasVIN: () => Promise<Boolean>;
-  tuning: () => Promise<Boolean>;
-  hasParticulateFilter: () => Promise<Boolean>;
-  fromCountry: () => Promise<Country>;
-}
-
-export interface CarSubscription
-  extends Promise<AsyncIterator<Car>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  brand: () => Promise<AsyncIterator<Brand>>;
-  model: () => Promise<AsyncIterator<String>>;
-  version: () => Promise<AsyncIterator<String>>;
-  mileage: () => Promise<AsyncIterator<Int>>;
-  productionYear: () => Promise<AsyncIterator<Int>>;
-  fuelType: () => Promise<AsyncIterator<FuelType>>;
-  engineSize: () => Promise<AsyncIterator<Int>>;
-  power: () => Promise<AsyncIterator<Int>>;
-  torque: () => Promise<AsyncIterator<Int>>;
-  transmission: () => Promise<AsyncIterator<Transmission>>;
-  drive: () => Promise<AsyncIterator<Drive>>;
-  additionalAccessories_Safety: <
-    T = additionalAccessories_SafetySubscription
-  >() => T;
-  additionalAccessories_Comfort_Passenger: <
-    T = additionalAccessories_Comfort_PassengerSubscription
-  >() => T;
-  additionalAccessories_Comfort_Driver: <
-    T = additionalAccessories_Comfort_DriverSubscription
-  >() => T;
-  additionalAccessories_Appereance: <
-    T = additionalAccessories_AppereanceSubscription
-  >() => T;
-  type: () => Promise<AsyncIterator<Type>>;
-  steeringWheelOnTheRight: () => Promise<AsyncIterator<Boolean>>;
-  color: () => Promise<AsyncIterator<Color>>;
-  damaged: () => Promise<AsyncIterator<Boolean>>;
-  accidentFree: () => Promise<AsyncIterator<Boolean>>;
-  firstOwner: () => Promise<AsyncIterator<Boolean>>;
-  registeredInPoland: () => Promise<AsyncIterator<Boolean>>;
-  registeredAsAntiqueCar: () => Promise<AsyncIterator<Boolean>>;
-  hasVIN: () => Promise<AsyncIterator<Boolean>>;
-  tuning: () => Promise<AsyncIterator<Boolean>>;
-  hasParticulateFilter: () => Promise<AsyncIterator<Boolean>>;
-  fromCountry: () => Promise<AsyncIterator<Country>>;
-}
-
-export interface AggregateadditionalAccessories_Comfort_Driver {
-  count: Int;
-}
-
-export interface AggregateadditionalAccessories_Comfort_DriverPromise
-  extends Promise<AggregateadditionalAccessories_Comfort_Driver>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateadditionalAccessories_Comfort_DriverSubscription
-  extends Promise<AsyncIterator<AggregateadditionalAccessories_Comfort_Driver>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface CarSubscriptionPayload {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface CarSubscriptionPayloadPromise
-  extends Promise<CarSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = CarPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = CarPreviousValuesPromise>() => T;
-}
-
-export interface CarSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CarSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CarSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CarPreviousValuesSubscription>() => T;
-}
-
-export interface additionalAccessories_Comfort_DriverConnection {}
-
-export interface additionalAccessories_Comfort_DriverConnectionPromise
-  extends Promise<additionalAccessories_Comfort_DriverConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <
-    T = FragmentableArray<additionalAccessories_Comfort_DriverEdge>
-  >() => T;
-  aggregate: <T = AggregateadditionalAccessories_Comfort_DriverPromise>() => T;
-}
-
-export interface additionalAccessories_Comfort_DriverConnectionSubscription
-  extends Promise<
-      AsyncIterator<additionalAccessories_Comfort_DriverConnection>
-    >,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <
-    T = Promise<
-      AsyncIterator<additionalAccessories_Comfort_DriverEdgeSubscription>
-    >
-  >() => T;
-  aggregate: <
-    T = AggregateadditionalAccessories_Comfort_DriverSubscription
-  >() => T;
-}
-
-export interface CarPreviousValues {
-  id: ID_Output;
-  brand: Brand;
-  model: String;
-  version?: String;
-  mileage?: Int;
-  productionYear?: Int;
-  fuelType: FuelType;
-  engineSize?: Int;
-  power?: Int;
-  torque?: Int;
-  transmission?: Transmission;
-  drive?: Drive;
-  type?: Type;
-  steeringWheelOnTheRight?: Boolean;
-  color?: Color;
-  damaged?: Boolean;
-  accidentFree?: Boolean;
-  firstOwner?: Boolean;
-  registeredInPoland?: Boolean;
-  registeredAsAntiqueCar?: Boolean;
-  hasVIN?: Boolean;
-  tuning?: Boolean;
-  hasParticulateFilter?: Boolean;
-  fromCountry?: Country;
-}
-
-export interface CarPreviousValuesPromise
-  extends Promise<CarPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  brand: () => Promise<Brand>;
-  model: () => Promise<String>;
-  version: () => Promise<String>;
-  mileage: () => Promise<Int>;
-  productionYear: () => Promise<Int>;
-  fuelType: () => Promise<FuelType>;
-  engineSize: () => Promise<Int>;
-  power: () => Promise<Int>;
-  torque: () => Promise<Int>;
-  transmission: () => Promise<Transmission>;
-  drive: () => Promise<Drive>;
-  type: () => Promise<Type>;
-  steeringWheelOnTheRight: () => Promise<Boolean>;
-  color: () => Promise<Color>;
-  damaged: () => Promise<Boolean>;
-  accidentFree: () => Promise<Boolean>;
-  firstOwner: () => Promise<Boolean>;
-  registeredInPoland: () => Promise<Boolean>;
-  registeredAsAntiqueCar: () => Promise<Boolean>;
-  hasVIN: () => Promise<Boolean>;
-  tuning: () => Promise<Boolean>;
-  hasParticulateFilter: () => Promise<Boolean>;
-  fromCountry: () => Promise<Country>;
-}
-
-export interface CarPreviousValuesSubscription
-  extends Promise<AsyncIterator<CarPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  brand: () => Promise<AsyncIterator<Brand>>;
-  model: () => Promise<AsyncIterator<String>>;
-  version: () => Promise<AsyncIterator<String>>;
-  mileage: () => Promise<AsyncIterator<Int>>;
-  productionYear: () => Promise<AsyncIterator<Int>>;
-  fuelType: () => Promise<AsyncIterator<FuelType>>;
-  engineSize: () => Promise<AsyncIterator<Int>>;
-  power: () => Promise<AsyncIterator<Int>>;
-  torque: () => Promise<AsyncIterator<Int>>;
-  transmission: () => Promise<AsyncIterator<Transmission>>;
-  drive: () => Promise<AsyncIterator<Drive>>;
-  type: () => Promise<AsyncIterator<Type>>;
-  steeringWheelOnTheRight: () => Promise<AsyncIterator<Boolean>>;
-  color: () => Promise<AsyncIterator<Color>>;
-  damaged: () => Promise<AsyncIterator<Boolean>>;
-  accidentFree: () => Promise<AsyncIterator<Boolean>>;
-  firstOwner: () => Promise<AsyncIterator<Boolean>>;
-  registeredInPoland: () => Promise<AsyncIterator<Boolean>>;
-  registeredAsAntiqueCar: () => Promise<AsyncIterator<Boolean>>;
-  hasVIN: () => Promise<AsyncIterator<Boolean>>;
-  tuning: () => Promise<AsyncIterator<Boolean>>;
-  hasParticulateFilter: () => Promise<AsyncIterator<Boolean>>;
-  fromCountry: () => Promise<AsyncIterator<Country>>;
-}
-
-export interface AggregateadditionalAccessories_Appereance {
-  count: Int;
-}
-
-export interface AggregateadditionalAccessories_AppereancePromise
-  extends Promise<AggregateadditionalAccessories_Appereance>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateadditionalAccessories_AppereanceSubscription
-  extends Promise<AsyncIterator<AggregateadditionalAccessories_Appereance>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface additionalAccessories_Appereance {
-  id: ID_Output;
-  ALLOY_WHEELS?: Boolean;
-  TINTED_WINDOWS?: Boolean;
-  METALLIC_PAINT?: Boolean;
-  MATTE_PAINT?: Boolean;
-  PEARL_PAINT?: Boolean;
-}
-
-export interface additionalAccessories_AppereancePromise
-  extends Promise<additionalAccessories_Appereance>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  car: <T = CarPromise>() => T;
-  ALLOY_WHEELS: () => Promise<Boolean>;
-  TINTED_WINDOWS: () => Promise<Boolean>;
-  METALLIC_PAINT: () => Promise<Boolean>;
-  MATTE_PAINT: () => Promise<Boolean>;
-  PEARL_PAINT: () => Promise<Boolean>;
-}
-
-export interface additionalAccessories_AppereanceSubscription
-  extends Promise<AsyncIterator<additionalAccessories_Appereance>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  car: <T = CarSubscription>() => T;
-  ALLOY_WHEELS: () => Promise<AsyncIterator<Boolean>>;
-  TINTED_WINDOWS: () => Promise<AsyncIterator<Boolean>>;
-  METALLIC_PAINT: () => Promise<AsyncIterator<Boolean>>;
-  MATTE_PAINT: () => Promise<AsyncIterator<Boolean>>;
-  PEARL_PAINT: () => Promise<AsyncIterator<Boolean>>;
-}
-
-export interface additionalAccessories_AppereanceConnection {}
-
-export interface additionalAccessories_AppereanceConnectionPromise
-  extends Promise<additionalAccessories_AppereanceConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<additionalAccessories_AppereanceEdge>>() => T;
-  aggregate: <T = AggregateadditionalAccessories_AppereancePromise>() => T;
-}
-
-export interface additionalAccessories_AppereanceConnectionSubscription
-  extends Promise<AsyncIterator<additionalAccessories_AppereanceConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <
-    T = Promise<AsyncIterator<additionalAccessories_AppereanceEdgeSubscription>>
-  >() => T;
-  aggregate: <T = AggregateadditionalAccessories_AppereanceSubscription>() => T;
-}
-
-export interface PostSubscriptionPayload {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface PostSubscriptionPayloadPromise
-  extends Promise<PostSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
+export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
   node: <T = PostPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PostPreviousValuesPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface PostSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
+export interface PostEdgeSubscription
+  extends Promise<AsyncIterator<PostEdge>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
   node: <T = PostSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PostPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateUser {
-  count: Int;
-}
-
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PostPreviousValues {
-  id: ID_Output;
-  price: Int;
-  location: String;
-  avatar?: String;
-  photos: String[];
-  description?: String;
-}
-
-export interface PostPreviousValuesPromise
-  extends Promise<PostPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  price: () => Promise<Int>;
-  location: () => Promise<String>;
-  avatar: () => Promise<String>;
-  photos: () => Promise<String[]>;
-  description: () => Promise<String>;
-}
-
-export interface PostPreviousValuesSubscription
-  extends Promise<AsyncIterator<PostPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  price: () => Promise<AsyncIterator<Int>>;
-  location: () => Promise<AsyncIterator<String>>;
-  avatar: () => Promise<AsyncIterator<String>>;
-  photos: () => Promise<AsyncIterator<String[]>>;
-  description: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserConnection {}
-
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface additionalAccessories_Comfort_PassengerSubscriptionPayload {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface additionalAccessories_Comfort_PassengerSubscriptionPayloadPromise
-  extends Promise<additionalAccessories_Comfort_PassengerSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = additionalAccessories_Comfort_PassengerPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <
-    T = additionalAccessories_Comfort_PassengerPreviousValuesPromise
-  >() => T;
-}
-
-export interface additionalAccessories_Comfort_PassengerSubscriptionPayloadSubscription
-  extends Promise<
-      AsyncIterator<additionalAccessories_Comfort_PassengerSubscriptionPayload>
-    >,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = additionalAccessories_Comfort_PassengerSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <
-    T = additionalAccessories_Comfort_PassengerPreviousValuesSubscription
-  >() => T;
-}
-
-export interface additionalAccessories_SafetySubscriptionPayload {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface additionalAccessories_SafetySubscriptionPayloadPromise
-  extends Promise<additionalAccessories_SafetySubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = additionalAccessories_SafetyPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <
-    T = additionalAccessories_SafetyPreviousValuesPromise
-  >() => T;
-}
-
-export interface additionalAccessories_SafetySubscriptionPayloadSubscription
-  extends Promise<
-      AsyncIterator<additionalAccessories_SafetySubscriptionPayload>
-    >,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = additionalAccessories_SafetySubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <
-    T = additionalAccessories_SafetyPreviousValuesSubscription
-  >() => T;
-}
-
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  updatedFields?: String[];
-}
-
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
-}
-
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateCar {
@@ -3636,128 +2869,22 @@ export interface AggregateCarSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface UserPreviousValues {
-  id: ID_Output;
-  name: String;
-  email: String;
-  emailConfirmed?: Boolean;
-  emailConfirmationToken?: String;
-  password: String;
-  resetToken?: String;
-  resetTokenExpiry?: Float;
-  permissions: Permission[];
-  createdAt: DateTimeOutput;
-}
+export interface PostConnection {}
 
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
+export interface PostConnectionPromise
+  extends Promise<PostConnection>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  emailConfirmed: () => Promise<Boolean>;
-  emailConfirmationToken: () => Promise<String>;
-  password: () => Promise<String>;
-  resetToken: () => Promise<String>;
-  resetTokenExpiry: () => Promise<Float>;
-  permissions: () => Promise<Permission[]>;
-  createdAt: () => Promise<DateTimeOutput>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<PostEdge>>() => T;
+  aggregate: <T = AggregatePostPromise>() => T;
 }
 
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
+export interface PostConnectionSubscription
+  extends Promise<AsyncIterator<PostConnection>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  emailConfirmed: () => Promise<AsyncIterator<Boolean>>;
-  emailConfirmationToken: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-  resetToken: () => Promise<AsyncIterator<String>>;
-  resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
-  permissions: () => Promise<AsyncIterator<Permission[]>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface additionalAccessories_Safety {
-  id: ID_Output;
-  ABS?: Boolean;
-  ESP?: Boolean;
-  ASR?: Boolean;
-  CENTRAL_LOCKING?: Boolean;
-  IMMOBILIZER?: Boolean;
-  ALARM?: Boolean;
-  DRIVER_AIRBAG?: Boolean;
-  PASSENGER_AIRBAG?: Boolean;
-  SIDE_FRONT_AIRBAGS?: Boolean;
-  SIDE_BACK_AIRBAGS?: Boolean;
-}
-
-export interface additionalAccessories_SafetyPromise
-  extends Promise<additionalAccessories_Safety>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  car: <T = CarPromise>() => T;
-  ABS: () => Promise<Boolean>;
-  ESP: () => Promise<Boolean>;
-  ASR: () => Promise<Boolean>;
-  CENTRAL_LOCKING: () => Promise<Boolean>;
-  IMMOBILIZER: () => Promise<Boolean>;
-  ALARM: () => Promise<Boolean>;
-  DRIVER_AIRBAG: () => Promise<Boolean>;
-  PASSENGER_AIRBAG: () => Promise<Boolean>;
-  SIDE_FRONT_AIRBAGS: () => Promise<Boolean>;
-  SIDE_BACK_AIRBAGS: () => Promise<Boolean>;
-}
-
-export interface additionalAccessories_SafetySubscription
-  extends Promise<AsyncIterator<additionalAccessories_Safety>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  car: <T = CarSubscription>() => T;
-  ABS: () => Promise<AsyncIterator<Boolean>>;
-  ESP: () => Promise<AsyncIterator<Boolean>>;
-  ASR: () => Promise<AsyncIterator<Boolean>>;
-  CENTRAL_LOCKING: () => Promise<AsyncIterator<Boolean>>;
-  IMMOBILIZER: () => Promise<AsyncIterator<Boolean>>;
-  ALARM: () => Promise<AsyncIterator<Boolean>>;
-  DRIVER_AIRBAG: () => Promise<AsyncIterator<Boolean>>;
-  PASSENGER_AIRBAG: () => Promise<AsyncIterator<Boolean>>;
-  SIDE_FRONT_AIRBAGS: () => Promise<AsyncIterator<Boolean>>;
-  SIDE_BACK_AIRBAGS: () => Promise<AsyncIterator<Boolean>>;
-}
-
-export interface Post {
-  id: ID_Output;
-  price: Int;
-  location: String;
-  avatar?: String;
-  photos: String[];
-  description?: String;
-}
-
-export interface PostPromise extends Promise<Post>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  car: <T = CarPromise>() => T;
-  user: <T = UserPromise>() => T;
-  price: () => Promise<Int>;
-  location: () => Promise<String>;
-  avatar: () => Promise<String>;
-  photos: () => Promise<String[]>;
-  description: () => Promise<String>;
-}
-
-export interface PostSubscription
-  extends Promise<AsyncIterator<Post>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  car: <T = CarSubscription>() => T;
-  user: <T = UserSubscription>() => T;
-  price: () => Promise<AsyncIterator<Int>>;
-  location: () => Promise<AsyncIterator<String>>;
-  avatar: () => Promise<AsyncIterator<String>>;
-  photos: () => Promise<AsyncIterator<String[]>>;
-  description: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePostSubscription>() => T;
 }
 
 export interface additionalAccessories_Comfort_PassengerPreviousValues {
@@ -3856,6 +2983,22 @@ export interface additionalAccessories_Comfort_PassengerPreviousValuesSubscripti
   AIR_CONDITIONING_MANUAL: () => Promise<AsyncIterator<Boolean>>;
 }
 
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
 export interface additionalAccessories_SafetyEdge {
   cursor: String;
 }
@@ -3874,33 +3017,112 @@ export interface additionalAccessories_SafetyEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface additionalAccessories_Comfort_DriverSubscriptionPayload {
-  mutation: MutationType;
-  updatedFields?: String[];
+export interface CarEdge {
+  cursor: String;
 }
 
-export interface additionalAccessories_Comfort_DriverSubscriptionPayloadPromise
-  extends Promise<additionalAccessories_Comfort_DriverSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = additionalAccessories_Comfort_DriverPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <
-    T = additionalAccessories_Comfort_DriverPreviousValuesPromise
-  >() => T;
+export interface CarEdgePromise extends Promise<CarEdge>, Fragmentable {
+  node: <T = CarPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface additionalAccessories_Comfort_DriverSubscriptionPayloadSubscription
-  extends Promise<
-      AsyncIterator<additionalAccessories_Comfort_DriverSubscriptionPayload>
-    >,
+export interface CarEdgeSubscription
+  extends Promise<AsyncIterator<CarEdge>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = additionalAccessories_Comfort_DriverSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <
-    T = additionalAccessories_Comfort_DriverPreviousValuesSubscription
-  >() => T;
+  node: <T = CarSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface Post {
+  id: ID_Output;
+  price: Int;
+  location: String;
+  avatar?: String;
+  photos: String[];
+  description?: String;
+}
+
+export interface PostPromise extends Promise<Post>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  car: <T = CarPromise>() => T;
+  user: <T = UserPromise>() => T;
+  price: () => Promise<Int>;
+  location: () => Promise<String>;
+  avatar: () => Promise<String>;
+  photos: () => Promise<String[]>;
+  description: () => Promise<String>;
+}
+
+export interface PostSubscription
+  extends Promise<AsyncIterator<Post>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  car: <T = CarSubscription>() => T;
+  user: <T = UserSubscription>() => T;
+  price: () => Promise<AsyncIterator<Int>>;
+  location: () => Promise<AsyncIterator<String>>;
+  avatar: () => Promise<AsyncIterator<String>>;
+  photos: () => Promise<AsyncIterator<String[]>>;
+  description: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface additionalAccessories_Comfort_PassengerEdge {
+  cursor: String;
+}
+
+export interface additionalAccessories_Comfort_PassengerEdgePromise
+  extends Promise<additionalAccessories_Comfort_PassengerEdge>,
+    Fragmentable {
+  node: <T = additionalAccessories_Comfort_PassengerPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface additionalAccessories_Comfort_PassengerEdgeSubscription
+  extends Promise<AsyncIterator<additionalAccessories_Comfort_PassengerEdge>>,
+    Fragmentable {
+  node: <T = additionalAccessories_Comfort_PassengerSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CarConnection {}
+
+export interface CarConnectionPromise
+  extends Promise<CarConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CarEdge>>() => T;
+  aggregate: <T = AggregateCarPromise>() => T;
+}
+
+export interface CarConnectionSubscription
+  extends Promise<AsyncIterator<CarConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CarEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCarSubscription>() => T;
 }
 
 export interface User {
@@ -3966,6 +3188,829 @@ export interface UserSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
+export interface Car {
+  id: ID_Output;
+  brand: Brand;
+  model: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  type?: Type;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  fromCountry?: Country;
+}
+
+export interface CarPromise extends Promise<Car>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  post: <T = PostPromise>() => T;
+  brand: () => Promise<Brand>;
+  model: () => Promise<String>;
+  version: () => Promise<String>;
+  mileage: () => Promise<Int>;
+  productionYear: () => Promise<Int>;
+  fuelType: () => Promise<FuelType>;
+  engineSize: () => Promise<Int>;
+  power: () => Promise<Int>;
+  torque: () => Promise<Int>;
+  transmission: () => Promise<Transmission>;
+  drive: () => Promise<Drive>;
+  additionalAccessories_Safety: <
+    T = additionalAccessories_SafetyPromise
+  >() => T;
+  additionalAccessories_Comfort_Passenger: <
+    T = additionalAccessories_Comfort_PassengerPromise
+  >() => T;
+  additionalAccessories_Comfort_Driver: <
+    T = additionalAccessories_Comfort_DriverPromise
+  >() => T;
+  additionalAccessories_Appereance: <
+    T = additionalAccessories_AppereancePromise
+  >() => T;
+  type: () => Promise<Type>;
+  steeringWheelOnTheRight: () => Promise<Boolean>;
+  color: () => Promise<Color>;
+  damaged: () => Promise<Boolean>;
+  accidentFree: () => Promise<Boolean>;
+  firstOwner: () => Promise<Boolean>;
+  registeredInPoland: () => Promise<Boolean>;
+  registeredAsAntiqueCar: () => Promise<Boolean>;
+  hasVIN: () => Promise<Boolean>;
+  tuning: () => Promise<Boolean>;
+  hasParticulateFilter: () => Promise<Boolean>;
+  fromCountry: () => Promise<Country>;
+}
+
+export interface CarSubscription
+  extends Promise<AsyncIterator<Car>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  post: <T = PostSubscription>() => T;
+  brand: () => Promise<AsyncIterator<Brand>>;
+  model: () => Promise<AsyncIterator<String>>;
+  version: () => Promise<AsyncIterator<String>>;
+  mileage: () => Promise<AsyncIterator<Int>>;
+  productionYear: () => Promise<AsyncIterator<Int>>;
+  fuelType: () => Promise<AsyncIterator<FuelType>>;
+  engineSize: () => Promise<AsyncIterator<Int>>;
+  power: () => Promise<AsyncIterator<Int>>;
+  torque: () => Promise<AsyncIterator<Int>>;
+  transmission: () => Promise<AsyncIterator<Transmission>>;
+  drive: () => Promise<AsyncIterator<Drive>>;
+  additionalAccessories_Safety: <
+    T = additionalAccessories_SafetySubscription
+  >() => T;
+  additionalAccessories_Comfort_Passenger: <
+    T = additionalAccessories_Comfort_PassengerSubscription
+  >() => T;
+  additionalAccessories_Comfort_Driver: <
+    T = additionalAccessories_Comfort_DriverSubscription
+  >() => T;
+  additionalAccessories_Appereance: <
+    T = additionalAccessories_AppereanceSubscription
+  >() => T;
+  type: () => Promise<AsyncIterator<Type>>;
+  steeringWheelOnTheRight: () => Promise<AsyncIterator<Boolean>>;
+  color: () => Promise<AsyncIterator<Color>>;
+  damaged: () => Promise<AsyncIterator<Boolean>>;
+  accidentFree: () => Promise<AsyncIterator<Boolean>>;
+  firstOwner: () => Promise<AsyncIterator<Boolean>>;
+  registeredInPoland: () => Promise<AsyncIterator<Boolean>>;
+  registeredAsAntiqueCar: () => Promise<AsyncIterator<Boolean>>;
+  hasVIN: () => Promise<AsyncIterator<Boolean>>;
+  tuning: () => Promise<AsyncIterator<Boolean>>;
+  hasParticulateFilter: () => Promise<AsyncIterator<Boolean>>;
+  fromCountry: () => Promise<AsyncIterator<Country>>;
+}
+
+export interface additionalAccessories_Comfort_DriverEdge {
+  cursor: String;
+}
+
+export interface additionalAccessories_Comfort_DriverEdgePromise
+  extends Promise<additionalAccessories_Comfort_DriverEdge>,
+    Fragmentable {
+  node: <T = additionalAccessories_Comfort_DriverPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface additionalAccessories_Comfort_DriverEdgeSubscription
+  extends Promise<AsyncIterator<additionalAccessories_Comfort_DriverEdge>>,
+    Fragmentable {
+  node: <T = additionalAccessories_Comfort_DriverSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CarSubscriptionPayload {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface CarSubscriptionPayloadPromise
+  extends Promise<CarSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CarPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CarPreviousValuesPromise>() => T;
+}
+
+export interface CarSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CarSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CarSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CarPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateadditionalAccessories_Appereance {
+  count: Int;
+}
+
+export interface AggregateadditionalAccessories_AppereancePromise
+  extends Promise<AggregateadditionalAccessories_Appereance>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateadditionalAccessories_AppereanceSubscription
+  extends Promise<AsyncIterator<AggregateadditionalAccessories_Appereance>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface CarPreviousValues {
+  id: ID_Output;
+  brand: Brand;
+  model: String;
+  version?: String;
+  mileage?: Int;
+  productionYear?: Int;
+  fuelType: FuelType;
+  engineSize?: Int;
+  power?: Int;
+  torque?: Int;
+  transmission?: Transmission;
+  drive?: Drive;
+  type?: Type;
+  steeringWheelOnTheRight?: Boolean;
+  color?: Color;
+  damaged?: Boolean;
+  accidentFree?: Boolean;
+  firstOwner?: Boolean;
+  registeredInPoland?: Boolean;
+  registeredAsAntiqueCar?: Boolean;
+  hasVIN?: Boolean;
+  tuning?: Boolean;
+  hasParticulateFilter?: Boolean;
+  fromCountry?: Country;
+}
+
+export interface CarPreviousValuesPromise
+  extends Promise<CarPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  brand: () => Promise<Brand>;
+  model: () => Promise<String>;
+  version: () => Promise<String>;
+  mileage: () => Promise<Int>;
+  productionYear: () => Promise<Int>;
+  fuelType: () => Promise<FuelType>;
+  engineSize: () => Promise<Int>;
+  power: () => Promise<Int>;
+  torque: () => Promise<Int>;
+  transmission: () => Promise<Transmission>;
+  drive: () => Promise<Drive>;
+  type: () => Promise<Type>;
+  steeringWheelOnTheRight: () => Promise<Boolean>;
+  color: () => Promise<Color>;
+  damaged: () => Promise<Boolean>;
+  accidentFree: () => Promise<Boolean>;
+  firstOwner: () => Promise<Boolean>;
+  registeredInPoland: () => Promise<Boolean>;
+  registeredAsAntiqueCar: () => Promise<Boolean>;
+  hasVIN: () => Promise<Boolean>;
+  tuning: () => Promise<Boolean>;
+  hasParticulateFilter: () => Promise<Boolean>;
+  fromCountry: () => Promise<Country>;
+}
+
+export interface CarPreviousValuesSubscription
+  extends Promise<AsyncIterator<CarPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  brand: () => Promise<AsyncIterator<Brand>>;
+  model: () => Promise<AsyncIterator<String>>;
+  version: () => Promise<AsyncIterator<String>>;
+  mileage: () => Promise<AsyncIterator<Int>>;
+  productionYear: () => Promise<AsyncIterator<Int>>;
+  fuelType: () => Promise<AsyncIterator<FuelType>>;
+  engineSize: () => Promise<AsyncIterator<Int>>;
+  power: () => Promise<AsyncIterator<Int>>;
+  torque: () => Promise<AsyncIterator<Int>>;
+  transmission: () => Promise<AsyncIterator<Transmission>>;
+  drive: () => Promise<AsyncIterator<Drive>>;
+  type: () => Promise<AsyncIterator<Type>>;
+  steeringWheelOnTheRight: () => Promise<AsyncIterator<Boolean>>;
+  color: () => Promise<AsyncIterator<Color>>;
+  damaged: () => Promise<AsyncIterator<Boolean>>;
+  accidentFree: () => Promise<AsyncIterator<Boolean>>;
+  firstOwner: () => Promise<AsyncIterator<Boolean>>;
+  registeredInPoland: () => Promise<AsyncIterator<Boolean>>;
+  registeredAsAntiqueCar: () => Promise<AsyncIterator<Boolean>>;
+  hasVIN: () => Promise<AsyncIterator<Boolean>>;
+  tuning: () => Promise<AsyncIterator<Boolean>>;
+  hasParticulateFilter: () => Promise<AsyncIterator<Boolean>>;
+  fromCountry: () => Promise<AsyncIterator<Country>>;
+}
+
+export interface additionalAccessories_AppereanceConnection {}
+
+export interface additionalAccessories_AppereanceConnectionPromise
+  extends Promise<additionalAccessories_AppereanceConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<additionalAccessories_AppereanceEdge>>() => T;
+  aggregate: <T = AggregateadditionalAccessories_AppereancePromise>() => T;
+}
+
+export interface additionalAccessories_AppereanceConnectionSubscription
+  extends Promise<AsyncIterator<additionalAccessories_AppereanceConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<additionalAccessories_AppereanceEdgeSubscription>>
+  >() => T;
+  aggregate: <T = AggregateadditionalAccessories_AppereanceSubscription>() => T;
+}
+
+export interface additionalAccessories_Safety {
+  id: ID_Output;
+  ABS?: Boolean;
+  ESP?: Boolean;
+  ASR?: Boolean;
+  CENTRAL_LOCKING?: Boolean;
+  IMMOBILIZER?: Boolean;
+  ALARM?: Boolean;
+  DRIVER_AIRBAG?: Boolean;
+  PASSENGER_AIRBAG?: Boolean;
+  SIDE_FRONT_AIRBAGS?: Boolean;
+  SIDE_BACK_AIRBAGS?: Boolean;
+}
+
+export interface additionalAccessories_SafetyPromise
+  extends Promise<additionalAccessories_Safety>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  car: <T = CarPromise>() => T;
+  ABS: () => Promise<Boolean>;
+  ESP: () => Promise<Boolean>;
+  ASR: () => Promise<Boolean>;
+  CENTRAL_LOCKING: () => Promise<Boolean>;
+  IMMOBILIZER: () => Promise<Boolean>;
+  ALARM: () => Promise<Boolean>;
+  DRIVER_AIRBAG: () => Promise<Boolean>;
+  PASSENGER_AIRBAG: () => Promise<Boolean>;
+  SIDE_FRONT_AIRBAGS: () => Promise<Boolean>;
+  SIDE_BACK_AIRBAGS: () => Promise<Boolean>;
+}
+
+export interface additionalAccessories_SafetySubscription
+  extends Promise<AsyncIterator<additionalAccessories_Safety>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  car: <T = CarSubscription>() => T;
+  ABS: () => Promise<AsyncIterator<Boolean>>;
+  ESP: () => Promise<AsyncIterator<Boolean>>;
+  ASR: () => Promise<AsyncIterator<Boolean>>;
+  CENTRAL_LOCKING: () => Promise<AsyncIterator<Boolean>>;
+  IMMOBILIZER: () => Promise<AsyncIterator<Boolean>>;
+  ALARM: () => Promise<AsyncIterator<Boolean>>;
+  DRIVER_AIRBAG: () => Promise<AsyncIterator<Boolean>>;
+  PASSENGER_AIRBAG: () => Promise<AsyncIterator<Boolean>>;
+  SIDE_FRONT_AIRBAGS: () => Promise<AsyncIterator<Boolean>>;
+  SIDE_BACK_AIRBAGS: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface UserEdge {
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PostSubscriptionPayload {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface PostSubscriptionPayloadPromise
+  extends Promise<PostSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = PostPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = PostPreviousValuesPromise>() => T;
+}
+
+export interface PostSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = PostSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = PostPreviousValuesSubscription>() => T;
+}
+
+export interface additionalAccessories_Comfort_PassengerSubscriptionPayload {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface additionalAccessories_Comfort_PassengerSubscriptionPayloadPromise
+  extends Promise<additionalAccessories_Comfort_PassengerSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = additionalAccessories_Comfort_PassengerPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <
+    T = additionalAccessories_Comfort_PassengerPreviousValuesPromise
+  >() => T;
+}
+
+export interface additionalAccessories_Comfort_PassengerSubscriptionPayloadSubscription
+  extends Promise<
+      AsyncIterator<additionalAccessories_Comfort_PassengerSubscriptionPayload>
+    >,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = additionalAccessories_Comfort_PassengerSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <
+    T = additionalAccessories_Comfort_PassengerPreviousValuesSubscription
+  >() => T;
+}
+
+export interface PostPreviousValues {
+  id: ID_Output;
+  price: Int;
+  location: String;
+  avatar?: String;
+  photos: String[];
+  description?: String;
+}
+
+export interface PostPreviousValuesPromise
+  extends Promise<PostPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Int>;
+  location: () => Promise<String>;
+  avatar: () => Promise<String>;
+  photos: () => Promise<String[]>;
+  description: () => Promise<String>;
+}
+
+export interface PostPreviousValuesSubscription
+  extends Promise<AsyncIterator<PostPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  price: () => Promise<AsyncIterator<Int>>;
+  location: () => Promise<AsyncIterator<String>>;
+  avatar: () => Promise<AsyncIterator<String>>;
+  photos: () => Promise<AsyncIterator<String[]>>;
+  description: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateadditionalAccessories_Safety {
+  count: Int;
+}
+
+export interface AggregateadditionalAccessories_SafetyPromise
+  extends Promise<AggregateadditionalAccessories_Safety>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateadditionalAccessories_SafetySubscription
+  extends Promise<AsyncIterator<AggregateadditionalAccessories_Safety>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface additionalAccessories_Appereance {
+  id: ID_Output;
+  ALLOY_WHEELS?: Boolean;
+  TINTED_WINDOWS?: Boolean;
+  METALLIC_PAINT?: Boolean;
+  MATTE_PAINT?: Boolean;
+  PEARL_PAINT?: Boolean;
+}
+
+export interface additionalAccessories_AppereancePromise
+  extends Promise<additionalAccessories_Appereance>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  car: <T = CarPromise>() => T;
+  ALLOY_WHEELS: () => Promise<Boolean>;
+  TINTED_WINDOWS: () => Promise<Boolean>;
+  METALLIC_PAINT: () => Promise<Boolean>;
+  MATTE_PAINT: () => Promise<Boolean>;
+  PEARL_PAINT: () => Promise<Boolean>;
+}
+
+export interface additionalAccessories_AppereanceSubscription
+  extends Promise<AsyncIterator<additionalAccessories_Appereance>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  car: <T = CarSubscription>() => T;
+  ALLOY_WHEELS: () => Promise<AsyncIterator<Boolean>>;
+  TINTED_WINDOWS: () => Promise<AsyncIterator<Boolean>>;
+  METALLIC_PAINT: () => Promise<AsyncIterator<Boolean>>;
+  MATTE_PAINT: () => Promise<AsyncIterator<Boolean>>;
+  PEARL_PAINT: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface AggregateadditionalAccessories_Comfort_Passenger {
+  count: Int;
+}
+
+export interface AggregateadditionalAccessories_Comfort_PassengerPromise
+  extends Promise<AggregateadditionalAccessories_Comfort_Passenger>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateadditionalAccessories_Comfort_PassengerSubscription
+  extends Promise<
+      AsyncIterator<AggregateadditionalAccessories_Comfort_Passenger>
+    >,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
+}
+
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateadditionalAccessories_Comfort_Driver {
+  count: Int;
+}
+
+export interface AggregateadditionalAccessories_Comfort_DriverPromise
+  extends Promise<AggregateadditionalAccessories_Comfort_Driver>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateadditionalAccessories_Comfort_DriverSubscription
+  extends Promise<AsyncIterator<AggregateadditionalAccessories_Comfort_Driver>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserPreviousValues {
+  id: ID_Output;
+  name: String;
+  email: String;
+  emailConfirmed?: Boolean;
+  emailConfirmationToken?: String;
+  password: String;
+  resetToken?: String;
+  resetTokenExpiry?: Float;
+  permissions: Permission[];
+  createdAt: DateTimeOutput;
+}
+
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  emailConfirmed: () => Promise<Boolean>;
+  emailConfirmationToken: () => Promise<String>;
+  password: () => Promise<String>;
+  resetToken: () => Promise<String>;
+  resetTokenExpiry: () => Promise<Float>;
+  permissions: () => Promise<Permission[]>;
+  createdAt: () => Promise<DateTimeOutput>;
+}
+
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  emailConfirmed: () => Promise<AsyncIterator<Boolean>>;
+  emailConfirmationToken: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  resetToken: () => Promise<AsyncIterator<String>>;
+  resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
+  permissions: () => Promise<AsyncIterator<Permission[]>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface additionalAccessories_AppereanceEdge {
+  cursor: String;
+}
+
+export interface additionalAccessories_AppereanceEdgePromise
+  extends Promise<additionalAccessories_AppereanceEdge>,
+    Fragmentable {
+  node: <T = additionalAccessories_AppereancePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface additionalAccessories_AppereanceEdgeSubscription
+  extends Promise<AsyncIterator<additionalAccessories_AppereanceEdge>>,
+    Fragmentable {
+  node: <T = additionalAccessories_AppereanceSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface additionalAccessories_Comfort_Driver {
+  id: ID_Output;
+  POWER_STEERING?: Boolean;
+  HEATED_STEERING_WHEEL?: Boolean;
+  MULTIFUNCTION_STEERING_WHEEL?: Boolean;
+  PADDLE_SHIFTERS?: Boolean;
+  ACTIVE_SUSPENSION?: Boolean;
+  REGULATED_SUSPENSION?: Boolean;
+  ELECTRIC_MIRRORS?: Boolean;
+  HEATED_MIRRORS?: Boolean;
+  ON_BOARD_COMPUTER?: Boolean;
+  PARKING_SENSOR_FRONT?: Boolean;
+  PARKING_SENSOR_BACK?: Boolean;
+  REVERSE_CAMERA?: Boolean;
+  RAIN_SENSOR?: Boolean;
+  CRUISE_CONTROL?: Boolean;
+  FOG_LIGHTS?: Boolean;
+  LED_LIGHTS?: Boolean;
+  XENON_LIGHTS?: Boolean;
+  GPS_NAVIGATION?: Boolean;
+  SPEED_LIMITER?: Boolean;
+}
+
+export interface additionalAccessories_Comfort_DriverPromise
+  extends Promise<additionalAccessories_Comfort_Driver>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  car: <T = CarPromise>() => T;
+  POWER_STEERING: () => Promise<Boolean>;
+  HEATED_STEERING_WHEEL: () => Promise<Boolean>;
+  MULTIFUNCTION_STEERING_WHEEL: () => Promise<Boolean>;
+  PADDLE_SHIFTERS: () => Promise<Boolean>;
+  ACTIVE_SUSPENSION: () => Promise<Boolean>;
+  REGULATED_SUSPENSION: () => Promise<Boolean>;
+  ELECTRIC_MIRRORS: () => Promise<Boolean>;
+  HEATED_MIRRORS: () => Promise<Boolean>;
+  ON_BOARD_COMPUTER: () => Promise<Boolean>;
+  PARKING_SENSOR_FRONT: () => Promise<Boolean>;
+  PARKING_SENSOR_BACK: () => Promise<Boolean>;
+  REVERSE_CAMERA: () => Promise<Boolean>;
+  RAIN_SENSOR: () => Promise<Boolean>;
+  CRUISE_CONTROL: () => Promise<Boolean>;
+  FOG_LIGHTS: () => Promise<Boolean>;
+  LED_LIGHTS: () => Promise<Boolean>;
+  XENON_LIGHTS: () => Promise<Boolean>;
+  GPS_NAVIGATION: () => Promise<Boolean>;
+  SPEED_LIMITER: () => Promise<Boolean>;
+}
+
+export interface additionalAccessories_Comfort_DriverSubscription
+  extends Promise<AsyncIterator<additionalAccessories_Comfort_Driver>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  car: <T = CarSubscription>() => T;
+  POWER_STEERING: () => Promise<AsyncIterator<Boolean>>;
+  HEATED_STEERING_WHEEL: () => Promise<AsyncIterator<Boolean>>;
+  MULTIFUNCTION_STEERING_WHEEL: () => Promise<AsyncIterator<Boolean>>;
+  PADDLE_SHIFTERS: () => Promise<AsyncIterator<Boolean>>;
+  ACTIVE_SUSPENSION: () => Promise<AsyncIterator<Boolean>>;
+  REGULATED_SUSPENSION: () => Promise<AsyncIterator<Boolean>>;
+  ELECTRIC_MIRRORS: () => Promise<AsyncIterator<Boolean>>;
+  HEATED_MIRRORS: () => Promise<AsyncIterator<Boolean>>;
+  ON_BOARD_COMPUTER: () => Promise<AsyncIterator<Boolean>>;
+  PARKING_SENSOR_FRONT: () => Promise<AsyncIterator<Boolean>>;
+  PARKING_SENSOR_BACK: () => Promise<AsyncIterator<Boolean>>;
+  REVERSE_CAMERA: () => Promise<AsyncIterator<Boolean>>;
+  RAIN_SENSOR: () => Promise<AsyncIterator<Boolean>>;
+  CRUISE_CONTROL: () => Promise<AsyncIterator<Boolean>>;
+  FOG_LIGHTS: () => Promise<AsyncIterator<Boolean>>;
+  LED_LIGHTS: () => Promise<AsyncIterator<Boolean>>;
+  XENON_LIGHTS: () => Promise<AsyncIterator<Boolean>>;
+  GPS_NAVIGATION: () => Promise<AsyncIterator<Boolean>>;
+  SPEED_LIMITER: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface UserConnection {}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface additionalAccessories_SafetyConnection {}
+
+export interface additionalAccessories_SafetyConnectionPromise
+  extends Promise<additionalAccessories_SafetyConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<additionalAccessories_SafetyEdge>>() => T;
+  aggregate: <T = AggregateadditionalAccessories_SafetyPromise>() => T;
+}
+
+export interface additionalAccessories_SafetyConnectionSubscription
+  extends Promise<AsyncIterator<additionalAccessories_SafetyConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<additionalAccessories_SafetyEdgeSubscription>>
+  >() => T;
+  aggregate: <T = AggregateadditionalAccessories_SafetySubscription>() => T;
+}
+
+export interface additionalAccessories_Comfort_DriverSubscriptionPayload {
+  mutation: MutationType;
+  updatedFields?: String[];
+}
+
+export interface additionalAccessories_Comfort_DriverSubscriptionPayloadPromise
+  extends Promise<additionalAccessories_Comfort_DriverSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = additionalAccessories_Comfort_DriverPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <
+    T = additionalAccessories_Comfort_DriverPreviousValuesPromise
+  >() => T;
+}
+
+export interface additionalAccessories_Comfort_DriverSubscriptionPayloadSubscription
+  extends Promise<
+      AsyncIterator<additionalAccessories_Comfort_DriverSubscriptionPayload>
+    >,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = additionalAccessories_Comfort_DriverSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <
+    T = additionalAccessories_Comfort_DriverPreviousValuesSubscription
+  >() => T;
+}
+
+export interface additionalAccessories_Comfort_Passenger {
+  id: ID_Output;
+  ELECTRIC_FRONT_WINDOWS?: Boolean;
+  ELECTRIC_BACK_WINDOWS?: Boolean;
+  FACTORY_RADIO?: Boolean;
+  NON_STANDARD_RADIO?: Boolean;
+  AUX?: Boolean;
+  MP3?: Boolean;
+  CD?: Boolean;
+  CD_CHANGER?: Boolean;
+  DVD_PLAYER?: Boolean;
+  TV_TUNER?: Boolean;
+  LEATHER_UPHOLSTERY?: Boolean;
+  VELOR_UPHOLSTERY?: Boolean;
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS?: Boolean;
+  ELECTRIC_ADJUSTABLE_BACK_SEATS?: Boolean;
+  HEATED_FRONT_SEATS?: Boolean;
+  HEATED_BACK_SEATS?: Boolean;
+  PANORAMIC_ROOF?: Boolean;
+  SUNROOF?: Boolean;
+  ROOF_RACK?: Boolean;
+  PARKING_HEATER?: Boolean;
+  HEATED_FRONT_WINDSCREEN?: Boolean;
+  AIR_CONDITIONING_AUTOMATIC?: Boolean;
+  AIR_CONDITIONING_DUAL_ZONE?: Boolean;
+  AIR_CONDITIONING_THREE_ZONE?: Boolean;
+  AIR_CONDITIONING_FOUR_ZONE?: Boolean;
+  AIR_CONDITIONING_MANUAL?: Boolean;
+}
+
+export interface additionalAccessories_Comfort_PassengerPromise
+  extends Promise<additionalAccessories_Comfort_Passenger>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  car: <T = CarPromise>() => T;
+  ELECTRIC_FRONT_WINDOWS: () => Promise<Boolean>;
+  ELECTRIC_BACK_WINDOWS: () => Promise<Boolean>;
+  FACTORY_RADIO: () => Promise<Boolean>;
+  NON_STANDARD_RADIO: () => Promise<Boolean>;
+  AUX: () => Promise<Boolean>;
+  MP3: () => Promise<Boolean>;
+  CD: () => Promise<Boolean>;
+  CD_CHANGER: () => Promise<Boolean>;
+  DVD_PLAYER: () => Promise<Boolean>;
+  TV_TUNER: () => Promise<Boolean>;
+  LEATHER_UPHOLSTERY: () => Promise<Boolean>;
+  VELOR_UPHOLSTERY: () => Promise<Boolean>;
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS: () => Promise<Boolean>;
+  ELECTRIC_ADJUSTABLE_BACK_SEATS: () => Promise<Boolean>;
+  HEATED_FRONT_SEATS: () => Promise<Boolean>;
+  HEATED_BACK_SEATS: () => Promise<Boolean>;
+  PANORAMIC_ROOF: () => Promise<Boolean>;
+  SUNROOF: () => Promise<Boolean>;
+  ROOF_RACK: () => Promise<Boolean>;
+  PARKING_HEATER: () => Promise<Boolean>;
+  HEATED_FRONT_WINDSCREEN: () => Promise<Boolean>;
+  AIR_CONDITIONING_AUTOMATIC: () => Promise<Boolean>;
+  AIR_CONDITIONING_DUAL_ZONE: () => Promise<Boolean>;
+  AIR_CONDITIONING_THREE_ZONE: () => Promise<Boolean>;
+  AIR_CONDITIONING_FOUR_ZONE: () => Promise<Boolean>;
+  AIR_CONDITIONING_MANUAL: () => Promise<Boolean>;
+}
+
+export interface additionalAccessories_Comfort_PassengerSubscription
+  extends Promise<AsyncIterator<additionalAccessories_Comfort_Passenger>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  car: <T = CarSubscription>() => T;
+  ELECTRIC_FRONT_WINDOWS: () => Promise<AsyncIterator<Boolean>>;
+  ELECTRIC_BACK_WINDOWS: () => Promise<AsyncIterator<Boolean>>;
+  FACTORY_RADIO: () => Promise<AsyncIterator<Boolean>>;
+  NON_STANDARD_RADIO: () => Promise<AsyncIterator<Boolean>>;
+  AUX: () => Promise<AsyncIterator<Boolean>>;
+  MP3: () => Promise<AsyncIterator<Boolean>>;
+  CD: () => Promise<AsyncIterator<Boolean>>;
+  CD_CHANGER: () => Promise<AsyncIterator<Boolean>>;
+  DVD_PLAYER: () => Promise<AsyncIterator<Boolean>>;
+  TV_TUNER: () => Promise<AsyncIterator<Boolean>>;
+  LEATHER_UPHOLSTERY: () => Promise<AsyncIterator<Boolean>>;
+  VELOR_UPHOLSTERY: () => Promise<AsyncIterator<Boolean>>;
+  ELECTRIC_ADJUSTABLE_FRONT_SEATS: () => Promise<AsyncIterator<Boolean>>;
+  ELECTRIC_ADJUSTABLE_BACK_SEATS: () => Promise<AsyncIterator<Boolean>>;
+  HEATED_FRONT_SEATS: () => Promise<AsyncIterator<Boolean>>;
+  HEATED_BACK_SEATS: () => Promise<AsyncIterator<Boolean>>;
+  PANORAMIC_ROOF: () => Promise<AsyncIterator<Boolean>>;
+  SUNROOF: () => Promise<AsyncIterator<Boolean>>;
+  ROOF_RACK: () => Promise<AsyncIterator<Boolean>>;
+  PARKING_HEATER: () => Promise<AsyncIterator<Boolean>>;
+  HEATED_FRONT_WINDSCREEN: () => Promise<AsyncIterator<Boolean>>;
+  AIR_CONDITIONING_AUTOMATIC: () => Promise<AsyncIterator<Boolean>>;
+  AIR_CONDITIONING_DUAL_ZONE: () => Promise<AsyncIterator<Boolean>>;
+  AIR_CONDITIONING_THREE_ZONE: () => Promise<AsyncIterator<Boolean>>;
+  AIR_CONDITIONING_FOUR_ZONE: () => Promise<AsyncIterator<Boolean>>;
+  AIR_CONDITIONING_MANUAL: () => Promise<AsyncIterator<Boolean>>;
+}
+
 export interface additionalAccessories_AppereancePreviousValues {
   id: ID_Output;
   ALLOY_WHEELS?: Boolean;
@@ -4028,77 +4073,130 @@ export interface additionalAccessories_AppereanceSubscriptionPayloadSubscription
   >() => T;
 }
 
-export interface additionalAccessories_Comfort_PassengerEdge {
-  cursor: String;
-}
+export interface additionalAccessories_Comfort_PassengerConnection {}
 
-export interface additionalAccessories_Comfort_PassengerEdgePromise
-  extends Promise<additionalAccessories_Comfort_PassengerEdge>,
+export interface additionalAccessories_Comfort_PassengerConnectionPromise
+  extends Promise<additionalAccessories_Comfort_PassengerConnection>,
     Fragmentable {
-  node: <T = additionalAccessories_Comfort_PassengerPromise>() => T;
-  cursor: () => Promise<String>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <
+    T = FragmentableArray<additionalAccessories_Comfort_PassengerEdge>
+  >() => T;
+  aggregate: <
+    T = AggregateadditionalAccessories_Comfort_PassengerPromise
+  >() => T;
 }
 
-export interface additionalAccessories_Comfort_PassengerEdgeSubscription
-  extends Promise<AsyncIterator<additionalAccessories_Comfort_PassengerEdge>>,
+export interface additionalAccessories_Comfort_PassengerConnectionSubscription
+  extends Promise<
+      AsyncIterator<additionalAccessories_Comfort_PassengerConnection>
+    >,
     Fragmentable {
-  node: <T = additionalAccessories_Comfort_PassengerSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<
+      AsyncIterator<additionalAccessories_Comfort_PassengerEdgeSubscription>
+    >
+  >() => T;
+  aggregate: <
+    T = AggregateadditionalAccessories_Comfort_PassengerSubscription
+  >() => T;
 }
 
-export interface UserEdge {
-  cursor: String;
+export interface additionalAccessories_SafetySubscriptionPayload {
+  mutation: MutationType;
+  updatedFields?: String[];
 }
 
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
+export interface additionalAccessories_SafetySubscriptionPayloadPromise
+  extends Promise<additionalAccessories_SafetySubscriptionPayload>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  mutation: () => Promise<MutationType>;
+  node: <T = additionalAccessories_SafetyPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <
+    T = additionalAccessories_SafetyPreviousValuesPromise
+  >() => T;
 }
 
-export interface additionalAccessories_AppereanceEdge {
-  cursor: String;
-}
-
-export interface additionalAccessories_AppereanceEdgePromise
-  extends Promise<additionalAccessories_AppereanceEdge>,
+export interface additionalAccessories_SafetySubscriptionPayloadSubscription
+  extends Promise<
+      AsyncIterator<additionalAccessories_SafetySubscriptionPayload>
+    >,
     Fragmentable {
-  node: <T = additionalAccessories_AppereancePromise>() => T;
-  cursor: () => Promise<String>;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = additionalAccessories_SafetySubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <
+    T = additionalAccessories_SafetyPreviousValuesSubscription
+  >() => T;
 }
 
-export interface additionalAccessories_AppereanceEdgeSubscription
-  extends Promise<AsyncIterator<additionalAccessories_AppereanceEdge>>,
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
     Fragmentable {
-  node: <T = additionalAccessories_AppereanceSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<Int>;
 }
 
-export interface additionalAccessories_Comfort_DriverEdge {
-  cursor: String;
-}
-
-export interface additionalAccessories_Comfort_DriverEdgePromise
-  extends Promise<additionalAccessories_Comfort_DriverEdge>,
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
     Fragmentable {
-  node: <T = additionalAccessories_Comfort_DriverPromise>() => T;
-  cursor: () => Promise<String>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface additionalAccessories_Comfort_DriverEdgeSubscription
-  extends Promise<AsyncIterator<additionalAccessories_Comfort_DriverEdge>>,
+export interface additionalAccessories_Comfort_DriverConnection {}
+
+export interface additionalAccessories_Comfort_DriverConnectionPromise
+  extends Promise<additionalAccessories_Comfort_DriverConnection>,
     Fragmentable {
-  node: <T = additionalAccessories_Comfort_DriverSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <
+    T = FragmentableArray<additionalAccessories_Comfort_DriverEdge>
+  >() => T;
+  aggregate: <T = AggregateadditionalAccessories_Comfort_DriverPromise>() => T;
 }
+
+export interface additionalAccessories_Comfort_DriverConnectionSubscription
+  extends Promise<
+      AsyncIterator<additionalAccessories_Comfort_DriverConnection>
+    >,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<
+      AsyncIterator<additionalAccessories_Comfort_DriverEdgeSubscription>
+    >
+  >() => T;
+  aggregate: <
+    T = AggregateadditionalAccessories_Comfort_DriverSubscription
+  >() => T;
+}
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). 
+*/
+export type Float = number;
 
 export type Long = string;
+
+/*
+DateTime scalar input type, allowing Date
+*/
+export type DateTimeInput = Date | string;
+
+/*
+DateTime scalar output type, which is always a string
+*/
+export type DateTimeOutput = string;
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -4115,26 +4213,6 @@ export type String = string;
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
 export type Int = number;
-
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
-
-/*
-DateTime scalar input type, allowing Date
-*/
-export type DateTimeInput = Date | string;
-
-/*
-DateTime scalar output type, which is always a string
-*/
-export type DateTimeOutput = string;
-
-/*
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). 
-*/
-export type Float = number;
 
 /**
  * Model Metadata
