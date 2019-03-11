@@ -1,12 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
+import { Query, Mutation } from "react-apollo";
 import Head from "next/head";
+import gql from "graphql-tag";
 
 import MustBeLoggedIn from "../universal/MustBeLoggedIn";
-import { withStyles, Grid, LinearProgress } from "@material-ui/core";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
-import getErrorMessage from "../universal/getErrorMessage";
-import Post from "./Post";
+import Layout, { LoadingLayout, ErrorLayout } from "./Layout";
+import { DELETE_POST_MUTATION } from "../../src/Mutations/deletePost";
 
 const USER_POSTS_QUERY = gql`
   query USER_POSTS_QUERY($userId: ID!) {
@@ -23,53 +22,43 @@ const USER_POSTS_QUERY = gql`
   }
 `;
 
-const styles = theme => ({
-  root: {
-    width: "100%",
-    marginTop: "5vh",
-    paddingLeft: "5vw",
-    paddingRight: "5vw"
-  }
-});
-
-class MyPostsPage extends Component {
-  render() {
-    const { classes } = this.props;
-    return (
-      <Fragment>
-        <Head>
-          <title>Moje ogłoszenia - Giełda klasyków</title>
-        </Head>
-        <MustBeLoggedIn
-          thisUser={this.props.thisUser}
-          errorMessage="Musisz być zalogowany aby mieć dostęp do swoich ogłoszeń."
+const MyPostsPage = props => (
+  <Fragment>
+    <Head>
+      <title>Moje ogłoszenia - Giełda klasyków</title>
+    </Head>
+    <MustBeLoggedIn
+      thisUser={props.thisUser}
+      errorMessage="Musisz być zalogowany aby mieć dostęp do swoich ogłoszeń."
+    >
+      {props.thisUser && (
+        <Mutation
+          mutation={DELETE_POST_MUTATION}
+          refetchQueries={[
+            {
+              query: USER_POSTS_QUERY,
+              variables: { userId: props.thisUser.id }
+            }
+          ]}
         >
-          {this.props.thisUser && (
+          {mutate => (
             <Query
               query={USER_POSTS_QUERY}
-              variables={{ userId: this.props.thisUser.id }}
+              variables={{ userId: props.thisUser.id }}
             >
               {({ data, error, loading }) => {
                 if (data && data.posts)
-                  return (
-                    <Grid container className={classes.root} spacing={24}>
-                      {data.posts.map(item => (
-                        <Grid item key={item.id}>
-                          <Post data={item} />
-                        </Grid>
-                      ))}
-                    </Grid>
-                  );
-                if (loading) return <LinearProgress />;
-                if (error) return getErrorMessage(error);
+                  return <Layout posts={data.posts} deletePost={mutate} />;
+                if (loading) return <LoadingLayout />;
+                if (error) return <ErrorLayout error={error} />;
                 return null;
               }}
             </Query>
           )}
-        </MustBeLoggedIn>
-      </Fragment>
-    );
-  }
-}
+        </Mutation>
+      )}
+    </MustBeLoggedIn>
+  </Fragment>
+);
 
-export default withStyles(styles)(MyPostsPage);
+export default MyPostsPage;
