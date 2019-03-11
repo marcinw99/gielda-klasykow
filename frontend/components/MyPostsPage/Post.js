@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { Typography, withStyles, Grid, Paper, Fab } from "@material-ui/core";
 import { Delete as DeleteIcon, Edit as EditIcon } from "@material-ui/icons";
@@ -95,5 +96,11 @@ function Post({ classes, data, handleDelete, handleEdit }) {
     </Paper>
   );
 }
+
+Post.propTypes = {
+  handleDelete: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(Post);

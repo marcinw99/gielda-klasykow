@@ -46,7 +46,10 @@ ConfirmationDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
-  action: PropTypes.string.isRequired,
+  action: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({ type: PropTypes.string, args: PropTypes.object })
+  ]).isRequired,
   handleClose: PropTypes.func.isRequired,
   confirmHandler: PropTypes.func.isRequired
 };

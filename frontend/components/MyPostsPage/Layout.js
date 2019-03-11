@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 
 import { withStyles, LinearProgress, Typography } from "@material-ui/core";
 import getErrorMessage from "../universal/getErrorMessage";
@@ -75,7 +76,12 @@ class Layout extends Component {
         <Title />
         <div className={this.props.classes.root}>
           {this.props.posts.map(item => (
-            <Post key={item.id} data={item} handleDelete={this.confirmDelete} />
+            <Post
+              key={item.id}
+              data={item}
+              handleDelete={this.confirmDelete}
+              handleEdit={() => null}
+            />
           ))}
         </div>
         <ConfirmationDialog
@@ -102,5 +108,10 @@ export const ErrorLayout = ({ error }) => (
     <Typography>{getErrorMessage(error)}</Typography>
   </Fragment>
 );
+
+Layout.propTypes = {
+  deletePost: PropTypes.func.isRequired,
+  posts: PropTypes.array.isRequired
+};
 
 export default withStyles(styles)(Layout);
