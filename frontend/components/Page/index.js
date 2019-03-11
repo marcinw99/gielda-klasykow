@@ -19,7 +19,7 @@ const Page = props => (
           <Footer />
         </StyledContentContainer>
         <ThemeToggler darkTheme={props.darkTheme} onClick={props.toggleTheme} />
-        {data.thisUser ? <AfterLoginActions data={data} /> : null}
+        {data && data.thisUser ? <AfterLoginActions data={data} /> : null}
         <CookiesConsentBanner />
         <Snackbar {...props.snackbar} {...props.snackbarMethods} />
       </div>
