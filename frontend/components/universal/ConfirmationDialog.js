@@ -14,7 +14,7 @@ const ConfirmationDialog = props => {
     <Dialog
       disableBackdropClick
       disableEscapeKeyDown
-      maxWidth="ls"
+      maxWidth="sm"
       aria-labelledby="confirmation-dialog-title"
       open={props.open}
       onClose={props.handleClose}
