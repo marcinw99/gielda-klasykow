@@ -10,7 +10,7 @@ import {
   withStyles
 } from "@material-ui/core";
 
-import getErrorMessage from "../../../universal/getErrorMessage";
+import getErrorMessage from "../universal/getErrorMessage";
 import StrengthLevelLabel from "../universal/StrengthLevelLabel";
 import { updatePasswordStrength } from "../../src/dataValidation";
 import { RESETPASSWORD_MUTATION } from "../../src/Mutations/PasswordReset";
