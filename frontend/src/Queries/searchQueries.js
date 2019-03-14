@@ -132,3 +132,44 @@ export const USER_POSTS_QUERY = gql`
     }
   }
 `;
+
+export const POST_FIELDS = gql`
+  query POST_FIELDS {
+    Post: __type(name: "Post") {
+      fields {
+        name
+      }
+    }
+    Car: __type(name: "Car") {
+      fields {
+        name
+      }
+    }
+    additionalAccessories_Safety: __type(name: "additionalAccessories_Safety") {
+      fields {
+        name
+      }
+    }
+    additionalAccessories_Appereance: __type(
+      name: "additionalAccessories_Appereance"
+    ) {
+      fields {
+        name
+      }
+    }
+    additionalAccessories_Comfort_driver: __type(
+      name: "additionalAccessories_Comfort_driver"
+    ) {
+      fields {
+        name
+      }
+    }
+    additionalAccessories_Comfort_Passenger: __type(
+      name: "additionalAccessories_Comfort_Passenger"
+    ) {
+      fields {
+        name
+      }
+    }
+  }
+`;

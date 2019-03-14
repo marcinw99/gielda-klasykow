@@ -1,3 +1,3 @@
-import CarPage from "../components/CarPage";
+import PostPage from "../components/PostPage";
 
-export default CarPage;
+export default PostPage;
