@@ -32,7 +32,6 @@ class MyDocument extends Document {
             href="static/favicons/favicon-16x16.png"
           />
           <link rel="shortcut icon" href="static/favicons/favicon.ico" />
-          <link rel="manifest" href="static/favicons/site.webmanifest" />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#3e2723" />
           <link
