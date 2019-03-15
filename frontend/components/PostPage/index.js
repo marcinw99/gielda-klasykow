@@ -1,26 +1,25 @@
 import React, { Fragment } from "react";
 import Head from "next/head";
 
-import Layout from "./Layout";
 import PostQueries from "./PostQueries";
 import Logic from "./Logic";
+import Layout from "./Layout";
 
-const PostPage = props => {
-  return (
-    <Fragment>
-      <Head>
-        <title>Resetowanie hasła - Giełda klasyków</title>
-      </Head>
-      <PostQueries postId={props.id}>
-        <Logic>
-          <Layout />
-        </Logic>
-      </PostQueries>
-    </Fragment>
-  );
-};
+const PostPage = props => (
+  <Fragment>
+    <Head>
+      <title>Klasyk - Giełda klasyków</title> // Change title to car's brand and
+      model
+    </Head>
+    <PostQueries postId={props.id}>
+      <Logic>
+        <Layout />
+      </Logic>
+    </PostQueries>
+  </Fragment>
+);
 
-PostPage.getInitialProps = function(ctx) {
+PostPage.getInitialProps = ctx => {
   if (ctx.query.id && ctx.query.id.length === 25) {
     return { id: ctx.query.id };
   } else {
