@@ -11,7 +11,7 @@ import {
   formValueMayBeIncorrect
 } from "../helpers";
 import {
-  getTypesFields,
+  getTypesFieldsAsArrays,
   assignValuesToProperDataType
 } from "../../../src/globalMethods";
 import { FormContent } from "../styledComponents";
@@ -68,7 +68,7 @@ class Form extends Component {
   state = initialState;
 
   componentDidMount() {
-    const typesFields = getTypesFields({
+    const typesFields = getTypesFieldsAsArrays({
       Car: this.props.data.Car.fields,
       Post: this.props.data.Post.fields
     });

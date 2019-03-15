@@ -9,7 +9,7 @@ import {
   filterValueIsInvalid
 } from "../../helpers";
 import {
-  getTypesFields,
+  getTypesFieldsAsArrays,
   assignValuesToProperDataType
 } from "../../../../src/globalMethods";
 import { withSnackbar } from "../../../Snackbar/Context";
@@ -28,9 +28,9 @@ class Logic extends Component {
   }
 
   componentDidMount() {
-    const typesFields = getTypesFields({
-      Car: this.props.data.Car.fields,
-      Post: this.props.data.Post.fields
+    const typesFields = getTypesFieldsAsArrays({
+      Car: this.props.data.Car,
+      Post: this.props.data.Post
     });
     this.setState({
       typesFields
