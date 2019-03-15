@@ -157,8 +157,8 @@ export const POST_FIELDS = gql`
         name
       }
     }
-    additionalAccessories_Comfort_driver: __type(
-      name: "additionalAccessories_Comfort_driver"
+    additionalAccessories_Comfort_Driver: __type(
+      name: "additionalAccessories_Comfort_Driver"
     ) {
       fields {
         name
