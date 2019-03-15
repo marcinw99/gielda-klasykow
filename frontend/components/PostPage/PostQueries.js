@@ -1,28 +1,9 @@
 import React from "react";
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
 
 import { POST_FIELDS } from "../../src/Queries/searchQueries";
-import { getTypesFields } from "../../src/globalMethods";
-
-const composePostQuery = data => {
-  console.log(data);
-  const formattedFields = getTypesFields({
-    Car: data.Car.fields
-  });
-  console.log(formattedFields);
-  return gql`
-    query POST_QUERY($postId: ID!) {
-      post(where: { id: $postId }) {
-        price
-        car {
-          brand
-          model
-        }
-      }
-    }
-  `;
-};
+import { postQueryFieldsToDelete } from "./config";
+import { composePostQuery } from "./helpers";
 
 const PostFields = props => (
   <Query query={POST_FIELDS}>
@@ -35,11 +16,17 @@ const PostFields = props => (
 );
 
 const PostQuery = ({ children, data, ...other }) => (
-  <Query query={composePostQuery(data)} {...other}>
+  <Query
+    query={composePostQuery({
+      data,
+      additionalArgs: { fieldsToDelete: postQueryFieldsToDelete }
+    })}
+    {...other}
+  >
     {({ data, error, loading }) => {
       if (error) return <p>Błąd pobieranie posta</p>;
       if (loading) return <p>Ładowanie posta</p>;
-      return React.cloneElement(children, { data });
+      return React.cloneElement(children, { post: data.post });
     }}
   </Query>
 );
