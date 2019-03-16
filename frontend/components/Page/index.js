@@ -1,7 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { ThemeToggler, StyledContentContainer } from "./styledComponents";
+import {
+  ThemeToggler,
+  StyledContentContainer,
+  HeaderWhiteSpace,
+  StyledContent
+} from "./styledComponents";
 import Header from "./Header";
 import Footer from "./Footer";
 import User from "../../src/QueryComponents/User";
@@ -15,7 +20,10 @@ const Page = props => (
       <div>
         <Header {...data} />
         <StyledContentContainer>
-          <div>{React.cloneElement(props.children, data)}</div>
+          <HeaderWhiteSpace />
+          <StyledContent>
+            {React.cloneElement(props.children, data)}
+          </StyledContent>
           <Footer />
         </StyledContentContainer>
         <ThemeToggler darkTheme={props.darkTheme} onClick={props.toggleTheme} />

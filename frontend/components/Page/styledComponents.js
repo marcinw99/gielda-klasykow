@@ -24,12 +24,11 @@ export const ThemeToggler = withStyles(themeTogglerStyles)(
   ThemeTogglerComponent
 );
 
-// ContentContainer
+// StyledContentContainer
 
 const contentContainerStyles = theme => ({
   root: {
-    minHeight: `calc(100vh - ${theme.custom.headerHeight}px)`,
-    paddingBottom: theme.spacing.unit * 1.5
+    minHeight: "100vh"
   }
 });
 
@@ -46,3 +45,34 @@ const ContentContainer = ({ classes, ...other }) => (
 export const StyledContentContainer = withStyles(contentContainerStyles)(
   ContentContainer
 );
+
+// HeaderWhiteSpace
+
+const headerWhiteSpaceStyles = theme => ({
+  root: {
+    minHeight: theme.custom.headerHeight
+  }
+});
+
+const HeaderWhiteSpaceComponent = ({ classes }) => (
+  <div className={classes.root} />
+);
+
+export const HeaderWhiteSpace = withStyles(headerWhiteSpaceStyles)(
+  HeaderWhiteSpaceComponent
+);
+
+// StyledContent
+
+const contentStyles = theme => ({
+  root: {
+    flex: 1,
+    paddingBottom: theme.spacing.unit * 3
+  }
+});
+
+const Content = ({ classes, ...other }) => (
+  <Grid item className={classes.root} {...other} />
+);
+
+export const StyledContent = withStyles(contentStyles)(Content);

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { AppBar, Toolbar } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
@@ -16,9 +16,6 @@ const styles = theme => ({
   },
   grow: {
     flexGrow: 1
-  },
-  whitespace: {
-    minHeight: theme.custom.headerHeight
   }
 });
 
@@ -50,30 +47,27 @@ class Header extends Component {
   render() {
     const { classes, thisUser } = this.props;
     return (
-      <Fragment>
-        <AppBar position="fixed" color="default" className={classes.root}>
-          <Toolbar>
-            <Logo />
-            <HeaderWithUser thisUser={thisUser} />
-            <HeaderWithoutUser
-              thisUser={thisUser}
-              openRegister={this.openRegister}
-              openLogin={this.openLogin}
-            />
-            <Register
-              open={Boolean(this.state.registerAnchorEl)}
-              anchorEl={this.state.registerAnchorEl}
-              handleClose={this.handleClose}
-            />
-            <LoginAndResetPasswordRequest
-              open={Boolean(this.state.loginAnchorEl)}
-              anchorEl={this.state.loginAnchorEl}
-              handleClose={this.handleClose}
-            />
-          </Toolbar>
-        </AppBar>
-        <div className={classes.whitespace} />
-      </Fragment>
+      <AppBar position="fixed" color="default" className={classes.root}>
+        <Toolbar>
+          <Logo />
+          <HeaderWithUser thisUser={thisUser} />
+          <HeaderWithoutUser
+            thisUser={thisUser}
+            openRegister={this.openRegister}
+            openLogin={this.openLogin}
+          />
+          <Register
+            open={Boolean(this.state.registerAnchorEl)}
+            anchorEl={this.state.registerAnchorEl}
+            handleClose={this.handleClose}
+          />
+          <LoginAndResetPasswordRequest
+            open={Boolean(this.state.loginAnchorEl)}
+            anchorEl={this.state.loginAnchorEl}
+            handleClose={this.handleClose}
+          />
+        </Toolbar>
+      </AppBar>
     );
   }
 }
