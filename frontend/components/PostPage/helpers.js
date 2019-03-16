@@ -82,10 +82,18 @@ const removeFieldsFromNestedObjects = (data, fieldsToDelete) => {
   return result;
 };
 
+const customDataFormatting = data => {
+  const result = data;
+  result.photos = Object.values(data.photos);
+  return result;
+};
+
 export const getFormattedPostData = ({ data, additionalArgs }) =>
   pipe(
     removeNullValuesFromNestedObjects,
-    input => removeFieldsFromNestedObjects(input, additionalArgs.fieldsToDelete)
+    input =>
+      removeFieldsFromNestedObjects(input, additionalArgs.fieldsToDelete),
+    customDataFormatting
   )(data);
 
 /////
