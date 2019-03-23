@@ -1,10 +1,11 @@
 import React from "react";
-import { withStyles, GridList, GridListTile } from "@material-ui/core";
+import { GridList, GridListTile, withStyles } from "@material-ui/core";
 
 const styles = theme => ({
   avatar: {
     display: "block",
-    width: "100%"
+    width: "100%",
+    "border-right": "1px solid rgba(0,0,0,0)"
   },
   gridList: {
     width: "100%",

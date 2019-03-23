@@ -1,8 +1,9 @@
 import { pipe } from "lodash/fp";
 import gql from "graphql-tag";
-import { isNull, isObject, isArray } from "util";
+import { isNull, isObject, isArray, isNullOrUndefined } from "util";
 
 import { getTypesFieldsAsArrays } from "../../src/globalMethods";
+import displayedText from "../../resources/displayedText";
 
 /////
 
@@ -82,9 +83,31 @@ const removeFieldsFromNestedObjects = (data, fieldsToDelete) => {
   return result;
 };
 
+const getFormattedAdditionalAccessories = (objectWithData, name) => {
+  return Object.keys(objectWithData[name]).map(item =>
+    displayedText(name, item)
+  );
+};
+
 const customDataFormatting = data => {
   const result = data;
   result.photos = Object.values(data.photos);
+  result.car.additionalAccessories_Safety = getFormattedAdditionalAccessories(
+    data.car,
+    "additionalAccessories_Safety"
+  );
+  result.car.additionalAccessories_Appereance = getFormattedAdditionalAccessories(
+    data.car,
+    "additionalAccessories_Appereance"
+  );
+  result.car.additionalAccessories_Comfort_Driver = getFormattedAdditionalAccessories(
+    data.car,
+    "additionalAccessories_Comfort_Driver"
+  );
+  result.car.additionalAccessories_Comfort_Passenger = getFormattedAdditionalAccessories(
+    data.car,
+    "additionalAccessories_Comfort_Passenger"
+  );
   return result;
 };
 
@@ -97,5 +120,56 @@ export const getFormattedPostData = ({ data, additionalArgs }) =>
   )(data);
 
 /////
+
+/////
+
+export function spacesInNumbers(number) {
+  return number.toLocaleString("ru-RU");
+}
+
+///// getDataForInfoTables
+
+export const getDataForInfoTables = ({ data, config }) => {
+  var result = [];
+  config.forEach(item => {
+    if (!isNullOrUndefined(data[item.key])) {
+      result.push({
+        label: item.label,
+        value: item.getDisplayedValue
+          ? item.getDisplayedValue(data[item.key])
+          : data[item.key]
+      });
+    }
+  });
+  return result;
+};
+
+/////
+
+///// getDataForBoolValues
+
+export const getDataForBoolValues = ({ data, config }) => {
+  var result = [];
+  config.forEach(item => {
+    if (!isNullOrUndefined(data[item.key])) {
+      result.push({
+        label: item.label,
+        value: data[item.key] === true ? "Tak" : "Nie"
+      });
+    }
+  });
+  return result;
+};
+
+/////
+
+/////  equalizeColumns
+
+export const equalizeColumns = input => {
+  const firstColumnLength = Math.ceil(input.length / 2);
+  const firstColumn = input.slice(0, firstColumnLength);
+  const secondColumn = input.slice(firstColumnLength, input.length);
+  return { firstColumn, secondColumn };
+};
 
 /////
