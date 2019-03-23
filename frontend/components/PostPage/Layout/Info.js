@@ -9,8 +9,8 @@ import {
   TableRow,
   TableCell
 } from "@material-ui/core";
-import { CheckCircleOutline } from "@material-ui/icons";
 
+import AdditionalAccessories from "./AdditionalAccessories";
 import displayedText from "../../../resources/displayedText";
 import {
   spacesInNumbers,
@@ -21,15 +21,15 @@ import {
 import { infoTablesSetup, boolValuesConfig } from "../config";
 
 const styles = theme => ({
+  sectionHeader: {
+    marginTop: theme.spacing.unit * 2,
+    fontWeight: 400
+  },
   title: {
     paddingTop: theme.spacing.unit
   },
   titleTypography: {
     fontWeight: 300
-  },
-  sectionHeader: {
-    marginTop: theme.spacing.unit * 2,
-    fontWeight: 400
   },
   chipsRoot: {
     marginTop: theme.spacing.unit
@@ -43,14 +43,15 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit,
     paddingRight: theme.spacing.unit
   },
-  additionalAccessoriesGridItem: {
-    padding: theme.spacing.unit * 0.5
-  },
   description: {
     padding: theme.spacing.unit,
     fontSize: 16
   }
 });
+
+const SectionHeader = withStyles(styles)(({ classes, ...other }) => (
+  <Typography variant="h6" className={classes.sectionHeader} {...other} />
+));
 
 const Title = withStyles(styles)(
   ({ classes, brand, model, location, price }) => (
@@ -69,10 +70,6 @@ const Title = withStyles(styles)(
     </Grid>
   )
 );
-
-const SectionHeader = withStyles(styles)(({ classes, ...other }) => (
-  <Typography variant="h6" className={classes.sectionHeader} {...other} />
-));
 
 const Chips = withStyles(styles)(({ classes, ...other }) => {
   const keys = Object.keys(other);
@@ -117,16 +114,6 @@ const InfoTables = props => (
   </Table>
 );
 
-const AdditionalAccessories = props => (
-  <div>
-    {props.data.map(item => (
-      <Typography key={item}>
-        <CheckCircleOutline color="secondary" /> {item}
-      </Typography>
-    ))}
-  </div>
-);
-
 const Info = ({ classes, post }) => {
   const { car, ...otherPostValues } = post;
   const data = { ...car, ...otherPostValues };
@@ -144,16 +131,16 @@ const Info = ({ classes, post }) => {
   return (
     <div>
       <Title
-        brand={post.car.brand}
-        model={post.car.model}
+        brand={car.brand}
+        model={car.model}
         location={post.location}
         price={post.price}
       />
       <Chips
-        fuelType={post.car.fuelType}
-        type={post.car.type}
-        productionYear={post.car.productionYear}
-        mileage={post.car.mileage}
+        fuelType={car.fuelType}
+        type={car.type}
+        productionYear={car.productionYear}
+        mileage={car.mileage}
       />
       <SectionHeader>Informacje</SectionHeader>
       <Grid container>
@@ -165,30 +152,12 @@ const Info = ({ classes, post }) => {
         </Grid>
       </Grid>
       <SectionHeader>Dodatkowe wyposażenie</SectionHeader>
-      <Grid container>
-        <Grid item className={classes.additionalAccessoriesGridItem}>
-          <Typography variant="h6">Bezpieczeństwo</Typography>
-          <AdditionalAccessories data={post.car.additionalAccessories_Safety} />
-        </Grid>
-        <Grid item className={classes.additionalAccessoriesGridItem}>
-          <Typography variant="h6">Wygląd</Typography>
-          <AdditionalAccessories
-            data={post.car.additionalAccessories_Appereance}
-          />
-        </Grid>
-        <Grid item className={classes.additionalAccessoriesGridItem}>
-          <Typography variant="h6">Komfort kierowcy</Typography>
-          <AdditionalAccessories
-            data={post.car.additionalAccessories_Comfort_Driver}
-          />
-        </Grid>
-        <Grid item className={classes.additionalAccessoriesGridItem}>
-          <Typography variant="h6">Komfort pasażerów</Typography>
-          <AdditionalAccessories
-            data={post.car.additionalAccessories_Comfort_Passenger}
-          />
-        </Grid>
-      </Grid>
+      <AdditionalAccessories
+        safety={car.additionalAccessories_Safety}
+        appereance={car.additionalAccessories_Appereance}
+        comfort_Driver={car.additionalAccessories_Comfort_Driver}
+        comfort_Passenger={car.additionalAccessories_Comfort_Passenger}
+      />
       <SectionHeader>Opis ogłoszenia</SectionHeader>
       <Typography className={classes.description}>
         {post.description}
