@@ -53,8 +53,9 @@ const styles = theme => ({
   headerButtonsContainer: {
     marginTop: theme.spacing.unit
   },
-  headerBtn: {
-    marginRight: theme.spacing.unit
+  sellerSectionItem: {
+    marginRight: theme.spacing.unit,
+    fontWeight: 400
   },
   phoneNumber: {
     fontWeight: 500,
@@ -183,10 +184,17 @@ class Info extends Component {
             mileage={car.mileage}
           />
           <div className={classes.headerButtonsContainer}>
+            <Typography
+              inline
+              variant="h6"
+              className={classes.sellerSectionItem}
+            >
+              {data.user.name}
+            </Typography>
             {this.state.showedPhoneNumber ? (
               <div
                 style={{ display: "inline-block" }}
-                className={classes.headerBtn}
+                className={classes.sellerSectionItem}
               >
                 <Typography
                   inline
@@ -207,25 +215,24 @@ class Info extends Component {
               <Button
                 variant="contained"
                 color="primary"
-                className={classes.headerBtn}
+                className={classes.sellerSectionItem}
                 onClick={this.showPhoneNumber}
               >
                 <Phone />
                 Wyświetl numer
               </Button>
             )}
-
             <Button
               variant="contained"
               color="secondary"
-              className={classes.headerBtn}
+              className={classes.sellerSectionItem}
             >
               <MailOutline />
               Kontakt do sprzedającego
             </Button>
             <Button variant="outlined">
               <StarBorder />
-              Obserwuj
+              Obserwuj ogłoszenie
             </Button>
           </div>
           <SectionHeader>Informacje</SectionHeader>
