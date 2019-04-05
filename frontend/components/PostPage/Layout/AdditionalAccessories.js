@@ -41,7 +41,7 @@ const Accessory = withStyles(styles)(({ classes, item }) => (
 const Column = withStyles(styles)(({ classes, data }) => (
   <div className={classes.Column}>
     {data.map(item => (
-      <Accessory item={item} />
+      <Accessory key={item} item={item} />
     ))}
   </div>
 ));
