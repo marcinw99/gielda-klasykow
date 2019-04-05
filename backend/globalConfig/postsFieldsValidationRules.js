@@ -26,4 +26,4 @@ const postsFieldsValidationRules = {
   }
 };
 
-module.exports = postsFieldsValidationRules;
+export default postsFieldsValidationRules;

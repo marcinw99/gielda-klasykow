@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   Card,
   CardActionArea,
@@ -38,33 +39,35 @@ const styles = theme => ({
   }
 });
 
-const ResultCard = ({ classes, car, price, avatar }) => (
-  <Card className={classes.root}>
-    <CardActionArea>
-      <CardMedia
-        className={classes.media}
-        image={avatar || "/static/noImageAvailable.jpg"}
-      />
-      <CardContent>
-        <CardTitle car={car} />
-        <div className={classes.details}>
-          <FuelType classes={classes} value={car.fuelType} />
-          {car.engineSize && car.power && (
-            <Engine
-              classes={classes}
-              engineSize={car.engineSize}
-              power={car.power}
-            />
-          )}
-          {car.mileage && <Mileage classes={classes} value={car.mileage} />}
-        </div>
-        <Grid container justify="space-between">
-          <Location rootCss={classes.bold} location={"Gdańsk"} />
-          <Price rootCss={classes.bold} price={price} />
-        </Grid>
-      </CardContent>
-    </CardActionArea>
-  </Card>
+const ResultCard = ({ classes, car, price, avatar, id }) => (
+  <Link href={`/klasyk/?id=${id}`} as={`/klasyk/${id}`}>
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image={avatar || "/static/noImageAvailable.jpg"}
+        />
+        <CardContent>
+          <CardTitle car={car} />
+          <div className={classes.details}>
+            <FuelType classes={classes} value={car.fuelType} />
+            {car.engineSize && car.power && (
+              <Engine
+                classes={classes}
+                engineSize={car.engineSize}
+                power={car.power}
+              />
+            )}
+            {car.mileage && <Mileage classes={classes} value={car.mileage} />}
+          </div>
+          <Grid container justify="space-between">
+            <Location rootCss={classes.bold} location={"Gdańsk"} />
+            <Price rootCss={classes.bold} price={price} />
+          </Grid>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  </Link>
 );
 
 ResultCard.propTypes = {

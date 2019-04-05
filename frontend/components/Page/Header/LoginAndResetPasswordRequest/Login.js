@@ -1,5 +1,10 @@
 import React, { Component, Fragment } from "react";
-import { FormControlLabel, Checkbox, Grid } from "@material-ui/core";
+import {
+  FormControlLabel,
+  Checkbox,
+  Grid,
+  Typography
+} from "@material-ui/core";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
@@ -8,14 +13,15 @@ import {
   StyledTitle,
   StyledSwitchView
 } from "../styledComponents";
-import Error from "../../../universal/Error";
+import getErrorMessage from "../../../universal/getErrorMessage";
 import FormField from "../../../universal/FormField";
 import { SIGNIN_MUTATION } from "../../../../src/Mutations/Login";
 import { CURRENT_USER_QUERY } from "../../../../src/QueryComponents/User";
 
 const initialState = {
   email: "",
-  password: ""
+  password: "",
+  rememberMe: false
 };
 
 class Login extends Component {
@@ -31,16 +37,19 @@ class Login extends Component {
     });
   };
 
+  handleCheckboxChange = name => event => {
+    this.setState({
+      [name]: event.target.checked
+    });
+  };
+
   render() {
     return (
       <Fragment>
         <StyledTitle>Zaloguj się</StyledTitle>
         <Mutation
           mutation={SIGNIN_MUTATION}
-          variables={{
-            email: this.state.email,
-            password: this.state.password
-          }}
+          variables={{ ...this.state }}
           refetchQueries={[
             {
               query: CURRENT_USER_QUERY
@@ -72,10 +81,19 @@ class Login extends Component {
                 value={this.state.password}
                 onChange={this.handleChange}
               />
-              <Error error={error} />
+              <Typography color="secondary" gutterBottom>
+                {getErrorMessage(error)}
+              </Typography>
               <Grid container justify="space-between">
                 <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
+                  control={
+                    <Checkbox
+                      checked={this.state.rememberMe}
+                      onChange={this.handleCheckboxChange("rememberMe")}
+                      value="rememberMe"
+                      color="primary"
+                    />
+                  }
                   label="Zapamiętaj mnie"
                 />{" "}
                 <StyledSwitchView onClick={this.props.switchView}>

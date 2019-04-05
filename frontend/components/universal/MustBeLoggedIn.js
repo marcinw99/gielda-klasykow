@@ -13,7 +13,8 @@ const MustBeLoggedIn = props => {
   return (
     <div className={props.classes.root}>
       <Typography align="center" variant="h5" color="secondary">
-        Musisz być zalogowany aby móc dodać ogłoszenie
+        {props.errorMessage ||
+          "Musisz być zalogowany aby mieć dostęp do tej zawartości."}
       </Typography>
     </div>
   );

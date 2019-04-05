@@ -5,7 +5,9 @@ type User {
   name: String!
   email: String!
   password: String!
+  emailConfirmed: Boolean
   permissions: [Permission]
+  phoneNumber: String
 }
 
 type MessageCode {
@@ -28,7 +30,7 @@ type Query {
     first: Int
     last: Int
   ): [Car]!
-  post(where: PostWhereUniqueInput!): Post
+  post(where: PostWhereUniqueInput!): Post!
   posts(
     where: PostWhereInput
     orderBy: PostOrderByInput
@@ -56,13 +58,16 @@ type Query {
 
 type Mutation {
   createPost(data: PostCreateInput!): Post!
+  deletePost(id: ID!): Post!
   signUp(
     email: String!
     password: String!
     repeatedPassword: String!
     name: String!
   ): User!
-  signIn(email: String!, password: String!): User!
+  repeatEmailWithConfirmationToken(email: String!): MessageCode
+  signIn(email: String!, password: String!, rememberMe: Boolean): User!
+  confirmEmail(emailConfirmationToken: String!): MessageCode
   signOut: MessageCode
   requestPasswordReset(email: String!): MessageCode
   resetPassword(

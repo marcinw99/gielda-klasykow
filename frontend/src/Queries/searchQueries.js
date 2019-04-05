@@ -24,6 +24,7 @@ export const ALL_POSTS_QUERY = gql`
       }
       edges {
         node {
+          id
           price
           avatar
           car {
@@ -115,5 +116,61 @@ export const AVAILABLE_MODELS_OF_BRAND = gql`
 export const MODELS_OF_BRAND = gql`
   query MODELS_OF_BRAND($brand: Brand!) {
     modelsOfBrand(brand: $brand)
+  }
+`;
+
+export const USER_POSTS_QUERY = gql`
+  query USER_POSTS_QUERY($userId: ID!) {
+    posts(where: { user: { id: $userId } }) {
+      id
+      price
+      avatar
+      car {
+        brand
+        model
+        version
+      }
+    }
+  }
+`;
+
+export const POST_FIELDS = gql`
+  query POST_FIELDS {
+    Post: __type(name: "Post") {
+      fields {
+        name
+      }
+    }
+    Car: __type(name: "Car") {
+      fields {
+        name
+      }
+    }
+    additionalAccessories_Safety: __type(name: "additionalAccessories_Safety") {
+      fields {
+        name
+      }
+    }
+    additionalAccessories_Appereance: __type(
+      name: "additionalAccessories_Appereance"
+    ) {
+      fields {
+        name
+      }
+    }
+    additionalAccessories_Comfort_Driver: __type(
+      name: "additionalAccessories_Comfort_Driver"
+    ) {
+      fields {
+        name
+      }
+    }
+    additionalAccessories_Comfort_Passenger: __type(
+      name: "additionalAccessories_Comfort_Passenger"
+    ) {
+      fields {
+        name
+      }
+    }
   }
 `;

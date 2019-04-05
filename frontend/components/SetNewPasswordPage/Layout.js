@@ -10,7 +10,7 @@ import {
   withStyles
 } from "@material-ui/core";
 
-import Error from "../universal/Error";
+import getErrorMessage from "../universal/getErrorMessage";
 import StrengthLevelLabel from "../universal/StrengthLevelLabel";
 import { updatePasswordStrength } from "../../src/dataValidation";
 import { RESETPASSWORD_MUTATION } from "../../src/Mutations/PasswordReset";
@@ -126,7 +126,9 @@ class Layout extends Component {
                       {item} <br />
                     </span>
                   ))}
-                  <Error error={error} />
+                  <Typography color="secondary" gutterBottom>
+                    {getErrorMessage(error)}
+                  </Typography>
                 </Typography>
                 <Submit className={classes.submit}>Zmień hasło</Submit>
               </form>

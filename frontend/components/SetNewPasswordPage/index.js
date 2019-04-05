@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Router from "next/router";
+import Head from "next/head";
 import { Mutation } from "react-apollo";
 
 import { SIGNOUT_MUTATION } from "../../src/Mutations/Login";
@@ -24,7 +25,14 @@ const SetNewPassword = props => {
       </Mutation>
     );
   }
-  return <Layout token={props.token} />;
+  return (
+    <Fragment>
+      <Head>
+        <title>Resetowanie hasła - Giełda klasyków</title>
+      </Head>
+      <Layout token={props.token} />
+    </Fragment>
+  );
 };
 
 SetNewPassword.getInitialProps = async function(ctx) {

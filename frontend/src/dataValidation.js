@@ -1,4 +1,4 @@
-const passwordStrengthLevels = require("../../config/passwordStrengthLevels");
+import passwordStrengthLevels from "../globalConfig/passwordStrengthLevels";
 
 function meetsRegexp({ value, regExps }) {
   for (const index in regExps) {

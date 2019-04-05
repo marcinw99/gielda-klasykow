@@ -1,5 +1,5 @@
 import React from "react";
-import { Fab } from "@material-ui/core";
+import { Fab, Grid } from "@material-ui/core";
 import { Brightness3, Brightness7 } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -23,3 +23,56 @@ const ThemeTogglerComponent = props => {
 export const ThemeToggler = withStyles(themeTogglerStyles)(
   ThemeTogglerComponent
 );
+
+// StyledContentContainer
+
+const contentContainerStyles = theme => ({
+  root: {
+    minHeight: "100vh"
+  }
+});
+
+const ContentContainer = ({ classes, ...other }) => (
+  <Grid
+    container
+    direction="column"
+    justify="space-between"
+    className={classes.root}
+    {...other}
+  />
+);
+
+export const StyledContentContainer = withStyles(contentContainerStyles)(
+  ContentContainer
+);
+
+// HeaderWhiteSpace
+
+const headerWhiteSpaceStyles = theme => ({
+  root: {
+    minHeight: theme.custom.headerHeight
+  }
+});
+
+const HeaderWhiteSpaceComponent = ({ classes }) => (
+  <div className={classes.root} />
+);
+
+export const HeaderWhiteSpace = withStyles(headerWhiteSpaceStyles)(
+  HeaderWhiteSpaceComponent
+);
+
+// StyledContent
+
+const contentStyles = theme => ({
+  root: {
+    flex: 1,
+    paddingBottom: theme.spacing.unit * 3
+  }
+});
+
+const Content = ({ classes, ...other }) => (
+  <Grid item className={classes.root} {...other} />
+);
+
+export const StyledContent = withStyles(contentStyles)(Content);

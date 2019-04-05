@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import Head from "next/head";
 import { Query } from "react-apollo";
 import { Typography, CircularProgress, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -44,42 +45,50 @@ class Search extends Component {
       skip: (this.state.activePage - 1) * this.state.itemsLimit
     };
     return (
-      <div className={classes.root}>
-        <SearchDrawer setValueInMainState={this.setValueInState} />
-        <div className={classes.content}>
-          <Query
-            query={ALL_POSTS_QUERY}
-            variables={{
-              filters: this.state.queryFilters,
-              sorters: this.state.querySorters,
-              ...pagination
-            }}
-          >
-            {({ data, error, loading }) => {
-              if (loading)
-                return <ResultsLoadingScreen rootCss={classes.loadingScreen} />;
-              if (error) return <ResultsError />;
-              return (
-                <Fragment>
-                  <ResultsBar
-                    setValueInMainState={this.setValueInState}
-                    itemsLimitValue={this.state.itemsLimit}
-                    querySortersValue={this.state.querySorters}
-                  />
-                  <Results results={data.postsConnection.edges} />
-                  <Grid container justify="center">
-                    <ResultsPagination
+      <Fragment>
+        <Head>
+          <title>Giełda klasyków - wyszukiwarka ogłoszeń</title>
+        </Head>
+        <div className={classes.root}>
+          <SearchDrawer setValueInMainState={this.setValueInState} />
+          <div className={classes.content}>
+            <Query
+              query={ALL_POSTS_QUERY}
+              variables={{
+                filters: this.state.queryFilters,
+                sorters: this.state.querySorters,
+                ...pagination
+              }}
+            >
+              {({ data, error, loading }) => {
+                if (loading)
+                  return (
+                    <ResultsLoadingScreen rootCss={classes.loadingScreen} />
+                  );
+                if (error) return <ResultsError />;
+                return (
+                  <Fragment>
+                    <ResultsBar
                       setValueInMainState={this.setValueInState}
-                      pageInfo={data.postsConnection.pageInfo}
-                      activePage={this.state.activePage}
+                      itemsLimitValue={this.state.itemsLimit}
+                      querySortersValue={this.state.querySorters}
                     />
-                  </Grid>
-                </Fragment>
-              );
-            }}
-          </Query>
+                    <Results results={data.postsConnection.edges} />
+                    <Grid container justify="center">
+                      <ResultsPagination
+                        setValueInMainState={this.setValueInState}
+                        pageInfo={data.postsConnection.pageInfo}
+                        activePage={this.state.activePage}
+                        resultsAmount={data.postsConnection.aggregate.count}
+                      />
+                    </Grid>
+                  </Fragment>
+                );
+              }}
+            </Query>
+          </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

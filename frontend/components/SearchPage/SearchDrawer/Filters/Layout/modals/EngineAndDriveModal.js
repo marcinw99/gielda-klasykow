@@ -40,10 +40,7 @@ const EngineAndDriveModal = props => (
             valueLeft={props.values.engineSize_gte}
             valueRight={props.values.engineSize_lte}
             handleChange={props.handleChangeWithoutFiltering}
-            options={props.options.EngineSize.map(item => ({
-              label: `${item} cm3`,
-              value: item
-            }))}
+            options={props.options.EngineSize}
           />
           <StyledFilterTitle>Moc (km)</StyledFilterTitle>
           <DoubleInputs
@@ -58,10 +55,7 @@ const EngineAndDriveModal = props => (
             valueLeft={props.values.power_gte}
             valueRight={props.values.power_lte}
             handleChange={props.handleChangeWithoutFiltering}
-            options={props.options.Power.map(item => ({
-              label: `${item} km`,
-              value: item
-            }))}
+            options={props.options.Power}
           />
           <StyledFilterTitle>Moment obrotowy (nm)</StyledFilterTitle>
           <DoubleInputs
@@ -76,10 +70,7 @@ const EngineAndDriveModal = props => (
             valueLeft={props.values.torque_gte}
             valueRight={props.values.torque_lte}
             handleChange={props.handleChangeWithoutFiltering}
-            options={props.options.Torque.map(item => ({
-              label: `${item} nm`,
-              value: item
-            }))}
+            options={props.options.Torque}
           />
           <StyledFilterTitle>Posiada filtr cząstek stałych</StyledFilterTitle>
           <StyledFormControl>

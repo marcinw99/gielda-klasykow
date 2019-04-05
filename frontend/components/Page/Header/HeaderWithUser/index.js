@@ -1,23 +1,35 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
-import { Grid, Fade, Menu, IconButton } from "@material-ui/core";
+import { Grid, Fade, Menu, IconButton, Typography } from "@material-ui/core";
 import {
   Menu as MenuIcon,
   ArrowBack as ArrowBackIcon,
   AccessTime as AccessTimeIcon,
   LocalOffer as LocalOfferIcon,
-  Create as CreateIcon
+  Create as CreateIcon,
+  LocalGroceryStore as LocalGroceryStoreIcon
 } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import Router from "next/router";
+import gql from "graphql-tag";
 
 import { StyledMenuItem, StyledName } from "./styledComponents";
 import { SIGNOUT_MUTATION } from "../../../../src/Mutations/Login";
 import { CURRENT_USER_QUERY } from "../../../../src/QueryComponents/User";
+import { withSnackbar } from "../../../Snackbar/Context";
+
+const REPEAT_CONFIRMATION_EMAIL = gql`
+  mutation REPEAT_CONFIRMATION_EMAIL($email: String!) {
+    repeatEmailWithConfirmationToken(email: $email) {
+      code
+    }
+  }
+`;
 
 class HeaderWithUser extends Component {
   state = {
-    anchorEl: null
+    anchorEl: null,
+    confirmationEmailSent: false
   };
 
   handleClick = event => {
@@ -32,19 +44,45 @@ class HeaderWithUser extends Component {
     });
   };
 
-  handleAddPost = () => {
+  handleRedirect = url => {
     this.handleClose();
-    Router.push("/add");
+    Router.push(url);
+  };
+
+  handleConfirmationEmailResult = ({ error, data }) => {
+    if (data) {
+      this.props.manageSnackbar({
+        open: true,
+        message: "Wysłaliśmy e-mail, sprawdź skrzynkę pocztową.",
+        variant: "success"
+      });
+      this.setState({ confirmationEmailSent: true, anchorEl: null });
+    } else if (error) {
+      this.props.manageSnackbar({
+        open: true,
+        message: "Wystąpił problem podczas wysyłania e-maila.",
+        variant: "error"
+      });
+    }
   };
 
   render() {
     const menuOptions = [
+      {
+        label: "Wyszukiwarka ogłoszeń",
+        icon: <LocalGroceryStoreIcon />,
+        handleClick: () => this.handleRedirect("/gielda")
+      },
       { label: "Obserwowane oferty", icon: <AccessTimeIcon /> },
-      { label: "Moje ogłoszenia", icon: <LocalOfferIcon /> },
+      {
+        label: "Moje ogłoszenia",
+        icon: <LocalOfferIcon />,
+        handleClick: () => this.handleRedirect("/mojeogloszenia")
+      },
       {
         label: "Dodaj ogłoszenie",
         icon: <CreateIcon />,
-        handleClick: this.handleAddPost
+        handleClick: () => this.handleRedirect("/dodajklasyka")
       }
     ];
     return (
@@ -85,6 +123,25 @@ class HeaderWithUser extends Component {
                 </Grid>
               </StyledMenuItem>
             ))}
+            {this.state.confirmationEmailSent === false &&
+            this.props.thisUser &&
+            this.props.thisUser.emailConfirmed !== true ? (
+              <Mutation
+                mutation={REPEAT_CONFIRMATION_EMAIL}
+                variables={{ email: this.props.thisUser.email }}
+              >
+                {(send, payload) => {
+                  this.handleConfirmationEmailResult(payload);
+                  return (
+                    <StyledMenuItem onClick={send}>
+                      <Typography color="secondary">
+                        Wyślij link aktywujący konto jeszcze raz
+                      </Typography>
+                    </StyledMenuItem>
+                  );
+                }}
+              </Mutation>
+            ) : null}
             <SignOut onClick={this.handleClose}>
               <Grid container justify="space-between">
                 <ArrowBackIcon /> Wyloguj się
@@ -125,4 +182,4 @@ HeaderWithUser.propTypes = {
   thisUser: PropTypes.object
 };
 
-export default HeaderWithUser;
+export default withSnackbar(HeaderWithUser);

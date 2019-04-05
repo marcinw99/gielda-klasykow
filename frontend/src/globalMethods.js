@@ -69,16 +69,32 @@ export function partialPrepareOptions(
 
 /////
 
-///// getTypesFields functions
+///// getTypesFieldsAsArrays functions
 
 function formatTypeFields(fields) {
   return fields.map(item => item.name);
 }
 
-export function getTypesFields(data) {
+function formatInputData(data) {
+  // remove .fields nesting
   var result = {};
   for (const key in data) {
-    result[key] = formatTypeFields(data[key]);
+    if (data[key]) {
+      if (isArray(data[key].fields)) {
+        result[key] = data[key].fields;
+      } else {
+        result[key] = data[key];
+      }
+    }
+  }
+  return result;
+}
+
+export function getTypesFieldsAsArrays(data) {
+  var result = {};
+  const formattedData = formatInputData(data);
+  for (const key in formattedData) {
+    result[key] = formatTypeFields(formattedData[key]);
   }
   return result;
 }

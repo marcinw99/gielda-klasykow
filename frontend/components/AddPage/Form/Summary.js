@@ -4,6 +4,7 @@ import { Typography, withStyles, Button } from "@material-ui/core";
 import displayedText from "../../../resources/displayedText";
 import { getArrayOfFieldsNotFilled } from "../helpers";
 import { recommendedFields } from "../config";
+import getErrorMessage from "../../universal/getErrorMessage";
 
 const styles = theme => ({
   title: {
@@ -37,8 +38,13 @@ const SummarySubmitError = props => {
       </Typography>
     );
   }
+  const message = getErrorMessage(props.error);
   return (
-    <Typography>Coś poszło nie tak, nie udało się dodać ogłoszenia.</Typography>
+    <Typography variant="h5">
+      {message
+        ? message
+        : "Coś poszło nie tak, nie udało się dodać ogłoszenia."}
+    </Typography>
   );
 };
 

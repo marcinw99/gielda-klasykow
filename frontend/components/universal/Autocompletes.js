@@ -184,7 +184,7 @@ class CreatableComponent extends Component {
 
   createOption = input => ({
     label: this.getFormatCreateLabel(input),
-    value: Number(input)
+    value: Number(input) ? Number(input) : input
   });
 
   getFormatCreateLabel = label =>

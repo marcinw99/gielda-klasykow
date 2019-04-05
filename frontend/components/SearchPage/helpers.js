@@ -12,6 +12,7 @@ import {
   partialGetFormattedPayload,
   removePrefixFromValueName
 } from "../../src/globalMethods";
+import displayedText from "../../resources/displayedText";
 
 ///// prepareOptions functions
 
@@ -29,6 +30,47 @@ export const prepareOptions = fetchedFields =>
     },
     fetchedFields
   );
+
+/////
+
+///// addLabelsForOptions functions
+
+const labeledOptions = {
+  Price: values => values.map(item => ({ label: `${item} PLN`, value: item })),
+  Brand: values =>
+    values.map(item => ({ label: displayedText("brand", item), value: item })),
+  Location: values => values.map(item => ({ label: item, value: item })),
+  Type: values =>
+    values.map(item => ({ label: displayedText("type", item), value: item })),
+  FuelType: values =>
+    values.map(item => ({
+      label: displayedText("fuelType", item),
+      value: item
+    })),
+  Brand: values =>
+    values
+      ? values.map(item => ({
+          label: `${displayedText("brand", item.value)} (${item.count})`,
+          value: item.value
+        }))
+      : [],
+  ProductionYear: values => values.map(item => ({ label: item, value: item })),
+  Mileage: values => values.map(item => ({ label: `${item} km`, value: item })),
+  EngineSize: values =>
+    values.map(item => ({ label: `${item} cm3`, value: item })),
+  Power: values => values.map(item => ({ label: `${item} km`, value: item })),
+  Torque: values => values.map(item => ({ label: `${item} nm`, value: item }))
+};
+
+export const addLabelsForOptions = options => {
+  var result = { ...options };
+  Object.keys(options).forEach(optionName => {
+    if (Object.keys(labeledOptions).includes(optionName)) {
+      result[optionName] = labeledOptions[optionName](options[optionName]);
+    }
+  });
+  return result;
+};
 
 /////
 

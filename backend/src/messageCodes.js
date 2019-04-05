@@ -4,14 +4,22 @@ const messageCodes = {
   passwordsNotIdentical: 602,
   userWithGivenEmailNotFound: 603,
   passwordNotCorrect: 604,
-  resetLinkExpiredOrInvalid: 605,
+  linkExpiredOrInvalid: 605,
   argumentsValuesNotInCorrectRange: 606,
   argumentsInvalid: 607,
   userNotLoggedIn: 608,
+  couldNotSendEmail: 609,
+  emailAlreadyConfirmed: 610,
+  linkExpiredOrInvalidOrEmailAlreadyConfirmed: 611,
+  accountEmailWasNotConfirmed: 612,
+  notEnoughPermissions: 613,
+  idMismatch: 614,
 
   successfulSignOut: 700,
   emailWithResetLinkSent: 701,
-  resetTokenCorrect: 702
+  resetTokenCorrect: 702,
+  emailConfirmedSuccessfully: 703,
+  postDeletedSuccessfully: 704
 };
 
 export default messageCodes;

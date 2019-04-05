@@ -8,11 +8,11 @@ import SimpleLink from "./SimpleLink";
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 4,
     width: "100%"
   },
-  socialMediaGrid: {
-    marginTop: theme.spacing.unit
+  gridChild: {
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2
   },
   socialMediaButton: {
     color: theme.palette.primary.dark,
@@ -29,66 +29,67 @@ const styles = theme => ({
 });
 
 const Footer = ({ classes }) => (
-  <Grid
-    className={classes.root}
-    justify="center"
-    component="footer"
-    spacing={24}
-    container
-  >
-    <Grid item>
-      <Typography variant="h6">ZNAJDŹ NAS NA:</Typography>
-      <Grid className={classes.socialMediaGrid} container direction="column">
-        {socialMedia.map((item, key) => (
-          <SocialMediaLink
-            key={`${item.label}${key}`}
-            rootCss={classes.socialMediaButton}
-            {...item}
-          />
-        ))}
-      </Grid>
+  <div>
+    <Grid
+      container
+      className={classes.root}
+      justify="center"
+      component="footer"
+    >
+      <div className={classes.gridChild}>
+        <Typography variant="h6">ZNAJDŹ NAS NA:</Typography>
+        <Grid container direction="column">
+          {socialMedia.map((item, key) => (
+            <SocialMediaLink
+              key={`${item.label}${key}`}
+              rootCss={classes.socialMediaButton}
+              {...item}
+            />
+          ))}
+        </Grid>
+      </div>
+      <div className={classes.gridChild}>
+        <Typography variant="h6">GIEŁDA ZABYTKÓW</Typography>
+        <Grid container direction="column">
+          {mainLinks.map(item => (
+            <SimpleLink
+              key={item.label}
+              {...item}
+              rootCss={classes.simpleLink}
+              typographyCss={classes.simpleLinkTypography}
+            />
+          ))}
+        </Grid>
+      </div>
+      <div className={classes.gridChild}>
+        <Typography variant="h6">USŁUGI I NARZĘDZIA</Typography>
+        <Grid container direction="column">
+          {tools.map(item => (
+            <SimpleLink
+              key={item.label}
+              href={item.href}
+              label={item.label}
+              rootCss={classes.simpleLink}
+              typographyCss={classes.simpleLinkTypography}
+            />
+          ))}
+        </Grid>
+      </div>
+      <div className={classes.gridChild}>
+        <Typography variant="h6">PRZYDATNE INFORMACJE</Typography>
+        <Grid container direction="column">
+          {additionalInfo.map(item => (
+            <SimpleLink
+              key={item.label}
+              {...item}
+              rootCss={classes.simpleLink}
+              typographyCss={classes.simpleLinkTypography}
+            />
+          ))}
+        </Grid>
+      </div>
     </Grid>
-    <Grid item>
-      <Typography variant="h6">GIEŁDA ZABYTKÓW</Typography>
-      <Grid container direction="column">
-        {mainLinks.map(item => (
-          <SimpleLink
-            key={item.label}
-            {...item}
-            rootCss={classes.simpleLink}
-            typographyCss={classes.simpleLinkTypography}
-          />
-        ))}
-      </Grid>
-    </Grid>
-    <Grid item>
-      <Typography variant="h6">USŁUGI I NARZĘDZIA</Typography>
-      <Grid container direction="column">
-        {tools.map(item => (
-          <SimpleLink
-            key={item.label}
-            href={item.href}
-            label={item.label}
-            rootCss={classes.simpleLink}
-            typographyCss={classes.simpleLinkTypography}
-          />
-        ))}
-      </Grid>
-    </Grid>
-    <Grid item>
-      <Typography variant="h6">PRZYDATNE INFORMACJE</Typography>
-      <Grid container direction="column">
-        {additionalInfo.map(item => (
-          <SimpleLink
-            key={item.label}
-            {...item}
-            rootCss={classes.simpleLink}
-            typographyCss={classes.simpleLinkTypography}
-          />
-        ))}
-      </Grid>
-    </Grid>
-  </Grid>
+  </div>
 );
 
 export default withStyles(styles)(Footer);
