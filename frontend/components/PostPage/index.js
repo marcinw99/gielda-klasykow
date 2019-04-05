@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import Head from "next/head";
+import Router from "next/router";
 
 import PostQueries from "./PostQueries";
 import Logic from "./Logic";

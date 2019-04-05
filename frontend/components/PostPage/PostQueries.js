@@ -1,32 +1,46 @@
 import React from "react";
 import { Query } from "react-apollo";
+import Router from "next/router";
 
 import { POST_FIELDS } from "../../src/Queries/searchQueries";
 import { postQueryFieldsToDelete } from "./config";
 import { composePostQuery } from "./helpers";
+import { Typography, LinearProgress } from "@material-ui/core";
 
 const PostFields = props => (
   <Query query={POST_FIELDS}>
     {({ data, error, loading }) => {
-      if (error) return <p>Błąd pobieranie pól posta</p>;
-      if (loading) return <p>Ładowanie pól</p>;
+      if (error)
+        return (
+          <Typography align="center" color="secondary" variant="h4">
+            Wystąpił błąd przy pobieraniu danych.
+          </Typography>
+        );
+      if (loading) return <LinearProgress />;
       return React.cloneElement(props.children, { data });
     }}
   </Query>
 );
 
-const PostQuery = ({ children, data, ...other }) => (
+const PostQuery = props => (
   <Query
     query={composePostQuery({
-      data,
+      data: props.data,
       additionalArgs: { fieldsToDelete: postQueryFieldsToDelete }
     })}
-    {...other}
+    variables={props.variables}
   >
     {({ data, error, loading }) => {
-      if (error) return <p>Błąd pobieranie posta</p>;
-      if (loading) return <p>Ładowanie posta</p>;
-      return React.cloneElement(children, { post: data.post });
+      if (error)
+        return (
+          <Typography align="center" color="secondary" variant="h4">
+            Wystąpił błąd przy pobieraniu ogłoszenia.
+          </Typography>
+        );
+      if (loading) return <LinearProgress />;
+      if (data) React.cloneElement(props.children, { post: data.post });
+      Router.push("/nie-znaleziono-strony");
+      return null;
     }}
   </Query>
 );

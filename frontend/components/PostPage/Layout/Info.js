@@ -108,7 +108,7 @@ const Chips = withStyles(styles)(({ classes, ...other }) => {
   return (
     <div className={classes.chipsRoot}>
       {values.map(item => (
-        <Chip outlined key={item} label={item} className={classes.chip} />
+        <Chip key={item} label={item} className={classes.chip} />
       ))}
     </div>
   );
