@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import PropTypes from "prop-types";
 
 import { Typography, withStyles, Grid, Paper, Fab } from "@material-ui/core";
@@ -55,45 +56,51 @@ const styles = theme => ({
 
 function Post({ classes, data, handleDelete, handleEdit }) {
   return (
-    <Paper square elevation={8} className={classes.root}>
-      <div className={classes.hoverDiv} />
-      <img
-        className={classes.img}
-        src={data.avatar || "/static/noImageAvailable.jpg"}
-        alt="Photo"
-      />
-      <Grid container justify="space-between" className={classes.infoContainer}>
-        <Typography
-          variant="h6"
-          className={classes.leftTypography}
-        >{`${displayedText("brand", data.car.brand)} ${data.car.model ||
-          ""}`}</Typography>
-        <Typography variant="h6" color="secondary">
-          {data.price} PLN
-        </Typography>
-      </Grid>
-      <Grid
-        container
-        justify="flex-end"
-        spacing={16}
-        className={classes.actionsContainer}
-      >
-        <Grid item>
-          <Fab color="primary" className={classes.button}>
-            <EditIcon />
-          </Fab>
+    <Link href={`/klasyk/?id=${data.id}`} as={`/klasyk/${data.id}`}>
+      <Paper square elevation={8} className={classes.root}>
+        <div className={classes.hoverDiv} />
+        <img
+          className={classes.img}
+          src={data.avatar || "/static/noImageAvailable.jpg"}
+          alt="Photo"
+        />
+        <Grid
+          container
+          justify="space-between"
+          className={classes.infoContainer}
+        >
+          <Typography
+            variant="h6"
+            className={classes.leftTypography}
+          >{`${displayedText("brand", data.car.brand)} ${data.car.model ||
+            ""}`}</Typography>
+          <Typography variant="h6" color="secondary">
+            {data.price} PLN
+          </Typography>
         </Grid>
-        <Grid item>
-          <Fab
-            color="primary"
-            className={classes.button}
-            onClick={() => handleDelete(data.id)}
-          >
-            <DeleteIcon />
-          </Fab>
+        <Grid
+          container
+          justify="flex-end"
+          spacing={16}
+          className={classes.actionsContainer}
+        >
+          <Grid item>
+            <Fab color="primary" className={classes.button}>
+              <EditIcon />
+            </Fab>
+          </Grid>
+          <Grid item>
+            <Fab
+              color="primary"
+              className={classes.button}
+              onClick={() => handleDelete(data.id)}
+            >
+              <DeleteIcon />
+            </Fab>
+          </Grid>
         </Grid>
-      </Grid>
-    </Paper>
+      </Paper>
+    </Link>
   );
 }
 

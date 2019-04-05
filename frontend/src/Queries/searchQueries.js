@@ -24,6 +24,7 @@ export const ALL_POSTS_QUERY = gql`
       }
       edges {
         node {
+          id
           price
           avatar
           car {
