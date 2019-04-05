@@ -7,6 +7,7 @@ type User {
   password: String!
   emailConfirmed: Boolean
   permissions: [Permission]
+  phoneNumber: String
 }
 
 type MessageCode {

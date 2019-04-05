@@ -2489,6 +2489,7 @@ type User {
   resetTokenExpiry: Float
   permissions: [Permission!]!
   createdAt: DateTime!
+  phoneNumber: String
 }
 
 type UserConnection {
@@ -2507,6 +2508,7 @@ input UserCreateInput {
   resetToken: String
   resetTokenExpiry: Float
   permissions: UserCreatepermissionsInput
+  phoneNumber: String
 }
 
 input UserCreateOneWithoutPostsInput {
@@ -2527,6 +2529,7 @@ input UserCreateWithoutPostsInput {
   resetToken: String
   resetTokenExpiry: Float
   permissions: UserCreatepermissionsInput
+  phoneNumber: String
 }
 
 type UserEdge {
@@ -2553,6 +2556,8 @@ enum UserOrderByInput {
   resetTokenExpiry_DESC
   createdAt_ASC
   createdAt_DESC
+  phoneNumber_ASC
+  phoneNumber_DESC
   updatedAt_ASC
   updatedAt_DESC
 }
@@ -2568,6 +2573,7 @@ type UserPreviousValues {
   resetTokenExpiry: Float
   permissions: [Permission!]!
   createdAt: DateTime!
+  phoneNumber: String
 }
 
 type UserSubscriptionPayload {
@@ -2598,6 +2604,7 @@ input UserUpdateInput {
   resetToken: String
   resetTokenExpiry: Float
   permissions: UserUpdatepermissionsInput
+  phoneNumber: String
 }
 
 input UserUpdateManyMutationInput {
@@ -2609,6 +2616,7 @@ input UserUpdateManyMutationInput {
   resetToken: String
   resetTokenExpiry: Float
   permissions: UserUpdatepermissionsInput
+  phoneNumber: String
 }
 
 input UserUpdateOneRequiredWithoutPostsInput {
@@ -2631,6 +2639,7 @@ input UserUpdateWithoutPostsDataInput {
   resetToken: String
   resetTokenExpiry: Float
   permissions: UserUpdatepermissionsInput
+  phoneNumber: String
 }
 
 input UserUpsertWithoutPostsInput {
@@ -2744,6 +2753,20 @@ input UserWhereInput {
   createdAt_lte: DateTime
   createdAt_gt: DateTime
   createdAt_gte: DateTime
+  phoneNumber: String
+  phoneNumber_not: String
+  phoneNumber_in: [String!]
+  phoneNumber_not_in: [String!]
+  phoneNumber_lt: String
+  phoneNumber_lte: String
+  phoneNumber_gt: String
+  phoneNumber_gte: String
+  phoneNumber_contains: String
+  phoneNumber_not_contains: String
+  phoneNumber_starts_with: String
+  phoneNumber_not_starts_with: String
+  phoneNumber_ends_with: String
+  phoneNumber_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

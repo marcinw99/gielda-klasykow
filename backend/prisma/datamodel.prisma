@@ -57,6 +57,7 @@ type User {
   resetTokenExpiry: Float
   permissions: [Permission!]!
   createdAt: DateTime!
+  phoneNumber: String
 }
 
 type additionalAccessories_Safety {

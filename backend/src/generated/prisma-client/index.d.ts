@@ -737,6 +737,8 @@ export type UserOrderByInput =
   | "resetTokenExpiry_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
+  | "phoneNumber_ASC"
+  | "phoneNumber_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
@@ -1217,6 +1219,7 @@ export interface UserUpdateWithoutPostsDataInput {
   resetToken?: String;
   resetTokenExpiry?: Float;
   permissions?: UserUpdatepermissionsInput;
+  phoneNumber?: String;
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
@@ -1892,6 +1895,20 @@ export interface UserWhereInput {
   createdAt_lte?: DateTimeInput;
   createdAt_gt?: DateTimeInput;
   createdAt_gte?: DateTimeInput;
+  phoneNumber?: String;
+  phoneNumber_not?: String;
+  phoneNumber_in?: String[] | String;
+  phoneNumber_not_in?: String[] | String;
+  phoneNumber_lt?: String;
+  phoneNumber_lte?: String;
+  phoneNumber_gt?: String;
+  phoneNumber_gte?: String;
+  phoneNumber_contains?: String;
+  phoneNumber_not_contains?: String;
+  phoneNumber_starts_with?: String;
+  phoneNumber_not_starts_with?: String;
+  phoneNumber_ends_with?: String;
+  phoneNumber_not_ends_with?: String;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
@@ -1906,6 +1923,7 @@ export interface UserCreateWithoutPostsInput {
   resetToken?: String;
   resetTokenExpiry?: Float;
   permissions?: UserCreatepermissionsInput;
+  phoneNumber?: String;
 }
 
 export interface CarUpsertWithoutAdditionalAccessories_AppereanceInput {
@@ -2234,6 +2252,7 @@ export interface UserCreateInput {
   resetToken?: String;
   resetTokenExpiry?: Float;
   permissions?: UserCreatepermissionsInput;
+  phoneNumber?: String;
 }
 
 export interface UserCreateOneWithoutPostsInput {
@@ -2287,6 +2306,7 @@ export interface UserUpdateInput {
   resetToken?: String;
   resetTokenExpiry?: Float;
   permissions?: UserUpdatepermissionsInput;
+  phoneNumber?: String;
 }
 
 export interface CarUpdateWithoutAdditionalAccessories_SafetyDataInput {
@@ -2644,6 +2664,7 @@ export interface UserUpdateManyMutationInput {
   resetToken?: String;
   resetTokenExpiry?: Float;
   permissions?: UserUpdatepermissionsInput;
+  phoneNumber?: String;
 }
 
 export interface CarCreateOneWithoutAdditionalAccessories_Comfort_DriverInput {
@@ -3136,6 +3157,7 @@ export interface User {
   resetTokenExpiry?: Float;
   permissions: Permission[];
   createdAt: DateTimeOutput;
+  phoneNumber?: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -3160,6 +3182,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   resetTokenExpiry: () => Promise<Float>;
   permissions: () => Promise<Permission[]>;
   createdAt: () => Promise<DateTimeOutput>;
+  phoneNumber: () => Promise<String>;
 }
 
 export interface UserSubscription
@@ -3186,6 +3209,7 @@ export interface UserSubscription
   resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
   permissions: () => Promise<AsyncIterator<Permission[]>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
 }
 
 export interface Car {
@@ -3723,6 +3747,7 @@ export interface UserPreviousValues {
   resetTokenExpiry?: Float;
   permissions: Permission[];
   createdAt: DateTimeOutput;
+  phoneNumber?: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -3738,6 +3763,7 @@ export interface UserPreviousValuesPromise
   resetTokenExpiry: () => Promise<Float>;
   permissions: () => Promise<Permission[]>;
   createdAt: () => Promise<DateTimeOutput>;
+  phoneNumber: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -3753,6 +3779,7 @@ export interface UserPreviousValuesSubscription
   resetTokenExpiry: () => Promise<AsyncIterator<Float>>;
   permissions: () => Promise<AsyncIterator<Permission[]>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
 }
 
 export interface additionalAccessories_AppereanceEdge {
