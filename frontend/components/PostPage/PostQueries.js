@@ -38,7 +38,7 @@ const PostQuery = props => (
           </Typography>
         );
       if (loading) return <LinearProgress />;
-      if (data) React.cloneElement(props.children, { post: data.post });
+      if (data) return React.cloneElement(props.children, { post: data.post });
       Router.push("/nie-znaleziono-strony");
       return null;
     }}

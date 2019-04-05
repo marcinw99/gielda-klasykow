@@ -30,7 +30,7 @@ type Query {
     first: Int
     last: Int
   ): [Car]!
-  post(where: PostWhereUniqueInput!): Post
+  post(where: PostWhereUniqueInput!): Post!
   posts(
     where: PostWhereInput
     orderBy: PostOrderByInput
