@@ -41,6 +41,11 @@ const joinPostFieldsIntoString = data =>
 const nestTypesInGql = data => gql`
     query POST_QUERY($postId: ID!) {
       post(where: { id: $postId }) {
+        user {
+          name
+          email
+          phoneNumber
+        }
         ${data}
       }
     }

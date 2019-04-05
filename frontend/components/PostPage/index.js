@@ -8,8 +8,7 @@ import Layout from "./Layout";
 const PostPage = props => (
   <Fragment>
     <Head>
-      <title>Klasyk - Giełda klasyków</title>
-      // Change title to car's brand and model
+      <title key="pageTitle">Klasyk - Giełda klasyków</title>
     </Head>
     <PostQueries postId={props.id}>
       <Logic>
