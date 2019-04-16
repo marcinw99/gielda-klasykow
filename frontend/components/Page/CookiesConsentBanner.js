@@ -13,6 +13,7 @@ import Link from "next/link";
 const styles = theme => ({
   paper: {
     padding: theme.spacing.unit * 2,
+    borderRadius: "5px 5px 0 0",
     position: "fixed",
     bottom: 0,
     left: "5%",
@@ -21,6 +22,8 @@ const styles = theme => ({
   },
   button: {
     marginLeft: theme.spacing.unit * 2,
+    borderRadius: "5px",
+    marginTop: theme.spacing.unit,
     color: theme.palette.primary.main,
     background: theme.palette.primary.contrastText
   },
