@@ -46,22 +46,6 @@ export const StyledContentContainer = withStyles(contentContainerStyles)(
   ContentContainer
 );
 
-// HeaderWhiteSpace
-
-const headerWhiteSpaceStyles = theme => ({
-  root: {
-    minHeight: theme.custom.headerHeight
-  }
-});
-
-const HeaderWhiteSpaceComponent = ({ classes }) => (
-  <div className={classes.root} />
-);
-
-export const HeaderWhiteSpace = withStyles(headerWhiteSpaceStyles)(
-  HeaderWhiteSpaceComponent
-);
-
 // StyledContent
 
 const contentStyles = theme => ({

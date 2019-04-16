@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Mutation } from "react-apollo";
 import { Grid, Fade, Menu, IconButton, Typography } from "@material-ui/core";
 import {
@@ -85,7 +85,52 @@ class HeaderWithUser extends Component {
         handleClick: () => this.handleRedirect("/dodajklasyka")
       }
     ];
-    return (
+    return this.props.mobile ? (
+      <Fragment>
+        {this.props.thisUser ? (
+          <Fragment>
+            <Typography variant="h6" align="center">
+              {this.props.thisUser && this.props.thisUser.name}
+            </Typography>
+            {menuOptions.map(item => (
+              <StyledMenuItem
+                key={item.label}
+                onClick={item.handleClick ? item.handleClick : this.handleClose}
+              >
+                <Grid container justify="space-between">
+                  {item.icon}
+                  {item.label}
+                </Grid>
+              </StyledMenuItem>
+            ))}
+            {this.state.confirmationEmailSent === false &&
+            this.props.thisUser &&
+            this.props.thisUser.emailConfirmed !== true ? (
+              <Mutation
+                mutation={REPEAT_CONFIRMATION_EMAIL}
+                variables={{ email: this.props.thisUser.email }}
+              >
+                {(send, payload) => {
+                  this.handleConfirmationEmailResult(payload);
+                  return (
+                    <StyledMenuItem onClick={send}>
+                      <Typography color="secondary">
+                        Wyślij link aktywujący konto jeszcze raz
+                      </Typography>
+                    </StyledMenuItem>
+                  );
+                }}
+              </Mutation>
+            ) : null}
+            <SignOut onClick={this.handleClose}>
+              <Grid container justify="space-between">
+                <ArrowBackIcon /> Wyloguj się
+              </Grid>
+            </SignOut>
+          </Fragment>
+        ) : null}
+      </Fragment>
+    ) : (
       <Fade
         in={Boolean(this.props.thisUser)}
         mountOnEnter

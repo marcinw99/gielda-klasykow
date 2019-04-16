@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import {
   ThemeToggler,
   StyledContentContainer,
-  HeaderWhiteSpace,
   StyledContent
 } from "./styledComponents";
 import Header from "./Header";
@@ -20,7 +19,6 @@ const Page = props => (
       <div>
         <Header {...data} />
         <StyledContentContainer>
-          <HeaderWhiteSpace />
           <StyledContent>
             {React.cloneElement(props.children, data)}
           </StyledContent>

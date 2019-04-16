@@ -12,7 +12,10 @@ class MyDocument extends Document {
     return (
       <html lang="pl" dir="ltr">
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1"
+          />
           <meta charSet="utf-8" />
           <link
             rel="apple-touch-icon"

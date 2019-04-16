@@ -5,20 +5,19 @@ import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   root: {
+    flexGrow: 1,
     display: "flex",
     alignItems: "center"
   },
   logo: {
-    height: "50px",
+    height: "35px",
     width: "auto",
-    marginTop: theme.spacing.unit,
     background: "#f5f5f5",
-    borderRadius: 15,
-    margin: theme.spacing.unit
+    borderRadius: 15
   },
   text: {
-    fontSize: 32,
-    fontFamily: "Roboto"
+    fontFamily: "Roboto",
+    flexGrow: 1
   }
 });
 
@@ -27,7 +26,7 @@ const Logo = ({ classes }) => {
     <Link href="/">
       <div className={classes.root}>
         <img src="/static/Baner.png" alt="Logo" className={classes.logo} />
-        <Typography className={classes.text} noWrap>
+        <Typography variant="h5" className={classes.text} noWrap>
           Giełda klasyków
         </Typography>
       </div>

@@ -23,7 +23,11 @@ const HeaderWithoutUser = props => (
     unmountOnExit
     timeout={{ enter: 1000, exit: 0 }}
   >
-    <Grid justify="flex-end" container direction="row">
+    <Grid
+      justify="flex-end"
+      container
+      direction={props.mobile ? "column" : "row"}
+    >
       <Button
         color="primary"
         variant="contained"
