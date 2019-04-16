@@ -1,14 +1,18 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-import { withStyles, LinearProgress, Typography } from "@material-ui/core";
+import {
+  withStyles,
+  LinearProgress,
+  Typography,
+  Grid
+} from "@material-ui/core";
 import getErrorMessage from "../universal/getErrorMessage";
 import Post from "./Post";
 import ConfirmationDialog from "../universal/ConfirmationDialog";
 
 const styles = theme => ({
   root: {
-    display: "inline-flex",
     width: "100%",
     marginTop: "2vh",
     paddingLeft: "2vw",
@@ -74,7 +78,7 @@ class Layout extends Component {
     return (
       <Fragment>
         <Title />
-        <div className={this.props.classes.root}>
+        <Grid container className={this.props.classes.root}>
           {this.props.posts.map(item => (
             <Post
               key={item.id}
@@ -83,7 +87,7 @@ class Layout extends Component {
               handleEdit={() => null}
             />
           ))}
-        </div>
+        </Grid>
         <ConfirmationDialog
           open={this.state.dialogOpen}
           {...this.state.dialogAttributes}
