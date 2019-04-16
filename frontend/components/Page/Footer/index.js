@@ -11,8 +11,7 @@ const styles = theme => ({
     width: "100%"
   },
   gridChild: {
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2
+    padding: theme.spacing.unit * 2
   },
   socialMediaButton: {
     color: theme.palette.primary.dark,
