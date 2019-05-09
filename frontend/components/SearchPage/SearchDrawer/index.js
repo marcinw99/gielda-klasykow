@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Drawer } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
+import { Drawer, Hidden, withStyles } from "@material-ui/core";
 
 import Filters from "./Filters";
 
