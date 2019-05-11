@@ -23,6 +23,10 @@ const styles = theme => ({
   },
   grow: {
     flexGrow: 1
+  },
+  appBar: {
+    position: "relative",
+    zIndex: theme.zIndex.drawer + 1
   }
 });
 
@@ -62,7 +66,7 @@ class Header extends Component {
     const { classes, thisUser, width } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="static" color="default">
+        <AppBar position="static" color="default" className={classes.appBar}>
           <Toolbar>
             <Logo />
             {width === "xs" || width === "sm" ? (

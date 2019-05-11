@@ -13,7 +13,8 @@ import { ALL_POSTS_QUERY } from "../../src/Queries/searchQueries";
 
 const styles = theme => ({
   root: {
-    display: "flex"
+    display: "flex",
+    position: "relative"
   },
   loadingScreen: {
     paddingTop: "30vh",
