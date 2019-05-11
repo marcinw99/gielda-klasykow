@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
-import { Grid, FormControlLabel } from "@material-ui/core";
+import { Grid, FormControlLabel, Hidden, Fab, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import { Close } from "@material-ui/icons";
 import { Query } from "react-apollo";
 import PropTypes from "prop-types";
 import { remove } from "lodash";
@@ -15,7 +16,6 @@ import {
 } from "./styledComponents";
 import { Autocomplete } from "../../../../universal/Autocompletes";
 import DoubleInputs from "../../../../universal/DoubleInputs";
-import displayedText from "../../../../../resources/displayedText";
 import { AVAILABLE_MODELS_OF_BRAND } from "../../../../../src/Queries/searchQueries";
 import EngineAndDriveModal from "./modals/EngineAndDriveModal";
 import BodyAndAppereanceModal from "./modals/BodyAndAppereanceModal";
@@ -41,6 +41,11 @@ const styles = theme => ({
   },
   textField: {
     width: 160
+  },
+  closeFiltersBtn: {
+    color: theme.palette.primary.dark,
+    background: theme.palette.primary.contrastText,
+    marginRight: theme.spacing.unit * 2
   }
 });
 
@@ -103,6 +108,16 @@ class Layout extends Component {
     return (
       <Fragment>
         <form className={this.props.classes.root}>
+          <Hidden mdUp>
+            <Grid container justify="flex-end">
+              <Fab
+                variant="extended"
+                className={this.props.classes.closeFiltersBtn}
+              >
+                Zamknij panel filtrów
+              </Fab>
+            </Grid>
+          </Hidden>
           <FormActions {...this.props} />
           <div className={this.props.classes.basicFiltersRoot}>
             <StyledFilterTitle>Cena (zł)</StyledFilterTitle>

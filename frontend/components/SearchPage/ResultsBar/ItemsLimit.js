@@ -7,7 +7,7 @@ import { itemsLimitOptions } from "../config";
 
 const styles = theme => ({
   formControl: {
-    minWidth: 200,
+    minWidth: 120,
     margin: theme.spacing.unit
   },
   InputLabel: {

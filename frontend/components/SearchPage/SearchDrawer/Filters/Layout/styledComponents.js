@@ -6,7 +6,7 @@ import {
   Switch,
   FormControl
 } from "@material-ui/core";
-import { Search, Clear } from "@material-ui/icons";
+import { Search, Refresh } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
 import { grey } from "@material-ui/core/colors";
 
@@ -24,7 +24,7 @@ const ClearFab = props => {
   const { classes, ...other } = props;
   return (
     <Fab color="default" classes={classes} {...other}>
-      <Clear />
+      <Refresh />
     </Fab>
   );
 };

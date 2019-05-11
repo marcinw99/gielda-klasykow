@@ -19,7 +19,7 @@ const ResultsBar = ({
   classes
 }) => {
   return (
-    <Grid className={classes.root} container justify="flex-end">
+    <Grid className={classes.root} container wrap="nowrap" justify="flex-end">
       <ItemsLimit
         value={itemsLimitValue}
         setValueInMainState={setValueInMainState}

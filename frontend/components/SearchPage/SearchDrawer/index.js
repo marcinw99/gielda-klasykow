@@ -31,9 +31,11 @@ const styles = theme => ({
     background: theme.palette.primary.main
   },
   filterBtn: {
-    position: "absolute",
-    top: "2%",
-    left: "2%"
+    position: "fixed",
+    top: "50%",
+    left: 8,
+    transform: "translateY(-50%)",
+    zIndex: 2000
   }
 });
 
