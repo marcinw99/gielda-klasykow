@@ -113,6 +113,7 @@ class Layout extends Component {
               <Fab
                 variant="extended"
                 className={this.props.classes.closeFiltersBtn}
+                onClick={this.props.closeDrawer}
               >
                 Zamknij panel filtrów
               </Fab>

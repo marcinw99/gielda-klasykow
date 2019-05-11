@@ -56,13 +56,15 @@ class SearchDrawer extends PureComponent {
     const { classes, width, ...other } = this.props;
     return width === "xs" || width === "sm" ? (
       <Fragment>
-        <Fab
-          onClick={this.onOpen}
-          color="primary"
-          className={classes.filterBtn}
-        >
-          <FilterList />
-        </Fab>
+        {this.state.open === false ? (
+          <Fab
+            onClick={this.onOpen}
+            color="primary"
+            className={classes.filterBtn}
+          >
+            <FilterList />
+          </Fab>
+        ) : null}
         <SwipeableDrawer
           className={classes.swipeableDrawer}
           classes={{
@@ -73,7 +75,7 @@ class SearchDrawer extends PureComponent {
           onOpen={this.onOpen}
           onClose={this.onClose}
         >
-          <Filters {...other} />
+          <Filters {...other} closeDrawer={this.onClose} />
         </SwipeableDrawer>
       </Fragment>
     ) : (

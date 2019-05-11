@@ -8,7 +8,7 @@ import Layout from "./Layout";
 const Filters = props => (
   <FiltersQuery>
     <Logic {...props}>
-      <Layout />
+      <Layout closeDrawer={props.closeDrawer} />
     </Logic>
   </FiltersQuery>
 );
