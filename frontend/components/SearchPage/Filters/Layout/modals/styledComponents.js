@@ -1,14 +1,5 @@
-import React, { Fragment } from "react";
-import {
-  Paper,
-  Typography,
-  withStyles,
-  FormControl,
-  FormControlLabel,
-  Checkbox
-} from "@material-ui/core";
-
-import displayedText from "../../../../../../resources/displayedText";
+import React from "react";
+import { Paper, Typography, withStyles, FormControl } from "@material-ui/core";
 
 // ModalPaper
 

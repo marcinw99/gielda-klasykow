@@ -5,7 +5,7 @@ import { Typography, CircularProgress, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import { initialSearchParameters } from "./config";
-import SearchDrawer from "./SearchDrawer";
+import Filters from "./Filters";
 import ResultsBar from "./ResultsBar";
 import Results from "./Results";
 import ResultsPagination from "./ResultsPagination";
@@ -51,7 +51,7 @@ class Search extends Component {
           <title>Giełda klasyków - wyszukiwarka ogłoszeń</title>
         </Head>
         <div className={classes.root}>
-          <SearchDrawer setValueInMainState={this.setValueInState} />
+          <Filters setValueInMainState={this.setValueInState} />
           <div className={classes.content}>
             <Query
               query={ALL_POSTS_QUERY}

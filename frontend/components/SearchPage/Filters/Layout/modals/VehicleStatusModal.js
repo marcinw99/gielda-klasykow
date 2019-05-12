@@ -1,8 +1,8 @@
 import React from "react";
 import { Modal, Grid, Fade } from "@material-ui/core";
 
-import { blankFiltersVehicleStatus } from "../../../../config";
-import BooleanSelect from "../../../../../universal/BooleanSelect";
+import { blankFiltersVehicleStatus } from "../../../config";
+import BooleanSelect from "../../../../universal/BooleanSelect";
 import {
   ModalPaper,
   ModalContent,

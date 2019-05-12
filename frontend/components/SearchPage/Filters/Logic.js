@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { blankFiltersState, initialSearchParameters } from "../../config";
+import { blankFiltersState, initialSearchParameters } from "../config";
 import {
   prepareOptions,
   addLabelsForOptions,
   getFormattedPayload,
   filterValueIsInvalid
-} from "../../helpers";
+} from "../helpers";
 import {
   getTypesFieldsAsArrays,
   assignValuesToProperDataType
-} from "../../../../src/globalMethods";
-import { withSnackbar } from "../../../Snackbar/Context";
-import displayedText from "../../../../resources/displayedText";
+} from "../../../src/globalMethods";
+import { withSnackbar } from "../../Snackbar/Context";
+import displayedText from "../../../resources/displayedText";
 
 const initialState = {
   filters: { ...blankFiltersState, ...initialSearchParameters.filters },

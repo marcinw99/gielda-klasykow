@@ -6,7 +6,7 @@ import {
   SearchDrawerError,
   StyledSearchDrawerLoadingScreen
 } from "./Layout/styledComponents";
-import { FILTERS_QUERIES } from "../../../../src/Queries/searchQueries";
+import { FILTERS_QUERIES } from "../../../src/Queries/searchQueries";
 
 const FiltersQuery = ({ children }) => {
   return (

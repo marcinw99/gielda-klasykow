@@ -7,7 +7,7 @@ import { SortOptions } from "../config";
 
 const styles = theme => ({
   formControl: {
-    minWidth: 120,
+    minWidth: 90,
     margin: theme.spacing.unit
   },
   InputLabel: {
