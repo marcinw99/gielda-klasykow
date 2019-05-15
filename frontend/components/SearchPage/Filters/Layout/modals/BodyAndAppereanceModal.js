@@ -57,15 +57,15 @@ const BodyAndAppereanceModal = props => (
               />
             </Grid>
           </StyledFormControl>
+          <Footer
+            handleSubmit={props.submitModal}
+            handleReset={() => {
+              props.resetSpecificFiltersWithoutFiltering(
+                blankFiltersStateBodyAndAppereance
+              );
+            }}
+          />
         </ModalContent>
-        <Footer
-          handleSubmit={props.submitModal}
-          handleReset={() => {
-            props.resetSpecificFiltersWithoutFiltering(
-              blankFiltersStateBodyAndAppereance
-            );
-          }}
-        />
       </ModalPaper>
     </Modal>
   </Fade>

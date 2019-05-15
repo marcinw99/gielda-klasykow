@@ -48,15 +48,15 @@ const VehicleStatusModal = props => (
               </Grid>
             ))}
           </Grid>
+          <Footer
+            handleSubmit={props.submitModal}
+            handleReset={() => {
+              props.resetSpecificFiltersWithoutFiltering(
+                blankFiltersVehicleStatus
+              );
+            }}
+          />
         </ModalContent>
-        <Footer
-          handleSubmit={props.submitModal}
-          handleReset={() => {
-            props.resetSpecificFiltersWithoutFiltering(
-              blankFiltersVehicleStatus
-            );
-          }}
-        />
       </ModalPaper>
     </Modal>
   </Fade>

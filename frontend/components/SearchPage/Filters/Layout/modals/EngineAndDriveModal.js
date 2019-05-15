@@ -129,15 +129,15 @@ const EngineAndDriveModal = props => (
               />
             </Grid>
           </StyledFormControl>
+          <Footer
+            handleSubmit={props.submitModal}
+            handleReset={() => {
+              props.resetSpecificFiltersWithoutFiltering(
+                blankFiltersStateEngineAndDrive
+              );
+            }}
+          />
         </ModalContent>
-        <Footer
-          handleSubmit={props.submitModal}
-          handleReset={() => {
-            props.resetSpecificFiltersWithoutFiltering(
-              blankFiltersStateEngineAndDrive
-            );
-          }}
-        />
       </ModalPaper>
     </Modal>
   </Fade>

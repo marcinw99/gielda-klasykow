@@ -12,6 +12,7 @@ const modalPaperStyles = theme => ({
     transform: "translate(-50%, -50%)",
     outline: "none",
     maxHeight: "96vh",
+    maxWidth: "96vw",
     overflowY: "auto"
   },
   normal: {

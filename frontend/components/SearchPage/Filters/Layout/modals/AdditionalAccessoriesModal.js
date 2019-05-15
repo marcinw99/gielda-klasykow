@@ -59,15 +59,15 @@ const AdditionalAccessoriesModal = props => (
               />
             </Grid>
           </StyledFormControl>
+          <Footer
+            handleSubmit={props.submitModal}
+            handleReset={() => {
+              props.resetSpecificFiltersWithoutFiltering(
+                blankFiltersStateAdditionalAccessories
+              );
+            }}
+          />
         </ModalContent>
-        <Footer
-          handleSubmit={props.submitModal}
-          handleReset={() => {
-            props.resetSpecificFiltersWithoutFiltering(
-              blankFiltersStateAdditionalAccessories
-            );
-          }}
-        />
       </ModalPaper>
     </Modal>
   </Fade>
