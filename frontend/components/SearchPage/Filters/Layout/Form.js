@@ -50,7 +50,7 @@ const Form = props => (
       </Grid>
     </Hidden>
     <FormActions {...props} />
-    <div className={props.classes.basicFiltersRoot}>
+    <div>
       <StyledFilterTitle>Cena (zł)</StyledFilterTitle>
       <Creatable
         unit="PLN"
@@ -173,7 +173,7 @@ const Form = props => (
       />
     </div>
     <StyledFilterTitle>Zaawansowane filtrowanie</StyledFilterTitle>
-    <div className={props.classes.advancedFiltersRoot}>
+    <div>
       <StyledExtendedFab onClick={() => props.openModal("EngineAndDriveModal")}>
         Silnik i napęd
       </StyledExtendedFab>
