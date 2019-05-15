@@ -12,13 +12,11 @@ import PropTypes from "prop-types";
 import {
   StyledFilterTitle,
   StyledExtendedFab,
-  StyledFormControl,
   StyledClearFab,
   StyledSearchFab,
   StyledSwitch
 } from "./styledComponents";
-import { Autocomplete } from "../../../universal/Autocompletes";
-import DoubleInputs from "../../../universal/DoubleInputs";
+import { Autocomplete, Creatable } from "../../../universal/Autocompletes";
 import { AVAILABLE_MODELS_OF_BRAND } from "../../../../src/Queries/searchQueries";
 
 const styles = theme => ({
@@ -28,18 +26,8 @@ const styles = theme => ({
   formActionsRoot: {
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`
   },
-  basicFiltersRoot: {
-    textAlign: "center"
-  },
-  advancedFiltersRoot: {
-    marginTop: theme.spacing.unit,
-    textAlign: "center"
-  },
   switchLabel: {
     color: theme.palette.primary.contrastText
-  },
-  textField: {
-    width: 120
   },
   closeFiltersBtn: {
     color: theme.palette.primary.dark,
@@ -64,81 +52,66 @@ const Form = props => (
     <FormActions {...props} />
     <div className={props.classes.basicFiltersRoot}>
       <StyledFilterTitle>Cena (zł)</StyledFilterTitle>
-      <DoubleInputs
-        className={props.classes.textField}
-        canCreateOption
+      <Creatable
         unit="PLN"
-        nameLeft="price_gte"
-        nameRight="price_lte"
-        labelLeft="Cena od"
-        labelRight="Cena do"
-        valueLeft={props.values.price_gte}
-        valueRight={props.values.price_lte}
+        name="price_gte"
+        placeholder="Cena od"
+        value={props.values.price_gte}
+        handleChange={props.handleChange}
+        options={props.options.Price}
+      />
+      <Creatable
+        unit="PLN"
+        name="price_lte"
+        placeholder="Cena do"
+        value={props.values.price_lte}
         handleChange={props.handleChange}
         options={props.options.Price}
       />
       <StyledFilterTitle>Lokalizacja</StyledFilterTitle>
-      <StyledFormControl>
-        <Autocomplete
-          className={props.classes.textField}
-          options={props.options.Location}
-          value={props.values.location}
-          handleChange={props.handleChange}
-          name="location"
-          placeholder="Miejscowość"
-        />
-      </StyledFormControl>
-      <StyledFormControl>
-        <Autocomplete
-          className={props.classes.textField}
-          options={props.options.Location}
-          value={props.values.location}
-          handleChange={props.handleChange}
-          name="location"
-          placeholder="Zasięg"
-        />
-      </StyledFormControl>
+      <Autocomplete
+        options={props.options.Location}
+        value={props.values.location}
+        handleChange={props.handleChange}
+        name="location"
+        placeholder="Miejscowość"
+      />
+      <Autocomplete
+        options={props.options.Location}
+        value={props.values.location}
+        handleChange={props.handleChange}
+        name="location"
+        placeholder="Zasięg"
+      />
       <StyledFilterTitle>Cechy pojazdu</StyledFilterTitle>
-      <StyledFormControl>
-        <Autocomplete
-          className={props.classes.textField}
-          value={props.values.type}
-          options={props.options.Type}
-          handleChange={props.handleChange}
-          name="type"
-          placeholder="Rodzaj nadwozia"
-        />
-      </StyledFormControl>
-      <StyledFormControl>
-        <Autocomplete
-          className={props.classes.textField}
-          value={props.values.fuelType}
-          options={props.options.FuelType}
-          handleChange={props.handleChange}
-          name="fuelType"
-          placeholder="Rodzaj paliwa"
-        />
-      </StyledFormControl>
-      <StyledFormControl>
-        <Autocomplete
-          className={props.classes.textField}
-          value={props.values.brand}
-          options={props.options.Brand}
-          handleChange={props.handleChange}
-          name="brand"
-          placeholder="Marka pojazdu"
-        />
-      </StyledFormControl>
+      <Autocomplete
+        value={props.values.type}
+        options={props.options.Type}
+        handleChange={props.handleChange}
+        name="type"
+        placeholder="Rodzaj nadwozia"
+      />
+      <Autocomplete
+        value={props.values.fuelType}
+        options={props.options.FuelType}
+        handleChange={props.handleChange}
+        name="fuelType"
+        placeholder="Rodzaj paliwa"
+      />
+      <Autocomplete
+        value={props.values.brand}
+        options={props.options.Brand}
+        handleChange={props.handleChange}
+        name="brand"
+        placeholder="Marka pojazdu"
+      />
       {props.values.brand == null ? (
-        <StyledFormControl>
-          <Autocomplete
-            className={props.classes.textField}
-            options={[]}
-            handleChange={() => null}
-            placeholder="Model pojazdu"
-            name="model"
-          />
-        </StyledFormControl>
+        <Autocomplete
+          options={[]}
+          handleChange={() => null}
+          placeholder="Model pojazdu"
+          name="model"
+        />
       ) : (
         <Query
           query={AVAILABLE_MODELS_OF_BRAND}
@@ -148,50 +121,53 @@ const Form = props => (
         >
           {({ data, error, loading }) => {
             return data ? (
-              <StyledFormControl>
-                <Autocomplete
-                  className={props.classes.textField}
-                  value={props.values.model}
-                  options={
-                    data.availableModelsOfBrand
-                      ? data.availableModelsOfBrand.map(item => ({
-                          label: `${item.value} (${item.count})`,
-                          value: item.value
-                        }))
-                      : []
-                  }
-                  handleChange={props.handleChange}
-                  name="model"
-                  placeholder="Model pojazdu"
-                />
-              </StyledFormControl>
+              <Autocomplete
+                value={props.values.model}
+                options={
+                  data.availableModelsOfBrand
+                    ? data.availableModelsOfBrand.map(item => ({
+                        label: `${item.value} (${item.count})`,
+                        value: item.value
+                      }))
+                    : []
+                }
+                handleChange={props.handleChange}
+                name="model"
+                placeholder="Model pojazdu"
+              />
             ) : null;
           }}
         </Query>
       )}
-      <DoubleInputs
-        className={props.classes.textField}
-        canCreateOption
+      <Creatable
         unit=""
-        nameLeft="productionYear_gte"
-        nameRight="productionYear_lte"
-        labelLeft="Rok produkcji od"
-        labelRight="Rok produkcji do"
-        valueLeft={props.values.productionYear_gte}
-        valueRight={props.values.productionYear_lte}
+        name="productionYear_gte"
+        placeholder="Rok produkcji od"
+        value={props.values.productionYear_gte}
         handleChange={props.handleChange}
         options={props.options.ProductionYear}
       />
-      <DoubleInputs
-        className={props.classes.textField}
-        canCreateOption
+      <Creatable
+        unit=""
+        name="productionYear_lte"
+        placeholder="Rok produkcji do"
+        value={props.values.productionYear_lte}
+        handleChange={props.handleChange}
+        options={props.options.ProductionYear}
+      />
+      <Creatable
         unit="km"
-        nameLeft="mileage_gte"
-        nameRight="mileage_lte"
-        labelLeft="Przebieg od"
-        labelRight="Przebieg do"
-        valueLeft={props.values.mileage_gte}
-        valueRight={props.values.mileage_lte}
+        name="mileage_gte"
+        placeholder="Przebieg od"
+        value={props.values.mileage_gte}
+        handleChange={props.handleChange}
+        options={props.options.Mileage}
+      />
+      <Creatable
+        unit="km"
+        name="mileage_lte"
+        placeholder="Przebieg do"
+        value={props.values.mileage_lte}
         handleChange={props.handleChange}
         options={props.options.Mileage}
       />

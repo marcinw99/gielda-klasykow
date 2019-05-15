@@ -1,10 +1,10 @@
 import React from "react";
-import { Modal, Grid, Fade } from "@material-ui/core";
+import { Modal, Grid, Fade, withStyles } from "@material-ui/core";
 
 import { blankFiltersStateEngineAndDrive } from "../../../config";
 import CheckboxGenerator from "../../../../universal/CheckboxGenerator";
 import BooleanSelect from "../../../../universal/BooleanSelect";
-import DoubleInputs from "../../../../universal/DoubleInputs";
+import { Creatable } from "../../../../universal/Autocompletes";
 import {
   ModalPaper,
   ModalContent,
@@ -13,6 +13,13 @@ import {
 } from "./styledComponents";
 import Header from "./Header";
 import Footer from "./Footer";
+
+const styles = theme => ({
+  input: {
+    minWidth: 120,
+    margin: theme.spacing.unit
+  }
+});
 
 const EngineAndDriveModal = props => (
   <Fade in={props.openedModal === "EngineAndDriveModal"}>
@@ -28,50 +35,68 @@ const EngineAndDriveModal = props => (
           <StyledFilterTitle>
             Pojemność skokowa (cm<sup>3</sup>)
           </StyledFilterTitle>
-          <DoubleInputs
-            darkLabel
-            justify="flex-start"
-            canCreateOption
-            unit="cm3"
-            nameLeft="engineSize_gte"
-            nameRight="engineSize_lte"
-            labelLeft="Od"
-            labelRight="Do"
-            valueLeft={props.values.engineSize_gte}
-            valueRight={props.values.engineSize_lte}
-            handleChange={props.handleChangeWithoutFiltering}
-            options={props.options.EngineSize}
-          />
+          <Grid container justify="flex-start">
+            <Creatable
+              className={props.classes.input}
+              unit="cm3"
+              name="engineSize_gte"
+              placeholder="Od"
+              value={props.values.engineSize_gte}
+              handleChange={props.handleChangeWithoutFiltering}
+              options={props.options.EngineSize}
+            />
+            <Creatable
+              className={props.classes.input}
+              unit="cm3"
+              name="engineSize_lte"
+              placeholder="Do"
+              value={props.values.engineSize_lte}
+              handleChange={props.handleChangeWithoutFiltering}
+              options={props.options.EngineSize}
+            />
+          </Grid>
           <StyledFilterTitle>Moc (km)</StyledFilterTitle>
-          <DoubleInputs
-            darkLabel
-            justify="flex-start"
-            canCreateOption
-            unit="km"
-            nameLeft="power_gte"
-            nameRight="power_lte"
-            labelLeft="Od"
-            labelRight="Do"
-            valueLeft={props.values.power_gte}
-            valueRight={props.values.power_lte}
-            handleChange={props.handleChangeWithoutFiltering}
-            options={props.options.Power}
-          />
+          <Grid container justify="flex-start">
+            <Creatable
+              className={props.classes.input}
+              unit="km"
+              name="power_gte"
+              placeholder="Od"
+              value={props.values.power_gte}
+              handleChange={props.handleChangeWithoutFiltering}
+              options={props.options.Power}
+            />
+            <Creatable
+              className={props.classes.input}
+              unit="km"
+              name="power_lte"
+              placeholder="Do"
+              value={props.values.power_lte}
+              handleChange={props.handleChangeWithoutFiltering}
+              options={props.options.Power}
+            />
+          </Grid>
           <StyledFilterTitle>Moment obrotowy (nm)</StyledFilterTitle>
-          <DoubleInputs
-            darkLabel
-            justify="flex-start"
-            canCreateOption
-            unit="nm"
-            nameLeft="torque_gte"
-            nameRight="torque_lte"
-            labelLeft="Od"
-            labelRight="Do"
-            valueLeft={props.values.torque_gte}
-            valueRight={props.values.torque_lte}
-            handleChange={props.handleChangeWithoutFiltering}
-            options={props.options.Torque}
-          />
+          <Grid container justify="flex-start">
+            <Creatable
+              className={props.classes.input}
+              unit="nm"
+              name="torque_gte"
+              placeholder="Od"
+              value={props.values.torque_gte}
+              handleChange={props.handleChangeWithoutFiltering}
+              options={props.options.Torque}
+            />
+            <Creatable
+              className={props.classes.input}
+              unit="nm"
+              name="torque_lte"
+              placeholder="Do"
+              value={props.values.torque_lte}
+              handleChange={props.handleChangeWithoutFiltering}
+              options={props.options.Torque}
+            />
+          </Grid>
           <StyledFilterTitle>Posiada filtr cząstek stałych</StyledFilterTitle>
           <StyledFormControl>
             <BooleanSelect
@@ -118,4 +143,4 @@ const EngineAndDriveModal = props => (
   </Fade>
 );
 
-export default EngineAndDriveModal;
+export default withStyles(styles)(EngineAndDriveModal);
