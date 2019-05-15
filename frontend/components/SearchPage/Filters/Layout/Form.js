@@ -39,7 +39,12 @@ const styles = theme => ({
     color: theme.palette.primary.contrastText
   },
   textField: {
-    width: 160
+    width: 120
+  },
+  closeFiltersBtn: {
+    color: theme.palette.primary.dark,
+    background: theme.palette.primary.contrastText,
+    marginRight: theme.spacing.unit * 2
   }
 });
 

@@ -41,11 +41,6 @@ const styles = theme => ({
     left: 8,
     transform: "translateY(-50%)",
     zIndex: 2000
-  },
-  closeFiltersBtn: {
-    color: theme.palette.primary.dark,
-    background: theme.palette.primary.contrastText,
-    marginRight: theme.spacing.unit * 2
   }
 });
 
@@ -138,6 +133,7 @@ class Layout extends PureComponent {
               </Fab>
             ) : null}
             <SwipeableDrawer
+              disableBackdropTransition={true}
               className={classes.swipeableDrawer}
               classes={{
                 paper: classes.swipeableDrawerPaper
