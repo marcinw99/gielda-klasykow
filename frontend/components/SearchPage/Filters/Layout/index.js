@@ -67,7 +67,8 @@ class Layout extends PureComponent {
 
   closeModal = () => {
     this.setState({
-      openedModal: false
+      openedModal: false,
+      openedDrawer: true
     });
   };
 
