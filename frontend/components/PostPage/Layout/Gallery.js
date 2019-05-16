@@ -5,7 +5,8 @@ import {
   Modal,
   withStyles,
   Paper,
-  Fab
+  Fab,
+  Grid
 } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 
@@ -63,29 +64,33 @@ class Gallery extends Component {
     const { classes } = this.props;
     return (
       <Fragment>
-        <div>
-          <img
-            className={classes.avatar}
-            src={this.props.avatar || "/static/noImageAvailable.jpg"}
-            alt="Zdjęcie ogłoszenia"
-          />
-          <GridList
-            cellHeight={200}
-            spacing={1}
-            cols={4}
-            className={classes.gridList}
-          >
-            {this.props.photos.map(photo => (
-              <GridListTile
-                key={photo}
-                cols={1}
-                onClick={() => this.handleModalOpen(photo)}
-              >
-                <img src={photo} alt="Samochód" />
-              </GridListTile>
-            ))}
-          </GridList>
-        </div>
+        <Grid container>
+          <Grid item xs={0} md={12}>
+            <img
+              className={classes.avatar}
+              src={this.props.avatar || "/static/noImageAvailable.jpg"}
+              alt="Zdjęcie ogłoszenia"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <GridList
+              cellHeight={200}
+              spacing={1}
+              cols={4}
+              className={classes.gridList}
+            >
+              {this.props.photos.map(photo => (
+                <GridListTile
+                  key={photo}
+                  cols={1}
+                  onClick={() => this.handleModalOpen(photo)}
+                >
+                  <img src={photo} alt="Samochód" />
+                </GridListTile>
+              ))}
+            </GridList>
+          </Grid>
+        </Grid>
         <Modal
           aria-labelledby="gallery-modal"
           open={this.state.modalOpen}

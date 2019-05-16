@@ -42,16 +42,16 @@ const styles = theme => ({
     marginLeft: 0,
     fontSize: 16
   },
-  infoItem: {
-    paddingLeft: theme.spacing.unit,
-    paddingRight: theme.spacing.unit
-  },
   description: {
     padding: theme.spacing.unit,
     fontSize: 16
   },
   headerButtonsContainer: {
     marginTop: theme.spacing.unit
+  },
+  headerButton: {
+    margin: theme.spacing.unit * 0.5,
+    display: "inline-block"
   },
   sellerSectionItem: {
     marginRight: theme.spacing.unit,
@@ -184,63 +184,72 @@ class Info extends Component {
             mileage={car.mileage}
           />
           <div className={classes.headerButtonsContainer}>
-            <Typography
-              inline
-              variant="h6"
-              className={classes.sellerSectionItem}
-            >
-              {data.user.name}
-            </Typography>
-            {this.state.showedPhoneNumber ? (
-              <div
-                style={{ display: "inline-block" }}
+            <div className={classes.headerButton}>
+              <Typography
+                inline
+                variant="h6"
                 className={classes.sellerSectionItem}
               >
-                <Typography
-                  inline
-                  className={classes.phoneNumber}
-                  id="phoneNumber"
+                {data.user.name}
+              </Typography>
+            </div>
+            <div className={classes.headerButton}>
+              {this.state.showedPhoneNumber ? (
+                <div
+                  style={{ display: "inline-block" }}
+                  className={classes.sellerSectionItem}
                 >
-                  {spacesInNumbers(Number(data.user.phoneNumber))}
-                </Typography>
+                  <Typography
+                    inline
+                    className={classes.phoneNumber}
+                    id="phoneNumber"
+                  >
+                    {spacesInNumbers(Number(data.user.phoneNumber))}
+                  </Typography>
+                  <Button
+                    variant="text"
+                    size="small"
+                    onClick={() => this.copyPhoneNumber(data.user.phoneNumber)}
+                  >
+                    Skopiuj
+                  </Button>
+                </div>
+              ) : (
                 <Button
-                  variant="text"
-                  size="small"
-                  onClick={() => this.copyPhoneNumber(data.user.phoneNumber)}
+                  variant="contained"
+                  color="primary"
+                  className={classes.sellerSectionItem}
+                  onClick={this.showPhoneNumber}
                 >
-                  Skopiuj
+                  <Phone />
+                  Wyświetl numer
                 </Button>
-              </div>
-            ) : (
+              )}
+            </div>
+            <div className={classes.headerButton}>
               <Button
                 variant="contained"
-                color="primary"
+                color="secondary"
                 className={classes.sellerSectionItem}
-                onClick={this.showPhoneNumber}
               >
-                <Phone />
-                Wyświetl numer
+                <MailOutline />
+                Kontakt do sprzedającego
               </Button>
-            )}
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.sellerSectionItem}
-            >
-              <MailOutline />
-              Kontakt do sprzedającego
-            </Button>
-            <Button variant="outlined">
-              <StarBorder />
-              Obserwuj ogłoszenie
-            </Button>
+            </div>
+            <div className={classes.headerButton}>
+              <Button variant="outlined">
+                <StarBorder />
+                Obserwuj ogłoszenie
+              </Button>
+            </div>
           </div>
           <SectionHeader>Informacje</SectionHeader>
-          <Grid container>
-            <Grid item xs={6} className={classes.infoItem}>
+          <Grid container justify="flex-start">
+            <Grid item xs={12} lg={5}>
               <InfoTables data={firstColumn} />
             </Grid>
-            <Grid item xs={6} className={classes.infoItem}>
+            <Grid item xs={0} lg={1} />
+            <Grid item xs={12} lg={5}>
               <InfoTables data={secondColumn} />
             </Grid>
           </Grid>

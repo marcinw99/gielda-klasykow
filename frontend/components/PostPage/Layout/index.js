@@ -15,10 +15,10 @@ const styles = theme => ({
 
 const Layout = props => (
   <Grid container className={props.classes.root}>
-    <Grid item xs={6}>
+    <Grid item xs={12} md={6}>
       <Gallery avatar={props.post.avatar} photos={props.post.photos || []} />
     </Grid>
-    <Grid item xs={6} className={props.classes.infoContainer}>
+    <Grid item xs={12} md={6} className={props.classes.infoContainer}>
       <Info post={props.post} />
     </Grid>
   </Grid>
