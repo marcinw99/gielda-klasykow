@@ -65,7 +65,7 @@ class Gallery extends Component {
     return (
       <Fragment>
         <Grid container>
-          <Grid item xs={0} md={12}>
+          <Grid item xs={12}>
             <img
               className={classes.avatar}
               src={this.props.avatar || "/static/noImageAvailable.jpg"}

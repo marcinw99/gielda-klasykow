@@ -1,5 +1,13 @@
 import React from "react";
-import { Step, StepLabel, StepContent, Typography } from "@material-ui/core";
+import {
+  Step,
+  StepLabel,
+  StepContent,
+  Typography,
+  MobileStepper,
+  Button
+} from "@material-ui/core";
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons/";
 
 import { StyledStepper } from "./styledComponents";
 import { steps } from "./config";
@@ -12,7 +20,32 @@ const Steps = props => {
       props.setValueInMainState({ activeStep: step });
     }
   };
-  return (
+  const maxSteps = steps.length;
+  return props.mobile === true ? (
+    <MobileStepper
+      steps={maxSteps}
+      activeStep={props.activeStep}
+      position="static"
+      nextButton={
+        <Button
+          size="small"
+          onClick={() => handleForwardingToStep(props.activeStep + 1)}
+          disabled={props.activeStep === maxSteps - 1}
+        >
+          <KeyboardArrowRight />
+        </Button>
+      }
+      backButton={
+        <Button
+          size="small"
+          onClick={() => handleForwardingToStep(props.activeStep - 1)}
+          disabled={props.activeStep === 0}
+        >
+          <KeyboardArrowLeft />
+        </Button>
+      }
+    />
+  ) : (
     <StyledStepper activeStep={props.activeStep} orientation="vertical">
       {steps.map((item, index) => (
         <Step

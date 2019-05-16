@@ -9,7 +9,8 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Button
+  Button,
+  Hidden
 } from "@material-ui/core";
 import { Phone, MailOutline, StarBorder } from "@material-ui/icons";
 
@@ -248,7 +249,9 @@ class Info extends Component {
             <Grid item xs={12} lg={5}>
               <InfoTables data={firstColumn} />
             </Grid>
-            <Grid item xs={0} lg={1} />
+            <Hidden mdDown>
+              <Grid item xs={1} />
+            </Hidden>
             <Grid item xs={12} lg={5}>
               <InfoTables data={secondColumn} />
             </Grid>

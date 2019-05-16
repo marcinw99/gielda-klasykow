@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Head from "next/head";
-import { Typography, Grid } from "@material-ui/core";
+import { Typography, Grid, Hidden } from "@material-ui/core";
 import { Query, Mutation } from "react-apollo";
 import isEqual from "react-fast-compare";
 
@@ -125,14 +125,26 @@ class AddPage extends Component {
                           }
                           return (
                             <Fragment>
-                              <Grid item xs={3}>
-                                <Steps
-                                  activeStep={this.state.activeStep}
-                                  setValueInMainState={this.setValueInState}
-                                  loading={feedback.loading}
-                                />
-                              </Grid>
-                              <Grid item xs={6}>
+                              <Hidden smDown>
+                                <Grid item xs={4} md={3}>
+                                  <Steps
+                                    activeStep={this.state.activeStep}
+                                    setValueInMainState={this.setValueInState}
+                                    loading={feedback.loading}
+                                  />
+                                </Grid>
+                              </Hidden>
+                              <Hidden mdUp>
+                                <Grid item xs={12}>
+                                  <Steps
+                                    mobile
+                                    activeStep={this.state.activeStep}
+                                    setValueInMainState={this.setValueInState}
+                                    loading={feedback.loading}
+                                  />
+                                </Grid>
+                              </Hidden>
+                              <Grid item xs={9} lg={6}>
                                 <StyledPaper>
                                   <Form
                                     data={data}
@@ -147,7 +159,6 @@ class AddPage extends Component {
                                   />
                                 </StyledPaper>
                               </Grid>
-                              <Grid item xs={3} />
                             </Fragment>
                           );
                         }}
