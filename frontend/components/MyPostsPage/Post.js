@@ -6,7 +6,6 @@ import {
   Typography,
   withStyles,
   Grid,
-  Paper,
   Fab,
   Card,
   CardActionArea,
@@ -17,8 +16,6 @@ import displayedText from "../../resources/displayedText";
 
 const styles = theme => ({
   root: {
-    minWidth: 400,
-    margin: theme.spacing.unit * 1,
     borderRadius: 0,
     position: "relative"
   },

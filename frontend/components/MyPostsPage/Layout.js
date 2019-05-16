@@ -18,6 +18,10 @@ const styles = theme => ({
     paddingLeft: "2vw",
     paddingRight: "2vw"
   },
+  item: {
+    minWidth: 400,
+    maxWidth: "100%"
+  },
   title: {
     marginTop: theme.spacing.unit * 2
   }
@@ -78,14 +82,15 @@ class Layout extends Component {
     return (
       <Fragment>
         <Title />
-        <Grid container className={this.props.classes.root}>
+        <Grid container className={this.props.classes.root} spacing={12}>
           {this.props.posts.map(item => (
-            <Post
-              key={item.id}
-              data={item}
-              handleDelete={this.confirmDelete}
-              handleEdit={() => null}
-            />
+            <Grid item key={item.id} className={this.props.classes.item}>
+              <Post
+                data={item}
+                handleDelete={this.confirmDelete}
+                handleEdit={() => null}
+              />
+            </Grid>
           ))}
         </Grid>
         <ConfirmationDialog
