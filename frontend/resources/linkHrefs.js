@@ -1,5 +1,5 @@
 const linkHrefs = {
-  facebook: "https://www.facebook.com/jan.bak.1485",
+  facebook: "https://www.facebook.com",
   youtube: "https://www.youtube.com",
   instagram: "https://www.instagram.com"
 };

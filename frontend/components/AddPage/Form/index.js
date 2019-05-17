@@ -198,6 +198,14 @@ class Form extends Component {
   };
 
   submit = async () => {
+    if (this.state.loadingPhotos === true) {
+      this.props.manageSnackbar({
+        open: true,
+        message: "Poczekaj aż zdjęcia ogłoszenia zostaną wysłane.",
+        variant: "error"
+      });
+      return null;
+    }
     if (this.state.requiredFieldsNotFilled.length > 0) {
       this.props.manageSnackbar({
         open: true,

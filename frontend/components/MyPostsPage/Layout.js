@@ -19,8 +19,7 @@ const styles = theme => ({
     paddingRight: "2vw"
   },
   item: {
-    minWidth: 400,
-    maxWidth: "100%"
+    margin: theme.spacing.unit * 0.5
   },
   title: {
     marginTop: theme.spacing.unit * 2
@@ -82,9 +81,18 @@ class Layout extends Component {
     return (
       <Fragment>
         <Title />
-        <Grid container className={this.props.classes.root} spacing={12}>
+        <Grid container className={this.props.classes.root}>
           {this.props.posts.map(item => (
-            <Grid item key={item.id} className={this.props.classes.item}>
+            <Grid
+              item
+              xl={2}
+              lg={3}
+              md={4}
+              sm={6}
+              xs={12}
+              key={item.id}
+              className={this.props.classes.item}
+            >
               <Post
                 data={item}
                 handleDelete={this.confirmDelete}

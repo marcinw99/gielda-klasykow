@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Typography } from "@material-ui/core";
+import { Typography, LinearProgress } from "@material-ui/core";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 
@@ -191,6 +191,7 @@ class Register extends Component {
                 <Typography color="secondary" gutterBottom>
                   {getErrorMessage(error)}
                 </Typography>
+                {loading ? <LinearProgress /> : null}
                 <StyledSubmit>Zarejestruj się</StyledSubmit>
               </form>
             )}

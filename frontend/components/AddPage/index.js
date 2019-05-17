@@ -77,7 +77,6 @@ class AddPage extends Component {
   };
 
   render() {
-    const userId = this.props.thisUser.id;
     return (
       <Fragment>
         <Head>
@@ -106,7 +105,7 @@ class AddPage extends Component {
                           },
                           {
                             query: USER_POSTS_QUERY,
-                            variables: { userId }
+                            variables: { userId: this.props.thisUser.id }
                           }
                         ]}
                         variables={{ data: this.state.submitData }}

@@ -41,6 +41,8 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
+          <script src="/static/nprogress.js" />
+          <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
         </Head>
         <body>
           <Main />

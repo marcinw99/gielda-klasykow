@@ -2,7 +2,11 @@ import nodemailer from "nodemailer";
 
 require("dotenv").config({ path: "variables.env" });
 
-export default nodemailer.createTransport({
+export default {
+  sendMail: () => console.log("Sending an e-mail...")
+};
+
+const smtpClient = nodemailer.createTransport({
   host: "smtp.emaillabs.net.pl",
   port: 465,
   secure: true,

@@ -1,7 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import PropTypes from "prop-types";
-
 import {
   Typography,
   withStyles,
@@ -11,6 +9,10 @@ import {
   CardActionArea,
   CardMedia
 } from "@material-ui/core";
+import { compose } from "recompose";
+import PropTypes from "prop-types";
+
+import { withSnackbar } from "../Snackbar/Context";
 import { Delete as DeleteIcon, Edit as EditIcon } from "@material-ui/icons";
 import displayedText from "../../resources/displayedText";
 
@@ -45,10 +47,18 @@ const styles = theme => ({
   }
 });
 
-function Post({ classes, data, handleDelete, handleEdit }) {
+function Post({ classes, data, handleDelete, manageSnackbar }) {
+  const handleEdit = () => {
+    manageSnackbar({
+      open: true,
+      message: `Funkcjonalność jeszcze nie zaimplementowana.`,
+      variant: "info"
+    });
+  };
+
   return (
-    <Link href={`/klasyk/?id=${data.id}`} as={`/klasyk/${data.id}`}>
-      <Card className={classes.root}>
+    <Card className={classes.root}>
+      <Link href={`/klasyk/?id=${data.id}`} as={`/klasyk/${data.id}`}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
@@ -68,31 +78,31 @@ function Post({ classes, data, handleDelete, handleEdit }) {
                 {data.price} PLN
               </Typography>
             </Grid>
-            <Grid
-              container
-              justify="flex-end"
-              spacing={16}
-              className={classes.actionsContainer}
-            >
-              <Grid item>
-                <Fab color="primary" className={classes.button}>
-                  <EditIcon />
-                </Fab>
-              </Grid>
-              <Grid item>
-                <Fab
-                  color="primary"
-                  className={classes.button}
-                  onClick={() => handleDelete(data.id)}
-                >
-                  <DeleteIcon />
-                </Fab>
-              </Grid>
-            </Grid>
           </CardMedia>
         </CardActionArea>
-      </Card>
-    </Link>
+      </Link>
+      <Grid
+        container
+        justify="flex-end"
+        spacing={16}
+        className={classes.actionsContainer}
+      >
+        <Grid item>
+          <Fab color="primary" className={classes.button} onClick={handleEdit}>
+            <EditIcon />
+          </Fab>
+        </Grid>
+        <Grid item>
+          <Fab
+            color="primary"
+            className={classes.button}
+            onClick={() => handleDelete(data.id)}
+          >
+            <DeleteIcon />
+          </Fab>
+        </Grid>
+      </Grid>
+    </Card>
   );
 }
 
@@ -102,4 +112,7 @@ Post.propTypes = {
   data: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Post);
+export default compose(
+  withStyles(styles),
+  withSnackbar
+)(Post);

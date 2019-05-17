@@ -21,7 +21,7 @@ function argsValidation(args) {
   }
 }
 
-function newPasswordValidation(password, repeatedPassword) {
+function newPasswordValidation({ password, repeatedPassword }) {
   if (!isPasswordValid(password)) {
     throwError(messageCodes.invalidPassword);
   }
