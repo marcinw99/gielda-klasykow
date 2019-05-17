@@ -10,7 +10,9 @@ import {
   withStyles,
   LinearProgress
 } from "@material-ui/core";
+import { compose } from "recompose";
 
+import { withSnackbar } from "../Snackbar/Context";
 import getErrorMessage from "../universal/getErrorMessage";
 import StrengthLevelLabel from "../universal/StrengthLevelLabel";
 import { updatePasswordStrength } from "../../src/dataValidation";
@@ -74,6 +76,14 @@ class Layout extends Component {
     );
   };
 
+  onCompleted = () => {
+    this.props.manageSnackbar({
+      open: true,
+      message: `Nowe hasło zostało zapisane poprawnie.`,
+      variant: "success"
+    });
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -87,6 +97,7 @@ class Layout extends Component {
               password: this.state.password,
               repeatedPassword: this.state.repeatedPassword
             }}
+            onCompleted={this.onCompleted}
           >
             {(send, { error, loading }) => (
               <form
@@ -154,4 +165,7 @@ const Submit = props => (
   />
 );
 
-export default withStyles(styles)(Layout);
+export default compose(
+  withStyles(styles),
+  withSnackbar
+)(Layout);

@@ -3,6 +3,7 @@ import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
 import { Typography, LinearProgress } from "@material-ui/core";
 
+import { withSnackbar } from "../../../Snackbar/Context";
 import {
   StyledSubmit,
   StyledTitle,
@@ -29,6 +30,14 @@ class ResetPasswordRequest extends Component {
     });
   };
 
+  onCompleted = () => {
+    this.props.manageSnackbar({
+      open: true,
+      message: `Wiadomość z kodem została wysłana na podany adres e-mail.`,
+      variant: "success"
+    });
+  };
+
   render() {
     return (
       <Fragment>
@@ -38,6 +47,7 @@ class ResetPasswordRequest extends Component {
           variables={{
             email: this.state.emailReset
           }}
+          onCompleted={this.onCompleted}
         >
           {(send, { error, loading }) => (
             <form
@@ -78,4 +88,4 @@ ResetPasswordRequest.propTypes = {
   switchView: PropTypes.func.isRequired
 };
 
-export default ResetPasswordRequest;
+export default withSnackbar(ResetPasswordRequest);
