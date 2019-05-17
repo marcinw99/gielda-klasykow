@@ -12,7 +12,7 @@ const MyPostsPage = props => {
   const onCompleted = () => {
     props.manageSnackbar({
       open: true,
-      message: `Wiadomość z kodem została wysłana na podany adres e-mail.`,
+      message: `Ogłoszenie zostało poprawnie usunięte.`,
       variant: "success"
     });
   };
