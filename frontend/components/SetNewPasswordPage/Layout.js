@@ -7,7 +7,8 @@ import {
   Input,
   InputLabel,
   Typography,
-  withStyles
+  withStyles,
+  LinearProgress
 } from "@material-ui/core";
 
 import getErrorMessage from "../universal/getErrorMessage";
@@ -130,6 +131,7 @@ class Layout extends Component {
                     {getErrorMessage(error)}
                   </Typography>
                 </Typography>
+                {loading ? <LinearProgress /> : null}
                 <Submit className={classes.submit}>Zmień hasło</Submit>
               </form>
             )}

@@ -3,7 +3,8 @@ import {
   FormControlLabel,
   Checkbox,
   Grid,
-  Typography
+  Typography,
+  LinearProgress
 } from "@material-ui/core";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
@@ -95,11 +96,12 @@ class Login extends Component {
                     />
                   }
                   label="Zapamiętaj mnie"
-                />{" "}
+                />
                 <StyledSwitchView onClick={this.props.switchView}>
                   Nie pamiętam hasła
                 </StyledSwitchView>
               </Grid>
+              {loading ? <LinearProgress /> : null}
               <StyledSubmit>Zaloguj się</StyledSubmit>
             </form>
           )}

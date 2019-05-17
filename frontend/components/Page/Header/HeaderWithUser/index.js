@@ -1,6 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { Mutation } from "react-apollo";
-import { Grid, Fade, Menu, IconButton, Typography } from "@material-ui/core";
+import {
+  Grid,
+  Fade,
+  Menu,
+  IconButton,
+  Typography,
+  LinearProgress
+} from "@material-ui/core";
 import {
   Menu as MenuIcon,
   ArrowBack as ArrowBackIcon,
@@ -209,15 +216,18 @@ const SignOut = ({ onClick, children }) => {
         }
       ]}
     >
-      {send => (
-        <StyledMenuItem
-          onClick={() => {
-            onClick();
-            send();
-          }}
-        >
-          {children}
-        </StyledMenuItem>
+      {(send, { loading }) => (
+        <Fragment>
+          {loading ? <LinearProgress /> : null}
+          <StyledMenuItem
+            onClick={() => {
+              onClick();
+              send();
+            }}
+          >
+            {children}
+          </StyledMenuItem>
+        </Fragment>
       )}
     </Mutation>
   );

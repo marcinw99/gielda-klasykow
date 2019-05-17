@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Mutation } from "react-apollo";
 import PropTypes from "prop-types";
-import { Typography } from "@material-ui/core";
+import { Typography, LinearProgress } from "@material-ui/core";
 
 import {
   StyledSubmit,
@@ -63,6 +63,7 @@ class ResetPasswordRequest extends Component {
               <Typography color="secondary" gutterBottom>
                 {getErrorMessage(error)}
               </Typography>
+              {loading ? <LinearProgress /> : null}
               <StyledSubmit>Zresetuj hasło</StyledSubmit>
             </form>
           )}
