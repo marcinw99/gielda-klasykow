@@ -223,7 +223,7 @@ const FormActions = props => (
   </Grid>
 );
 
-Form.PropTypes = {
+Form.propTypes = {
   values: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
   options: PropTypes.object.isRequired

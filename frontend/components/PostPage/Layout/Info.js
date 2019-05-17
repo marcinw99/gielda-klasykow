@@ -13,6 +13,7 @@ import {
   Hidden
 } from "@material-ui/core";
 import { Phone, MailOutline, StarBorder } from "@material-ui/icons";
+import { isNullOrUndefined } from "util";
 
 import AdditionalAccessories from "./AdditionalAccessories";
 import displayedText from "../../../resources/displayedText";
@@ -90,21 +91,23 @@ const Chips = withStyles(styles)(({ classes, ...other }) => {
   const keys = Object.keys(other);
   var values = [];
   keys.forEach(name => {
-    switch (name) {
-      case "fuelType":
-        values.push(displayedText("fuelType", other[name]));
-        break;
-      case "type":
-        values.push(displayedText("type", other[name]));
-        break;
-      case "productionYear":
-        values.push(other[name]);
-        break;
-      case "mileage":
-        values.push(`${spacesInNumbers(other[name])} km`);
-        break;
-      default:
-        break;
+    if (!isNullOrUndefined(other[name])) {
+      switch (name) {
+        case "fuelType":
+          values.push(displayedText("fuelType", other[name]));
+          break;
+        case "type":
+          values.push(displayedText("type", other[name]));
+          break;
+        case "productionYear":
+          values.push(other[name]);
+          break;
+        case "mileage":
+          values.push(`${spacesInNumbers(other[name])} km`);
+          break;
+        default:
+          break;
+      }
     }
   });
   return (
@@ -164,6 +167,7 @@ class Info extends Component {
     const { firstColumn, secondColumn } = equalizeColumns(
       infoTablesData.concat(boolValuesData)
     );
+    console.log(post);
     return (
       <Fragment>
         <Head>
