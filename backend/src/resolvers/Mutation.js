@@ -179,10 +179,7 @@ const Mutation = {
         data: {
           name: user.name
         }
-      }),
-      (error, info) => {
-        if (error) console.log(error);
-      }
+      })
     );
     return { code: messageCodes.emailConfirmedSuccessfully };
   },

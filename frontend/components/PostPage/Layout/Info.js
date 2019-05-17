@@ -167,7 +167,6 @@ class Info extends Component {
     const { firstColumn, secondColumn } = equalizeColumns(
       infoTablesData.concat(boolValuesData)
     );
-    console.log(post);
     return (
       <Fragment>
         <Head>
