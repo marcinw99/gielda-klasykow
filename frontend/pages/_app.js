@@ -4,6 +4,8 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import JssProvider from "react-jss/lib/JssProvider";
 import { ApolloProvider } from "react-apollo";
+import Router from "next/router";
+import NProgress from "nprogress";
 import PropTypes from "prop-types";
 
 import withData from "../src/withData";
@@ -12,6 +14,18 @@ import getPageContext from "../src/getPageContext";
 import { theme, darkTheme } from "../src/customTheme";
 import { SnackbarProvider } from "../components/Snackbar/Context";
 import { defaults as snackbarDefaults } from "../components/Snackbar/config";
+
+NProgress.configure({ showSpinner: false });
+
+Router.onRouteChangeStart = () => {
+  NProgress.start();
+};
+Router.onRouteChangeComplete = () => {
+  NProgress.done();
+};
+Router.onRouteChangeError = () => {
+  NProgress.done();
+};
 
 class MyApp extends App {
   constructor(props) {
