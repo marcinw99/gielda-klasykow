@@ -110,7 +110,10 @@ const Mutation = {
 
   async signUp(parent, args, context, info) {
     argsValidation(args);
-    newPasswordValidation(args.password, args.repeatedPassword);
+    newPasswordValidation({
+      password: args.password,
+      repeatedPassword: args.repeatedPassword
+    });
     const encryptedPassword = await getEncryptedPassword(args.password);
     const randomBytesPromiseified = promisify(randomBytes);
     const emailConfirmationToken = (await randomBytesPromiseified(20)).toString(
