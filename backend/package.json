@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "prisma deploy -e variables.env",
     "deploy-force": "prisma deploy -e variables.env --force",
+    "reset-db": "prisma reset -e variables.env",
     "start": "nodemon -e js,graphql -x babel-node src/index.js",
     "start-once": "babel-node src/index.js",
     "dev": "nodemon -e js,graphql -x babel-node --inspect src/index.js",
