@@ -14,6 +14,9 @@ import {
 import displayedText from "../../resources/displayedText";
 
 const styles = theme => ({
+  root: {
+    margin: 1
+  },
   content: {
     color: theme.palette.primary.contrastText,
     background: theme.palette.primary.main
@@ -44,7 +47,7 @@ const styles = theme => ({
 
 const OfferOfTheDay = ({ item, classes }) => {
   return (
-    <Card square elevation={1}>
+    <Card square elevation={1} className={classes.root}>
       <CardActionArea className={classes.cardActionArea}>
         <CardMedia component="img" alt={item.car.model} src={item.avatar} />
         <CardContent className={classes.content}>

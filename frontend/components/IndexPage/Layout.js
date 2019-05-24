@@ -11,12 +11,33 @@ import {
 } from "@material-ui/core";
 
 import OfferOfTheDay from "./OfferOfTheDay";
+import LinkButton from "./LinkButton";
 
 const LinkButtons = {
-  press: {},
-  searchPage: {},
-  help: {},
-  addPost: {}
+  press: {
+    href: "#",
+    label: "BIURO PRASOWE",
+    bg: "/static/press.jpg",
+    bgFilter: "#3E2723"
+  },
+  searchPage: {
+    href: "/gielda",
+    label: "WYSZUKIWARKA OGŁOSZEŃ",
+    bg: "/static/searchPage.jpg",
+    bgFilter: "#D32F2F"
+  },
+  help: {
+    href: "#",
+    label: "POMOC",
+    bg: "/static/help.jpg",
+    bgFilter: "#2D9CDB"
+  },
+  addPost: {
+    href: "/dodajklasyka",
+    label: "DODAJ KLASYKA",
+    bg: "/static/addPost.jpg",
+    bgFilter: "#828282"
+  }
 };
 
 const styles = theme => ({
@@ -33,7 +54,6 @@ const styles = theme => ({
 });
 
 const Layout = ({ classes, data, loading, error }) => {
-  if (error) console.log(error.graphQLErrors);
   return (
     <Fragment>
       <Head>
@@ -51,7 +71,20 @@ const Layout = ({ classes, data, loading, error }) => {
               ) : null}
             </Grid>
             <Grid item xs={6}>
-              <Grid container />
+              <Grid container>
+                <Grid item xs={6}>
+                  <LinkButton {...LinkButtons.press} />
+                </Grid>
+                <Grid item xs={6}>
+                  <LinkButton {...LinkButtons.searchPage} />
+                </Grid>
+                <Grid item xs={6}>
+                  <LinkButton {...LinkButtons.help} />
+                </Grid>
+                <Grid item xs={6}>
+                  <LinkButton {...LinkButtons.addPost} />
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
           <Divider />
