@@ -45,6 +45,9 @@ const styles = theme => ({
     maxWidth: 1200,
     margin: `${theme.spacing.unit * 2}px auto 0 auto`
   },
+  divider: {
+    marginTop: theme.spacing.unit * 2
+  },
   promotedPostsTitle: {
     fontSize: theme.typography.fontSize * 3
   },
@@ -87,18 +90,13 @@ const Layout = ({ classes, data, loading, error }) => {
               </Grid>
             </Grid>
           </Grid>
-          <Divider />
+          <Divider className={classes.divider} />
           <Typography variant="h1" className={classes.promotedPostsTitle}>
             PROMOWANE OGŁOSZENIA
           </Typography>
           {data && data.posts ? "Loaded" : null}
         </div>
       )}
-      <Link prefetch href="/gielda">
-        <Button variant="contained" className={classes.linkBtn}>
-          Wyszukiwarka
-        </Button>
-      </Link>
     </Fragment>
   );
 };

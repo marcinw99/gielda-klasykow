@@ -17,6 +17,9 @@ const styles = theme => ({
   root: {
     margin: 1
   },
+  cardMedia: {
+    minHeight: 264
+  },
   content: {
     color: theme.palette.primary.contrastText,
     background: theme.palette.primary.main
@@ -49,7 +52,12 @@ const OfferOfTheDay = ({ item, classes }) => {
   return (
     <Card square elevation={1} className={classes.root}>
       <CardActionArea className={classes.cardActionArea}>
-        <CardMedia component="img" alt={item.car.model} src={item.avatar} />
+        <CardMedia
+          component="div"
+          alt={item.car.model}
+          image={item.avatar}
+          className={classes.cardMedia}
+        />
         <CardContent className={classes.content}>
           <Grid container justify="space-between">
             <Chip
