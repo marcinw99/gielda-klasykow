@@ -6,16 +6,23 @@ import {
   Grid,
   withStyles,
   Typography,
-  Divider
+  Divider,
+  LinearProgress
 } from "@material-ui/core";
 
 import OfferOfTheDay from "./OfferOfTheDay";
-import Buttons from "./Buttons";
+
+const LinkButtons = {
+  press: {},
+  searchPage: {},
+  help: {},
+  addPost: {}
+};
 
 const styles = theme => ({
   root: {
     maxWidth: 1200,
-    margin: `${theme.spacing.unit}px auto 0 auto`
+    margin: `${theme.spacing.unit * 2}px auto 0 auto`
   },
   promotedPostsTitle: {
     fontSize: theme.typography.fontSize * 3
@@ -25,7 +32,8 @@ const styles = theme => ({
   }
 });
 
-const Layout = ({ classes }) => {
+const Layout = ({ classes, data, loading, error }) => {
+  if (error) console.log(error.graphQLErrors);
   return (
     <Fragment>
       <Head>
@@ -33,20 +41,26 @@ const Layout = ({ classes }) => {
           Giełda klasyków - klasyczne samochody, youngtimery na sprzedaż
         </title>
       </Head>
-      <div className={classes.root}>
-        <Grid container>
-          <Grid item>
-            <OfferOfTheDay />
+      {loading ? <LinearProgress /> : null}
+      {error ? null : (
+        <div className={classes.root}>
+          <Grid container>
+            <Grid item xs={6}>
+              {data && data.posts ? (
+                <OfferOfTheDay item={data.posts[0]} />
+              ) : null}
+            </Grid>
+            <Grid item xs={6}>
+              <Grid container />
+            </Grid>
           </Grid>
-          <Grid item>
-            <Buttons />
-          </Grid>
-        </Grid>
-        <Divider />
-        <Typography variant="h1" className={classes.promotedPostsTitle}>
-          PROMOWANE OGŁOSZENIA
-        </Typography>
-      </div>
+          <Divider />
+          <Typography variant="h1" className={classes.promotedPostsTitle}>
+            PROMOWANE OGŁOSZENIA
+          </Typography>
+          {data && data.posts ? "Loaded" : null}
+        </div>
+      )}
       <Link prefetch href="/gielda">
         <Button variant="contained" className={classes.linkBtn}>
           Wyszukiwarka
