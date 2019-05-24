@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from "next/link";
 import {
   Card,
   CardActionArea,
@@ -11,6 +11,7 @@ import {
   Chip,
   Divider
 } from "@material-ui/core";
+
 import displayedText from "../../resources/displayedText";
 
 const styles = theme => ({
@@ -50,44 +51,46 @@ const styles = theme => ({
 
 const OfferOfTheDay = ({ item, classes }) => {
   return (
-    <Card square elevation={1} className={classes.root}>
-      <CardActionArea className={classes.cardActionArea}>
-        <CardMedia
-          component="div"
-          alt={item.car.model}
-          image={item.avatar}
-          className={classes.cardMedia}
-        />
-        <CardContent className={classes.content}>
-          <Grid container justify="space-between">
-            <Chip
-              label="OFERTA DNIA"
-              color="secondary"
-              className={classes.chip}
-            />
-            <Typography className={classes.price} variant="h6" inline>
-              {spacesInNumbers(item.price)} PLN
+    <Link prefetch href={`/klasyk/?id=${item.id}`} as={`/klasyk/${item.id}`}>
+      <Card square elevation={1} className={classes.root}>
+        <CardActionArea className={classes.cardActionArea}>
+          <CardMedia
+            component="div"
+            alt={item.car.model}
+            image={item.avatar}
+            className={classes.cardMedia}
+          />
+          <CardContent className={classes.content}>
+            <Grid container justify="space-between">
+              <Chip
+                label="OFERTA DNIA"
+                color="secondary"
+                className={classes.chip}
+              />
+              <Typography className={classes.price} variant="h6" inline>
+                {spacesInNumbers(item.price)} PLN
+              </Typography>
+            </Grid>
+            <Typography variant="h5" color="inherit">
+              {`${displayedText("brand", item.car.brand)} ${item.car.model}`}
             </Typography>
-          </Grid>
-          <Typography variant="h5" color="inherit">
-            {`${displayedText("brand", item.car.brand)} ${item.car.model}`}
-          </Typography>
-          <Divider className={classes.divider} />
-          <Grid
-            className={classes.footerRoot}
-            container
-            justify="flex-end"
-            alignItems="center"
-          >
-            {item.car.productionYear ? item.car.productionYear : ""}
-            {item.car.productionYear && item.car.mileage && (
-              <div className={classes.footerValuesDivider} />
-            )}
-            {item.car.mileage ? `${item.car.mileage} km` : ""}
-          </Grid>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+            <Divider className={classes.divider} />
+            <Grid
+              className={classes.footerRoot}
+              container
+              justify="flex-end"
+              alignItems="center"
+            >
+              {item.car.productionYear ? item.car.productionYear : ""}
+              {item.car.productionYear && item.car.mileage && (
+                <div className={classes.footerValuesDivider} />
+              )}
+              {item.car.mileage ? `${item.car.mileage} km` : ""}
+            </Grid>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Link>
   );
 };
 
