@@ -1,30 +1,15 @@
-import React, { Fragment } from "react";
-import Link from "next/link";
-import Head from "next/head";
-import { Button } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
+import React from "react";
+import { Query } from "react-apollo";
 
-const styles = theme => ({
-  linkBtn: {
-    margin: theme.spacing.unit * 2
-  }
-});
+import { NEWEST_POSTS_QUERY } from "../../src/Queries/searchQueries";
+import Layout from "./Layout";
 
-const Index = ({ classes }) => {
+const Index = () => {
   return (
-    <Fragment>
-      <Head>
-        <title>
-          Giełda klasyków - klasyczne samochody, youngtimery na sprzedaż
-        </title>
-      </Head>
-      <Link prefetch href="/gielda">
-        <Button variant="contained" className={classes.linkBtn}>
-          Wyszukiwarka
-        </Button>
-      </Link>
-    </Fragment>
+    <Query query={NEWEST_POSTS_QUERY}>
+      {payload => <Layout {...payload} />}
+    </Query>
   );
 };
 
-export default withStyles(styles)(Index);
+export default Index;

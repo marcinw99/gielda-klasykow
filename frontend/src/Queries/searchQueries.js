@@ -174,3 +174,23 @@ export const POST_FIELDS = gql`
     }
   }
 `;
+
+export const NEWEST_POSTS_QUERY = gql`
+  query NEWEST_POSTS_QUERY {
+    posts(orderBy: createdAt_ASC) {
+      id
+      price
+      avatar
+      car {
+        brand
+        model
+        version
+        productionYear
+        mileage
+        power
+        torque
+        fuelType
+      }
+    }
+  }
+`;
