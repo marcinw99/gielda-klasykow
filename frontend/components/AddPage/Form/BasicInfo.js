@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Query } from "react-apollo";
-import { Grid, withStyles } from "@material-ui/core";
+import { Grid, withStyles, TextField } from "@material-ui/core";
 
 import { StyledValueTitle, StyledFormControl } from "../styledComponents";
 import { Creatable, Autocomplete } from "../../universal/Autocompletes";
@@ -61,22 +61,31 @@ const BasicInfo = props => (
                 }
               }
               return (
-                <Creatable
-                  darkLabel
-                  name="model"
-                  placeholder={placeholder}
-                  value={props.values.model}
-                  handleChange={props.handleChange}
-                  options={modelsOfBrand.map(item => ({
-                    label: item,
-                    value: item
-                  }))}
-                />
+                <Fragment>
+                  <Creatable
+                    darkLabel
+                    name="model"
+                    placeholder={placeholder}
+                    value={props.values.model}
+                    handleChange={props.handleChange}
+                    options={modelsOfBrand.map(item => ({
+                      label: item,
+                      value: item
+                    }))}
+                  />
+                  <FieldRequiredHelperText value={props.values.model} />
+                  <TextField
+                    placeholder="Wersja"
+                    name="version"
+                    value={props.values.version}
+                    onChange={e => props.handleChange(e.target)}
+                    margin="normal"
+                  />
+                </Fragment>
               );
             }}
           </Query>
         )}
-        <FieldRequiredHelperText value={props.values.model} />
       </StyledFormControl>
     </Grid>
     <Grid container className={props.classes.marginTop}>
