@@ -177,19 +177,21 @@ export const POST_FIELDS = gql`
 
 export const NEWEST_POSTS_QUERY = gql`
   query NEWEST_POSTS_QUERY {
-    posts(orderBy: createdAt_ASC) {
+    posts(orderBy: createdAt_ASC, first: 8) {
       id
       price
       avatar
       car {
+        type
         brand
         model
         version
+        fuelType
         productionYear
         mileage
+        engineSize
         power
         torque
-        fuelType
       }
     }
   }

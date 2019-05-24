@@ -12,6 +12,7 @@ import {
 
 import OfferOfTheDay from "./OfferOfTheDay";
 import LinkButton from "./LinkButton";
+import Posts from "./Posts";
 
 const LinkButtons = {
   press: {
@@ -49,6 +50,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2
   },
   promotedPostsTitle: {
+    marginTop: theme.spacing.unit * 2,
     fontSize: theme.typography.fontSize * 3
   },
   linkBtn: {
@@ -56,49 +58,45 @@ const styles = theme => ({
   }
 });
 
-const Layout = ({ classes, data, loading, error }) => {
-  return (
-    <Fragment>
-      <Head>
-        <title>
-          Giełda klasyków - klasyczne samochody, youngtimery na sprzedaż
-        </title>
-      </Head>
-      {loading ? <LinearProgress /> : null}
-      {error ? null : (
-        <div className={classes.root}>
-          <Grid container>
-            <Grid item xs={6}>
-              {data && data.posts ? (
-                <OfferOfTheDay item={data.posts[0]} />
-              ) : null}
-            </Grid>
-            <Grid item xs={6}>
-              <Grid container>
-                <Grid item xs={6}>
-                  <LinkButton {...LinkButtons.press} />
-                </Grid>
-                <Grid item xs={6}>
-                  <LinkButton {...LinkButtons.searchPage} />
-                </Grid>
-                <Grid item xs={6}>
-                  <LinkButton {...LinkButtons.help} />
-                </Grid>
-                <Grid item xs={6}>
-                  <LinkButton {...LinkButtons.addPost} />
-                </Grid>
+const Layout = ({ classes, data, loading, error }) => (
+  <Fragment>
+    <Head>
+      <title>
+        Giełda klasyków - klasyczne samochody, youngtimery na sprzedaż
+      </title>
+    </Head>
+    {loading ? <LinearProgress /> : null}
+    {error ? null : (
+      <div className={classes.root}>
+        <Grid container>
+          <Grid item xs={6}>
+            {data && data.posts ? <OfferOfTheDay item={data.posts[0]} /> : null}
+          </Grid>
+          <Grid item xs={6}>
+            <Grid container>
+              <Grid item xs={6}>
+                <LinkButton {...LinkButtons.press} />
+              </Grid>
+              <Grid item xs={6}>
+                <LinkButton {...LinkButtons.searchPage} />
+              </Grid>
+              <Grid item xs={6}>
+                <LinkButton {...LinkButtons.help} />
+              </Grid>
+              <Grid item xs={6}>
+                <LinkButton {...LinkButtons.addPost} />
               </Grid>
             </Grid>
           </Grid>
-          <Divider className={classes.divider} />
-          <Typography variant="h1" className={classes.promotedPostsTitle}>
-            PROMOWANE OGŁOSZENIA
-          </Typography>
-          {data && data.posts ? "Loaded" : null}
-        </div>
-      )}
-    </Fragment>
-  );
-};
+        </Grid>
+        <Divider className={classes.divider} />
+        <Typography variant="h1" className={classes.promotedPostsTitle}>
+          PROMOWANE OGŁOSZENIA
+        </Typography>
+        {data && data.posts ? <Posts posts={data.posts} /> : null}
+      </div>
+    )}
+  </Fragment>
+);
 
 export default withStyles(styles)(Layout);
