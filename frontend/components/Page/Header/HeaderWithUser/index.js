@@ -215,18 +215,12 @@ const SignOut = ({ onClick, children }) => {
           query: CURRENT_USER_QUERY
         }
       ]}
+      onCompleted={onClick}
     >
       {(send, { loading }) => (
         <Fragment>
           {loading ? <LinearProgress /> : null}
-          <StyledMenuItem
-            onClick={() => {
-              onClick();
-              send();
-            }}
-          >
-            {children}
-          </StyledMenuItem>
+          <StyledMenuItem onClick={send}>{children}</StyledMenuItem>
         </Fragment>
       )}
     </Mutation>
