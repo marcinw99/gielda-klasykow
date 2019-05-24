@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
-import Link from "next/link";
 import Head from "next/head";
+import { compose } from "recompose";
 import {
-  Button,
   Grid,
   withStyles,
   Typography,
   Divider,
-  LinearProgress
+  LinearProgress,
+  withWidth
 } from "@material-ui/core";
 
 import OfferOfTheDay from "./OfferOfTheDay";
@@ -69,10 +69,10 @@ const Layout = ({ classes, data, loading, error }) => (
     {error ? null : (
       <div className={classes.root}>
         <Grid container>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             {data && data.posts ? <OfferOfTheDay item={data.posts[0]} /> : null}
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <Grid container>
               <Grid item xs={6}>
                 <LinkButton {...LinkButtons.press} />
@@ -99,4 +99,7 @@ const Layout = ({ classes, data, loading, error }) => (
   </Fragment>
 );
 
-export default withStyles(styles)(Layout);
+export default compose(
+  withWidth(),
+  withStyles(styles)
+)(Layout);
