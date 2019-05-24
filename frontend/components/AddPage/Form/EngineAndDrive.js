@@ -75,7 +75,7 @@ const EngineAndDrive = props => (
           <RadioGenerator
             name="transmission"
             options={props.options.Transmission}
-            values={props.values.transmission}
+            value={props.values.transmission}
             handleChange={e => props.handleChange(e.target)}
           />
         </Grid>
@@ -86,7 +86,7 @@ const EngineAndDrive = props => (
           <RadioGenerator
             name="drive"
             options={props.options.Drive}
-            values={props.values.drive}
+            value={props.values.drive}
             handleChange={e => props.handleChange(e.target)}
           />
         </Grid>
