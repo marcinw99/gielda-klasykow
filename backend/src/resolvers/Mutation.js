@@ -124,9 +124,9 @@ const Mutation = {
     const data = {
       ...otherArgs,
       password: encryptedPassword,
-      emailConfirmed: false,
-      emailConfirmationToken,
-      permissions: { set: ["USER"] }
+      emailConfirmed: true,
+      emailConfirmationToken: null,
+      permissions: { set: ["USER", "ADD_POSTS"] }
     };
     const user = await context.db.mutation.createUser({ data }, info);
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
