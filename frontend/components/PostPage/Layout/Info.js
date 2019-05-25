@@ -208,7 +208,7 @@ class Info extends Component {
                     className={classes.phoneNumber}
                     id="phoneNumber"
                   >
-                    {spacesInNumbers(Number(data.user.phoneNumber))}
+                    {data.user.phoneNumber}
                   </Typography>
                   <Button
                     variant="text"
