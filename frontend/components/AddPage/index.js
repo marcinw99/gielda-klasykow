@@ -143,7 +143,7 @@ class AddPage extends Component {
                                   />
                                 </Grid>
                               </Hidden>
-                              <Grid item xs={9} lg={6}>
+                              <Grid item xs={12} sm={9} lg={6}>
                                 <StyledPaper>
                                   <Form
                                     data={data}

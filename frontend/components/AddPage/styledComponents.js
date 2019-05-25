@@ -11,9 +11,7 @@ import {
 
 const contentStyles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 5,
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3
+    marginTop: theme.spacing.unit * 3
   }
 });
 
@@ -48,25 +46,6 @@ const paperStyles = theme => ({
 const PaperComponent = props => <Paper elevation={4} {...props} />;
 
 export const StyledPaper = withStyles(paperStyles)(PaperComponent);
-
-// FormContent
-
-const formContentStyles = theme => ({
-  root: {
-    marginTop: theme.spacing.unit * 4,
-    marginLeft: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 4,
-    minHeight: 460
-  }
-});
-
-const FormContentComponent = props => {
-  const { classes, ...other } = props;
-  return <div className={classes.root} {...other} />;
-};
-
-export const FormContent = withStyles(formContentStyles)(FormContentComponent);
 
 // StyledValueTitle
 

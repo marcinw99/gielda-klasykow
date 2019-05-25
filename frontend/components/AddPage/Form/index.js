@@ -14,7 +14,6 @@ import {
   getTypesFieldsAsArrays,
   assignValuesToProperDataType
 } from "../../../src/globalMethods";
-import { FormContent } from "../styledComponents";
 import {
   steps,
   blankValuesState,
@@ -235,7 +234,7 @@ class Form extends Component {
         <Typography variant="h5">
           {steps[this.props.activeStep].label}
         </Typography>
-        <FormContent>
+        <div>
           {React.cloneElement(getFormContent(this.props.activeStep), {
             options,
             handleChange: this.handleChange,
@@ -247,7 +246,7 @@ class Form extends Component {
             requiredFieldsNotFilled: this.state.requiredFieldsNotFilled,
             error: this.props.error
           })}
-        </FormContent>
+        </div>
         <Navigation
           activeStep={this.props.activeStep}
           setValueInMainState={this.props.setValueInMainState}
