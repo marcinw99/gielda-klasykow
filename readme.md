@@ -1,3 +1,5 @@
 https://gieldaklasykow.now.sh/
 
-Website for selling old cars.
+App may not work, because hosting disables it after some amount of time of inactivity
+
+Website for sellind old cars
