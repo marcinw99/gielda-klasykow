@@ -37,6 +37,6 @@
     "recompose": "^0.30.0"
   },
   "devDependencies": {
-    "postcss": "6.0.14"
+    "postcss": "8.4.31"
   }
 }
